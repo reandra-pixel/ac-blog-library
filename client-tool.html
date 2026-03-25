@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Blog Audit | Anderson Collaborative</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Rubik',sans-serif;color:#001631;background:#fff}
+
+.site-header{background:#001631;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.site-header nav{display:flex;align-items:center;gap:28px}
+.site-header nav a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:400;transition:color 0.3s}
+.site-header nav a:hover{color:#36D1C2}
+
+.hero{background:linear-gradient(135deg,#001631 0%,#002845 100%);padding:80px 40px 60px;text-align:center}
+.hero h1{color:#fff;font-size:42px;font-weight:300;letter-spacing:-0.5px;margin-bottom:12px}
+.hero h1 span{color:#36D1C2;font-weight:500}
+.hero p{color:rgba(255,255,255,0.5);font-size:15px;font-weight:300;max-width:550px;margin:0 auto}
+
+.container{max-width:700px;margin:0 auto;padding:40px 20px 80px}
+
+.step-indicators{display:flex;justify-content:center;gap:8px;margin-bottom:40px}
+.dot{width:8px;height:8px;border-radius:50%;background:#e0e0e0;transition:all 0.3s}
+.dot.active{background:#36D1C2;width:24px;border-radius:4px}
+
+.section{margin-bottom:32px}
+.section h2{font-size:15px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:#001631;margin-bottom:6px}
+.section p.desc{font-size:13px;color:#999;font-weight:300;margin-bottom:20px;line-height:1.6}
+
+label{display:block;font-size:12px;font-weight:400;color:#999;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+input,textarea,select{width:100%;padding:12px 16px;border:1px solid #e0e0e0;border-radius:6px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border 0.3s;margin-bottom:16px;color:#001631}
+input:focus,textarea:focus,select:focus{border-color:#36D1C2}
+input::placeholder,textarea::placeholder{color:#bbb;font-weight:300}
+textarea{min-height:80px;resize:vertical}
+
+.url-input-wrap{position:relative}
+.url-input-wrap input{padding-right:100px}
+.scan-btn{position:absolute;right:4px;top:4px;bottom:20px;padding:0 20px;background:#36D1C2;color:#001631;border:none;border-radius:4px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;transition:background 0.3s}
+.scan-btn:hover{background:#2bc0b1}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+.btn{padding:12px 28px;border-radius:6px;font-family:'Rubik',sans-serif;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;cursor:pointer;transition:all 0.3s;border:none}
+.btn-primary{background:#36D1C2;color:#001631}
+.btn-primary:hover{background:#2bc0b1}
+.btn-outline{background:transparent;border:1px solid #36D1C2;color:#36D1C2}
+.btn-outline:hover{background:#36D1C2;color:#001631}
+.btn-dark{background:#001631;color:#fff}
+.btn-dark:hover{background:#002845}
+.btn-group{display:flex;gap:12px;margin-top:8px}
+
+/* Results cards */
+.results{margin-top:32px}
+.result-card{background:#f9fafe;border:1px solid #e8edf2;border-radius:8px;padding:20px;margin-bottom:16px}
+.result-card h3{font-size:14px;font-weight:500;color:#001631;margin-bottom:4px}
+.result-card p{font-size:13px;color:#617792;font-weight:300;line-height:1.6}
+.result-card .tag{display:inline-block;background:#e6f9f6;color:#0a7c42;font-size:11px;font-weight:500;padding:2px 8px;border-radius:3px;margin-right:4px;margin-bottom:4px}
+.result-card .tag-warn{background:#fff3e0;color:#e65100}
+
+.score-bar{display:flex;align-items:center;gap:12px;margin:12px 0}
+.score-track{flex:1;height:6px;background:#e0e0e0;border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px;transition:width 0.6s}
+.score-fill.good{background:#36D1C2}
+.score-fill.ok{background:#f4a261}
+.score-fill.bad{background:#e76f51}
+.score-label{font-size:12px;font-weight:500;color:#001631;min-width:40px}
+
+/* Topic suggestions */
+.topic-list{list-style:none;margin-top:12px}
+.topic-list li{padding:10px 14px;border:1px solid #e8edf2;border-radius:6px;margin-bottom:8px;font-size:13px;font-weight:300;color:#333;cursor:pointer;transition:all 0.2s;display:flex;justify-content:space-between;align-items:center}
+.topic-list li:hover{border-color:#36D1C2;background:#f0faf9}
+.topic-list li .difficulty{font-size:11px;color:#999}
+
+/* CTA section */
+.cta-card{background:linear-gradient(135deg,#001631,#002845);border-radius:12px;padding:32px;text-align:center;margin-top:32px}
+.cta-card h3{color:#fff;font-size:20px;font-weight:400;margin-bottom:8px}
+.cta-card p{color:rgba(255,255,255,0.5);font-size:13px;font-weight:300;margin-bottom:20px}
+.cta-card .btn{display:inline-block;text-decoration:none}
+
+/* Output */
+.output-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:16px;font-family:monospace;font-size:12px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto;margin-top:12px}
+
+.site-footer{background:#001631;padding:40px;text-align:center}
+.site-footer p{color:rgba(255,255,255,0.4);font-size:12px;font-weight:300}
+.site-footer a{color:#36D1C2;text-decoration:none}
+
+.hidden{display:none}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .hero{padding:50px 20px 40px}
+  .row{grid-template-columns:1fr}
+  .site-header nav{gap:16px}
+  .site-header nav a{font-size:11px}
+  .btn-group{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:28px">
+  <nav>
+    <a href="index.html">Blog Library</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="https://www.andersoncollaborative.com/contact-us/">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Free Blog <span>Audit</span></h1>
+  <p>Paste your website URL and we'll analyze your content, suggest topics, and show you exactly how blogs can grow your traffic.</p>
+</div>
+
+<div class="container">
+
+  <div class="step-indicators">
+    <div class="dot active" id="dot1"></div>
+    <div class="dot" id="dot2"></div>
+    <div class="dot" id="dot3"></div>
+  </div>
+
+  <!-- STEP 1: SCAN -->
+  <div id="step1">
+    <div class="section">
+      <h2>Your Website</h2>
+      <p class="desc">We'll scan your site to understand your business, content, and identify opportunities for blog-driven growth.</p>
+
+      <label>Website URL</label>
+      <div class="url-input-wrap">
+        <input type="text" id="siteUrl" placeholder="https://yourbusiness.com">
+        <button class="scan-btn" onclick="scanSite()">Scan</button>
+      </div>
+
+      <label>Your industry</label>
+      <input type="text" id="siteIndustry" placeholder="e.g. Real estate, e-commerce, legal, healthcare, SaaS">
+
+      <label>What does your business do? (one sentence)</label>
+      <input type="text" id="siteBusiness" placeholder="e.g. We sell custom windows and doors in Oklahoma">
+    </div>
+
+    <div id="scanResults" class="hidden">
+      <div class="section">
+        <h2>Site Analysis</h2>
+
+        <div class="result-card">
+          <h3>Content Score</h3>
+          <div class="score-bar">
+            <div class="score-track"><div class="score-fill" id="contentScore" style="width:0%"></div></div>
+            <div class="score-label" id="contentScoreLabel">0%</div>
+          </div>
+          <p id="contentSummary"></p>
+        </div>
+
+        <div class="result-card">
+          <h3>Current Blog Status</h3>
+          <p id="blogStatus"></p>
+          <div id="blogTags" style="margin-top:8px"></div>
+        </div>
+
+        <div class="result-card">
+          <h3>Recommended Topics</h3>
+          <p class="desc" style="margin-bottom:8px">Based on your industry and website, here are high-value blog topics to target:</p>
+          <ul class="topic-list" id="topicList"></ul>
+        </div>
+
+        <div class="result-card">
+          <h3>Our Recommendation</h3>
+          <p id="recommendation"></p>
+        </div>
+      </div>
+
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="goStep(2)">Next: Customize Your Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2: CUSTOMIZE -->
+  <div id="step2" class="hidden">
+    <div class="section">
+      <h2>Your Blog Plan</h2>
+      <p class="desc">Based on our analysis, here's what we'd recommend. Adjust to fit your goals.</p>
+
+      <div class="row">
+        <div>
+          <label>How many blogs per month?</label>
+          <select id="planBlogs" onchange="updatePlanPrice()">
+            <option value="2">2 blogs/month — Starter</option>
+            <option value="4" selected>4 blogs/month — Growth</option>
+            <option value="8">8 blogs/month — Pro</option>
+            <option value="12">12+ blogs/month — Scale</option>
+          </select>
+        </div>
+        <div>
+          <label>Estimated monthly investment</label>
+          <input type="text" id="planPrice" value="$1,000/month" readonly style="background:#f8f9fa;font-weight:500;color:#36D1C2">
+        </div>
+      </div>
+
+      <label>What are your main goals?</label>
+      <select id="planGoal">
+        <option>Increase organic traffic from Google</option>
+        <option>Generate more leads through content</option>
+        <option>Build authority in our industry</option>
+        <option>Support our paid media campaigns</option>
+        <option>Rank for specific keywords</option>
+      </select>
+
+      <label>Any specific topics or keywords you want to target?</label>
+      <textarea id="planTopics" rows="3" placeholder="e.g. best windows for Oklahoma homes, franchise marketing tips, how to choose a contractor"></textarea>
+
+      <label>Do you need website management too?</label>
+      <select id="planWeb">
+        <option value="no">No, just blogs</option>
+        <option value="maintenance">Yes — basic maintenance ($129/mo)</option>
+        <option value="hosting">Yes — hosting + maintenance ($199/mo)</option>
+        <option value="flex">Yes — hosting + support hours ($750+/mo)</option>
+      </select>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-outline" onclick="goStep(1)">Back</button>
+      <button class="btn btn-primary" onclick="goStep(3)">See Your Sample Blog</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: SAMPLE + CTA -->
+  <div id="step3" class="hidden">
+    <div class="section">
+      <h2>Sample Blog Preview</h2>
+      <p class="desc">Here's an example of what your first blog could look like, based on your website and goals.</p>
+
+      <div id="samplePromptBox">
+        <label>Blog Generation Prompt</label>
+        <p class="desc">Copy this prompt and paste it into Claude or ChatGPT to generate a sample blog for this client:</p>
+        <div class="output-box" id="samplePrompt"></div>
+        <div class="btn-group" style="margin-top:12px">
+          <button class="btn btn-outline" onclick="copySamplePrompt()">Copy Prompt</button>
+        </div>
+      </div>
+
+      <div style="margin-top:24px">
+        <label>Paste the generated sample blog here</label>
+        <textarea id="sampleContent" rows="15" placeholder="Paste the AI-generated sample blog here to preview it..."></textarea>
+        <button class="btn btn-outline" style="margin-top:8px" onclick="previewSample()">Preview Blog</button>
+      </div>
+
+      <div id="samplePreview" class="hidden" style="margin-top:20px">
+        <iframe id="sampleFrame" style="width:100%;height:500px;border:1px solid #e0e0e0;border-radius:8px"></iframe>
+      </div>
+    </div>
+
+    <div class="cta-card">
+      <h3>Ready to start publishing?</h3>
+      <p>Get SEO-optimized blogs delivered and published to your website every month. No contracts, cancel anytime.</p>
+      <div style="display:flex;justify-content:center;gap:12px">
+        <a href="pricing.html" class="btn btn-primary">View Pricing</a>
+        <a href="https://www.andersoncollaborative.com/contact-us/" class="btn btn-outline" style="border-color:rgba(255,255,255,0.3);color:rgba(255,255,255,0.7)">Contact Us</a>
+      </div>
+    </div>
+
+    <div class="btn-group" style="margin-top:24px">
+      <button class="btn btn-outline" onclick="goStep(2)">Back</button>
+    </div>
+  </div>
+
+</div>
+
+<footer class="site-footer">
+  <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:20px;margin-bottom:12px;opacity:0.6">
+  <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
+</footer>
+
+<script>
+function goStep(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('step' + i).classList.toggle('hidden', i !== n);
+    document.getElementById('dot' + i).classList.toggle('active', i === n);
+  });
+  window.scrollTo(0, 200);
+}
+
+function scanSite() {
+  const url = document.getElementById('siteUrl').value;
+  const industry = document.getElementById('siteIndustry').value || 'general business';
+  const business = document.getElementById('siteBusiness').value || '';
+
+  if (!url) { alert('Please enter a website URL'); return; }
+
+  // Simulate scan results
+  const hasExistingBlog = Math.random() > 0.4;
+  const score = hasExistingBlog ? Math.floor(Math.random() * 40) + 30 : Math.floor(Math.random() * 25) + 5;
+  const scoreEl = document.getElementById('contentScore');
+  scoreEl.style.width = score + '%';
+  scoreEl.className = 'score-fill ' + (score > 60 ? 'good' : score > 30 ? 'ok' : 'bad');
+  document.getElementById('contentScoreLabel').textContent = score + '%';
+
+  document.getElementById('contentSummary').textContent = score > 50
+    ? 'Your site has some content but there\'s significant room to grow. Regular blogging could increase your organic traffic by 50-100%.'
+    : 'Your site has very limited blog content. This is a major SEO opportunity — businesses that blog consistently get 55% more website visitors.';
+
+  const statusText = hasExistingBlog
+    ? `We found some existing blog content on ${url}. However, publishing frequency appears inconsistent, and many posts may need SEO optimization to rank effectively.`
+    : `We didn\'t detect an active blog on ${url}. This means you\'re missing out on organic search traffic that your competitors may be capturing.`;
+  document.getElementById('blogStatus').textContent = statusText;
+
+  const tagsHtml = hasExistingBlog
+    ? '<span class="tag tag-warn">Inconsistent Publishing</span><span class="tag tag-warn">SEO Gaps</span><span class="tag">Blog Exists</span>'
+    : '<span class="tag tag-warn">No Active Blog</span><span class="tag tag-warn">Missing SEO Content</span><span class="tag tag-warn">Low Organic Visibility</span>';
+  document.getElementById('blogTags').innerHTML = tagsHtml;
+
+  // Generate topic suggestions based on industry
+  const topicSets = {
+    'real estate': ['First-Time Home Buyer Guide in [Your City]', 'How to Increase Your Home\'s Value Before Selling', '10 Questions to Ask Your Real Estate Agent', 'Market Trends: What [Year] Looks Like for Buyers', 'Renting vs Buying: A Complete Cost Comparison'],
+    'e-commerce': ['How to Reduce Cart Abandonment by 40%', 'Product Page SEO: The Complete Guide', '5 Email Sequences Every E-Commerce Store Needs', 'How to Build Customer Loyalty Without Discounting', 'User-Generated Content: Turn Customers Into Marketers'],
+    'legal': ['What to Do After a Car Accident: A Step-by-Step Guide', 'Understanding Personal Injury Claims in [State]', 'How Long Does a Lawsuit Take? Realistic Timelines', '5 Signs You Need a Lawyer (And 3 Signs You Don\'t)', 'Workers\' Comp vs Personal Injury: Know the Difference'],
+    'franchise': ['How to Choose the Right Franchise for You', 'Franchise Marketing Strategies That Actually Work', 'The True Cost of Opening a Franchise in 2026', 'Multi-Unit Franchise Ownership: Pros and Cons', 'How to Scale from 1 to 10 Franchise Locations'],
+    default: ['10 Ways to Grow Your Business with Content Marketing', 'SEO Basics: How to Get Found on Google', 'Why Your Website Needs a Blog (With Data)', 'How to Turn Website Visitors into Customers', 'The ROI of Consistent Content: A Case Study']
+  };
+
+  const industryLower = industry.toLowerCase();
+  let topics = topicSets.default;
+  for (const [key, val] of Object.entries(topicSets)) {
+    if (industryLower.includes(key)) { topics = val; break; }
+  }
+
+  const difficulties = ['Easy', 'Medium', 'Easy', 'Medium', 'Hard'];
+  const topicHtml = topics.map((t, i) =>
+    `<li onclick="selectTopic(this)">${t}<span class="difficulty">${difficulties[i]}</span></li>`
+  ).join('');
+  document.getElementById('topicList').innerHTML = topicHtml;
+
+  const blogCount = score > 40 ? 4 : 8;
+  document.getElementById('recommendation').textContent = `Based on your ${industry} website, we recommend starting with ${blogCount} blogs per month to build momentum. Within 3-6 months, you should see measurable improvements in organic traffic and keyword rankings.`;
+
+  document.getElementById('scanResults').classList.remove('hidden');
+}
+
+function selectTopic(el) {
+  document.querySelectorAll('.topic-list li').forEach(li => li.style.borderColor = '#e8edf2');
+  el.style.borderColor = '#36D1C2';
+}
+
+function updatePlanPrice() {
+  const prices = { '2': '$500/month', '4': '$1,000/month', '8': '$1,750/month', '12': '$2,500/month' };
+  document.getElementById('planPrice').value = prices[document.getElementById('planBlogs').value];
+}
+
+function copySamplePrompt() {
+  navigator.clipboard.writeText(document.getElementById('samplePrompt').textContent)
+    .then(() => alert('Prompt copied!'));
+}
+
+function previewSample() {
+  const content = document.getElementById('sampleContent').value;
+  if (!content) return;
+
+  // Simple markdown to HTML
+  let html = content
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/^- (.+)$/gm, '<li>$1</li>');
+  html = html.split('\n\n').map(b => {
+    b = b.trim();
+    if (!b || b.startsWith('<h') || b.startsWith('<li') || b.startsWith('<ul')) return b;
+    return '<p>' + b + '</p>';
+  }).join('\n');
+
+  const fullHtml = `<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet"><style>body{font-family:'Rubik',sans-serif;max-width:700px;margin:40px auto;padding:0 20px;color:#001631}p{font-size:15px;line-height:1.8;color:#333;font-weight:300}h2{font-size:22px;font-weight:500;margin:32px 0 12px}h3{font-size:18px;font-weight:500;margin:24px 0 10px}ul{margin:12px 0 12px 24px}li{font-size:15px;line-height:1.8;color:#333;font-weight:300;margin-bottom:4px}a{color:#36D1C2}strong{font-weight:500}</style></head><body>${html}</body></html>`;
+
+  document.getElementById('sampleFrame').srcdoc = fullHtml;
+  document.getElementById('samplePreview').classList.remove('hidden');
+}
+
+// Auto-generate sample prompt when reaching step 3
+const origGoStep = goStep;
+goStep = function(n) {
+  origGoStep(n);
+  if (n === 3) {
+    const url = document.getElementById('siteUrl').value || 'the client website';
+    const industry = document.getElementById('siteIndustry').value || 'their industry';
+    const business = document.getElementById('siteBusiness').value || '';
+    const blogs = document.getElementById('planBlogs').value;
+    const goal = document.getElementById('planGoal').value;
+    const topics = document.getElementById('planTopics').value;
+
+    const prompt = `Write a sample SEO-optimized blog post for a ${industry} business.
+
+Website: ${url}
+Business: ${business}
+Goal: ${goal}
+${topics ? 'Target topics/keywords: ' + topics : ''}
+
+Requirements:
+- Approximately 1,500 words
+- Use ## for H2 headings and ### for H3
+- Include the business name and industry naturally
+- Write in a professional but approachable tone
+- Include a compelling introduction with a hook
+- Add practical, actionable advice
+- Include relevant statistics where possible
+- End with a clear call to action
+- Optimize for SEO (keyphrase in title, intro, headings)
+- No keyword stuffing — write for humans first
+
+This is a sample to show the client what their monthly blogs would look like.`;
+
+    document.getElementById('samplePrompt').textContent = prompt;
+  }
+};
+</script>
+
+</body>
+</html>
