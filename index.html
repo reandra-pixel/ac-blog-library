@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC Blog Library | Anderson Collaborative</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Rubik',sans-serif;color:#001631;background:#f5f6f8}
+.site-header{background:#001631;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.site-header .logo{color:#fff;font-size:18px;font-weight:600;letter-spacing:1px}
+.site-header .logo span{color:#36D1C2}
+.site-header nav a{color:#fff;text-decoration:none;margin-left:30px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:500}
+.site-header nav a:hover{color:#36D1C2}
+
+.hero-banner{background:#001631;padding:60px 40px 50px;text-align:center}
+.hero-banner h1{color:#fff;font-size:42px;font-weight:700;margin-bottom:10px}
+.hero-banner p{color:rgba(255,255,255,0.6);font-size:16px}
+.hero-banner .count{color:#36D1C2}
+
+.toolbar{max-width:1200px;margin:30px auto 0;padding:0 20px;display:flex;gap:12px;align-items:center}
+.toolbar input{flex:1;padding:12px 20px;border:2px solid #e0e0e0;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;outline:none;transition:border 0.2s}
+.toolbar input:focus{border-color:#36D1C2}
+.toolbar select{padding:12px 16px;border:2px solid #e0e0e0;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;outline:none;background:#fff}
+
+.grid{max-width:1200px;margin:20px auto;padding:0 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
+
+.card{background:#fff;border-radius:12px;overflow:hidden;text-decoration:none;color:#001631;box-shadow:0 2px 12px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.card-img{height:200px;background-size:cover;background-position:center}
+.card-body{padding:20px}
+.card-body h3{font-size:16px;font-weight:600;line-height:1.4;margin-bottom:0}
+.card-date{font-size:12px;color:#617792;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+
+.create-btn{position:fixed;bottom:30px;right:30px;background:#36D1C2;color:#001631;border:none;padding:16px 24px;border-radius:50px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 16px rgba(54,209,194,0.4);text-decoration:none;display:flex;align-items:center;gap:8px;z-index:100}
+.create-btn:hover{background:#2bc0b1;transform:scale(1.05)}
+
+.site-footer{background:#001631;color:rgba(255,255,255,0.6);padding:40px;text-align:center;font-size:13px}
+.site-footer a{color:#36D1C2;text-decoration:none}
+
+.hidden{display:none}
+
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr}
+  .hero-banner h1{font-size:28px}
+  .hero-banner{padding:40px 20px 30px}
+  .toolbar{flex-direction:column}
+  .site-header nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">ANDERSON <span>COLLABORATIVE</span></div>
+  <nav>
+    <a href="https://www.andersoncollaborative.com/">Home</a>
+    <a href="blog-creator.html">+ New Blog</a>
+    <a href="https://www.andersoncollaborative.com/contact-us/">Contact</a>
+  </nav>
+</header>
+
+<div class="hero-banner">
+  <h1>AC Blog Library</h1>
+  <p><span class="count">77</span> published articles ready for migration</p>
+</div>
+
+<div class="toolbar">
+  <input type="text" id="search" placeholder="Search blogs..." oninput="filterBlogs()">
+  <select id="authorFilter" onchange="filterBlogs()">
+    <option value="">All Authors</option>
+    <option value="Trevor Anderson">Trevor Anderson</option>
+    <option value="Reandra Maree">Reandra Maree</option>
+    <option value="gregorio">Gregorio</option>
+    <option value="daria">Daria</option>
+    <option value="daymit">Daymit</option>
+    <option value="mariia">Mariia</option>
+    <option value="Eden Jones">Eden Jones</option>
+    <option value="Stavros">Stavros</option>
+    <option value="rizki">Rizki</option>
+    <option value="Rupert">Rupert</option>
+  </select>
+</div>
+
+<div class="grid" id="blogGrid">
+
+    <a href="2026-02-23_The-Modern-B2B-Buying-Process-Explained.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2026/02/city-scaled.jpeg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-02-23 &bull; Reandra Maree</div>
+        <h3>The Modern B2B Buying Process Explained</h3>
+      </div>
+    </a>
+
+    <a href="2026-02-09_The-Best-AI-Visibility-Monitoring-Platforms-in-2026.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2026/02/SEO-blog-2026.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-02-09 &bull; Reandra Maree</div>
+        <h3>The Best AI Visibility & Monitoring Platforms in 2026</h3>
+      </div>
+    </a>
+
+    <a href="2026-01-26_Best-AI-SEO-Tools-In-2026-Reviewed-Ranked-for-AEO-LLM-SEO.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-01-26 &bull; Trevor Anderson</div>
+        <h3>Best AI SEO Tools In 2026 (Reviewed & Ranked for AEO + LLM SEO)</h3>
+      </div>
+    </a>
+
+    <a href="2026-01-02_The-Top-25-Marketing-Agencies-In-Miami-2026-Rankings.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/03/miami-night-view-from-air-2023-12-23-01-45-17-utc1-scaled-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-01-02 &bull; Reandra Maree</div>
+        <h3>The Top 25 Marketing Agencies In Miami | 2026 Rankings</h3>
+      </div>
+    </a>
+
+    <a href="2025-09-09_Top-15-Franchise-Marketing-Agencies-in-the-US-You-Need-to-Know-2026.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/08/post-img-30.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-09-09 &bull; Reandra Maree</div>
+        <h3>Top 15 Franchise Marketing Agencies in the U.S. You Need to Know 2026</h3>
+      </div>
+    </a>
+
+    <a href="2025-09-01_Top-LLM-Monitoring-Tools-to-Track-Brand-Visibility-in-AI-Results.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/08/d4162b95-49de-4a52-a289-f876f78cadf8.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-09-01 &bull; Reandra Maree</div>
+        <h3>Top LLM Monitoring Tools to Track Brand Visibility in AI Results</h3>
+      </div>
+    </a>
+
+    <a href="2025-07-31_How-to-Improve-Your-Brands-Visibility-in-AI-Search-Results-ChatGPT-Google-Perple.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/07/How-To-Improve-Your-Brands-Visibility-In-AI-Search-Results.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-07-31 &bull; Trevor Anderson</div>
+        <h3>How to Improve Your Brand’s Visibility in AI Search Results (ChatGPT, Google, Perplexity & More)</h3>
+      </div>
+    </a>
+
+    <a href="2025-06-20_How-We-Automate-80-of-Our-Marketing-Workflow-Using-These-Tools.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/post-bg-5.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>How We Automate 80% of Our Marketing Workflow Using These Tools</h3>
+      </div>
+    </a>
+
+    <a href="2025-06-20_25-Essential-Tools-Every-Modern-Marketing-Agency-Should-Be-Using-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/bg-post3.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>25 Essential Tools Every Modern Marketing Agency Should Be Using in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-06-20_Understanding-Links-and-Destinations-for-Effective-Digital-Strategy-Anderson-Co.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/Group-39680-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>Understanding Links and Destinations for Effective Digital Strategy | Anderson Collaborative Guide</h3>
+      </div>
+    </a>
+
+    <a href="2025-06-19_Landing-Page-Experience.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/feature-img.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-19 &bull; Reandra Maree</div>
+        <h3>Landing Page Experience</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-27_Ethical-AI-Marketing-How-to-Use-Smart-Tools-Without-Losing-Customer-Trust.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39668-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-27 &bull; Reandra Maree</div>
+        <h3>Ethical AI Marketing: How to Use Smart Tools Without Losing Customer Trust</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-27_Top-AI-Tools-Every-Marketer-Should-Be-Using-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39667-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-27 &bull; Reandra Maree</div>
+        <h3>Top AI Tools Every Marketer Should Be Using in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-20_Smarter-Ads-with-Less-Spend-AI-Powered-Paid-Media-Strategies-That-Work.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/smarter-ads.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-20 &bull; Reandra Maree</div>
+        <h3>Smarter Ads with Less Spend: AI-Powered Paid Media Strategies That Work</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-19_Voice-Search-AI-and-the-New-Rules-of-SEO-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/ChatGPT-Image-19-may-2025-10_26_11-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-19 &bull; Reandra Maree</div>
+        <h3>Voice Search, AI, and the New Rules of SEO in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-16_From-Data-to-Dollars-How-AI-Helps-You-Monetize-Customer-Insights-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/ChatGPT-Image-14-may-2025-12_37_10-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-16 &bull; Reandra Maree</div>
+        <h3>From Data to Dollars: How AI Helps You Monetize Customer Insights in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-14_The-Rise-of-Hyper-Personalization-Using-AI-to-Speak-to-One-in-a-Million.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39638-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-14 &bull; Reandra Maree</div>
+        <h3>The Rise of Hyper-Personalization: Using AI to Speak to One in a Million</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-09_How-AI-is-Revolutionizing-Social-Media-Marketing-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39635.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-09 &bull; Reandra Maree</div>
+        <h3>How AI is Revolutionizing Social Media Marketing in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-07_AI-vs-Human-Creativity-Finding-the-Right-Balance-in-Your-2025-Campaigns.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/image-35.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-07 &bull; Reandra Maree</div>
+        <h3>AI vs Human Creativity: Finding the Right Balance in Your 2025 Campaigns</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-05_The-Future-of-AI-in-Marketing-What-to-Expect-in-2025-and-Beyond.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39325-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-05 &bull; Reandra Maree</div>
+        <h3>The Future of AI in Marketing: What to Expect in 2025 and Beyond</h3>
+      </div>
+    </a>
+
+    <a href="2025-05-01_10-Powerful-Ways-to-Integrate-AI-into-Your-Marketing-Strategy-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/MS-WEB-0124-Blog-Image-AI.webp')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-01 &bull; Reandra Maree</div>
+        <h3>10 Powerful Ways to Integrate AI into Your Marketing Strategy in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-28_Top-Social-Media-Agencies-in-the-United-States-Building-Brands-through-Strategic.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/seattle-night-with-moon-2023-11-27-05-17-48-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-28 &bull; Eden Jones</div>
+        <h3>Top Social Media Agencies in the United States: Building Brands through Strategic Storytelling</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-22_Top-Digital-Agencies-In-Fort-Lauderdale-2025-Rankings.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-beach-florida-usa-2023-11-27-05-10-15-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-22 &bull; Eden Jones</div>
+        <h3>Top Digital Agencies In Fort Lauderdale: 2025 Rankings</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-21_Top-Advertising-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-florida-usa-2downtown-cityscape-2023-11-27-05-10-54-utc_11zon1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-21 &bull; Eden Jones</div>
+        <h3>Top Advertising Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-20_Marketing-Agencies-in-the-United-States-Navigating-the-Landscape-of-Modern-Marke.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/miami-florida-usa-downtown-city-skyline-2023-11-27-05-13-55-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-20 &bull; Eden Jones</div>
+        <h3>Marketing Agencies in the United States: Navigating the Landscape of Modern Marketing Services</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-17_The-Ultimate-Guide-to-the-Best-Social-Media-Agencies-in-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-2023-11-27-05-17-39-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-17 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Best Social Media Agencies in Miami in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-16_Top-Design-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ftlauderdale3fin-copy-2023-11-27-04-56-17-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-16 &bull; Eden Jones</div>
+        <h3>Top Design Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-15_Top-eCommerce-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/landscape-of-a-backyard-with-pool-and-cafe-lights-2023-11-27-05-19-24-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-15 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-14_Top-eCommerce-Agencies-in-Florida-Best-eCommerce-Development-Shopify-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/orlando-florida-usa-2023-11-27-05-18-54-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-14 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Florida | Best eCommerce Development & Shopify Experts</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-13_Top-Web-Agencies-in-Florida-Best-Web-Design-Development-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/jupiter-florida-inlet-2023-11-27-05-06-35-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-13 &bull; Eden Jones</div>
+        <h3>Top Web Agencies in Florida | Best Web Design & Development Experts</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-13_Top-Design-Agencies-in-Florida-Elevate-Your-Brand-with-Leading-Digital-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/south-beach-miami-florida-usa-2023-11-27-05-33-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-13 &bull; Eden Jones</div>
+        <h3>Top Design Agencies in Florida | Elevate Your Brand with Leading Digital Experts</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-12_Top-Design-Agencies-in-Miami-A-Comprehensive-Guide-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/choosing-photos-for-magazine-page-2023-11-27-05-20-18-utc1-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-12 &bull; Eden Jones</div>
+        <h3>Top Design Agencies in Miami: A Comprehensive Guide for 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-10_Top-Branding-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-florida-usa-2023-11-27-05-30-08-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-10 &bull; Eden Jones</div>
+        <h3>Top Branding Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-09_Top-Web-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/west-palm-beach-florida-usa-downtown-skyline-on-2023-11-27-05-06-29-utc_11zon.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-09 &bull; Eden Jones</div>
+        <h3>Top Web Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-08_The-Ultimate-Guide-to-the-Top-25-Advertising-Agencies-in-Miami-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/the-best-in-the-business-cropped-shot-of-business-2023-11-27-05-14-24-utc1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-08 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top 25 Advertising Agencies in Miami for 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-04_The-Ultimate-Guide-to-the-Top-Digital-Agencies-in-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-skyline-on-bisayne-bay-2023-11-27-04-51-15-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-04 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Digital Agencies in Miami in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-03_Digital-Marketing-Agencies-in-the-United-States-Driving-Growth-with-Data-Driven.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/atlanta-georgia-usa-over-piedmont-park-2023-11-27-05-20-58-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-03 &bull; Eden Jones</div>
+        <h3>Digital Marketing Agencies in the United States: Driving Growth with Data-Driven Campaigns</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-02_Best-Social-Media-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/a-couple-in-love-runs-through-a-square-in-san-seba-2023-11-27-05-20-03-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-02 &bull; Eden Jones</div>
+        <h3>Best Social Media Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+
+    <a href="2025-02-01_Top-eCommerce-Agencies-in-Miami-Your-Guide-to-the-Best-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/businessman-explaining-marketing-strategy-to-woman-2023-11-27-05-01-23-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-01 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Miami: Your Guide to the Best in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-28_Best-Advertising-Agencies-in-the-United-States-Crafting-Campaigns-that-Captivate.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/jacksonville-florida-usa-2023-11-27-05-04-45-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-28 &bull; Eden Jones</div>
+        <h3>Best Advertising Agencies in the United States: Crafting Campaigns that Captivate and Convert</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-26_Top-Florida-Digital-Marketing-Agencies-Leading-SEO-PPC-and-Online-Marketing-Exp.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/landscape-view-of-lake-eola-and-the-amphitheatre-a-2023-11-27-05-24-44-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-26 &bull; Eden Jones</div>
+        <h3>Top Florida Digital Marketing Agencies | Leading SEO, PPC, and Online Marketing Experts</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-25_The-Ultimate-Guide-to-the-Top-Web-Agencies-In-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-downtown-skyline-on-the-bay-2023-11-27-05-13-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-25 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Web Agencies In Miami in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-23_Best-Growth-Marketing-Agencies-in-the-United-States-Accelerating-Brand-Expansion.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/west-palm-beach-florida-2023-11-27-04-54-42-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-23 &bull; Eden Jones</div>
+        <h3>Best Growth Marketing Agencies in the United States: Accelerating Brand Expansion through Innovative Strategies</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-22_Top-Branding-Agencies-in-Florida-Best-Florida-Creative-Agencies-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/tampa-florida-usa-aerial-downtown-skyline-2023-11-27-05-11-09-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-22 &bull; Eden Jones</div>
+        <h3>Top Branding Agencies in Florida | Best Florida Creative Agencies 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-20_Top-Franchise-Marketing-Agencies-in-the-United-States-Empowering-Franchise-Growt.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/skyline-of-downtown-miami-with-trees-above-the-pho-2023-11-27-04-55-48-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-20 &bull; Eden Jones</div>
+        <h3>Top Franchise Marketing Agencies in the United States: Empowering Franchise Growth with Targeted Solutions</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-19_8-Strategies-for-Optimizing-Your-Ecommerce-Websites-Conversion-Rate.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/8-Strategies-for-Optimizing-Your-Ecommerce-Websites-Conversion-Rate.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>8 Strategies for Optimizing Your Ecommerce Website’s Conversion Rate</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-19_The-Top-Social-Media-Trends-to-Look-Out-for-in-2023.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/top_social_media_trends_anderson_collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>The Top Social Media Trends to Look Out for in 2023</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-19_Top-Advertising-Agencies-in-Florida-Strengthen-Your-Brand-with-Leading-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/st-petersburg-florida-usa-downtown-city-skyline-2023-11-27-05-12-47-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>Top Advertising Agencies in Florida | Strengthen Your Brand with Leading Experts</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-18_SEO-Best-Practices-How-to-Rank-Higher-on-Search-Engines.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/seo.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-18 &bull; Eden Jones</div>
+        <h3>SEO Best Practices: How to Rank Higher on Search Engines</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-18_Search-Engine-Marketing-Agencies-in-the-United-States-Maximizing-Visibility-with.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/miami-florida-usa-skyline-2023-11-27-05-11-03-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-18 &bull; Eden Jones</div>
+        <h3>Search Engine Marketing Agencies in the United States: Maximizing Visibility with Paid and Organic Search</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-17_The-Power-of-Video-Marketing-Tips-and-Tricks-for-Creating-Engaging-Videos.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/video-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-17 &bull; Eden Jones</div>
+        <h3>The Power of Video Marketing: Tips and Tricks for Creating Engaging Videos</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-17_Best-Social-Media-Agencies-in-Florida-Top-Choices-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/miami-florida-usa-skyline-on-biscayne-bay-2023-11-27-05-10-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-17 &bull; Eden Jones</div>
+        <h3>Best Social Media Agencies in Florida | Top Choices for 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-16_The-Ultimate-Guide-to-the-Top-Branding-Agencies-In-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/dont-you-think-this-looks-good-2024-05-20-21-47-50-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-16 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Branding Agencies In Miami in 2025</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-14_Social-Media-Trends-in-2023-What-Brands-Need-to-Know.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/social-media.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-14 &bull; Eden Jones</div>
+        <h3>Social Media Trends in 2023: What Brands Need to Know</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-13_Why-Understanding-Customer-Lifetime-Value-is-Crucial-for-Successful-Growth-Marke.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/customer_lifetime_value.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-13 &bull; Eden Jones</div>
+        <h3>Why Understanding Customer Lifetime Value is Crucial for Successful Growth Marketing Strategy</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-12_Inbound-Marketing-101-The-Ultimate-Guide-for-Beginners.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/inbound-marketing-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-12 &bull; Eden Jones</div>
+        <h3>Inbound Marketing 101: The Ultimate Guide for Beginners</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-11_Content-Marketing-Strategies-How-to-Create-Content-that-Resonates-with-Your-Audi.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/content-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-11 &bull; Eden Jones</div>
+        <h3>Content Marketing Strategies: How to Create Content that Resonates with Your Audience</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-11_CPM-Calculator-Calculate-The-Cost-Per-Thousand-of-Your-Marketing-or-Advertising.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/up-business-woman-using-calculator-and-lapto-2023-11-27-05-34-51-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-11 &bull; Eden Jones</div>
+        <h3>CPM Calculator: Calculate The Cost Per Thousand of Your Marketing or Advertising Campaign</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-10_The-Future-of-Digital-Marketing-How-AI-and-Machine-Learning-are-Shaping-the-Indu.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/future-of-digital-marketing-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-10 &bull; Eden Jones</div>
+        <h3>The Future of Digital Marketing: How AI and Machine Learning are Shaping the Industry</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-09_Email-Marketing-Campaigns-Designing-Effective-Newsletters-for-Better-Engagement.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/email-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-09 &bull; Eden Jones</div>
+        <h3>Email Marketing Campaigns: Designing Effective Newsletters for Better Engagement</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-08_Should-You-Advertise-During-A-Recession.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/should_you_advertise_during_a_recession-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-08 &bull; Trevor Anderson</div>
+        <h3>Should You Advertise During A Recession?</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-04_Anderson-Collaborative-Named-as-a-Leading-Advertising-Agency-in-Miami-Florida-by.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Miami_Anderson_Collaborative_Florida-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-04 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Named as a Leading Advertising Agency in Miami, Florida by Clutch</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-03_Anderson-Collaborative-Announced-as-a-2021-Local-Excellence-Award-Winner-by-UpCi.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Announced-as-a-2021-Local-Excellence-Award-Winner-by-UpCity-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-03 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Announced as a 2021 Local Excellence Award Winner by UpCity!</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-02_The-State-of-E-Commerce-During-COVID-19.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/beautiful-young-women-with-phone-walking-in-park-or-forest-in-black-mask_t20_gLz7zk.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-02 &bull; Trevor Anderson</div>
+        <h3>The State of E-Commerce During COVID-19</h3>
+      </div>
+    </a>
+
+    <a href="2025-01-01_Anderson-Collaborative-Rated-Among-The-Best-In-E-Commerce-Marketing-Web-Design-a.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collab-Miami.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-01 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Rated Among The Best In E-Commerce, Marketing, Web Design, and Branding In Q2 2020</h3>
+      </div>
+    </a>
+
+    <a href="2020-05-15_Anderson-Collaborative-Is-All-Set-to-Expand-Its-Business-in-the-USAs-Burgeoning.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Good-Firms-Background.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-05-15 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Is All Set to Expand Its Business in the USA’s Burgeoning Digital Segment | Good Firms</h3>
+      </div>
+    </a>
+
+    <a href="2020-03-03_How-To-Calculate-ROI-From-An-Email-Marketing-Campaign.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Email-ROI-Calculator.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-03-03 &bull; Trevor Anderson</div>
+        <h3>How To Calculate ROI From An Email Marketing Campaign</h3>
+      </div>
+    </a>
+
+    <a href="2020-01-30_Top-Marketing-Companies-Awards-Features-Anderson-Collaborative-For-Multiple-Cat.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Brickell-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-30 &bull; Trevor Anderson</div>
+        <h3>Top Marketing Companies Awards & Features Anderson Collaborative For Multiple Categories In 2020</h3>
+      </div>
+    </a>
+
+    <a href="2020-01-14_Anderson-Collaborative-Awarded-Featured-On-Clutchco-2019-2020.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Cafe-Working.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-14 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On Clutch.co 2019 & 2020</h3>
+      </div>
+    </a>
+
+    <a href="2020-01-14_Anderson-Collaborative-Awarded-Featured-On-Design-Rush-In-2020.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Miami-Area-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-14 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On Design Rush In 2020</h3>
+      </div>
+    </a>
+
+    <a href="2020-01-13_Finding-The-Right-Marketing-Agency-For-Your-Project-Event-Cause-Or-Business.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Find-A-Marketing-Agency.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-13 &bull; Trevor Anderson</div>
+        <h3>Finding The Right Marketing Agency For Your Project, Event, Cause, Or Business</h3>
+      </div>
+    </a>
+
+    <a href="2020-01-10_Anderson-Collaborative-Awarded-Featured-On-UpCity-In-2019.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Team.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-10 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On UpCity In 2019</h3>
+      </div>
+    </a>
+
+    <a href="2019-12-12_First-Two-Partners-Established-For-2020-Community-Project.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Dallas-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-12-12 &bull; Trevor Anderson</div>
+        <h3>First Two Partners Established For 2020 Community Project</h3>
+      </div>
+    </a>
+
+    <a href="2019-11-19_Does-Digital-Advertising-Actually-Work.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/anderson_collaborative_does_advertising_work.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-19 &bull; Trevor Anderson</div>
+        <h3>Does Digital Advertising Actually Work?</h3>
+      </div>
+    </a>
+
+    <a href="2019-11-11_Introducing-Our-Community-Partner-Program-Quick-Word-From-Trevor-Anderson.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/2020-Community-Projects-Banner.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-11 &bull; Trevor Anderson</div>
+        <h3>Introducing Our Community Partner Program | Quick Word From Trevor Anderson</h3>
+      </div>
+    </a>
+
+    <a href="2019-11-10_How-To-Apply-The-SOSTAC-Strategic-Planning-Model-To-Your-Own-Business.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/2020-Community-Projects-Banner.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-10 &bull; Trevor Anderson</div>
+        <h3>How To Apply The SOSTAC Strategic Planning Model To Your Own Business</h3>
+      </div>
+    </a>
+
+    <a href="2019-11-03_How-To-Calculate-Your-Advertising-Budget-Estimated-Return-On-Investment.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Calculating-Ad-Budget-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-03 &bull; Trevor Anderson</div>
+        <h3>How To Calculate Your Advertising Budget & Estimated Return On Investment</h3>
+      </div>
+    </a>
+</div>
+
+<a href="blog-creator.html" class="create-btn">+ Create New Blog</a>
+
+<footer class="site-footer">
+  <p>&copy; 2026 <a href="https://www.andersoncollaborative.com">Anderson Collaborative</a>. All rights reserved.</p>
+</footer>
+
+<script>
+function filterBlogs() {
+  const search = document.getElementById('search').value.toLowerCase();
+  const author = document.getElementById('authorFilter').value.toLowerCase();
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    const meta = card.querySelector('.card-date').textContent.toLowerCase();
+    const matchSearch = title.includes(search) || meta.includes(search);
+    const matchAuthor = !author || meta.includes(author);
+    card.classList.toggle('hidden', !(matchSearch && matchAuthor));
+  });
+}
+</script>
+
+</body>
+</html>
