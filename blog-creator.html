@@ -14,38 +14,53 @@ body{font-family:'Rubik',sans-serif;color:#001631;background:#f5f6f8}
 .site-header nav a{color:#fff;text-decoration:none;margin-left:30px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:500}
 .site-header nav a:hover{color:#36D1C2}
 
-.container{max-width:900px;margin:40px auto;padding:0 20px 80px}
+.container{max-width:800px;margin:40px auto;padding:0 20px 80px}
 h1{font-size:32px;font-weight:700;margin-bottom:8px}
 .subtitle{color:#617792;font-size:14px;margin-bottom:40px}
 
 .section{background:#fff;border-radius:12px;padding:30px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
 .section h2{font-size:18px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
 .section h2 .badge{background:#36D1C2;color:#001631;font-size:11px;padding:3px 8px;border-radius:4px;font-weight:600}
+.section p.helper{font-size:13px;color:#617792;margin-bottom:16px}
 
 label{display:block;font-size:13px;font-weight:500;color:#617792;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
 input,textarea,select{width:100%;padding:12px 16px;border:2px solid #e0e0e0;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;outline:none;transition:border 0.2s;margin-bottom:16px;resize:vertical}
 input:focus,textarea:focus,select:focus{border-color:#36D1C2}
-textarea{min-height:120px}
+textarea{min-height:80px}
 
 .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 
-.btn{background:#36D1C2;color:#001631;border:none;padding:14px 28px;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s}
+.btn{background:#36D1C2;color:#001631;border:none;padding:14px 28px;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px}
 .btn:hover{background:#2bc0b1;transform:translateY(-1px)}
+.btn:disabled{background:#ccc;cursor:not-allowed;transform:none}
 .btn-outline{background:transparent;border:2px solid #36D1C2;color:#36D1C2}
 .btn-outline:hover{background:#36D1C2;color:#001631}
 .btn-dark{background:#001631;color:#fff}
 .btn-dark:hover{background:#002845}
+.btn-group{display:flex;gap:12px;flex-wrap:wrap}
 
-.btn-group{display:flex;gap:12px;margin-top:8px}
+/* Steps indicator */
+.steps{display:flex;gap:0;margin-bottom:30px}
+.step{flex:1;text-align:center;padding:12px 8px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:#617792;border-bottom:3px solid #e0e0e0;cursor:pointer;transition:all 0.2s}
+.step.active{color:#36D1C2;border-color:#36D1C2}
+.step.done{color:#0a7c42;border-color:#0a7c42}
+.step-num{display:inline-block;width:24px;height:24px;line-height:24px;border-radius:50%;background:#e0e0e0;color:#617792;font-size:11px;margin-bottom:4px}
+.step.active .step-num{background:#36D1C2;color:#001631}
+.step.done .step-num{background:#0a7c42;color:#fff}
 
-.preview-frame{background:#fff;border:2px solid #e0e0e0;border-radius:8px;padding:0;margin-top:16px;overflow:hidden}
+/* Loading spinner */
+.spinner{display:inline-block;width:20px;height:20px;border:3px solid rgba(0,22,49,0.2);border-top-color:#001631;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Preview */
+.preview-frame{background:#fff;border:2px solid #e0e0e0;border-radius:8px;overflow:hidden;margin-top:16px}
 .preview-frame iframe{width:100%;height:600px;border:none}
 
+/* SEO score */
 .seo-score{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
 .seo-good{background:#e6f9f0;color:#0a7c42}
 .seo-ok{background:#fff3e0;color:#e65100}
 .seo-bad{background:#fde8e8;color:#c62828}
-
 .checklist{list-style:none;margin-top:12px}
 .checklist li{padding:8px 0;border-bottom:1px solid #f0f0f0;font-size:13px;display:flex;align-items:center;gap:8px}
 .checklist li:last-child{border:none}
@@ -53,9 +68,13 @@ textarea{min-height:120px}
 .check-pass{background:#e6f9f0;color:#0a7c42}
 .check-fail{background:#fde8e8;color:#c62828}
 
-.tag{display:inline-block;background:#f0f0f0;padding:4px 10px;border-radius:4px;font-size:12px;margin:2px}
+.output-box{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:8px;padding:16px;font-family:monospace;font-size:12px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto;margin-top:12px}
 
-.output-box{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:8px;padding:16px;font-family:monospace;font-size:13px;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow-y:auto;margin-top:12px}
+.generated-content{background:#f8f9fa;border:2px solid #e0e0e0;border-radius:8px;padding:24px;margin-top:16px;font-size:14px;line-height:1.8;color:#333}
+.generated-content h2{font-size:22px;margin:24px 0 12px;color:#001631}
+.generated-content h3{font-size:18px;margin:20px 0 10px;color:#001631}
+.generated-content ul{margin:12px 0 12px 24px}
+.generated-content li{margin-bottom:6px}
 
 .hidden{display:none}
 
@@ -63,6 +82,8 @@ textarea{min-height:120px}
   .row{grid-template-columns:1fr}
   .site-header nav{display:none}
   .btn-group{flex-direction:column}
+  .steps{flex-wrap:wrap}
+  .step{font-size:10px}
 }
 </style>
 </head>
@@ -78,88 +99,166 @@ textarea{min-height:120px}
 
 <div class="container">
   <h1>Create New Blog Post</h1>
-  <p class="subtitle">Fill in the details below to generate an SEO-optimized blog article in AC style</p>
+  <p class="subtitle">Answer a few questions and we'll generate an SEO-optimized blog article for you</p>
 
-  <!-- SECTION 1: BASICS -->
-  <div class="section">
-    <h2>Blog Details</h2>
-    <label>Blog Title</label>
-    <input type="text" id="blogTitle" placeholder="e.g. Top 10 Franchise Marketing Strategies for 2026" oninput="updateSEO()">
+  <div class="steps">
+    <div class="step active" id="step1tab" onclick="goToStep(1)"><div class="step-num">1</div><br>Topic</div>
+    <div class="step" id="step2tab" onclick="goToStep(2)"><div class="step-num">2</div><br>Details</div>
+    <div class="step" id="step3tab" onclick="goToStep(3)"><div class="step-num">3</div><br>Generate</div>
+    <div class="step" id="step4tab" onclick="goToStep(4)"><div class="step-num">4</div><br>SEO & Export</div>
+  </div>
+
+  <!-- STEP 1: TOPIC -->
+  <div id="step1" class="section">
+    <h2>Step 1: What's the blog about?</h2>
+    <p class="helper">Tell us the basics and we'll build the article for you.</p>
+
+    <label>What topic or title do you want to write about?</label>
+    <input type="text" id="q_topic" placeholder="e.g. Top 10 Franchise Marketing Strategies for 2026">
+
+    <label>Who is this blog for? (Target audience)</label>
+    <input type="text" id="q_audience" placeholder="e.g. Franchise owners, CMOs, small business owners, first-time investors">
+
+    <label>What's the main goal of this blog?</label>
+    <select id="q_goal">
+      <option value="educate">Educate the reader</option>
+      <option value="rank">Rank on Google for a keyword</option>
+      <option value="convert">Drive leads / conversions</option>
+      <option value="authority">Build brand authority</option>
+      <option value="compare">Compare products / services</option>
+    </select>
+
+    <label>What industry or niche?</label>
+    <input type="text" id="q_industry" placeholder="e.g. Franchise marketing, real estate, e-commerce, SaaS">
+
+    <div class="btn-group" style="margin-top:8px">
+      <button class="btn" onclick="goToStep(2)">Next: Add Details</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: DETAILS -->
+  <div id="step2" class="section hidden">
+    <h2>Step 2: Give us more detail</h2>
+    <p class="helper">The more context you provide, the better the blog will be. Leave blank anything you don't know.</p>
+
+    <label>What key points or sections should the blog cover?</label>
+    <textarea id="q_points" rows="3" placeholder="e.g. Benefits of franchise marketing, common mistakes, how to choose an agency, case studies"></textarea>
+
+    <label>Any specific companies, tools, or examples to mention?</label>
+    <textarea id="q_examples" rows="2" placeholder="e.g. Anderson Collaborative, Toastique, College HUNKS, specific tools or platforms"></textarea>
+
+    <label>What tone and style?</label>
+    <select id="q_tone">
+      <option value="professional">Professional & authoritative</option>
+      <option value="conversational">Conversational & approachable</option>
+      <option value="bold">Bold & opinionated</option>
+      <option value="educational">Educational & detailed</option>
+      <option value="storytelling">Storytelling & narrative</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label>Approximate word count</label>
+        <select id="q_length">
+          <option value="800">Short (~800 words)</option>
+          <option value="1500" selected>Medium (~1,500 words)</option>
+          <option value="2500">Long (~2,500 words)</option>
+          <option value="4000">In-depth (~4,000 words)</option>
+        </select>
+      </div>
+      <div>
+        <label>Focus keyphrase (for SEO)</label>
+        <input type="text" id="q_keyphrase" placeholder="e.g. franchise marketing strategies">
+      </div>
+    </div>
+
+    <label>Any links or CTAs to include?</label>
+    <input type="text" id="q_cta" placeholder="e.g. Link to andersoncollaborative.com/contact-us, book a call CTA">
+
+    <label>Anything else we should know?</label>
+    <textarea id="q_extra" rows="2" placeholder="e.g. Don't mention competitors, include stats from 2026, reference our recent case study"></textarea>
 
     <div class="row">
       <div>
         <label>Author</label>
-        <select id="blogAuthor">
+        <select id="q_author">
+          <option>Anderson Collaborative</option>
           <option>Trevor Anderson</option>
           <option>Reandra Maree</option>
-          <option selected>Anderson Collaborative</option>
           <option>Cole Feigl</option>
-          <option>Gregorio Palacio</option>
           <option>Jack Nelson</option>
+          <option>Gregorio Palacio</option>
         </select>
       </div>
       <div>
-        <label>Publish Date</label>
-        <input type="date" id="blogDate" value="2026-03-25">
+        <label>Featured Image URL (optional)</label>
+        <input type="text" id="q_image" placeholder="Paste URL or leave blank">
       </div>
     </div>
 
-    <label>Featured Image URL</label>
-    <input type="text" id="blogImage" placeholder="Paste image URL or leave blank for default">
+    <div class="btn-group" style="margin-top:8px">
+      <button class="btn btn-outline" onclick="goToStep(1)">Back</button>
+      <button class="btn" onclick="generateBlog()">Generate Blog</button>
+    </div>
   </div>
 
-  <!-- SECTION 2: SEO -->
-  <div class="section">
-    <h2>SEO Settings <span class="badge">YOAST-READY</span></h2>
+  <!-- STEP 3: GENERATED CONTENT -->
+  <div id="step3" class="section hidden">
+    <h2>Step 3: Your Generated Blog <span class="badge">AI-WRITTEN</span></h2>
 
-    <label>Focus Keyphrase</label>
-    <input type="text" id="seoKeyphrase" placeholder="e.g. franchise marketing strategies" oninput="updateSEO()">
+    <div id="loadingState">
+      <div style="text-align:center;padding:40px">
+        <div class="spinner"></div>
+        <p style="margin-top:16px;color:#617792">Generating your blog post... This will take a moment.</p>
+        <p style="margin-top:8px;color:#617792;font-size:12px">Copy the prompt below and paste it into Claude or ChatGPT, then paste the result back here.</p>
+      </div>
+    </div>
+
+    <div id="promptBox" style="margin-top:16px">
+      <label>Generated Prompt (copy this to Claude/ChatGPT)</label>
+      <textarea id="aiPrompt" rows="12" readonly style="background:#f0f8f7;font-size:13px"></textarea>
+      <div class="btn-group" style="margin-top:8px">
+        <button class="btn" onclick="copyPrompt()">Copy Prompt</button>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <label>Paste the AI-generated blog content here</label>
+      <textarea id="generatedContent" rows="20" placeholder="Paste the generated blog content from Claude/ChatGPT here..."></textarea>
+    </div>
+
+    <div class="btn-group" style="margin-top:8px">
+      <button class="btn btn-outline" onclick="goToStep(2)">Back</button>
+      <button class="btn" onclick="goToStep(4)">Next: SEO & Export</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: SEO & EXPORT -->
+  <div id="step4" class="section hidden">
+    <h2>Step 4: SEO Settings & Export <span class="badge">YOAST-READY</span></h2>
+
+    <label>Blog Title</label>
+    <input type="text" id="finalTitle" placeholder="Your blog title" oninput="updateFinalSEO()">
 
     <label>SEO Title <span id="seoTitleCount" style="float:right;font-size:11px;color:#617792">0/60</span></label>
-    <input type="text" id="seoTitle" placeholder="Auto-generated from blog title" maxlength="60" oninput="updateSEO()">
+    <input type="text" id="seoTitle" maxlength="60" oninput="updateFinalSEO()">
 
     <label>Meta Description <span id="metaDescCount" style="float:right;font-size:11px;color:#617792">0/155</span></label>
-    <textarea id="metaDesc" placeholder="Write a compelling 155-character summary..." maxlength="155" rows="2" oninput="updateSEO()"></textarea>
+    <textarea id="metaDesc" maxlength="155" rows="2" oninput="updateFinalSEO()"></textarea>
 
     <label>URL Slug</label>
-    <input type="text" id="seoSlug" placeholder="auto-generated-from-title" oninput="updateSEO()">
+    <input type="text" id="seoSlug" oninput="updateFinalSEO()">
+
+    <label>Focus Keyphrase</label>
+    <input type="text" id="finalKeyphrase" oninput="updateFinalSEO()">
 
     <div id="seoChecklist"></div>
-  </div>
 
-  <!-- SECTION 3: CONTENT -->
-  <div class="section">
-    <h2>Blog Content</h2>
-    <p style="font-size:13px;color:#617792;margin-bottom:16px">Write your blog content using simple formatting. Use ## for H2 headings, ### for H3, **bold**, *italic*, and - for bullet points.</p>
-
-    <textarea id="blogContent" rows="20" placeholder="## Introduction
-
-Write your introduction here. Make sure to include your focus keyphrase naturally in the first paragraph.
-
-## Why This Matters
-
-Your content here...
-
-### Sub-point 1
-
-Details...
-
-### Sub-point 2
-
-Details...
-
-## Conclusion
-
-Wrap up with a call to action."></textarea>
-  </div>
-
-  <!-- SECTION 4: ACTIONS -->
-  <div class="section">
-    <h2>Generate & Export</h2>
-    <div class="btn-group">
-      <button class="btn" onclick="generatePreview()">Preview Blog</button>
-      <button class="btn btn-dark" onclick="exportHTML()">Export HTML</button>
+    <div class="btn-group" style="margin-top:20px">
+      <button class="btn" onclick="previewFinal()">Preview Blog</button>
+      <button class="btn btn-dark" onclick="downloadFinal()">Download HTML</button>
       <button class="btn btn-outline" onclick="copySEOFields()">Copy SEO Fields</button>
+      <button class="btn btn-outline" onclick="goToStep(3)">Back to Edit</button>
     </div>
 
     <div id="previewContainer" class="hidden">
@@ -173,68 +272,114 @@ Wrap up with a call to action."></textarea>
       <h3 style="margin-top:24px;margin-bottom:8px;font-size:16px">SEO Fields (copy to Yoast)</h3>
       <div class="output-box" id="seoOutputBox"></div>
     </div>
-
-    <div id="htmlOutput" class="hidden">
-      <h3 style="margin-top:24px;margin-bottom:8px;font-size:16px">HTML Output</h3>
-      <div class="btn-group" style="margin-bottom:12px">
-        <button class="btn btn-outline" onclick="copyHTML()">Copy HTML</button>
-        <button class="btn btn-outline" onclick="downloadHTML()">Download .html File</button>
-      </div>
-      <div class="output-box" id="htmlOutputBox"></div>
-    </div>
   </div>
 </div>
 
 <script>
-function updateSEO() {
-  const title = document.getElementById('blogTitle').value;
-  const keyphrase = document.getElementById('seoKeyphrase').value.toLowerCase();
-  const seoTitle = document.getElementById('seoTitle');
-  const metaDesc = document.getElementById('metaDesc');
-  const slug = document.getElementById('seoSlug');
+let currentStep = 1;
 
-  // Auto-fill SEO title if empty or was auto-generated
-  if (!seoTitle.dataset.manual) {
-    seoTitle.value = title ? title.substring(0,50) + ' | Anderson Collaborative' : '';
+function goToStep(n) {
+  // If going to step 4, auto-fill SEO fields
+  if (n === 4) {
+    const topic = document.getElementById('q_topic').value;
+    const keyphrase = document.getElementById('q_keyphrase').value;
+    if (!document.getElementById('finalTitle').value) {
+      document.getElementById('finalTitle').value = topic;
+    }
+    if (!document.getElementById('finalKeyphrase').value) {
+      document.getElementById('finalKeyphrase').value = keyphrase;
+    }
+    if (!document.getElementById('seoTitle').value) {
+      document.getElementById('seoTitle').value = (topic + ' | Anderson Collaborative').substring(0, 60);
+    }
+    if (!document.getElementById('seoSlug').value) {
+      document.getElementById('seoSlug').value = topic.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').substring(0,60);
+    }
+    updateFinalSEO();
   }
 
-  // Auto-fill slug
-  if (!slug.dataset.manual) {
-    slug.value = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').substring(0,60);
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('step' + i).classList.toggle('hidden', i !== n);
+    const tab = document.getElementById('step' + i + 'tab');
+    tab.classList.remove('active', 'done');
+    if (i < n) tab.classList.add('done');
+    if (i === n) tab.classList.add('active');
   }
+  currentStep = n;
+  window.scrollTo(0, 0);
+}
 
-  // Character counts
-  document.getElementById('seoTitleCount').textContent = seoTitle.value.length + '/60';
-  document.getElementById('metaDescCount').textContent = metaDesc.value.length + '/155';
+function generateBlog() {
+  const topic = document.getElementById('q_topic').value || 'marketing strategies';
+  const audience = document.getElementById('q_audience').value || 'business owners';
+  const goal = document.getElementById('q_goal').value;
+  const industry = document.getElementById('q_industry').value || 'marketing';
+  const points = document.getElementById('q_points').value;
+  const examples = document.getElementById('q_examples').value;
+  const tone = document.getElementById('q_tone').value;
+  const length = document.getElementById('q_length').value;
+  const keyphrase = document.getElementById('q_keyphrase').value;
+  const cta = document.getElementById('q_cta').value;
+  const extra = document.getElementById('q_extra').value;
 
-  // SEO Checklist
-  const content = document.getElementById('blogContent').value.toLowerCase();
-  const intro = content.substring(0, 500);
+  const goalMap = {
+    educate: 'Educate the reader and provide actionable value',
+    rank: 'Rank on Google for the focus keyphrase',
+    convert: 'Drive leads and conversions',
+    authority: 'Build brand authority and thought leadership',
+    compare: 'Compare products, services, or approaches'
+  };
 
-  const checks = [
-    { label: 'Focus keyphrase set', pass: keyphrase.length > 0 },
-    { label: 'Keyphrase in SEO title', pass: keyphrase && seoTitle.value.toLowerCase().includes(keyphrase) },
-    { label: 'Keyphrase in meta description', pass: keyphrase && metaDesc.value.toLowerCase().includes(keyphrase) },
-    { label: 'Keyphrase in slug', pass: keyphrase && slug.value.includes(keyphrase.replace(/\s+/g,'-')) },
-    { label: 'Keyphrase in introduction', pass: keyphrase && intro.includes(keyphrase) },
-    { label: 'SEO title length (< 60 chars)', pass: seoTitle.value.length > 0 && seoTitle.value.length <= 60 },
-    { label: 'Meta description length (< 155 chars)', pass: metaDesc.value.length > 0 && metaDesc.value.length <= 155 },
-    { label: 'Content length (300+ words)', pass: content.split(/\s+/).length >= 300 },
-    { label: 'Has H2 headings', pass: content.includes('##') },
-  ];
+  const toneMap = {
+    professional: 'Professional, authoritative, and data-driven',
+    conversational: 'Conversational, approachable, and relatable',
+    bold: 'Bold, opinionated, and direct',
+    educational: 'Educational, detailed, and thorough',
+    storytelling: 'Narrative-driven with storytelling elements'
+  };
 
-  const passed = checks.filter(c => c.pass).length;
-  const total = checks.length;
-  const scoreClass = passed >= 7 ? 'seo-good' : passed >= 4 ? 'seo-ok' : 'seo-bad';
+  const prompt = `You are an expert SEO content writer for Anderson Collaborative, a leading marketing agency based in Miami.
 
-  let html = `<div style="margin-top:16px"><span class="seo-score ${scoreClass}">${passed}/${total} checks passed</span></div>`;
-  html += '<ul class="checklist">';
-  checks.forEach(c => {
-    html += `<li><span class="check ${c.pass?'check-pass':'check-fail'}">${c.pass?'✓':'✗'}</span>${c.label}</li>`;
+Write a blog post with the following specifications:
+
+TOPIC: ${topic}
+TARGET AUDIENCE: ${audience}
+INDUSTRY/NICHE: ${industry}
+PRIMARY GOAL: ${goalMap[goal]}
+TONE & STYLE: ${toneMap[tone]}
+WORD COUNT: Approximately ${length} words
+${keyphrase ? `FOCUS KEYPHRASE: "${keyphrase}" — include naturally in the title, introduction (first 100 words), at least 2 H2 headings, and throughout the content` : ''}
+${points ? `KEY POINTS TO COVER:\n${points}` : ''}
+${examples ? `COMPANIES/TOOLS/EXAMPLES TO MENTION:\n${examples}` : ''}
+${cta ? `CTA / LINKS TO INCLUDE: ${cta}` : `CTA: Include a call-to-action linking to Anderson Collaborative's contact page`}
+${extra ? `ADDITIONAL NOTES: ${extra}` : ''}
+
+FORMATTING REQUIREMENTS:
+- Use ## for H2 headings and ### for H3 subheadings
+- Use **bold** for emphasis
+- Use - for bullet points where appropriate
+- Write a compelling introduction that hooks the reader in the first 2 sentences
+- Include a clear conclusion with a call to action
+- Make it scannable with short paragraphs (2-3 sentences max)
+- Include relevant statistics or data points where possible
+- Write for humans first, SEO second — no keyword stuffing
+
+ALSO PROVIDE at the very end, separated by "---SEO---":
+- SEO Title (max 60 characters)
+- Meta Description (max 155 characters, include the keyphrase)
+- Suggested URL slug
+
+Write the complete blog post now.`;
+
+  document.getElementById('aiPrompt').value = prompt;
+  goToStep(3);
+}
+
+function copyPrompt() {
+  const prompt = document.getElementById('aiPrompt').value;
+  navigator.clipboard.writeText(prompt).then(() => {
+    alert('Prompt copied! Paste it into Claude or ChatGPT, then paste the result back here.');
   });
-  html += '</ul>';
-
-  document.getElementById('seoChecklist').innerHTML = html;
 }
 
 function markdownToHTML(md) {
@@ -243,25 +388,40 @@ function markdownToHTML(md) {
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/\n/g, '<br>');
+    .replace(/^- (.+)$/gm, '<li>$1</li>');
 
-  if (!html.startsWith('<')) html = '<p>' + html;
-  if (!html.endsWith('>')) html += '</p>';
+  // Wrap consecutive <li> in <ul>
+  html = html.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
+    return '<ul>' + match + '</ul>';
+  });
+
+  // Paragraphs
+  html = html.split('\n\n').map(block => {
+    block = block.trim();
+    if (!block) return '';
+    if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<li')) return block;
+    return '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+  }).join('\n');
 
   return html;
 }
 
-function buildFullHTML() {
-  const title = document.getElementById('blogTitle').value || 'Untitled Blog Post';
-  const author = document.getElementById('blogAuthor').value;
-  const date = document.getElementById('blogDate').value;
-  const image = document.getElementById('blogImage').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
+function buildFinalHTML() {
+  const title = document.getElementById('finalTitle').value || document.getElementById('q_topic').value || 'Blog Post';
+  const author = document.getElementById('q_author').value || 'Anderson Collaborative';
+  const date = new Date().toISOString().split('T')[0];
+  const image = document.getElementById('q_image').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
   const seoTitle = document.getElementById('seoTitle').value || title;
-  const metaDesc = document.getElementById('metaDesc').value;
-  const content = markdownToHTML(document.getElementById('blogContent').value);
+  const metaDesc = document.getElementById('metaDesc').value || '';
+  const rawContent = document.getElementById('generatedContent').value;
+
+  // Split out SEO section if present
+  let blogContent = rawContent;
+  if (rawContent.includes('---SEO---')) {
+    blogContent = rawContent.split('---SEO---')[0].trim();
+  }
+
+  const content = markdownToHTML(blogContent);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -290,9 +450,11 @@ body{font-family:'Rubik',sans-serif;color:#001631;background:#fff}
 .content-wrap h3{font-size:20px;font-weight:600;margin:30px 0 12px;color:#001631}
 .content-wrap img{max-width:100%;height:auto;border-radius:8px;margin:24px 0}
 .content-wrap a{color:#36D1C2;text-decoration:none}
+.content-wrap a:hover{text-decoration:underline}
 .content-wrap ul,.content-wrap ol{margin:0 0 20px 24px}
 .content-wrap li{font-size:16px;line-height:1.8;margin-bottom:8px;color:#333}
 .content-wrap blockquote{border-left:4px solid #36D1C2;padding:16px 24px;margin:24px 0;background:#f8f9fa}
+.content-wrap strong{font-weight:600}
 .content-wrap table{width:100%;border-collapse:collapse;margin:24px 0}
 .content-wrap table th,.content-wrap table td{border:1px solid #e0e0e0;padding:12px;text-align:left;font-size:14px}
 .content-wrap table th{background:#001631;color:#fff}
@@ -322,27 +484,50 @@ ${content}
 </html>`;
 }
 
-function generatePreview() {
-  const html = buildFullHTML();
-  const frame = document.getElementById('previewFrame');
-  frame.srcdoc = html;
+function updateFinalSEO() {
+  const seoTitle = document.getElementById('seoTitle').value;
+  const metaDesc = document.getElementById('metaDesc').value;
+  const slug = document.getElementById('seoSlug').value;
+  const keyphrase = document.getElementById('finalKeyphrase').value.toLowerCase();
+  const content = (document.getElementById('generatedContent').value || '').toLowerCase();
+  const intro = content.substring(0, 500);
+
+  document.getElementById('seoTitleCount').textContent = seoTitle.length + '/60';
+  document.getElementById('metaDescCount').textContent = metaDesc.length + '/155';
+
+  const checks = [
+    { label: 'Focus keyphrase set', pass: keyphrase.length > 0 },
+    { label: 'Keyphrase in SEO title', pass: keyphrase && seoTitle.toLowerCase().includes(keyphrase) },
+    { label: 'Keyphrase in meta description', pass: keyphrase && metaDesc.toLowerCase().includes(keyphrase) },
+    { label: 'Keyphrase in slug', pass: keyphrase && slug.includes(keyphrase.replace(/\s+/g,'-')) },
+    { label: 'Keyphrase in introduction', pass: keyphrase && intro.includes(keyphrase) },
+    { label: 'SEO title length (< 60 chars)', pass: seoTitle.length > 0 && seoTitle.length <= 60 },
+    { label: 'Meta description (< 155 chars)', pass: metaDesc.length > 0 && metaDesc.length <= 155 },
+    { label: 'Content has been generated', pass: content.length > 200 },
+    { label: 'Has H2 headings', pass: content.includes('##') },
+  ];
+
+  const passed = checks.filter(c => c.pass).length;
+  const scoreClass = passed >= 7 ? 'seo-good' : passed >= 4 ? 'seo-ok' : 'seo-bad';
+
+  let html = `<div style="margin-top:16px"><span class="seo-score ${scoreClass}">${passed}/${checks.length} SEO checks passed</span></div>`;
+  html += '<ul class="checklist">';
+  checks.forEach(c => {
+    html += `<li><span class="check ${c.pass?'check-pass':'check-fail'}">${c.pass?'&#10003;':'&#10007;'}</span>${c.label}</li>`;
+  });
+  html += '</ul>';
+  document.getElementById('seoChecklist').innerHTML = html;
+}
+
+function previewFinal() {
+  const html = buildFinalHTML();
+  document.getElementById('previewFrame').srcdoc = html;
   document.getElementById('previewContainer').classList.remove('hidden');
 }
 
-function exportHTML() {
-  const html = buildFullHTML();
-  document.getElementById('htmlOutputBox').textContent = html;
-  document.getElementById('htmlOutput').classList.remove('hidden');
-}
-
-function copyHTML() {
-  const html = document.getElementById('htmlOutputBox').textContent;
-  navigator.clipboard.writeText(html).then(() => alert('HTML copied to clipboard!'));
-}
-
-function downloadHTML() {
-  const html = buildFullHTML();
-  const slug = document.getElementById('seoSlug').value || 'new-blog-post';
+function downloadFinal() {
+  const html = buildFinalHTML();
+  const slug = document.getElementById('seoSlug').value || 'new-blog';
   const blob = new Blob([html], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -351,7 +536,7 @@ function downloadHTML() {
 }
 
 function copySEOFields() {
-  const output = `Focus Keyphrase: ${document.getElementById('seoKeyphrase').value}
+  const output = `Focus Keyphrase: ${document.getElementById('finalKeyphrase').value}
 SEO Title: ${document.getElementById('seoTitle').value}
 Meta Description: ${document.getElementById('metaDesc').value}
 Slug: ${document.getElementById('seoSlug').value}`;
@@ -360,11 +545,6 @@ Slug: ${document.getElementById('seoSlug').value}`;
   document.getElementById('seoOutput').classList.remove('hidden');
   navigator.clipboard.writeText(output).then(() => alert('SEO fields copied!'));
 }
-
-// Initialize
-document.getElementById('seoTitle').addEventListener('input', function(){this.dataset.manual='1'});
-document.getElementById('seoSlug').addEventListener('input', function(){this.dataset.manual='1'});
-updateSEO();
 </script>
 
 </body>
