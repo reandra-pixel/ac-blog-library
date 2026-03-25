@@ -113,6 +113,9 @@ textarea{min-height:80px}
     <h2>Step 1: What's the blog about?</h2>
     <p class="helper">Tell us the basics and we'll build the article for you.</p>
 
+    <label>Website URL (yours or your client's)</label>
+    <input type="text" id="q_website" placeholder="e.g. https://andersoncollaborative.com or https://clientwebsite.com">
+
     <label>What topic or title do you want to write about?</label>
     <input type="text" id="q_topic" placeholder="e.g. Top 10 Franchise Marketing Strategies for 2026">
 
@@ -310,6 +313,7 @@ function goToStep(n) {
 }
 
 function generateBlog() {
+  const website = document.getElementById('q_website').value || '';
   const topic = document.getElementById('q_topic').value || 'marketing strategies';
   const audience = document.getElementById('q_audience').value || 'business owners';
   const goal = document.getElementById('q_goal').value;
@@ -342,6 +346,7 @@ function generateBlog() {
 
 Write a blog post with the following specifications:
 
+${website ? `WEBSITE: ${website} — scan this site to understand the brand, tone, existing content, and write in a style that matches` : ''}
 TOPIC: ${topic}
 TARGET AUDIENCE: ${audience}
 INDUSTRY/NICHE: ${industry}
