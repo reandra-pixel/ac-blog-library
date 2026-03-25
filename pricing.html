@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing | Anderson Collaborative Content & Web Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Rubik',sans-serif;color:#001631;background:#fff}
+
+.site-header{background:#001631;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.site-header .logo{color:#fff;font-size:18px;font-weight:600;letter-spacing:1px}
+.site-header .logo span{color:#36D1C2}
+.site-header nav a{color:#fff;text-decoration:none;margin-left:30px;font-size:13px;text-transform:uppercase;letter-spacing:1px;font-weight:500}
+.site-header nav a:hover{color:#36D1C2}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#001631 0%,#002845 50%,#001631 100%);padding:80px 40px 60px;text-align:center}
+.hero h1{color:#fff;font-size:44px;font-weight:800;margin-bottom:12px}
+.hero h1 span{color:#36D1C2}
+.hero p{color:rgba(255,255,255,0.6);font-size:16px;max-width:600px;margin:0 auto}
+
+/* Toggle */
+.toggle-wrap{display:flex;justify-content:center;margin:40px 0 10px;gap:0}
+.toggle-btn{padding:12px 32px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;border:2px solid #36D1C2;cursor:pointer;transition:all 0.2s;background:transparent;color:#001631}
+.toggle-btn:first-child{border-radius:8px 0 0 8px}
+.toggle-btn:last-child{border-radius:0 8px 8px 0}
+.toggle-btn.active{background:#36D1C2;color:#001631}
+
+/* Section titles */
+.section-wrap{max-width:1200px;margin:0 auto;padding:40px 20px}
+.section-title{text-align:center;margin-bottom:40px}
+.section-title h2{font-size:32px;font-weight:700;margin-bottom:8px}
+.section-title p{color:#617792;font-size:14px}
+
+/* Pricing cards */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1200px;margin:0 auto;padding:0 20px 60px}
+.card{background:#fff;border:2px solid #e8eaed;border-radius:16px;padding:32px 24px;text-align:center;position:relative;transition:all 0.2s}
+.card:hover{border-color:#36D1C2;transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08)}
+.card.featured{border-color:#36D1C2;box-shadow:0 8px 24px rgba(54,209,194,0.15)}
+.card.featured::before{content:'MOST POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#36D1C2;color:#001631;font-size:11px;font-weight:700;padding:4px 16px;border-radius:20px;letter-spacing:0.5px}
+.card-name{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:#617792;margin-bottom:8px}
+.card-price{font-size:48px;font-weight:800;color:#001631;margin-bottom:4px}
+.card-price span{font-size:16px;font-weight:400;color:#617792}
+.card-period{font-size:13px;color:#617792;margin-bottom:24px}
+.card-desc{font-size:13px;color:#617792;margin-bottom:24px;line-height:1.6}
+.card ul{list-style:none;text-align:left;margin-bottom:28px}
+.card ul li{font-size:13px;padding:8px 0;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:8px;color:#333}
+.card ul li:last-child{border:none}
+.card ul li::before{content:'✓';color:#36D1C2;font-weight:700;flex-shrink:0}
+.card-btn{display:block;width:100%;padding:14px;border-radius:8px;font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;text-decoration:none;text-align:center}
+.card-btn-primary{background:#36D1C2;color:#001631;border:none}
+.card-btn-primary:hover{background:#2bc0b1}
+.card-btn-outline{background:transparent;border:2px solid #36D1C2;color:#36D1C2}
+.card-btn-outline:hover{background:#36D1C2;color:#001631}
+.card-btn-dark{background:#001631;color:#fff;border:none}
+.card-btn-dark:hover{background:#002845}
+
+/* Bundles */
+.bundle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:1200px;margin:0 auto;padding:0 20px 60px}
+.bundle{background:linear-gradient(135deg,#f8fffe,#f0faf9);border:2px solid #d4f0ed;border-radius:16px;padding:28px 24px;position:relative}
+.bundle.featured{border-color:#36D1C2;background:linear-gradient(135deg,#f0faf9,#e6f9f6)}
+.bundle-tag{display:inline-block;background:#36D1C2;color:#001631;font-size:10px;font-weight:700;padding:3px 10px;border-radius:4px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px}
+.bundle h3{font-size:20px;font-weight:700;margin-bottom:4px}
+.bundle .price{font-size:32px;font-weight:800;color:#001631;margin-bottom:4px}
+.bundle .price span{font-size:14px;color:#617792;font-weight:400}
+.bundle .savings{font-size:12px;color:#0a7c42;font-weight:600;margin-bottom:16px}
+.bundle ul{list-style:none;margin-bottom:20px}
+.bundle ul li{font-size:13px;padding:5px 0;color:#333;display:flex;align-items:center;gap:6px}
+.bundle ul li::before{content:'✓';color:#36D1C2;font-weight:700}
+
+/* Platform care */
+.platform-section{background:#f8f9fa;padding:60px 20px}
+.platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:800px;margin:0 auto}
+.platform-card{background:#fff;border:2px solid #e8eaed;border-radius:12px;padding:28px;text-align:center}
+.platform-card h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.platform-card .price{font-size:36px;font-weight:800;margin:8px 0}
+.platform-card .price span{font-size:14px;color:#617792;font-weight:400}
+.platform-card ul{list-style:none;text-align:left;margin-top:16px}
+.platform-card ul li{font-size:13px;padding:6px 0;color:#333;display:flex;align-items:center;gap:6px}
+.platform-card ul li::before{content:'✓';color:#36D1C2;font-weight:700}
+
+/* Flex */
+.flex-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto}
+
+/* Compare */
+.compare-table{max-width:1000px;margin:0 auto 60px;overflow-x:auto}
+.compare-table table{width:100%;border-collapse:collapse}
+.compare-table th{background:#001631;color:#fff;padding:14px 16px;font-size:13px;text-align:left;font-weight:600}
+.compare-table td{padding:12px 16px;font-size:13px;border-bottom:1px solid #e8eaed}
+.compare-table tr:hover{background:#f8fffe}
+.compare-table .check{color:#36D1C2;font-weight:700}
+.compare-table .dash{color:#ccc}
+
+/* CTA */
+.cta-section{background:#001631;padding:60px 40px;text-align:center}
+.cta-section h2{color:#fff;font-size:32px;font-weight:700;margin-bottom:12px}
+.cta-section p{color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-btn{display:inline-block;background:#36D1C2;color:#001631;padding:16px 40px;border-radius:8px;font-family:'Rubik',sans-serif;font-size:15px;font-weight:700;text-decoration:none;transition:all 0.2s}
+.cta-btn:hover{background:#2bc0b1;transform:translateY(-2px)}
+
+.site-footer{background:#001631;color:rgba(255,255,255,0.4);padding:30px;text-align:center;font-size:12px;border-top:1px solid rgba(255,255,255,0.1)}
+.site-footer a{color:#36D1C2;text-decoration:none}
+
+.hidden{display:none}
+
+@media(max-width:768px){
+  .hero h1{font-size:28px}
+  .pricing-grid,.bundle-grid{grid-template-columns:1fr}
+  .platform-grid{grid-template-columns:1fr}
+  .flex-grid{grid-template-columns:1fr}
+  .site-header nav{display:none}
+  .card-price{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">ANDERSON <span>COLLABORATIVE</span></div>
+  <nav>
+    <a href="index.html">Blog Library</a>
+    <a href="blog-creator.html">Create Blog</a>
+    <a href="https://www.andersoncollaborative.com/contact-us/">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Content & Web <span>Subscriptions</span></h1>
+  <p>SEO-optimized blogs and website management on autopilot. Choose what you need, scale when you're ready.</p>
+</div>
+
+<div style="text-align:center;padding:30px 0 0">
+  <div class="toggle-wrap">
+    <button class="toggle-btn active" onclick="showSection('blogs')">Blog Packages</button>
+    <button class="toggle-btn" onclick="showSection('web')">Website Services</button>
+    <button class="toggle-btn" onclick="showSection('bundles')">Bundles</button>
+  </div>
+</div>
+
+<!-- BLOG PACKAGES -->
+<div id="section-blogs">
+  <div class="section-wrap">
+    <div class="section-title">
+      <h2>Blog Content Packages</h2>
+      <p>SEO-optimized articles written, reviewed, and published directly to your website</p>
+    </div>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="card">
+      <div class="card-name">Starter</div>
+      <div class="card-price">$500<span>/mo</span></div>
+      <div class="card-period">2 blogs per month</div>
+      <div class="card-desc">Perfect for maintaining a consistent publishing cadence and basic SEO presence.</div>
+      <ul>
+        <li>2 SEO-optimized blog articles</li>
+        <li>Focus keyphrase research</li>
+        <li>Meta title & description</li>
+        <li>Published directly to your site</li>
+        <li>Google Doc delivery for review</li>
+        <li>Alt text on all images</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline">Get Started</a>
+    </div>
+
+    <div class="card featured">
+      <div class="card-name">Growth</div>
+      <div class="card-price">$1,000<span>/mo</span></div>
+      <div class="card-period">4 blogs per month</div>
+      <div class="card-desc">Ideal for businesses serious about organic growth and lead generation through content.</div>
+      <ul>
+        <li>4 SEO-optimized blog articles</li>
+        <li>Focus keyphrase research per post</li>
+        <li>Meta title, description & slug</li>
+        <li>Published directly to your site</li>
+        <li>Google Doc delivery for review</li>
+        <li>Internal linking strategy</li>
+        <li>Image alt text optimization</li>
+        <li>Monthly content calendar</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-primary">Get Started</a>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Pro</div>
+      <div class="card-price">$1,750<span>/mo</span></div>
+      <div class="card-period">8 blogs per month</div>
+      <div class="card-desc">For brands ready to dominate search results and build serious content authority.</div>
+      <ul>
+        <li>8 SEO-optimized blog articles</li>
+        <li>Full keyphrase & competitor research</li>
+        <li>Complete Yoast SEO optimization</li>
+        <li>Published directly to your site</li>
+        <li>Google Doc delivery for review</li>
+        <li>Internal & external linking</li>
+        <li>Monthly SEO performance report</li>
+        <li>Content calendar & strategy</li>
+        <li>Priority publishing queue</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline">Get Started</a>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Scale</div>
+      <div class="card-price">$2,500<span>/mo</span></div>
+      <div class="card-period">12+ blogs per month</div>
+      <div class="card-desc">Enterprise-level content production for multi-location brands and aggressive growth.</div>
+      <ul>
+        <li>12+ SEO-optimized blog articles</li>
+        <li>Dedicated content strategist</li>
+        <li>Full Yoast SEO optimization</li>
+        <li>Published directly to your site</li>
+        <li>Custom content calendar</li>
+        <li>Quarterly content audits</li>
+        <li>Landing page copy included</li>
+        <li>Monthly SEO & traffic report</li>
+        <li>Priority support</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-dark">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- WEBSITE SERVICES -->
+<div id="section-web" class="hidden">
+  <div class="platform-section">
+    <div class="section-title">
+      <h2>Platform Care</h2>
+      <p>Required for any client where we manage the backend. Keep your site secure, fast, and up to date.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h3>Maintenance</h3>
+        <div class="price">$129<span>/mo</span></div>
+        <ul>
+          <li>Weekly plugin & core updates</li>
+          <li>Uptime monitoring (24/7)</li>
+          <li>Daily automated backups</li>
+          <li>Security scans & malware checks</li>
+          <li>Monthly health report</li>
+        </ul>
+      </div>
+      <div class="platform-card" style="border-color:#36D1C2">
+        <h3>Hosting Bundle</h3>
+        <div class="price">$199<span>/mo</span></div>
+        <ul>
+          <li>Everything in Maintenance</li>
+          <li>Managed hosting (WP Engine / Flywheel)</li>
+          <li>SSL certificate management</li>
+          <li>CDN & performance optimization</li>
+          <li>Staging environment access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="section-title">
+      <h2>Flex Support Retainers</h2>
+      <p>Prepaid development, design, and support hours. Use them for anything — updates, new pages, fixes, SEO.</p>
+    </div>
+  </div>
+
+  <div class="flex-grid" style="padding:0 20px 60px">
+    <div class="card">
+      <div class="card-name">Flex Starter</div>
+      <div class="card-price">$450<span>/mo</span></div>
+      <div class="card-period">3 hours per month</div>
+      <div class="card-desc">Effective rate: $150/hr<br>Rollover cap: 3 hours</div>
+      <ul>
+        <li>3 hours of dev/design/support</li>
+        <li>Website updates & edits</li>
+        <li>Bug fixes & troubleshooting</li>
+        <li>Unused hours roll over</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline">Get Started</a>
+    </div>
+
+    <div class="card featured">
+      <div class="card-name">Flex Growth</div>
+      <div class="card-price">$750<span>/mo</span></div>
+      <div class="card-period">6 hours per month</div>
+      <div class="card-desc">Effective rate: $125/hr<br>Rollover cap: 10 hours</div>
+      <ul>
+        <li>6 hours of dev/design/support</li>
+        <li>New page builds & landing pages</li>
+        <li>Design updates & refreshes</li>
+        <li>SEO technical fixes</li>
+        <li>Bonus hours included</li>
+        <li>Generous rollover cap</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-primary">Get Started</a>
+    </div>
+
+    <div class="card">
+      <div class="card-name">Flex Partner</div>
+      <div class="card-price">$1,500<span>/mo</span></div>
+      <div class="card-period">12 hours per month</div>
+      <div class="card-desc">Effective rate: $125/hr<br>Rollover cap: 20 hours</div>
+      <ul>
+        <li>12 hours of dev/design/support</li>
+        <li>Priority queue & faster turnaround</li>
+        <li>Dedicated project manager</li>
+        <li>Full-site redesigns & rebuilds</li>
+        <li>Conversion optimization</li>
+        <li>Maximum rollover flexibility</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline">Get Started</a>
+    </div>
+  </div>
+
+  <div style="max-width:800px;margin:0 auto 40px;padding:0 20px">
+    <div style="background:#f8f9fa;border-radius:12px;padding:24px;text-align:center">
+      <p style="font-size:13px;color:#617792"><strong style="color:#001631">Overages:</strong> If you exceed your banked hours (monthly + rollover), additional work is billed at <strong>$150/hr</strong> on the next invoice. All fees are charged automatically on the 1st of each month via Stripe.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BUNDLES -->
+<div id="section-bundles" class="hidden">
+  <div class="section-wrap">
+    <div class="section-title">
+      <h2>Website + Blog Bundles</h2>
+      <p>Combine content and web services for the best value. Everything your online presence needs in one subscription.</p>
+    </div>
+  </div>
+
+  <div class="bundle-grid">
+    <div class="bundle">
+      <div class="bundle-tag">Essential</div>
+      <h3>Maintain & Publish</h3>
+      <div class="price">$579<span>/mo</span></div>
+      <div class="savings">Save $50/mo vs. separate pricing</div>
+      <ul>
+        <li>Platform Care (Maintenance)</li>
+        <li>2 SEO-optimized blogs/month</li>
+        <li>Published to your website</li>
+        <li>Google Doc delivery</li>
+        <li>Basic keyphrase targeting</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline" style="display:block;text-align:center">Get Started</a>
+    </div>
+
+    <div class="bundle featured">
+      <div class="bundle-tag">Best Value</div>
+      <h3>Grow & Support</h3>
+      <div class="price">$1,549<span>/mo</span></div>
+      <div class="savings">Save $100/mo vs. separate pricing</div>
+      <ul>
+        <li>Hosting Bundle ($199)</li>
+        <li>Flex Starter — 3 hrs support ($450)</li>
+        <li>4 SEO-optimized blogs/month ($1,000)</li>
+        <li>Internal linking strategy</li>
+        <li>Monthly content calendar</li>
+        <li>Full Yoast optimization</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-primary" style="display:block;text-align:center">Get Started</a>
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-tag">Growth</div>
+      <h3>Scale & Dominate</h3>
+      <div class="price">$2,549<span>/mo</span></div>
+      <div class="savings">Save $150/mo vs. separate pricing</div>
+      <ul>
+        <li>Hosting Bundle ($199)</li>
+        <li>Flex Growth — 6 hrs support ($750)</li>
+        <li>8 SEO-optimized blogs/month ($1,750)</li>
+        <li>Monthly SEO performance report</li>
+        <li>Priority publishing queue</li>
+        <li>Content strategy sessions</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-outline" style="display:block;text-align:center">Get Started</a>
+    </div>
+
+    <div class="bundle">
+      <div class="bundle-tag">Agency</div>
+      <h3>Full Service</h3>
+      <div class="price">$3,999<span>/mo</span></div>
+      <div class="savings">Save $200/mo vs. separate pricing</div>
+      <ul>
+        <li>Hosting Bundle ($199)</li>
+        <li>Flex Partner — 12 hrs support ($1,500)</li>
+        <li>12+ SEO-optimized blogs/month ($2,500)</li>
+        <li>Dedicated content strategist</li>
+        <li>Quarterly content audits</li>
+        <li>Landing page copy included</li>
+        <li>Priority everything</li>
+      </ul>
+      <a href="https://www.andersoncollaborative.com/contact-us/" class="card-btn card-btn-dark" style="display:block;text-align:center">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <h2>Ready to grow your online presence?</h2>
+  <p>Choose the plan that fits your business. No long-term contracts required. Scale up or down anytime.</p>
+  <a href="https://www.andersoncollaborative.com/contact-us/" class="cta-btn">Let's Talk</a>
+</div>
+
+<footer class="site-footer">
+  <p>&copy; 2026 <a href="https://www.andersoncollaborative.com">Anderson Collaborative</a>. All rights reserved. | All fees billed on the 1st via Stripe.</p>
+</footer>
+
+<script>
+function showSection(name) {
+  ['blogs','web','bundles'].forEach(s => {
+    document.getElementById('section-' + s).classList.toggle('hidden', s !== name);
+  });
+  document.querySelectorAll('.toggle-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase().includes(name.substring(0,4)));
+  });
+}
+</script>
+
+</body>
+</html>
