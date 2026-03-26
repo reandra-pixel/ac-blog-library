@@ -8,8 +8,6 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height:100vh}
-
-/* ── HEADER ── */
 .site-header{background:#fff;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid #B3BEC9}
 .site-header nav{display:flex;align-items:center;gap:28px}
 .site-header nav a{color:#617792;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.8px;font-family:'Rubik',sans-serif;font-weight:400;transition:color .2s}
@@ -21,8 +19,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .role-client{background:rgba(97,119,146,.12);color:#617792}
 .btn-signout{background:none;border:none;cursor:pointer;font-size:11px;color:#B3BEC9;font-family:'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.5px;transition:color .2s;padding:6px 0}
 .btn-signout:hover{color:#E54B4B}
-
-/* ── AUTH ── */
 .auth-screen{min-height:100vh;background:#FEF9F6;display:flex;flex-direction:column}
 .auth-body{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
 .auth-wrap{width:100%;max-width:420px}
@@ -46,13 +42,9 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .auth-toggle{font-size:12px;color:#617792;margin-top:18px;font-weight:300}
 .auth-toggle a{color:#36D1C2;cursor:pointer;text-decoration:none;font-weight:400}
 .auth-error{background:rgba(229,75,75,.08);color:#E54B4B;font-size:12px;padding:8px 12px;border-radius:5px;margin-bottom:14px;display:none;text-align:left}
-
-/* ── DASHBOARD LAYOUT ── */
 .dash-screen{display:none;flex-direction:column;min-height:100vh}
 .dash-screen.active{display:flex}
-.dash-content{flex:1;max-width:1100px;margin:0 auto;width:100%;padding:28px 24px 60px}
-
-/* ── TABS ── */
+.dash-content{flex:1;max-width:1200px;margin:0 auto;width:100%;padding:28px 24px 60px}
 .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
 .dash-header h1{font-family:'Rubik',sans-serif;font-size:26px;font-weight:300;color:#00161F}
 .dash-header h1 span{font-weight:500}
@@ -62,8 +54,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .dash-tab.active{color:#36D1C2;border-color:#36D1C2}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
-
-/* ── STAT CARDS ── */
 .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
 .stat-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:20px;text-align:center}
 .stat-card .num{font-family:'Rubik',sans-serif;font-size:30px;font-weight:300;color:#36D1C2;line-height:1}
@@ -71,11 +61,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .stat-card .trend{font-size:11px;margin-top:4px;font-weight:400}
 .trend-up{color:#0a7c42}
 .trend-down{color:#E54B4B}
-
-/* ── QUICK ACTIONS ── */
 .quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
-
-/* ── BUTTONS ── */
 .btn{padding:10px 22px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:6px}
 .btn-primary{background:#36D1C2;color:#fff}
 .btn-primary:hover{background:#2BBDAF}
@@ -88,8 +74,8 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .btn-sm{padding:6px 14px;font-size:10px}
 .btn-next{background:#00161F;color:#36D1C2}
 .btn-next:hover{background:#061f2b}
-
-/* ── ACTIVITY FEED ── */
+.btn-teal-outline{background:transparent;border:1px solid #36D1C2;color:#36D1C2}
+.btn-teal-outline:hover{background:#36D1C2;color:#fff}
 .section-title{font-family:'Rubik',sans-serif;font-size:13px;font-weight:500;color:#00161F;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
 .activity-feed{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
 .activity-item{padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.1);display:flex;align-items:center;gap:12px;font-size:13px}
@@ -98,15 +84,15 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .activity-text{flex:1;color:#00161F;font-weight:300}
 .activity-text strong{font-weight:500}
 .activity-time{font-size:11px;color:#B3BEC9;font-weight:300;white-space:nowrap}
-
-/* ── CLIENT TABLE ── */
 .table-wrap{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden;margin-bottom:24px}
 .table-head{display:grid;padding:10px 18px;background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;gap:0}
-.table-row{display:grid;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.1);align-items:center;font-size:13px;transition:background .15s;cursor:pointer}
+.table-row{display:grid;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.1);align-items:center;font-size:13px;transition:background .15s}
 .table-row:last-child{border-bottom:none}
 .table-row:hover{background:rgba(54,209,194,.03)}
+.table-head span{cursor:pointer;user-select:none}
+.table-head span:hover{color:#36D1C2}
+.th-sorted{color:#36D1C2!important}
 .clients-grid{grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr}
-.blogs-grid{grid-template-columns:3fr 2fr 1fr 1fr 1fr}
 .youtube-grid{grid-template-columns:3fr 1.5fr 1fr 1fr 1fr 1fr}
 .requests-grid{grid-template-columns:3fr 1fr 1fr 1fr}
 .cell-name{font-weight:400;color:#00161F}
@@ -117,8 +103,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .plan-growth{background:rgba(54,209,194,.1);color:#2BBDAF}
 .plan-pro{background:rgba(10,124,66,.1);color:#0a7c42}
 .plan-scale{background:rgba(0,22,31,.08);color:#00161F}
-
-/* ── STATUS BADGES ── */
 .status-badge{display:inline-block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:3px 9px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
 .s-draft{background:rgba(179,190,201,.2);color:#617792}
 .s-review{background:rgba(244,162,97,.12);color:#e08748}
@@ -133,8 +117,8 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .track-manual{background:rgba(179,190,201,.2);color:#617792}
 .track-pending{background:rgba(244,162,97,.12);color:#e08748}
 .track-connected{background:rgba(10,124,66,.12);color:#0a7c42}
-
-/* ── PIPELINE ── */
+.badge-ac{background:rgba(54,209,194,.15);color:#2BBDAF;font-family:'Rubik',sans-serif;font-size:9px;font-weight:600;padding:2px 6px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.badge-client{background:rgba(179,190,201,.2);color:#617792;font-family:'Rubik',sans-serif;font-size:9px;font-weight:600;padding:2px 6px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
 .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
 .pipe-col{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:12px;min-height:220px}
 .pipe-col-title{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(179,190,201,.15);display:flex;align-items:center;justify-content:space-between}
@@ -146,8 +130,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .pipe-item-links{display:flex;gap:6px;margin-top:6px}
 .pipe-item-links a{font-size:10px;color:#36D1C2;text-decoration:none;font-family:'Rubik',sans-serif;font-weight:500}
 .pipe-item-links a:hover{color:#2BBDAF}
-
-/* ── FORMS ── */
 .form-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px}
 .form-card h3{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:18px}
 .field{margin-bottom:14px}
@@ -159,8 +141,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
-
-/* ── REPORTS FORM ── */
 .report-form-wrap{background:#fff;border:1px solid rgba(179,190,194,.2);border-radius:7px;padding:28px;margin-bottom:24px}
 .report-form-wrap h3{font-family:'Rubik',sans-serif;font-size:15px;font-weight:500;color:#00161F;margin-bottom:4px}
 .report-form-wrap .report-sub{font-size:12px;color:#617792;font-weight:300;margin-bottom:20px}
@@ -178,8 +158,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .re-item{text-align:center}
 .re-item .re-val{font-family:'Rubik',sans-serif;font-size:16px;font-weight:300;color:#36D1C2}
 .re-item .re-lbl{font-size:10px;color:#B3BEC9;font-weight:300;margin-top:2px}
-
-/* ── CLIENT DETAIL PANEL ── */
 .detail-panel{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px;display:none}
 .detail-panel.open{display:block}
 .detail-panel-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
@@ -189,13 +167,9 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .detail-item{border:1px solid rgba(179,190,201,.15);border-radius:5px;padding:12px}
 .detail-item .di-lbl{font-size:10px;color:#B3BEC9;font-family:'Rubik',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
 .detail-item .di-val{font-size:14px;color:#00161F;font-weight:400}
-
-/* ── CLIENT BLOG PROGRESS ── */
 .progress-bar{background:rgba(179,190,201,.15);border-radius:9999px;height:6px;margin-top:6px}
 .progress-fill{background:#36D1C2;height:6px;border-radius:9999px;transition:width .3s}
 .progress-label{font-size:11px;color:#617792;font-weight:300;margin-top:4px}
-
-/* ── CLIENT PORTAL ── */
 .blog-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:18px;margin-bottom:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;transition:box-shadow .15s}
 .blog-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.05)}
 .blog-card-info{flex:1}
@@ -205,8 +179,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .blog-card-links a{font-size:11px;color:#36D1C2;text-decoration:none;font-family:'Rubik',sans-serif;font-weight:500}
 .blog-card-links a:hover{color:#2BBDAF}
 .blog-card-status{flex-shrink:0}
-
-/* ── REPORTS VIEW ── */
 .report-month-nav{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .report-month-nav select{padding:8px 14px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;color:#00161F;outline:none;background:#fff;cursor:pointer}
 .report-month-nav select:focus{border-color:#36D1C2}
@@ -215,16 +187,12 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .r-stat .r-num{font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;line-height:1}
 .r-stat .r-lbl{font-size:10px;color:#B3BEC9;font-family:'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
 .r-stat .r-trend{font-size:11px;margin-top:4px}
-
-/* ── BLOG PERF TABLE (CLIENT) ── */
 .blog-perf-table{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden;margin-bottom:24px}
 .bpt-head{display:grid;grid-template-columns:3fr 1fr 1fr 1fr 1fr;padding:10px 16px;background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px}
 .bpt-row{display:grid;grid-template-columns:3fr 1fr 1fr 1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(179,190,201,.1);font-size:13px;align-items:center;transition:background .15s}
 .bpt-row:last-child{border-bottom:none}
 .bpt-row:hover{background:rgba(54,209,194,.03)}
 .insight-box{background:rgba(54,209,194,.05);border:1px solid rgba(54,209,194,.15);border-radius:5px;padding:10px 14px;margin-top:6px;font-size:12px;color:#617792;font-weight:300;font-style:italic}
-
-/* ── YOUTUBE CARDS ── */
 .yt-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:16px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;transition:box-shadow .15s}
 .yt-card:hover{box-shadow:0 2px 10px rgba(0,0,0,.05)}
 .yt-icon{width:40px;height:40px;background:#ff0000;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -234,40 +202,27 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .yt-stats{display:flex;gap:16px}
 .yt-stat-item{font-size:11px;color:#617792;font-weight:300}
 .yt-stat-item strong{color:#00161F;font-weight:500}
-
-/* ── SUPPORT ── */
 .support-ticket{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:16px;margin-bottom:12px}
 .ticket-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
 .ticket-title{font-size:13px;font-weight:400;color:#00161F}
 .ticket-meta{font-size:11px;color:#B3BEC9;font-weight:300;margin-top:2px}
 .ticket-body{font-size:12px;color:#617792;font-weight:300;margin-top:8px;line-height:1.6}
-
-/* ── EMPTY STATE ── */
 .empty-state{text-align:center;padding:48px 24px;color:#B3BEC9}
-.empty-state svg{margin-bottom:12px;opacity:.4}
 .empty-state p{font-size:13px;font-weight:300}
-
-/* ── TOAST ── */
 .toast{position:fixed;bottom:24px;right:24px;background:#00161F;color:#fff;padding:12px 20px;border-radius:7px;font-size:13px;font-weight:300;font-family:'Roboto',sans-serif;z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;max-width:320px}
 .toast.show{opacity:1;transform:translateY(0)}
 .toast.success{border-left:3px solid #36D1C2}
 .toast.error{border-left:3px solid #E54B4B}
-
-/* ── MODAL ── */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,22,31,.5);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;border-radius:7px;padding:28px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
+.modal{background:#fff;border-radius:7px;padding:28px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto}
 .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .modal-header h3{font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;color:#00161F}
 .modal-close{background:none;border:none;cursor:pointer;color:#B3BEC9;font-size:20px;line-height:1;padding:2px 6px;transition:color .2s}
 .modal-close:hover{color:#E54B4B}
-
-/* ── FOOTER ── */
 .site-footer{background:#00161F;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .site-footer p{color:rgba(179,190,201,.35);font-size:11px;font-weight:300}
 .site-footer img{height:28px;opacity:.6}
-
-/* ── MISC ── */
 .hidden{display:none!important}
 .divider{height:1px;background:rgba(179,190,201,.2);margin:20px 0}
 .section-wrap{margin-bottom:24px}
@@ -278,21 +233,45 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 .loading-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(54,209,194,.3);border-top-color:#36D1C2;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
-.filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:12px;color:#00161F;outline:none;background:#fff}
-.filter-bar select:focus{border-color:#36D1C2}
+.filter-bar select,.filter-bar input[type=text],.filter-bar input[type=search]{padding:8px 12px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:12px;color:#00161F;outline:none;background:#fff}
+.filter-bar select:focus,.filter-bar input:focus{border-color:#36D1C2}
 .filter-bar label{font-size:11px;color:#617792;font-weight:300}
-
+/* View toggle */
+.view-toggle{display:flex;gap:0;border:1px solid #B3BEC9;border-radius:5px;overflow:hidden;margin-bottom:16px}
+.view-toggle-btn{padding:7px 14px;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;cursor:pointer;border:none;background:#fff;color:#617792;transition:all .2s}
+.view-toggle-btn.active{background:#00161F;color:#36D1C2}
+/* Blogs table */
+.blogs-table-grid{grid-template-columns:3fr 1fr 1.5fr 1.5fr 1.2fr 1fr 1fr 1fr}
+/* Type choice buttons */
+.type-choice{display:flex;gap:12px;margin-bottom:20px}
+.type-choice-btn{flex:1;padding:18px;border:2px solid rgba(179,190,201,.3);border-radius:7px;cursor:pointer;text-align:center;background:#fff;transition:all .2s;font-family:'Rubik',sans-serif}
+.type-choice-btn:hover{border-color:#36D1C2}
+.type-choice-btn.selected{border-color:#36D1C2;background:rgba(54,209,194,.04)}
+.type-choice-btn .tc-label{font-size:14px;font-weight:500;color:#00161F;margin-bottom:4px}
+.type-choice-btn .tc-desc{font-size:11px;color:#617792;font-weight:300}
+/* Library grid */
+.library-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
+.lib-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:16px;cursor:pointer;transition:all .15s}
+.lib-card:hover{border-color:#36D1C2;box-shadow:0 2px 10px rgba(54,209,194,.08);transform:translateY(-1px)}
+.lib-card-title{font-size:13px;font-weight:400;color:#00161F;margin-bottom:6px;line-height:1.4}
+.lib-card-meta{font-size:11px;color:#617792;font-weight:300;margin-bottom:8px}
+.lib-card-footer{display:flex;align-items:center;justify-content:space-between}
+/* Search */
+.search-input{width:100%;max-width:340px;padding:9px 14px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;outline:none;color:#00161F;transition:border .2s}
+.search-input:focus{border-color:#36D1C2}
 @media(max-width:900px){
   .stats-row,.report-stats{grid-template-columns:1fr 1fr}
   .pipeline{grid-template-columns:1fr 1fr}
   .metrics-grid{grid-template-columns:1fr 1fr}
   .field-row,.field-row-3{grid-template-columns:1fr}
-  .clients-grid,.blogs-grid,.youtube-grid,.requests-grid{grid-template-columns:1fr}
+  .clients-grid,.youtube-grid,.requests-grid{grid-template-columns:1fr}
   .table-head{display:none}
   .detail-grid{grid-template-columns:1fr 1fr}
   .bpt-head{display:none}
   .bpt-row{grid-template-columns:1fr;gap:4px}
   .re-grid{grid-template-columns:repeat(2,1fr)}
+  .library-grid{grid-template-columns:1fr 1fr}
+  .blogs-table-grid{grid-template-columns:1fr}
 }
 @media(max-width:600px){
   .site-header{padding:12px 16px}
@@ -303,19 +282,18 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
   .metrics-grid{grid-template-columns:1fr 1fr}
   .site-footer{padding:24px 20px}
   .detail-grid{grid-template-columns:1fr 1fr}
+  .library-grid{grid-template-columns:1fr}
+  .type-choice{flex-direction:column}
 }
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════ AUTH SCREEN ══════════════════════════ -->
+<!-- AUTH SCREEN -->
 <div id="authScreen" class="auth-screen">
   <header class="site-header">
     <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
-    <nav>
-      <a href="index.html">Blog</a>
-      <a href="pricing.html">Pricing</a>
-    </nav>
+    <nav><a href="index.html">Blog</a><a href="pricing.html">Pricing</a></nav>
   </header>
   <div class="auth-body">
     <div class="auth-wrap">
@@ -324,17 +302,9 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         <h1 id="authTitle">Sign In</h1>
         <p class="sub" id="authSubtitle">Access your client portal</p>
         <div class="auth-error" id="authError"></div>
-
-        <!-- LOGIN FORM -->
         <div id="loginForm">
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="authEmail" placeholder="you@company.com">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="authPass" placeholder="Your password" onkeydown="if(event.key==='Enter')emailLogin()">
-          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="authEmail" placeholder="you@company.com"></div>
+          <div class="form-group"><label>Password</label><input type="password" id="authPass" placeholder="Your password" onkeydown="if(event.key==='Enter')emailLogin()"></div>
           <button class="auth-btn auth-btn-primary" onclick="emailLogin()">Sign In</button>
           <div class="auth-divider">or</div>
           <button class="auth-btn auth-btn-google" onclick="googleLogin()">
@@ -343,33 +313,16 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           </button>
           <p class="auth-toggle">Don't have an account? <a onclick="showRegister()">Create one</a></p>
         </div>
-
-        <!-- REGISTER FORM -->
         <div id="registerForm" class="hidden">
           <div class="form-row">
-            <div class="form-group">
-              <label>Full Name</label>
-              <input type="text" id="regName" placeholder="Jane Smith">
-            </div>
-            <div class="form-group">
-              <label>Company</label>
-              <input type="text" id="regCompany" placeholder="Acme Inc.">
-            </div>
+            <div class="form-group"><label>Full Name</label><input type="text" id="regName" placeholder="Jane Smith"></div>
+            <div class="form-group"><label>Company</label><input type="text" id="regCompany" placeholder="Acme Inc."></div>
           </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="regEmail" placeholder="you@company.com">
-          </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" id="regPass" placeholder="Min 6 characters">
-          </div>
+          <div class="form-group"><label>Email</label><input type="email" id="regEmail" placeholder="you@company.com"></div>
+          <div class="form-group"><label>Password</label><input type="password" id="regPass" placeholder="Min 6 characters"></div>
           <div class="form-group">
             <label>Role</label>
-            <select id="regRole">
-              <option value="client">Client</option>
-              <option value="admin">Admin</option>
-            </select>
+            <select id="regRole"><option value="client">Client</option><option value="admin">Admin</option></select>
           </div>
           <button class="auth-btn auth-btn-primary" onclick="createAccount()">Create Account</button>
           <p class="auth-toggle">Already have an account? <a onclick="showLogin()">Sign in</a></p>
@@ -383,28 +336,22 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
   </footer>
 </div>
 
-<!-- ══════════════════════════ ADMIN DASHBOARD ══════════════════════════ -->
+<!-- ADMIN DASHBOARD -->
 <div id="adminDash" class="dash-screen">
   <header class="site-header">
     <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
-    <nav>
-      <a href="index.html">Blog</a>
-      <a href="pricing.html">Pricing</a>
-    </nav>
+    <nav><a href="index.html">Blog</a><a href="pricing.html">Pricing</a></nav>
     <div class="user-chip">
       <span><strong id="adminUserName">Admin</strong></span>
       <span class="role-badge role-admin">Admin</span>
       <button class="btn-signout" onclick="signOut()">Sign Out</button>
     </div>
   </header>
-
   <div class="dash-content">
-    <div class="dash-header">
-      <h1>Admin <span>Dashboard</span></h1>
-    </div>
-
+    <div class="dash-header"><h1>Admin <span>Dashboard</span></h1></div>
     <div class="dash-tabs" id="adminTabs">
       <div class="dash-tab active" onclick="switchAdminTab('overview',this)">Overview</div>
+      <div class="dash-tab" onclick="switchAdminTab('library',this)">Library</div>
       <div class="dash-tab" onclick="switchAdminTab('clients',this)">Clients</div>
       <div class="dash-tab" onclick="switchAdminTab('blogs',this)">Blogs</div>
       <div class="dash-tab" onclick="switchAdminTab('reports',this)">Reports</div>
@@ -412,7 +359,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       <div class="dash-tab" onclick="switchAdminTab('requests',this)">Requests</div>
     </div>
 
-    <!-- ── OVERVIEW TAB ── -->
+    <!-- OVERVIEW TAB -->
     <div id="admin-overview" class="tab-panel active">
       <div class="stats-row">
         <div class="stat-card"><div class="num" id="ovTotalClients">—</div><div class="lbl">Total Clients</div></div>
@@ -422,22 +369,43 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
       <div class="quick-actions">
         <button class="btn btn-primary" onclick="switchAdminTab('clients',null);document.getElementById('addClientForm').classList.remove('hidden')">+ Add Client</button>
-        <button class="btn btn-secondary" onclick="switchAdminTab('blogs',null);document.getElementById('addBlogForm').classList.remove('hidden')">+ Add Blog</button>
+        <button class="btn btn-secondary" onclick="switchAdminTab('blogs',null);openAddBlogModal()">+ Add Blog</button>
         <button class="btn btn-outline" onclick="switchAdminTab('reports',null)">Update Reports</button>
       </div>
       <div class="section-title">Recent Activity</div>
-      <div class="activity-feed" id="activityFeed">
-        <div class="empty-state"><p>No activity yet.</p></div>
-      </div>
+      <div class="activity-feed" id="activityFeed"><div class="empty-state"><p>No activity yet.</p></div></div>
     </div>
 
-    <!-- ── CLIENTS TAB ── -->
+    <!-- LIBRARY TAB -->
+    <div id="admin-library" class="tab-panel hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+        <div class="section-title" style="margin:0">AC Blog Library</div>
+        <div style="font-size:12px;color:#617792">Showing all AC blogs in the library</div>
+      </div>
+      <div class="filter-bar">
+        <input type="search" class="search-input" id="libSearch" placeholder="Search blogs…" oninput="renderLibrary()" style="max-width:280px">
+        <select id="libAuthorFilter" onchange="renderLibrary()">
+          <option value="">All Authors</option>
+        </select>
+        <select id="libStatusFilter" onchange="renderLibrary()">
+          <option value="">All Statuses</option>
+          <option value="draft">Draft</option>
+          <option value="review">In Review</option>
+          <option value="seo">SEO Opt.</option>
+          <option value="approved">Approved</option>
+          <option value="live">Published</option>
+        </select>
+      </div>
+      <div id="libCount" style="font-size:12px;color:#617792;margin-bottom:12px"></div>
+      <div class="library-grid" id="libraryGrid"><div class="empty-state"><p>Loading library…</p></div></div>
+    </div>
+
+    <!-- CLIENTS TAB -->
     <div id="admin-clients" class="tab-panel hidden">
       <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
         <div class="section-title" style="margin:0">Clients</div>
         <a class="toggle-form-btn" onclick="toggleForm('addClientForm')">+ Add Client</a>
       </div>
-
       <div id="addClientForm" class="form-card hidden">
         <h3>Add New Client</h3>
         <div class="field-row">
@@ -472,20 +440,15 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <button class="btn btn-outline" onclick="toggleForm('addClientForm')">Cancel</button>
         </div>
       </div>
-
       <div id="clientDetailPanel" class="detail-panel">
         <div class="detail-panel-header">
-          <div>
-            <h3 id="cdpName">Client Name</h3>
-            <div class="detail-meta" id="cdpMeta">email@company.com · Package</div>
-          </div>
+          <div><h3 id="cdpName">Client Name</h3><div class="detail-meta" id="cdpMeta">email · Package</div></div>
           <button class="btn btn-outline btn-sm" onclick="document.getElementById('clientDetailPanel').classList.remove('open')">Close</button>
         </div>
         <div class="detail-grid" id="cdpGrid"></div>
         <div class="section-title" style="font-size:11px">Blogs</div>
         <div id="cdpBlogs"></div>
       </div>
-
       <div class="filter-bar">
         <select id="clientFilterPackage" onchange="renderClientsTable()">
           <option value="">All Packages</option>
@@ -501,7 +464,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <option value="connected">Connected</option>
         </select>
       </div>
-
       <div class="table-wrap">
         <div class="table-head clients-grid">
           <span>Name</span><span>Email</span><span>Package</span><span>Blogs</span><span>Tracking</span><span>Joined</span>
@@ -510,91 +472,108 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
     </div>
 
-    <!-- ── BLOGS TAB ── -->
+    <!-- BLOGS TAB -->
     <div id="admin-blogs" class="tab-panel hidden">
-      <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:10px">
         <div class="section-title" style="margin:0">Blog Pipeline</div>
-        <a class="toggle-form-btn" onclick="toggleForm('addBlogForm')">+ Add Blog</a>
-      </div>
-
-      <div id="addBlogForm" class="form-card hidden">
-        <h3>Add New Blog</h3>
-        <div class="field-row">
-          <div class="field">
-            <label>Client</label>
-            <select id="newBlogClient" onchange="updateBlogClientName()"><option value="">Select client…</option></select>
+        <div style="display:flex;align-items:center;gap:10px">
+          <div class="view-toggle">
+            <button class="view-toggle-btn active" id="vPipeline" onclick="switchBlogView('pipeline')">Pipeline</button>
+            <button class="view-toggle-btn" id="vTable" onclick="switchBlogView('table')">Table</button>
           </div>
-          <div class="field"><label>Title</label><input id="newBlogTitle" placeholder="Blog post title"></div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label>Status</label>
-            <select id="newBlogStatus">
-              <option value="draft">Draft</option>
-              <option value="review">In Review</option>
-              <option value="seo">SEO Optimization</option>
-              <option value="approved">Approved</option>
-              <option value="live">Published</option>
-            </select>
-          </div>
-          <div class="field"><label>Assigned To</label><input id="newBlogAssigned" placeholder="Team member name"></div>
-        </div>
-        <div class="field-row">
-          <div class="field"><label>Google Doc URL</label><input id="newBlogDocUrl" placeholder="https://docs.google.com/…"></div>
-          <div class="field"><label>Live URL</label><input id="newBlogLiveUrl" placeholder="https://website.com/blog/…"></div>
-        </div>
-        <div class="form-actions">
-          <button class="btn btn-primary" onclick="addBlog()">Save Blog</button>
-          <button class="btn btn-outline" onclick="toggleForm('addBlogForm')">Cancel</button>
+          <a class="toggle-form-btn" onclick="openAddBlogModal()">+ Add Blog</a>
         </div>
       </div>
 
-      <!-- Package progress per client -->
-      <div id="packageProgressWrap" class="section-wrap"></div>
+      <!-- Pipeline View -->
+      <div id="blogViewPipeline">
+        <div id="packageProgressWrap" class="section-wrap"></div>
+        <div class="pipeline" id="blogPipeline">
+          <div class="pipe-col"><div class="pipe-col-title">Draft <span class="pipe-count" id="pcDraft">0</span></div><div id="pipeline-draft"></div></div>
+          <div class="pipe-col"><div class="pipe-col-title">In Review <span class="pipe-count" id="pcReview">0</span></div><div id="pipeline-review"></div></div>
+          <div class="pipe-col"><div class="pipe-col-title">SEO Opt. <span class="pipe-count" id="pcSeo">0</span></div><div id="pipeline-seo"></div></div>
+          <div class="pipe-col"><div class="pipe-col-title">Approved <span class="pipe-count" id="pcApproved">0</span></div><div id="pipeline-approved"></div></div>
+          <div class="pipe-col"><div class="pipe-col-title">Published <span class="pipe-count" id="pcLive">0</span></div><div id="pipeline-live"></div></div>
+        </div>
+      </div>
 
-      <div class="pipeline" id="blogPipeline">
-        <div class="pipe-col"><div class="pipe-col-title">Draft <span class="pipe-count" id="pcDraft">0</span></div><div id="pipeline-draft"></div></div>
-        <div class="pipe-col"><div class="pipe-col-title">In Review <span class="pipe-count" id="pcReview">0</span></div><div id="pipeline-review"></div></div>
-        <div class="pipe-col"><div class="pipe-col-title">SEO Opt. <span class="pipe-count" id="pcSeo">0</span></div><div id="pipeline-seo"></div></div>
-        <div class="pipe-col"><div class="pipe-col-title">Approved <span class="pipe-count" id="pcApproved">0</span></div><div id="pipeline-approved"></div></div>
-        <div class="pipe-col"><div class="pipe-col-title">Published <span class="pipe-count" id="pcLive">0</span></div><div id="pipeline-live"></div></div>
+      <!-- Table View -->
+      <div id="blogViewTable" class="hidden">
+        <div class="filter-bar">
+          <select id="tblAuthorFilter" onchange="renderBlogTable()">
+            <option value="">All Authors</option>
+          </select>
+          <select id="tblTypeFilter" onchange="renderBlogTable()">
+            <option value="">All Types</option>
+            <option value="ac">AC Blogs</option>
+            <option value="client">Client Blogs</option>
+          </select>
+          <select id="tblClientFilter" onchange="renderBlogTable()">
+            <option value="">All Clients</option>
+          </select>
+          <select id="tblStatusFilter" onchange="renderBlogTable()">
+            <option value="">All Statuses</option>
+            <option value="draft">Draft</option>
+            <option value="review">In Review</option>
+            <option value="seo">SEO Opt.</option>
+            <option value="approved">Approved</option>
+            <option value="live">Published</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <div class="table-head blogs-table-grid" id="blogsTableHead">
+            <span onclick="sortBlogTable('title')">Title</span>
+            <span onclick="sortBlogTable('blogType')">Type</span>
+            <span onclick="sortBlogTable('authorName')">Author</span>
+            <span onclick="sortBlogTable('clientName')">Client</span>
+            <span onclick="sortBlogTable('status')">Status</span>
+            <span onclick="sortBlogTable('publishDate')">Publish Date</span>
+            <span onclick="sortBlogTable('clicks')">Clicks</span>
+            <span onclick="sortBlogTable('avgPosition')">Avg Pos.</span>
+          </div>
+          <div id="blogsTableBody"><div class="empty-state"><p>No blogs match the filter.</p></div></div>
+        </div>
       </div>
     </div>
 
-    <!-- ── REPORTS TAB ── -->
+    <!-- REPORTS TAB -->
     <div id="admin-reports" class="tab-panel hidden">
       <div class="report-form-wrap">
         <h3>Enter Monthly Metrics</h3>
         <div class="report-sub">Fast-entry mode: save and auto-advance to the next blog for the same client and month.</div>
-
         <div class="field-row" style="margin-bottom:14px">
+          <div class="field">
+            <label>Blog Type</label>
+            <select id="reportBlogType" onchange="onReportTypeChange()">
+              <option value="">All Types</option>
+              <option value="ac">AC Blogs</option>
+              <option value="client">Client Blogs</option>
+            </select>
+          </div>
           <div class="field">
             <label>Client</label>
             <select id="reportClient" onchange="onReportClientChange()"><option value="">Select client…</option></select>
           </div>
+        </div>
+        <div class="field-row" style="margin-bottom:14px">
           <div class="field">
             <label>Month</label>
             <input type="month" id="reportMonth" onchange="onReportBlogChange()">
           </div>
+          <div class="field">
+            <label>Blog <span id="reportBlogIndex" style="color:#36D1C2;font-weight:500"></span></label>
+            <select id="reportBlog" onchange="onReportBlogChange()"><option value="">Select blog…</option></select>
+          </div>
         </div>
-
-        <div class="field" style="margin-bottom:14px">
-          <label>Blog <span id="reportBlogIndex" style="color:#36D1C2;font-weight:500"></span></label>
-          <select id="reportBlog" onchange="onReportBlogChange()"><option value="">Select blog…</option></select>
-        </div>
-
         <div class="report-progress-bar"><div class="report-progress-fill" id="reportProgressFill" style="width:0%"></div></div>
-
         <div class="report-blog-context" id="reportBlogContext">
           <div class="rbc-title" id="rcTitle">Blog title</div>
           <div class="rbc-meta" id="rcMeta">client · status</div>
         </div>
-
         <div class="report-existing" id="reportExisting">
           <div class="re-title">Previously Saved Data</div>
           <div class="re-grid" id="reportExistingGrid"></div>
         </div>
-
         <div class="metrics-grid">
           <div class="field"><label>Clicks</label><input id="mClicks" type="number" placeholder="0"></div>
           <div class="field"><label>Impressions</label><input id="mImpressions" type="number" placeholder="0"></div>
@@ -602,45 +581,32 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <div class="field"><label>Page Views</label><input id="mPageViews" type="number" placeholder="0"></div>
         </div>
         <div class="field"><label>Notes / Insight for Client</label><textarea id="mInsight" placeholder="Add a note or insight that the client will see…"></textarea></div>
-
         <div class="form-actions">
           <button class="btn btn-primary" onclick="saveReport(false)">Save Report</button>
           <button class="btn btn-next" onclick="saveReport(true)">Save &amp; Next Blog</button>
           <button class="btn btn-outline" onclick="clearReportForm()">Clear</button>
         </div>
       </div>
-
-      <!-- Saved reports listing -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
         <div class="section-title" style="margin:0">Saved Reports</div>
         <div class="filter-bar" style="margin:0">
-          <select id="reportFilterClient" onchange="renderSavedReports()">
-            <option value="">All Clients</option>
-          </select>
-          <select id="reportFilterMonth" onchange="renderSavedReports()">
-            <option value="">All Months</option>
-          </select>
+          <select id="reportFilterClient" onchange="renderSavedReports()"><option value="">All Clients</option></select>
+          <select id="reportFilterMonth" onchange="renderSavedReports()"><option value="">All Months</option></select>
         </div>
       </div>
-      <div id="savedReportsWrap">
-        <div class="empty-state"><p>No reports saved yet.</p></div>
-      </div>
+      <div id="savedReportsWrap"><div class="empty-state"><p>No reports saved yet.</p></div></div>
     </div>
 
-    <!-- ── YOUTUBE TAB ── -->
+    <!-- YOUTUBE TAB -->
     <div id="admin-youtube" class="tab-panel hidden">
       <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
         <div class="section-title" style="margin:0">YouTube Content</div>
         <a class="toggle-form-btn" onclick="toggleForm('addYoutubeForm')">+ Add Video</a>
       </div>
-
       <div id="addYoutubeForm" class="form-card hidden">
         <h3>Add YouTube Video</h3>
         <div class="field-row">
-          <div class="field">
-            <label>Client</label>
-            <select id="ytClient"><option value="">Select client…</option></select>
-          </div>
+          <div class="field"><label>Client</label><select id="ytClient"><option value="">Select client…</option></select></div>
           <div class="field"><label>Video Title</label><input id="ytTitle" placeholder="Video title"></div>
         </div>
         <div class="field-row">
@@ -648,8 +614,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <div class="field"><label>Publish Date</label><input id="ytDate" type="date"></div>
         </div>
         <div class="field-row">
-          <div class="field">
-            <label>Status</label>
+          <div class="field"><label>Status</label>
             <select id="ytStatus">
               <option value="draft">Draft</option>
               <option value="production">In Production</option>
@@ -664,7 +629,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <button class="btn btn-outline" onclick="toggleForm('addYoutubeForm')">Cancel</button>
         </div>
       </div>
-
       <div class="table-wrap">
         <div class="table-head youtube-grid">
           <span>Title</span><span>Client</span><span>Status</span><span>Views</span><span>Likes</span><span>Date</span>
@@ -673,7 +637,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
     </div>
 
-    <!-- ── REQUESTS TAB ── -->
+    <!-- REQUESTS TAB -->
     <div id="admin-requests" class="tab-panel hidden">
       <div class="section-title">Incoming Requests</div>
       <div class="table-wrap">
@@ -684,34 +648,26 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
     </div>
 
-  </div><!-- /dash-content -->
-
+  </div>
   <footer class="site-footer">
     <img src="ac-logo-dark.png" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
 
-<!-- ══════════════════════════ CLIENT DASHBOARD ══════════════════════════ -->
+<!-- CLIENT DASHBOARD -->
 <div id="clientDash" class="dash-screen">
   <header class="site-header">
     <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
-    <nav>
-      <a href="index.html">Blog</a>
-      <a href="pricing.html">Pricing</a>
-    </nav>
+    <nav><a href="index.html">Blog</a><a href="pricing.html">Pricing</a></nav>
     <div class="user-chip">
       <span><strong id="clientUserName">Client</strong></span>
       <span class="role-badge role-client">Client</span>
       <button class="btn-signout" onclick="signOut()">Sign Out</button>
     </div>
   </header>
-
   <div class="dash-content">
-    <div class="dash-header">
-      <h1>Welcome, <span id="clientGreetName">there</span></h1>
-    </div>
-
+    <div class="dash-header"><h1>Welcome, <span id="clientGreetName">there</span></h1></div>
     <div class="dash-tabs" id="clientTabs">
       <div class="dash-tab active" onclick="switchClientTab('myblogs',this)">My Blogs</div>
       <div class="dash-tab" onclick="switchClientTab('myreports',this)">My Reports</div>
@@ -720,7 +676,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       <div class="dash-tab" onclick="switchClientTab('addservices',this)">Add Services</div>
     </div>
 
-    <!-- ── MY BLOGS TAB ── -->
+    <!-- MY BLOGS -->
     <div id="client-myblogs" class="tab-panel active">
       <div class="form-card" style="padding:18px;margin-bottom:18px" id="clientPackageCard">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
@@ -735,7 +691,6 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         </div>
         <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="cPkgBar" style="width:0%"></div></div>
       </div>
-
       <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
         <span class="status-badge s-draft" style="cursor:pointer" onclick="filterClientBlogs('')">All</span>
         <span class="status-badge s-draft" style="cursor:pointer" onclick="filterClientBlogs('draft')">Draft</span>
@@ -744,13 +699,10 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         <span class="status-badge s-approved" style="cursor:pointer" onclick="filterClientBlogs('approved')">Approved</span>
         <span class="status-badge s-live" style="cursor:pointer" onclick="filterClientBlogs('live')">Published</span>
       </div>
-
-      <div id="clientBlogsWrap">
-        <div class="empty-state"><p>No blogs found for your account.</p></div>
-      </div>
+      <div id="clientBlogsWrap"><div class="empty-state"><p>No blogs found for your account.</p></div></div>
     </div>
 
-    <!-- ── MY REPORTS TAB ── -->
+    <!-- MY REPORTS -->
     <div id="client-myreports" class="tab-panel hidden">
       <div class="report-month-nav">
         <label>Month:</label>
@@ -758,40 +710,31 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <option value="">All Months</option>
         </select>
       </div>
-
       <div class="report-stats" id="clientReportStats">
         <div class="r-stat"><div class="r-num" id="crOrganic">—</div><div class="r-lbl">Organic Visits</div><div class="r-trend" id="crOrgTrend"></div></div>
-        <div class="r-stat"><div class="r-num" id="crKeywords">—</div><div class="r-lbl">Keywords Ranking</div><div class="r-trend" id="crKwTrend"></div></div>
+        <div class="r-stat"><div class="r-num" id="crKeywords">—</div><div class="r-lbl">Impressions</div><div class="r-trend" id="crKwTrend"></div></div>
         <div class="r-stat"><div class="r-num" id="crTop10">—</div><div class="r-lbl">Top 10 Rankings</div><div class="r-trend" id="crTop10Trend"></div></div>
         <div class="r-stat"><div class="r-num" id="crGrowth">—</div><div class="r-lbl">Traffic Growth</div><div class="r-trend" id="crGrowthTrend"></div></div>
       </div>
-
       <div class="section-title">Blog Performance</div>
       <div class="blog-perf-table">
-        <div class="bpt-head">
-          <span>Blog Title</span><span>Views</span><span>Avg Position</span><span>Clicks</span><span>Status</span>
-        </div>
-        <div id="clientBlogPerfBody">
-          <div class="empty-state"><p>No report data available for this period.</p></div>
-        </div>
+        <div class="bpt-head"><span>Blog Title</span><span>Views</span><span>Avg Position</span><span>Clicks</span><span>Status</span></div>
+        <div id="clientBlogPerfBody"><div class="empty-state"><p>No report data available for this period.</p></div></div>
       </div>
     </div>
 
-    <!-- ── MY YOUTUBE TAB ── -->
+    <!-- MY YOUTUBE -->
     <div id="client-myyoutube" class="tab-panel hidden">
       <div class="section-title">YouTube Content</div>
-      <div id="clientYoutubeWrap">
-        <div class="empty-state"><p>No YouTube videos yet.</p></div>
-      </div>
+      <div id="clientYoutubeWrap"><div class="empty-state"><p>No YouTube videos yet.</p></div></div>
     </div>
 
-    <!-- ── SUPPORT TAB ── -->
+    <!-- SUPPORT -->
     <div id="client-support" class="tab-panel hidden">
       <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
         <div class="section-title" style="margin:0">Support Requests</div>
         <a class="toggle-form-btn" onclick="toggleForm('addSupportForm')">+ New Request</a>
       </div>
-
       <div id="addSupportForm" class="form-card hidden">
         <h3>New Support Request</h3>
         <div class="field"><label>Subject</label><input id="supportSubject" placeholder="Brief description of your request"></div>
@@ -821,16 +764,13 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
           <button class="btn btn-outline" onclick="toggleForm('addSupportForm')">Cancel</button>
         </div>
       </div>
-
-      <div id="clientSupportWrap">
-        <div class="empty-state"><p>No support requests yet.</p></div>
-      </div>
+      <div id="clientSupportWrap"><div class="empty-state"><p>No support requests yet.</p></div></div>
     </div>
 
-    <!-- ── ADD SERVICES TAB ── -->
+    <!-- ADD SERVICES -->
     <div id="client-addservices" class="tab-panel hidden">
       <div class="section-title">Upgrade Your Plan</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" id="servicesGrid">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
         <div class="form-card" style="text-align:center;padding:28px">
           <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:500;color:#00161F;margin-bottom:6px">Starter</div>
           <div style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;margin-bottom:12px">$997<span style="font-size:14px;color:#617792">/mo</span></div>
@@ -858,23 +798,91 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
     </div>
 
-  </div><!-- /dash-content -->
-
+  </div>
   <footer class="site-footer">
     <img src="ac-logo-dark.png" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
 
+<!-- ADD BLOG MODAL -->
+<div class="modal-overlay" id="addBlogModal">
+  <div class="modal" style="max-width:600px">
+    <div class="modal-header">
+      <h3 id="addBlogModalTitle">Add New Blog</h3>
+      <button class="modal-close" onclick="closeAddBlogModal()">&times;</button>
+    </div>
+    <!-- Step 1: type choice -->
+    <div id="blogTypeStep">
+      <p style="font-size:13px;color:#617792;margin-bottom:16px;font-weight:300">What type of blog is this?</p>
+      <div class="type-choice">
+        <div class="type-choice-btn" id="tcAC" onclick="selectBlogType('ac')">
+          <div class="tc-label">AC Blog</div>
+          <div class="tc-desc">Anderson Collaborative content<br>for AC marketing / thought leadership</div>
+        </div>
+        <div class="type-choice-btn" id="tcClient" onclick="selectBlogType('client')">
+          <div class="tc-label">Client Blog</div>
+          <div class="tc-desc">Content written for a specific client<br>visible in their dashboard</div>
+        </div>
+      </div>
+    </div>
+    <!-- Step 2: blog form -->
+    <div id="blogFormStep" class="hidden">
+      <div class="field">
+        <label>Title</label>
+        <input id="newBlogTitle" placeholder="Blog post title">
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Author</label>
+          <select id="newBlogAuthor"></select>
+        </div>
+        <div class="field" id="newBlogClientWrap">
+          <label>Client</label>
+          <select id="newBlogClient"><option value="">Select client…</option></select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Status</label>
+          <select id="newBlogStatus">
+            <option value="draft">Draft</option>
+            <option value="review">In Review</option>
+            <option value="seo">SEO Optimization</option>
+            <option value="approved">Approved</option>
+            <option value="live">Published</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Publish Date</label>
+          <input id="newBlogPublishDate" type="date">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Google Doc URL</label><input id="newBlogDocUrl" placeholder="https://docs.google.com/…"></div>
+        <div class="field"><label>Live URL</label><input id="newBlogLiveUrl" placeholder="https://website.com/blog/…"></div>
+      </div>
+      <div class="field">
+        <label>Assigned To</label>
+        <input id="newBlogAssigned" placeholder="Team member name">
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-outline btn-sm" onclick="backToBlogTypeStep()">Back</button>
+        <button class="btn btn-primary" onclick="addBlog()">Save Blog</button>
+        <button class="btn btn-outline" onclick="closeAddBlogModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- ══════════════════════════ FIREBASE + APP JS ══════════════════════════ -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
-// ── FIREBASE INIT ──
+// ── FIREBASE ──
 const firebaseConfig = {
   apiKey: "AIzaSyBWEA8VBcn9A9wLeTrKizo17QJ1G_tQl28",
   authDomain: "ac-client-portal-6884c.firebaseapp.com",
@@ -887,18 +895,39 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// ── APP STATE ──
+// ── AUTHORS ──
+const AUTHORS = [
+  {id:'trevor',name:'Trevor Anderson'},
+  {id:'reandra',name:'Reandra Maree'},
+  {id:'cole',name:'Cole Feigl'},
+  {id:'gregorio',name:'Gregorio Palacio'},
+  {id:'jack',name:'Jack Nelson'},
+  {id:'daria',name:'Daria'},
+  {id:'daymit',name:'Daymit'},
+  {id:'mariia',name:'Mariia'},
+  {id:'stavros',name:'Stavros'},
+  {id:'rizki',name:'Rizki'},
+  {id:'rupert',name:'Rupert'},
+  {id:'eden',name:'Eden Jones'},
+  {id:'samantha',name:'Samantha Sanchezborja'},
+  {id:'nazareno',name:'Nazareno Castro Bay'}
+];
+
+// ── STATE ──
 let currentUser = null;
 let currentUserData = null;
 let allClients = [];
 let allBlogs = [];
 let allYoutube = [];
 let allRequests = [];
-let allMetrics = {}; // blogId+month -> data
+let allMetrics = {};
 let clientBlogFilter = '';
-let reportBlogQueue = []; // for Save & Next
+let reportBlogQueue = [];
+let blogViewMode = 'pipeline';
+let blogSortKey = 'createdAt';
+let blogSortAsc = true;
+let selectedBlogType = '';
 
-// Package blog counts
 const PACKAGE_BLOGS = { starter: 2, growth: 4, pro: 8, scale: 16 };
 
 // ── AUTH STATE ──
@@ -909,7 +938,6 @@ auth.onAuthStateChanged(async user => {
     if (snap.exists) {
       currentUserData = snap.data();
     } else {
-      // Auto-create user doc if Google sign-in
       currentUserData = {
         name: user.displayName || user.email,
         email: user.email,
@@ -929,7 +957,6 @@ auth.onAuthStateChanged(async user => {
   }
 });
 
-// ── SHOW/HIDE SCREENS ──
 function showAuth() {
   document.getElementById('authScreen').style.display = 'flex';
   document.getElementById('adminDash').classList.remove('active');
@@ -968,31 +995,23 @@ function showLogin() {
 }
 function clearAuthError() {
   const el = document.getElementById('authError');
-  el.style.display = 'none';
-  el.textContent = '';
+  el.style.display = 'none'; el.textContent = '';
 }
 function showAuthError(msg) {
   const el = document.getElementById('authError');
-  el.textContent = msg;
-  el.style.display = 'block';
+  el.textContent = msg; el.style.display = 'block';
 }
 async function emailLogin() {
   const email = document.getElementById('authEmail').value.trim();
   const pass = document.getElementById('authPass').value;
   if (!email || !pass) { showAuthError('Please enter your email and password.'); return; }
-  try {
-    await auth.signInWithEmailAndPassword(email, pass);
-  } catch(e) {
-    showAuthError(friendlyAuthError(e.code));
-  }
+  try { await auth.signInWithEmailAndPassword(email, pass); }
+  catch(e) { showAuthError(friendlyAuthError(e.code)); }
 }
 async function googleLogin() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  try {
-    await auth.signInWithPopup(provider);
-  } catch(e) {
-    showAuthError(friendlyAuthError(e.code));
-  }
+  try { await auth.signInWithPopup(provider); }
+  catch(e) { showAuthError(friendlyAuthError(e.code)); }
 }
 async function createAccount() {
   const name = document.getElementById('regName').value.trim();
@@ -1005,27 +1024,21 @@ async function createAccount() {
     const cred = await auth.createUserWithEmailAndPassword(email, pass);
     await db.collection('users').doc(cred.user.uid).set({
       name, company, email, role,
-      package: 'starter',
-      trackingStatus: 'manual',
-      phone: '',
+      package: 'starter', trackingStatus: 'manual', phone: '',
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-  } catch(e) {
-    showAuthError(friendlyAuthError(e.code));
-  }
+  } catch(e) { showAuthError(friendlyAuthError(e.code)); }
 }
-async function signOut() {
-  await auth.signOut();
-}
+async function signOut() { await auth.signOut(); }
 function friendlyAuthError(code) {
   const map = {
-    'auth/wrong-password': 'Incorrect password. Please try again.',
-    'auth/user-not-found': 'No account found with that email.',
-    'auth/email-already-in-use': 'An account with this email already exists.',
-    'auth/weak-password': 'Password must be at least 6 characters.',
-    'auth/invalid-email': 'Please enter a valid email address.',
-    'auth/too-many-requests': 'Too many attempts. Please try again later.',
-    'auth/popup-closed-by-user': 'Sign-in cancelled.',
+    'auth/wrong-password':'Incorrect password. Please try again.',
+    'auth/user-not-found':'No account found with that email.',
+    'auth/email-already-in-use':'An account with this email already exists.',
+    'auth/weak-password':'Password must be at least 6 characters.',
+    'auth/invalid-email':'Please enter a valid email address.',
+    'auth/too-many-requests':'Too many attempts. Please try again later.',
+    'auth/popup-closed-by-user':'Sign-in cancelled.'
   };
   return map[code] || 'An error occurred. Please try again.';
 }
@@ -1041,14 +1054,11 @@ function showToast(msg, type='success') {
 }
 
 // ── UTILITY ──
-function toggleForm(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('hidden');
-}
+function toggleForm(id) { document.getElementById(id).classList.toggle('hidden'); }
 function fmtDate(ts) {
   if (!ts) return '—';
   const d = ts.toDate ? ts.toDate() : new Date(ts);
-  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  return d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
 }
 function fmtMonth(str) {
   if (!str) return '—';
@@ -1092,6 +1102,18 @@ function currentMonth() {
   const now = new Date();
   return now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
 }
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function authorName(id) {
+  const a = AUTHORS.find(x => x.id === id);
+  return a ? a.name : id || '—';
+}
+function dotColor(cls) {
+  const map = { 'dot-draft':'#B3BEC9','dot-review':'#f4a261','dot-seo':'#36D1C2','dot-approved':'#2BBDAF','dot-live':'#0a7c42','dot-new':'#36D1C2' };
+  return map[cls] || '#B3BEC9';
+}
 
 // ── TAB SWITCHING ──
 function switchAdminTab(name, el) {
@@ -1100,11 +1122,13 @@ function switchAdminTab(name, el) {
   if (el) el.classList.add('active');
   else {
     document.querySelectorAll('#adminTabs .dash-tab').forEach(t => {
-      if (t.textContent.toLowerCase().replace(' ','').includes(name.replace('-',''))) t.classList.add('active');
+      if (t.textContent.toLowerCase().replace(/\s/g,'').includes(name.replace('-',''))) t.classList.add('active');
     });
   }
   const panel = document.getElementById('admin-' + name);
   if (panel) { panel.classList.remove('hidden'); panel.classList.add('active'); }
+  if (name === 'library') renderLibrary();
+  if (name === 'blogs' && blogViewMode === 'table') renderBlogTable();
 }
 function switchClientTab(name, el) {
   document.querySelectorAll('#clientTabs .dash-tab').forEach(t => t.classList.remove('active'));
@@ -1123,12 +1147,11 @@ async function loadAdminData() {
   renderClientsTable();
   renderBlogPipeline();
   populateClientDropdowns();
+  populateAuthorDropdowns();
   renderYoutubeTable();
   renderRequestsTable();
-  // Set default report month
   document.getElementById('reportMonth').value = currentMonth();
 }
-
 async function loadClients() {
   const snap = await db.collection('users').where('role','==','client').orderBy('createdAt','desc').get();
   allClients = snap.docs.map(d => ({ id: d.id, ...d.data() }));
@@ -1136,12 +1159,9 @@ async function loadClients() {
 async function loadBlogs() {
   const snap = await db.collection('blogs').orderBy('createdAt','desc').get();
   allBlogs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-  // Load all metrics
   for (const blog of allBlogs) {
     const mSnap = await db.collection('blogs').doc(blog.id).collection('metrics').get();
-    mSnap.docs.forEach(m => {
-      allMetrics[blog.id + '_' + m.id] = m.data();
-    });
+    mSnap.docs.forEach(m => { allMetrics[blog.id + '_' + m.id] = m.data(); });
   }
 }
 async function loadYoutube() {
@@ -1159,15 +1179,13 @@ function renderAdminOverview() {
   document.getElementById('ovTotalBlogs').textContent = allBlogs.length;
   document.getElementById('ovPublished').textContent = allBlogs.filter(b => b.status === 'live').length;
   document.getElementById('ovInProgress').textContent = allBlogs.filter(b => b.status !== 'live' && b.status !== 'draft').length;
-
-  // Activity feed
   const feed = document.getElementById('activityFeed');
   const items = [];
   allBlogs.slice(0,5).forEach(b => {
-    items.push({ text: `<strong>${b.title}</strong> moved to <strong>${statusLabel(b.status)}</strong>`, ts: b.createdAt, dot: statusClass(b.status).replace('s-','dot-') });
+    items.push({ text: `<strong>${esc(b.title)}</strong> moved to <strong>${statusLabel(b.status)}</strong>`, ts: b.createdAt, dot: 'dot-' + b.status });
   });
   allClients.slice(0,3).forEach(c => {
-    items.push({ text: `New client <strong>${c.name}</strong> (${capitalize(c.package)}) added`, ts: c.createdAt, dot: 'dot-approved' });
+    items.push({ text: `New client <strong>${esc(c.name)}</strong> (${capitalize(c.package)}) added`, ts: c.createdAt, dot: 'dot-approved' });
   });
   if (!items.length) { feed.innerHTML = '<div class="empty-state"><p>No activity yet.</p></div>'; return; }
   feed.innerHTML = items.map(i => `
@@ -1177,19 +1195,12 @@ function renderAdminOverview() {
       <div class="activity-time">${fmtDate(i.ts)}</div>
     </div>`).join('');
 }
-function dotColor(cls) {
-  const map = { 'dot-draft':'#B3BEC9','dot-review':'#f4a261','dot-seo':'#36D1C2','dot-approved':'#2BBDAF','dot-live':'#0a7c42','dot-new':'#36D1C2' };
-  return map[cls] || '#B3BEC9';
-}
 
 // ── CLIENTS TABLE ──
 function renderClientsTable() {
   const pkgF = document.getElementById('clientFilterPackage').value;
   const trkF = document.getElementById('clientFilterTracking').value;
-  let filtered = allClients.filter(c =>
-    (!pkgF || c.package === pkgF) &&
-    (!trkF || c.trackingStatus === trkF)
-  );
+  const filtered = allClients.filter(c => (!pkgF || c.package === pkgF) && (!trkF || c.trackingStatus === trkF));
   const tbody = document.getElementById('clientsTableBody');
   if (!filtered.length) { tbody.innerHTML = '<div class="empty-state"><p>No clients match the filter.</p></div>'; return; }
   tbody.innerHTML = filtered.map(c => {
@@ -1204,7 +1215,6 @@ function renderClientsTable() {
     </div>`;
   }).join('');
 }
-
 function showClientDetail(cid) {
   const c = allClients.find(x => x.id === cid);
   if (!c) return;
@@ -1212,30 +1222,28 @@ function showClientDetail(cid) {
   panel.classList.add('open');
   document.getElementById('cdpName').textContent = c.name || '—';
   document.getElementById('cdpMeta').textContent = (c.email || '') + (c.company ? ' · ' + c.company : '') + ' · ' + capitalize(c.package || 'starter');
-  const blogs = allBlogs.filter(b => b.clientId === cid);
+  const blogs = allBlogs.filter(b => b.clientId === cid && b.blogType === 'client');
   const pkgMax = PACKAGE_BLOGS[c.package] || 4;
   const published = blogs.filter(b => b.status === 'live').length;
   document.getElementById('cdpGrid').innerHTML = `
     <div class="detail-item"><div class="di-lbl">Package</div><div class="di-val">${capitalize(c.package || 'starter')}</div></div>
     <div class="detail-item"><div class="di-lbl">Tracking</div><div class="di-val">${capitalize(c.trackingStatus || 'manual')}</div></div>
     <div class="detail-item"><div class="di-lbl">Total Blogs</div><div class="di-val">${blogs.length}</div></div>
-    <div class="detail-item"><div class="di-lbl">Published</div><div class="di-val" style="color:#0a7c42">${published} / ${pkgMax}</div></div>
-  `;
+    <div class="detail-item"><div class="di-lbl">Published</div><div class="di-val" style="color:#0a7c42">${published} / ${pkgMax}</div></div>`;
   document.getElementById('cdpBlogs').innerHTML = blogs.length ? blogs.map(b => `
     <div class="blog-card">
       <div class="blog-card-info">
         <div class="blog-card-title">${esc(b.title)}</div>
-        <div class="blog-card-meta">Assigned to ${esc(b.assignedTo || '—')} · ${fmtDate(b.createdAt)}</div>
+        <div class="blog-card-meta">Author: ${esc(authorName(b.authorId))} · ${fmtDate(b.createdAt)}</div>
         <div class="blog-card-links">
-          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">Google Doc</a>` : ''}
-          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">Live URL</a>` : ''}
+          ${b.docUrl ? `<a href="${esc(b.docUrl)}" target="_blank">Google Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${esc(b.liveUrl)}" target="_blank">Live URL</a>` : ''}
         </div>
       </div>
       <div class="blog-card-status"><span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span></div>
     </div>`).join('') : '<div class="text-sm" style="padding:12px 0">No blogs yet.</div>';
-  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  panel.scrollIntoView({ behavior:'smooth', block:'start' });
 }
-
 async function addClient() {
   const name = document.getElementById('newClientName').value.trim();
   const email = document.getElementById('newClientEmail').value.trim();
@@ -1251,22 +1259,103 @@ async function addClient() {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       createdBy: currentUser.uid
     });
-    allClients.unshift({ id: ref.id, name, email, company, phone, role: 'client', package: pkg, trackingStatus: tracking, createdAt: new Date() });
-    renderClientsTable();
-    renderAdminOverview();
-    populateClientDropdowns();
-    document.getElementById('newClientName').value = '';
-    document.getElementById('newClientEmail').value = '';
-    document.getElementById('newClientCompany').value = '';
-    document.getElementById('newClientPhone').value = '';
+    allClients.unshift({ id: ref.id, name, email, company, phone, role:'client', package:pkg, trackingStatus:tracking, createdAt:new Date() });
+    renderClientsTable(); renderAdminOverview(); populateClientDropdowns();
+    ['newClientName','newClientEmail','newClientCompany','newClientPhone'].forEach(id => document.getElementById(id).value = '');
     toggleForm('addClientForm');
     showToast('Client added successfully.');
-  } catch(e) {
-    showToast('Error adding client: ' + e.message, 'error');
+  } catch(e) { showToast('Error: ' + e.message, 'error'); }
+}
+</script>
+<script>
+// ── ADD BLOG MODAL ──
+function openAddBlogModal() {
+  selectedBlogType = '';
+  document.getElementById('blogTypeStep').classList.remove('hidden');
+  document.getElementById('blogFormStep').classList.add('hidden');
+  document.getElementById('addBlogModalTitle').textContent = 'Add New Blog';
+  document.getElementById('tcAC').classList.remove('selected');
+  document.getElementById('tcClient').classList.remove('selected');
+  document.getElementById('addBlogModal').classList.add('open');
+}
+function closeAddBlogModal() {
+  document.getElementById('addBlogModal').classList.remove('open');
+  selectedBlogType = '';
+}
+function selectBlogType(type) {
+  selectedBlogType = type;
+  document.getElementById('tcAC').classList.toggle('selected', type === 'ac');
+  document.getElementById('tcClient').classList.toggle('selected', type === 'client');
+  // Small delay then show form
+  setTimeout(() => {
+    document.getElementById('blogTypeStep').classList.add('hidden');
+    document.getElementById('blogFormStep').classList.remove('hidden');
+    document.getElementById('addBlogModalTitle').textContent = type === 'ac' ? 'Add AC Blog' : 'Add Client Blog';
+    // Show/hide client dropdown
+    document.getElementById('newBlogClientWrap').style.display = type === 'client' ? '' : 'none';
+    // Populate author dropdown
+    const asel = document.getElementById('newBlogAuthor');
+    asel.innerHTML = AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+    // Populate client dropdown
+    const csel = document.getElementById('newBlogClient');
+    csel.innerHTML = '<option value="">Select client…</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+  }, 200);
+}
+function backToBlogTypeStep() {
+  document.getElementById('blogFormStep').classList.add('hidden');
+  document.getElementById('blogTypeStep').classList.remove('hidden');
+  document.getElementById('addBlogModalTitle').textContent = 'Add New Blog';
+}
+async function addBlog() {
+  const title = document.getElementById('newBlogTitle').value.trim();
+  const authorId = document.getElementById('newBlogAuthor').value;
+  const status = document.getElementById('newBlogStatus').value;
+  const assignedTo = document.getElementById('newBlogAssigned').value.trim();
+  const docUrl = document.getElementById('newBlogDocUrl').value.trim();
+  const liveUrl = document.getElementById('newBlogLiveUrl').value.trim();
+  const publishDate = document.getElementById('newBlogPublishDate').value;
+  if (!title) { showToast('Blog title is required.', 'error'); return; }
+  const authorObj = AUTHORS.find(a => a.id === authorId);
+  const authorName_ = authorObj ? authorObj.name : '';
+  let clientId = null, clientName = '';
+  if (selectedBlogType === 'client') {
+    clientId = document.getElementById('newBlogClient').value || null;
+    const clientObj = allClients.find(c => c.id === clientId);
+    clientName = clientObj ? clientObj.name : '';
+    if (!clientId) { showToast('Please select a client.', 'error'); return; }
   }
+  try {
+    const blogData = {
+      title, blogType: selectedBlogType,
+      authorId, authorName: authorName_,
+      clientId: clientId || null, clientName,
+      status, assignedTo, docUrl, liveUrl, publishDate,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdBy: currentUser.uid
+    };
+    const ref = await db.collection('blogs').add(blogData);
+    allBlogs.unshift({ id: ref.id, ...blogData, createdAt: new Date() });
+    renderBlogPipeline();
+    if (blogViewMode === 'table') renderBlogTable();
+    renderAdminOverview();
+    // Clear form
+    ['newBlogTitle','newBlogDocUrl','newBlogLiveUrl','newBlogAssigned','newBlogPublishDate'].forEach(id => document.getElementById(id).value = '');
+    closeAddBlogModal();
+    showToast('Blog added to pipeline.');
+  } catch(e) { showToast('Error: ' + e.message, 'error'); }
 }
 
-// ── BLOGS PIPELINE ──
+// ── BLOG VIEW TOGGLE ──
+function switchBlogView(mode) {
+  blogViewMode = mode;
+  document.getElementById('vPipeline').classList.toggle('active', mode === 'pipeline');
+  document.getElementById('vTable').classList.toggle('active', mode === 'table');
+  document.getElementById('blogViewPipeline').classList.toggle('hidden', mode !== 'pipeline');
+  document.getElementById('blogViewTable').classList.toggle('hidden', mode !== 'table');
+  if (mode === 'table') renderBlogTable();
+}
+
+// ── BLOG PIPELINE ──
 function renderBlogPipeline() {
   const stages = ['draft','review','seo','approved','live'];
   stages.forEach(s => {
@@ -1275,30 +1364,34 @@ function renderBlogPipeline() {
     const counter = document.getElementById('pc' + capitalize(s));
     if (counter) counter.textContent = filtered.length;
     if (!container) return;
-    container.innerHTML = filtered.length ? filtered.map(b => `
-      <div class="pipe-item">
-        <div class="pipe-item-title">${esc(b.title)}</div>
-        <div class="pipe-item-meta">${esc(b.clientName || '—')} · ${esc(b.assignedTo || '—')}</div>
-        <div class="pipe-item-links">
-          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">Doc</a>` : ''}
-          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">Live</a>` : ''}
+    container.innerHTML = filtered.length ? filtered.map(b => {
+      const typeBadge = b.blogType === 'ac'
+        ? `<span class="badge-ac">AC</span>`
+        : (b.clientName ? `<span class="badge-client">${esc(b.clientName)}</span>` : '');
+      return `<div class="pipe-item">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:4px;margin-bottom:4px">
+          <div class="pipe-item-title" style="margin:0">${esc(b.title)}</div>
+          ${typeBadge}
         </div>
-      </div>`).join('') : '<div style="font-size:11px;color:#B3BEC9;text-align:center;padding:16px 0">Empty</div>';
+        <div class="pipe-item-meta">${esc(b.authorName || b.assignedTo || '—')}</div>
+        <div class="pipe-item-links">
+          ${b.docUrl ? `<a href="${esc(b.docUrl)}" target="_blank">Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${esc(b.liveUrl)}" target="_blank">Live</a>` : ''}
+        </div>
+      </div>`;
+    }).join('') : '<div style="font-size:11px;color:#B3BEC9;text-align:center;padding:16px 0">Empty</div>';
   });
   renderPackageProgress();
 }
-
 function renderPackageProgress() {
   const wrap = document.getElementById('packageProgressWrap');
   if (!wrap) return;
-  const clientProgress = {};
-  allClients.forEach(c => {
-    const blogs = allBlogs.filter(b => b.clientId === c.id);
+  const items = allClients.map(c => {
+    const blogs = allBlogs.filter(b => b.clientId === c.id && b.blogType === 'client');
     const published = blogs.filter(b => b.status === 'live').length;
     const max = PACKAGE_BLOGS[c.package] || 4;
-    clientProgress[c.id] = { name: c.name, pkg: c.package, published, max };
+    return { name: c.name, pkg: c.package, published, max };
   });
-  const items = Object.values(clientProgress);
   if (!items.length) { wrap.innerHTML = ''; return; }
   wrap.innerHTML = `
     <div class="section-title">Package Progress</div>
@@ -1314,49 +1407,92 @@ function renderPackageProgress() {
     </div>`;
 }
 
-function updateBlogClientName() {
-  // No-op, client name resolved on save
+// ── BLOG TABLE VIEW ──
+function sortBlogTable(key) {
+  if (blogSortKey === key) blogSortAsc = !blogSortAsc;
+  else { blogSortKey = key; blogSortAsc = true; }
+  // Update header highlights
+  document.querySelectorAll('#blogsTableHead span').forEach(s => s.classList.remove('th-sorted'));
+  const cols = ['title','blogType','authorName','clientName','status','publishDate','clicks','avgPosition'];
+  const idx = cols.indexOf(key);
+  if (idx >= 0) document.querySelectorAll('#blogsTableHead span')[idx].classList.add('th-sorted');
+  renderBlogTable();
 }
+function renderBlogTable() {
+  const authorF = document.getElementById('tblAuthorFilter').value;
+  const typeF = document.getElementById('tblTypeFilter').value;
+  const clientF = document.getElementById('tblClientFilter').value;
+  const statusF = document.getElementById('tblStatusFilter').value;
 
-async function addBlog() {
-  const clientId = document.getElementById('newBlogClient').value;
-  const title = document.getElementById('newBlogTitle').value.trim();
-  const status = document.getElementById('newBlogStatus').value;
-  const assignedTo = document.getElementById('newBlogAssigned').value.trim();
-  const docUrl = document.getElementById('newBlogDocUrl').value.trim();
-  const liveUrl = document.getElementById('newBlogLiveUrl').value.trim();
-  if (!title) { showToast('Blog title is required.', 'error'); return; }
-  const client = allClients.find(c => c.id === clientId);
-  const clientName = client ? client.name : '';
-  try {
-    const ref = await db.collection('blogs').add({
-      clientId: clientId || '', clientName, title, status, assignedTo,
-      docUrl, liveUrl,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      createdBy: currentUser.uid
-    });
-    allBlogs.unshift({ id: ref.id, clientId: clientId || '', clientName, title, status, assignedTo, docUrl, liveUrl, createdAt: new Date() });
-    renderBlogPipeline();
-    renderAdminOverview();
-    document.getElementById('newBlogTitle').value = '';
-    document.getElementById('newBlogDocUrl').value = '';
-    document.getElementById('newBlogLiveUrl').value = '';
-    document.getElementById('newBlogAssigned').value = '';
-    toggleForm('addBlogForm');
-    showToast('Blog added to pipeline.');
-  } catch(e) {
-    showToast('Error adding blog: ' + e.message, 'error');
+  let filtered = allBlogs.filter(b =>
+    (!authorF || b.authorId === authorF) &&
+    (!typeF || b.blogType === typeF) &&
+    (!clientF || b.clientId === clientF) &&
+    (!statusF || b.status === statusF)
+  );
+
+  // Get latest metrics for each blog
+  function getLatestMetrics(blogId) {
+    const keys = Object.keys(allMetrics).filter(k => k.startsWith(blogId + '_'));
+    if (!keys.length) return null;
+    keys.sort().reverse();
+    return allMetrics[keys[0]];
   }
+
+  // Sort
+  filtered.sort((a, b_) => {
+    let av = a[blogSortKey] || '';
+    let bv = b_[blogSortKey] || '';
+    if (blogSortKey === 'clicks' || blogSortKey === 'avgPosition') {
+      const am = getLatestMetrics(a.id);
+      const bm = getLatestMetrics(b_.id);
+      av = am ? Number(am[blogSortKey === 'clicks' ? 'clicks' : 'avgPosition']) || 0 : 0;
+      bv = bm ? Number(bm[blogSortKey === 'clicks' ? 'clicks' : 'avgPosition']) || 0 : 0;
+      return blogSortAsc ? av - bv : bv - av;
+    }
+    if (blogSortKey === 'createdAt') {
+      av = a.createdAt ? (a.createdAt.toDate ? a.createdAt.toDate() : new Date(a.createdAt)) : new Date(0);
+      bv = b_.createdAt ? (b_.createdAt.toDate ? b_.createdAt.toDate() : new Date(b_.createdAt)) : new Date(0);
+      return blogSortAsc ? av - bv : bv - av;
+    }
+    av = String(av).toLowerCase();
+    bv = String(bv).toLowerCase();
+    return blogSortAsc ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+
+  const tbody = document.getElementById('blogsTableBody');
+  if (!filtered.length) { tbody.innerHTML = '<div class="empty-state"><p>No blogs match the filter.</p></div>'; return; }
+  tbody.innerHTML = filtered.map(b => {
+    const m = getLatestMetrics(b.id);
+    const typeBadge = b.blogType === 'ac'
+      ? `<span class="badge-ac">AC</span>`
+      : `<span class="badge-client">Client</span>`;
+    return `<div class="table-row blogs-table-grid">
+      <span class="cell-name" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(b.title)}">
+        ${esc(b.title)}
+        ${b.liveUrl ? `<a href="${esc(b.liveUrl)}" target="_blank" class="inline-link" style="margin-left:6px;font-size:10px">↗</a>` : ''}
+      </span>
+      <span>${typeBadge}</span>
+      <span class="cell-email">${esc(b.authorName || '—')}</span>
+      <span class="cell-email">${esc(b.clientName || (b.blogType === 'ac' ? 'AC' : '—'))}</span>
+      <span><span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span></span>
+      <span class="cell-date">${b.publishDate || fmtDate(b.createdAt)}</span>
+      <span>${m ? numFmt(m.clicks) : '—'}</span>
+      <span>${m ? (m.avgPosition || '—') : '—'}</span>
+    </div>`;
+  }).join('');
 }
 
 // ── POPULATE DROPDOWNS ──
 function populateClientDropdowns() {
-  const dropdowns = ['newBlogClient','reportClient','ytClient','reportFilterClient'];
+  const dropdowns = ['reportClient','ytClient','reportFilterClient','tblClientFilter'];
   dropdowns.forEach(id => {
     const el = document.getElementById(id);
     if (!el) return;
     const val = el.value;
     if (id === 'reportFilterClient') {
+      el.innerHTML = '<option value="">All Clients</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    } else if (id === 'tblClientFilter') {
       el.innerHTML = '<option value="">All Clients</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
     } else {
       el.innerHTML = '<option value="">Select client…</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
@@ -1364,12 +1500,88 @@ function populateClientDropdowns() {
     if (val) el.value = val;
   });
 }
+function populateAuthorDropdowns() {
+  const sel = document.getElementById('tblAuthorFilter');
+  if (sel) {
+    sel.innerHTML = '<option value="">All Authors</option>' + AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  }
+  const libSel = document.getElementById('libAuthorFilter');
+  if (libSel) {
+    libSel.innerHTML = '<option value="">All Authors</option>' + AUTHORS.map(a => `<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  }
+}
 
+// ── LIBRARY ──
+function renderLibrary() {
+  const search = (document.getElementById('libSearch').value || '').toLowerCase().trim();
+  const authorF = document.getElementById('libAuthorFilter').value;
+  const statusF = document.getElementById('libStatusFilter').value;
+
+  // AC blogs = blogType 'ac' or no clientId (legacy)
+  let acBlogs = allBlogs.filter(b => b.blogType === 'ac' || (!b.blogType && !b.clientId));
+
+  if (search) acBlogs = acBlogs.filter(b => b.title && b.title.toLowerCase().includes(search));
+  if (authorF) acBlogs = acBlogs.filter(b => b.authorId === authorF);
+  if (statusF) acBlogs = acBlogs.filter(b => b.status === statusF);
+
+  document.getElementById('libCount').textContent = `${acBlogs.length} blog${acBlogs.length !== 1 ? 's' : ''} found`;
+  const grid = document.getElementById('libraryGrid');
+  if (!acBlogs.length) {
+    grid.innerHTML = '<div class="empty-state"><p>No AC blogs found.</p></div>';
+    return;
+  }
+  grid.innerHTML = acBlogs.map(b => {
+    const m = (() => {
+      const keys = Object.keys(allMetrics).filter(k => k.startsWith(b.id + '_'));
+      if (!keys.length) return null;
+      keys.sort().reverse();
+      return allMetrics[keys[0]];
+    })();
+    return `<div class="lib-card" onclick="window.open('${esc(b.liveUrl || b.docUrl || '#')}','_blank')">
+      <div class="lib-card-title">${esc(b.title)}</div>
+      <div class="lib-card-meta">
+        ${b.authorName ? esc(b.authorName) + ' · ' : ''}${b.publishDate || fmtDate(b.createdAt)}
+      </div>
+      <div class="lib-card-footer">
+        <span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span>
+        ${m ? `<span style="font-size:11px;color:#617792">${numFmt(m.clicks)} clicks</span>` : ''}
+      </div>
+      ${b.liveUrl || b.docUrl ? `<div style="margin-top:8px;display:flex;gap:8px">
+        ${b.docUrl ? `<a href="${esc(b.docUrl)}" target="_blank" class="inline-link" onclick="event.stopPropagation()">Doc</a>` : ''}
+        ${b.liveUrl ? `<a href="${esc(b.liveUrl)}" target="_blank" class="inline-link" onclick="event.stopPropagation()">Live</a>` : ''}
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+</script>
+<script>
 // ── REPORTS ──
+function onReportTypeChange() {
+  const typeF = document.getElementById('reportBlogType').value;
+  const clientSel = document.getElementById('reportClient');
+  if (typeF === 'ac') {
+    // AC blogs: show "AC Blogs" pseudo-option, clear client
+    clientSel.innerHTML = '<option value="__ac__">AC Blogs</option>';
+    clientSel.value = '__ac__';
+    onReportClientChange();
+  } else {
+    clientSel.innerHTML = '<option value="">Select client…</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    document.getElementById('reportBlog').innerHTML = '<option value="">Select blog…</option>';
+    clearReportFields();
+    hideReportContext();
+  }
+}
 function onReportClientChange() {
   const clientId = document.getElementById('reportClient').value;
+  const typeF = document.getElementById('reportBlogType').value;
   const blogSel = document.getElementById('reportBlog');
-  const clientBlogs = allBlogs.filter(b => b.clientId === clientId);
+  let clientBlogs;
+  if (clientId === '__ac__' || typeF === 'ac') {
+    clientBlogs = allBlogs.filter(b => b.blogType === 'ac' || (!b.blogType && !b.clientId));
+  } else {
+    clientBlogs = allBlogs.filter(b => b.clientId === clientId);
+    if (typeF === 'client') clientBlogs = clientBlogs.filter(b => b.blogType === 'client');
+  }
   blogSel.innerHTML = '<option value="">Select blog…</option>' + clientBlogs.map(b => `<option value="${b.id}">${esc(b.title)}</option>`).join('');
   reportBlogQueue = clientBlogs.map(b => b.id);
   document.getElementById('reportBlogIndex').textContent = '';
@@ -1377,7 +1589,6 @@ function onReportClientChange() {
   hideReportContext();
   updateReportProgress();
 }
-
 function onReportBlogChange() {
   const blogId = document.getElementById('reportBlog').value;
   const month = document.getElementById('reportMonth').value;
@@ -1385,25 +1596,20 @@ function onReportBlogChange() {
   if (!blogId) { hideReportContext(); return; }
   const blog = allBlogs.find(b => b.id === blogId);
   if (blog) {
-    const ctx = document.getElementById('reportBlogContext');
-    ctx.classList.add('show');
+    document.getElementById('reportBlogContext').classList.add('show');
     document.getElementById('rcTitle').textContent = blog.title;
-    document.getElementById('rcMeta').textContent = (blog.clientName || '—') + ' · ' + statusLabel(blog.status);
+    const typeLabel = blog.blogType === 'ac' ? 'AC Blog' : (blog.clientName || '—');
+    document.getElementById('rcMeta').textContent = typeLabel + ' · ' + statusLabel(blog.status);
   }
-  // Update queue index
   const idx = reportBlogQueue.indexOf(blogId);
-  if (idx >= 0) {
-    document.getElementById('reportBlogIndex').textContent = `(${idx+1} / ${reportBlogQueue.length})`;
-  }
+  if (idx >= 0) document.getElementById('reportBlogIndex').textContent = `(${idx+1} / ${reportBlogQueue.length})`;
   updateReportProgress();
   if (month) loadExistingReport(blogId, month);
 }
-
 function hideReportContext() {
   document.getElementById('reportBlogContext').classList.remove('show');
   document.getElementById('reportExisting').classList.remove('show');
 }
-
 function updateReportProgress() {
   const blogId = document.getElementById('reportBlog').value;
   if (!reportBlogQueue.length) { document.getElementById('reportProgressFill').style.width = '0%'; return; }
@@ -1411,7 +1617,6 @@ function updateReportProgress() {
   const pct = idx >= 0 ? Math.round((idx / reportBlogQueue.length) * 100) : 0;
   document.getElementById('reportProgressFill').style.width = pct + '%';
 }
-
 function loadExistingReport(blogId, month) {
   const key = blogId + '_' + month;
   const data = allMetrics[key];
@@ -1422,25 +1627,22 @@ function loadExistingReport(blogId, month) {
     <div class="re-item"><div class="re-val">${numFmt(data.clicks)}</div><div class="re-lbl">Clicks</div></div>
     <div class="re-item"><div class="re-val">${numFmt(data.impressions)}</div><div class="re-lbl">Impressions</div></div>
     <div class="re-item"><div class="re-val">${data.avgPosition || '—'}</div><div class="re-lbl">Avg Pos</div></div>
-    <div class="re-item"><div class="re-val">${numFmt(data.pageViews)}</div><div class="re-lbl">Page Views</div></div>
-  `;
-  // Pre-fill fields
+    <div class="re-item"><div class="re-val">${numFmt(data.pageViews)}</div><div class="re-lbl">Page Views</div></div>`;
   document.getElementById('mClicks').value = data.clicks || '';
   document.getElementById('mImpressions').value = data.impressions || '';
   document.getElementById('mPosition').value = data.avgPosition || '';
   document.getElementById('mPageViews').value = data.pageViews || '';
   document.getElementById('mInsight').value = data.insight || '';
 }
-
 function clearReportFields() {
   ['mClicks','mImpressions','mPosition','mPageViews','mInsight'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.value = '';
+    const el = document.getElementById(id); if (el) el.value = '';
   });
   document.getElementById('reportExisting').classList.remove('show');
 }
 function clearReportForm() {
-  document.getElementById('reportClient').value = '';
+  document.getElementById('reportBlogType').value = '';
+  document.getElementById('reportClient').innerHTML = '<option value="">Select client…</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
   document.getElementById('reportBlog').innerHTML = '<option value="">Select blog…</option>';
   document.getElementById('reportMonth').value = currentMonth();
   clearReportFields();
@@ -1449,7 +1651,6 @@ function clearReportForm() {
   document.getElementById('reportProgressFill').style.width = '0%';
   reportBlogQueue = [];
 }
-
 async function saveReport(andNext) {
   const blogId = document.getElementById('reportBlog').value;
   const month = document.getElementById('reportMonth').value;
@@ -1466,7 +1667,7 @@ async function saveReport(andNext) {
     updatedBy: currentUser.uid
   };
   try {
-    await db.collection('blogs').doc(blogId).collection('metrics').doc(month).set(data, { merge: true });
+    await db.collection('blogs').doc(blogId).collection('metrics').doc(month).set(data, { merge:true });
     allMetrics[blogId + '_' + month] = { ...data, updatedAt: new Date() };
     showToast('Report saved.');
     renderSavedReports();
@@ -1477,7 +1678,7 @@ async function saveReport(andNext) {
         document.getElementById('reportBlog').value = nextId;
         onReportBlogChange();
       } else {
-        showToast('All blogs in this batch have been updated!', 'success');
+        showToast('All blogs in this batch updated!', 'success');
         clearReportFields();
         hideReportContext();
         document.getElementById('reportProgressFill').style.width = '100%';
@@ -1485,50 +1686,49 @@ async function saveReport(andNext) {
     } else {
       loadExistingReport(blogId, month);
     }
-  } catch(e) {
-    showToast('Error saving report: ' + e.message, 'error');
-  }
+  } catch(e) { showToast('Error saving report: ' + e.message, 'error'); }
 }
-
 function renderSavedReports() {
   const clientF = document.getElementById('reportFilterClient').value;
   const monthF = document.getElementById('reportFilterMonth').value;
   const wrap = document.getElementById('savedReportsWrap');
   const rows = [];
   Object.entries(allMetrics).forEach(([key, data]) => {
-    const [blogId, month] = key.split('_').reduce((acc, part, i, arr) => {
-      if (i === 0) acc[0] = part;
-      else acc[1] = (acc[1] ? acc[1] + '_' : '') + part;
-      return acc;
-    }, ['','']);
+    // Key format: blogId_YYYY-MM
+    const underIdx = key.indexOf('_');
+    const blogId = key.substring(0, underIdx);
+    const month = key.substring(underIdx + 1);
     const blog = allBlogs.find(b => b.id === blogId);
     if (!blog) return;
     if (clientF && blog.clientId !== clientF) return;
     if (monthF && month !== monthF) return;
     rows.push({ blog, month, data });
   });
-  // Populate month filter
-  const months = [...new Set(Object.keys(allMetrics).map(k => k.split(/_(.+)/)[1]))].sort().reverse();
+  const months = [...new Set(Object.keys(allMetrics).map(k => {
+    const u = k.indexOf('_'); return k.substring(u + 1);
+  }))].sort().reverse();
   const mSel = document.getElementById('reportFilterMonth');
   const mVal = mSel.value;
   mSel.innerHTML = '<option value="">All Months</option>' + months.map(m => `<option value="${m}">${fmtMonth(m)}</option>`).join('');
   mSel.value = mVal;
-
   if (!rows.length) { wrap.innerHTML = '<div class="empty-state"><p>No reports match the filter.</p></div>'; return; }
   wrap.innerHTML = `
     <div class="table-wrap">
-      <div class="table-head" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr">
-        <span>Blog</span><span>Month</span><span>Clicks</span><span>Impressions</span><span>Avg Pos</span><span>Page Views</span>
+      <div class="table-head" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr 1fr">
+        <span>Blog</span><span>Type</span><span>Month</span><span>Clicks</span><span>Impressions</span><span>Avg Pos</span><span>Page Views</span>
       </div>
-      ${rows.slice(0,50).map(r => `
-        <div class="table-row" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr">
-          <span class="cell-name">${esc(r.blog.title)}<br><span class="cell-email">${esc(r.blog.clientName || '—')}</span></span>
+      ${rows.slice(0,60).map(r => {
+        const typeBadge = r.blog.blogType === 'ac' ? `<span class="badge-ac">AC</span>` : `<span class="badge-client">Client</span>`;
+        return `<div class="table-row" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr 1fr">
+          <span class="cell-name">${esc(r.blog.title)}<br><span class="cell-email">${esc(r.blog.clientName || (r.blog.blogType === 'ac' ? 'AC' : '—'))}</span></span>
+          <span>${typeBadge}</span>
           <span>${fmtMonth(r.month)}</span>
           <span>${numFmt(r.data.clicks)}</span>
           <span>${numFmt(r.data.impressions)}</span>
           <span>${r.data.avgPosition || '—'}</span>
           <span>${numFmt(r.data.pageViews)}</span>
-        </div>`).join('')}
+        </div>`;
+      }).join('')}
     </div>`;
 }
 
@@ -1546,24 +1746,17 @@ async function addYoutube() {
   const clientName = client ? client.name : '';
   try {
     const ref = await db.collection('youtube').add({
-      clientId: clientId || '', clientName, title,
-      youtubeUrl: url, publishDate: date, status,
-      views: Number(views)||0, likes: Number(likes)||0,
+      clientId: clientId || '', clientName, title, youtubeUrl: url,
+      publishDate: date, status, views: Number(views)||0, likes: Number(likes)||0,
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-    allYoutube.unshift({ id: ref.id, clientId: clientId||'', clientName, title, youtubeUrl: url, publishDate: date, status, views: Number(views)||0, likes: Number(likes)||0, createdAt: new Date() });
+    allYoutube.unshift({ id:ref.id, clientId:clientId||'', clientName, title, youtubeUrl:url, publishDate:date, status, views:Number(views)||0, likes:Number(likes)||0, createdAt:new Date() });
     renderYoutubeTable();
-    document.getElementById('ytTitle').value = '';
-    document.getElementById('ytUrl').value = '';
-    document.getElementById('ytViews').value = '';
-    document.getElementById('ytLikes').value = '';
+    ['ytTitle','ytUrl','ytViews','ytLikes'].forEach(id => document.getElementById(id).value = '');
     toggleForm('addYoutubeForm');
     showToast('Video added.');
-  } catch(e) {
-    showToast('Error: ' + e.message, 'error');
-  }
+  } catch(e) { showToast('Error: ' + e.message, 'error'); }
 }
-
 function renderYoutubeTable() {
   const tbody = document.getElementById('youtubeTableBody');
   if (!allYoutube.length) { tbody.innerHTML = '<div class="empty-state"><p>No videos yet.</p></div>'; return; }
@@ -1590,27 +1783,40 @@ function renderRequestsTable() {
       <span><span class="status-badge ${statusClass(r.status)}">${statusLabel(r.status)}</span></span>
     </div>`).join('');
 }
-
+</script>
+<script>
 // ══════════════════════════════
-// CLIENT DATA LOADING
+// CLIENT SIDE
 // ══════════════════════════════
 async function loadClientData() {
   const uid = currentUser.uid;
-  // Load this client's blogs
-  const bSnap = await db.collection('blogs').where('clientId','==',uid).orderBy('createdAt','desc').get();
-  allBlogs = bSnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  // Load metrics
+  // Only load client blogs (blogType=client AND clientId=uid)
+  const bSnap = await db.collection('blogs')
+    .where('clientId','==',uid)
+    .where('blogType','==','client')
+    .orderBy('createdAt','desc').get();
+  allBlogs = bSnap.docs.map(d => ({ id:d.id, ...d.data() }));
+
+  // Fallback: also get old-style blogs with clientId but no blogType
+  const bSnap2 = await db.collection('blogs')
+    .where('clientId','==',uid)
+    .orderBy('createdAt','desc').get();
+  const legacy = bSnap2.docs
+    .map(d => ({ id:d.id, ...d.data() }))
+    .filter(b => !b.blogType || b.blogType === 'client');
+  // Merge (deduplicate by id)
+  const seen = new Set(allBlogs.map(b => b.id));
+  legacy.forEach(b => { if (!seen.has(b.id)) { allBlogs.push(b); seen.add(b.id); } });
+
   allMetrics = {};
   for (const blog of allBlogs) {
     const mSnap = await db.collection('blogs').doc(blog.id).collection('metrics').get();
-    mSnap.docs.forEach(m => { allMetrics[blog.id + '_' + m.id] = { ...m.data(), blogId: blog.id, month: m.id }; });
+    mSnap.docs.forEach(m => { allMetrics[blog.id + '_' + m.id] = { ...m.data(), blogId:blog.id, month:m.id }; });
   }
-  // YouTube
   const ySnap = await db.collection('youtube').where('clientId','==',uid).get();
-  allYoutube = ySnap.docs.map(d => ({ id: d.id, ...d.data() }));
-  // Requests (support)
+  allYoutube = ySnap.docs.map(d => ({ id:d.id, ...d.data() }));
   const rSnap = await db.collection('requests').where('userId','==',uid).orderBy('createdAt','desc').get();
-  allRequests = rSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  allRequests = rSnap.docs.map(d => ({ id:d.id, ...d.data() }));
 
   renderClientPackageCard();
   renderClientBlogs();
@@ -1640,10 +1846,10 @@ function renderClientBlogs(filter) {
     <div class="blog-card">
       <div class="blog-card-info">
         <div class="blog-card-title">${esc(b.title)}</div>
-        <div class="blog-card-meta">Assigned to ${esc(b.assignedTo || '—')} · Added ${fmtDate(b.createdAt)}</div>
+        <div class="blog-card-meta">Prepared by our content team · Added ${fmtDate(b.createdAt)}</div>
         <div class="blog-card-links">
-          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">View Google Doc</a>` : ''}
-          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">View Live Post</a>` : ''}
+          ${b.docUrl ? `<a href="${esc(b.docUrl)}" target="_blank">View Google Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${esc(b.liveUrl)}" target="_blank">View Live Post</a>` : ''}
         </div>
       </div>
       <div class="blog-card-status"><span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span></div>
@@ -1664,11 +1870,9 @@ function populateClientReportMonths() {
 
 function renderClientReports() {
   const month = document.getElementById('clientReportMonth').value;
-  // Gather metrics for the selected month
   let entries = Object.values(allMetrics);
   if (month) entries = entries.filter(m => m.month === month);
 
-  // Aggregate stats
   const totalClicks = entries.reduce((s,m) => s + (Number(m.clicks)||0), 0);
   const totalViews = entries.reduce((s,m) => s + (Number(m.pageViews)||0), 0);
   const totalImpressions = entries.reduce((s,m) => s + (Number(m.impressions)||0), 0);
@@ -1676,7 +1880,6 @@ function renderClientReports() {
   const avgPos = positions.length ? (positions.reduce((a,b) => a+b,0)/positions.length).toFixed(1) : '—';
   const top10 = positions.filter(p => p <= 10).length;
 
-  // Previous month comparison
   let prevMonth = '';
   if (month) {
     const [y,m2] = month.split('-');
@@ -1690,13 +1893,13 @@ function renderClientReports() {
   document.getElementById('crOrganic').textContent = numFmt(totalViews);
   document.getElementById('crKeywords').textContent = numFmt(totalImpressions);
   document.getElementById('crTop10').textContent = top10;
-  document.getElementById('crGrowth').textContent = totalClicks > 0 && prevClicks > 0 ? (Math.round(((totalClicks-prevClicks)/prevClicks)*100)) + '%' : '—';
+  document.getElementById('crGrowth').textContent = totalClicks > 0 && prevClicks > 0
+    ? (Math.round(((totalClicks-prevClicks)/prevClicks)*100)) + '%' : '—';
   document.getElementById('crOrgTrend').innerHTML = trendHtml(totalViews, prevViews);
   document.getElementById('crKwTrend').innerHTML = '';
   document.getElementById('crTop10Trend').innerHTML = '';
   document.getElementById('crGrowthTrend').innerHTML = trendHtml(totalClicks, prevClicks);
 
-  // Blog performance table
   const tbody = document.getElementById('clientBlogPerfBody');
   if (!entries.length) { tbody.innerHTML = '<div class="empty-state"><p>No data for this period.</p></div>'; return; }
   tbody.innerHTML = entries.map(m => {
@@ -1729,7 +1932,7 @@ function renderClientYoutube() {
         <div class="yt-stats">
           <div class="yt-stat-item">Views: <strong>${numFmt(v.views)}</strong></div>
           <div class="yt-stat-item">Likes: <strong>${numFmt(v.likes)}</strong></div>
-          ${v.youtubeUrl ? `<a href="${v.youtubeUrl}" target="_blank" class="inline-link">Watch</a>` : ''}
+          ${v.youtubeUrl ? `<a href="${esc(v.youtubeUrl)}" target="_blank" class="inline-link">Watch</a>` : ''}
         </div>
       </div>
       <div><span class="status-badge ${statusClass(v.status)}">${statusLabel(v.status)}</span></div>
@@ -1766,22 +1969,19 @@ async function addSupportRequest() {
       status: 'new', plan: currentUserData.package || 'starter',
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-    allRequests.unshift({ id: ref.id, userId: currentUser.uid, clientName: currentUserData.name, title: subject, category, priority, details, status: 'new', createdAt: new Date() });
+    allRequests.unshift({ id:ref.id, userId:currentUser.uid, clientName:currentUserData.name, title:subject, category, priority, details, status:'new', createdAt:new Date() });
     renderClientSupport();
     document.getElementById('supportSubject').value = '';
     document.getElementById('supportDetails').value = '';
     toggleForm('addSupportForm');
     showToast('Support request submitted.');
-  } catch(e) {
-    showToast('Error: ' + e.message, 'error');
-  }
+  } catch(e) { showToast('Error: ' + e.message, 'error'); }
 }
 
-// ── XSS ESCAPE ──
-function esc(str) {
-  if (!str) return '';
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-}
+// Close modal on overlay click
+document.getElementById('addBlogModal').addEventListener('click', function(e) {
+  if (e.target === this) closeAddBlogModal();
+});
 </script>
 </body>
 </html>
