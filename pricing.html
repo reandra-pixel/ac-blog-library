@@ -59,7 +59,7 @@
 
 <div id="section-bundles" class="hidden"><div class="section-wrap"><div class="section-title"><h2>Website + Blog Bundles</h2><p>Combine services for the best value.</p></div></div><div class="bundle-grid"><div class="bundle"><div class="bundle-tag">Essential</div><h3>Maintain & Publish</h3><div class="price">$579<span>/mo</span></div><div class="savings">Save $50/mo</div><ul><li>Platform Care (Maintenance)</li><li>2 SEO-optimized blogs/month</li><li>Published to your website</li><li>Basic keyphrase targeting</li></ul><a href="#" onclick="openSignup(this)" class="card-btn card-btn-outline" style="display:block;text-align:center">Get Started</a></div><div class="bundle featured"><div class="bundle-tag">Best Value</div><h3>Grow & Support</h3><div class="price">$1,549<span>/mo</span></div><div class="savings">Save $100/mo</div><ul><li>Hosting Bundle ($199)</li><li>Flex Starter — 3 hrs ($450)</li><li>4 SEO blogs/month ($1,000)</li><li>Internal linking strategy</li><li>Full Yoast optimization</li></ul><a href="#" onclick="openSignup(this)" class="card-btn card-btn-primary" style="display:block;text-align:center">Get Started</a></div><div class="bundle"><div class="bundle-tag">Growth</div><h3>Scale & Dominate</h3><div class="price">$2,549<span>/mo</span></div><div class="savings">Save $150/mo</div><ul><li>Hosting Bundle ($199)</li><li>Flex Growth — 6 hrs ($750)</li><li>8 SEO blogs/month ($1,750)</li><li>Monthly SEO report</li><li>Priority publishing</li></ul><a href="#" onclick="openSignup(this)" class="card-btn card-btn-outline" style="display:block;text-align:center">Get Started</a></div><div class="bundle"><div class="bundle-tag">Agency</div><h3>Full Service</h3><div class="price">$3,499<span>/mo</span></div><div class="savings">Save $200/mo</div><ul><li>Hosting Bundle ($199)</li><li>Flex Partner — 12 hrs ($1,500)</li><li>12+ SEO blogs/month ($2,000)</li><li>Dedicated content strategist</li><li>Quarterly audits</li><li>Priority everything</li></ul><a href="#" onclick="openSignup(this)" class="card-btn card-btn-dark" style="display:block;text-align:center">Get Started</a></div></div></div>
 
-<div class="cta-section"><h2>Ready to grow your online presence?</h2><p>Choose the plan that fits your business. Scale up or down anytime.</p><a href="#" onclick="openSignup(this)" class="cta-btn">Get Started</a></div>
+<div class="cta-section"><h2>Already a client?</h2><p>Log in to manage your subscription, view your blogs, and track progress.</p><a href="portal.html" class="cta-btn">Log in to Client Portal</a></div>
 <footer class="site-footer"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:18px;margin-bottom:14px;opacity:.4"><p>&copy; 2026 Anderson Collaborative. All rights reserved.</p></footer>
 <script>function showSection(n){['blogs','web','gmb','bundles'].forEach(s=>{document.getElementById('section-'+s).classList.toggle('hidden',s!==n)});document.querySelectorAll('.tab').forEach((b,i)=>{const m={0:'blogs',1:'web',2:'gmb',3:'bundles'};b.classList.toggle('active',m[i]===n)})}</script>
 
@@ -312,7 +312,13 @@ function selectExisting(existing) {
   document.querySelectorAll('.existing-btn').forEach((b, i) => {
     b.classList.toggle('selected', (i === 0 && existing) || (i === 1 && !existing));
   });
-  setTimeout(() => goModalStep(2), 300);
+  if (existing) {
+    // Existing client → go to portal login
+    setTimeout(() => { window.location.href = 'portal.html'; }, 500);
+  } else {
+    // New client → continue to contact info
+    setTimeout(() => goModalStep(2), 300);
+  }
 }
 
 function processPayment() {
