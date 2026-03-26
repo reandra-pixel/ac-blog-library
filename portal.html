@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Portal | Anderson Collaborative</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
+
+.site-header{background:#fff;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #B3BEC9}
+.site-header nav{display:flex;align-items:center;gap:28px}
+.site-header nav a{color:#617792;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.8px;font-family:'Rubik',sans-serif;font-weight:400;transition:color .3s}
+.site-header nav a:hover{color:#36D1C2}
+.user-info{font-size:12px;color:#617792;font-weight:300}
+.user-info strong{color:#00161F;font-weight:500}
+
+/* Auth screen */
+.auth-wrap{max-width:400px;margin:80px auto;padding:0 20px}
+.auth-card{background:#fff;border:1px solid rgba(179,190,201,.3);border-radius:7px;padding:32px;text-align:center}
+.auth-card h1{font-family:'Rubik',sans-serif;font-size:24px;font-weight:400;margin-bottom:6px}
+.auth-card p{font-size:13px;color:#617792;font-weight:300;margin-bottom:24px}
+.auth-card label{display:block;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px;text-align:left}
+.auth-card input{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:3px;font-family:'Roboto',sans-serif;font-size:14px;font-weight:300;outline:none;margin-bottom:14px;color:#00161F;transition:border .3s}
+.auth-card input:focus{border-color:#36D1C2}
+.auth-card input::placeholder{color:#B3BEC9}
+.auth-btn{width:100%;padding:12px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .3s;border:none;margin-top:4px}
+.auth-btn-primary{background:#36D1C2;color:#fff}
+.auth-btn-primary:hover{background:#2BBDAF}
+.auth-btn-google{background:#fff;border:1px solid #B3BEC9;color:#617792;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
+.auth-btn-google:hover{border-color:#36D1C2;color:#36D1C2}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:#B3BEC9;font-size:11px;font-weight:300}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(179,190,201,.3)}
+.auth-toggle{font-size:12px;color:#617792;margin-top:16px;font-weight:300}
+.auth-toggle a{color:#36D1C2;cursor:pointer;text-decoration:none}
+.auth-error{background:rgba(229,75,75,.08);color:#E54B4B;font-size:12px;padding:8px 12px;border-radius:3px;margin-bottom:14px;display:none}
+
+/* Dashboard */
+.dash-wrap{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.dash-header h1{font-family:'Rubik',sans-serif;font-size:28px;font-weight:400}
+.dash-tabs{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid rgba(179,190,201,.3)}
+.dash-tab{padding:10px 20px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s}
+.dash-tab:hover{color:#36D1C2}
+.dash-tab.active{color:#36D1C2;border-color:#36D1C2}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:18px;text-align:center}
+.stat-card .num{font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2}
+.stat-card .lbl{font-size:11px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif;font-weight:400}
+
+/* Pipeline */
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.pipe-col{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;min-height:200px}
+.pipe-col h3{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(179,190,201,.15)}
+.pipe-item{background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:3px;padding:10px;margin-bottom:8px;cursor:pointer;transition:all .2s}
+.pipe-item:hover{border-color:#36D1C2;transform:translateY(-1px)}
+.pipe-item .title{font-size:12px;font-weight:400;color:#00161F;margin-bottom:4px}
+.pipe-item .meta{font-size:10px;color:#B3BEC9;font-weight:300}
+.pipe-item .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px}
+.dot-draft{background:#B3BEC9}
+.dot-review{background:#f4a261}
+.dot-seo{background:#36D1C2}
+.dot-approved{background:#2BBDAF}
+.dot-live{background:#0a7c42}
+
+/* Client list (admin) */
+.client-list{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
+.client-row{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.15);font-size:13px;align-items:center;transition:background .2s}
+.client-row:hover{background:rgba(54,209,194,.03)}
+.client-row.header{background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px}
+.client-row .name{font-weight:400;color:#00161F}
+.client-row .email{color:#617792;font-weight:300}
+.client-row .plan-badge{display:inline-block;background:rgba(54,209,194,.1);color:#2BBDAF;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.client-row .date{color:#B3BEC9;font-weight:300;font-size:12px}
+
+/* Request list */
+.request-list{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
+.request-row{display:grid;grid-template-columns:3fr 1fr 1fr 1fr;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.15);font-size:13px;align-items:center}
+.request-row.header{background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px}
+.status-badge{display:inline-block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.status-new{background:rgba(54,209,194,.1);color:#2BBDAF}
+.status-progress{background:rgba(244,162,97,.1);color:#f4a261}
+.status-done{background:rgba(10,124,66,.1);color:#0a7c42}
+
+/* Add blog form */
+.add-form{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px}
+.add-form h3{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:14px}
+.add-form label{display:block;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
+.add-form input,.add-form select,.add-form textarea{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:3px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;outline:none;margin-bottom:12px;color:#00161F}
+.add-form input:focus,.add-form select:focus{border-color:#36D1C2}
+.add-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{padding:10px 24px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .3s;border:none}
+.btn-primary{background:#36D1C2;color:#fff}
+.btn-primary:hover{background:#2BBDAF}
+.btn-outline{background:transparent;border:1px solid #B3BEC9;color:#617792}
+.btn-outline:hover{border-color:#36D1C2;color:#36D1C2}
+.btn-sm{padding:6px 14px;font-size:10px}
+
+.site-footer{background:#00161F;padding:40px;text-align:center}
+.site-footer p{color:rgba(179,190,201,.4);font-size:11px;font-weight:300}
+
+.hidden{display:none}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:1fr 1fr}
+  .pipeline{grid-template-columns:1fr}
+  .client-row,.request-row{grid-template-columns:1fr;gap:4px}
+  .client-row.header,.request-row.header{display:none}
+  .site-header{padding:14px 20px}
+  .site-header nav{gap:14px}
+  .add-form .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH SCREEN -->
+<div id="authScreen">
+  <header class="site-header">
+    <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
+    <nav>
+      <a href="index.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+  </header>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <img src="ac-logo-dark.png" alt="AC" style="height:50px;margin-bottom:16px">
+      <h1 id="authTitle">Sign In</h1>
+      <p id="authSubtitle">Access your client portal</p>
+      <div class="auth-error" id="authError"></div>
+
+      <div id="loginForm">
+        <label>Email</label>
+        <input type="email" id="authEmail" placeholder="you@business.com">
+        <label>Password</label>
+        <input type="password" id="authPass" placeholder="Your password">
+        <button class="auth-btn auth-btn-primary" onclick="emailLogin()">Sign In</button>
+        <div class="auth-divider">or</div>
+        <button class="auth-btn auth-btn-google" onclick="googleLogin()">
+          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Sign in with Google
+        </button>
+        <p class="auth-toggle">Don't have an account? <a onclick="toggleAuth()">Create one</a></p>
+      </div>
+
+      <div id="signupForm" class="hidden">
+        <label>Full Name</label>
+        <input type="text" id="signupName" placeholder="John Smith">
+        <label>Company</label>
+        <input type="text" id="signupCompany" placeholder="Your Business Inc.">
+        <label>Email</label>
+        <input type="email" id="signupEmail" placeholder="you@business.com">
+        <label>Password</label>
+        <input type="password" id="signupPass" placeholder="Create a password (min 6 chars)">
+        <label>Role</label>
+        <select id="signupRole">
+          <option value="client">Client</option>
+          <option value="admin">AC Team Member</option>
+        </select>
+        <button class="auth-btn auth-btn-primary" onclick="emailSignup()">Create Account</button>
+        <div class="auth-divider">or</div>
+        <button class="auth-btn auth-btn-google" onclick="googleLogin()">
+          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Sign up with Google
+        </button>
+        <p class="auth-toggle">Already have an account? <a onclick="toggleAuth()">Sign in</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD (hidden until login) -->
+<div id="dashScreen" class="hidden">
+  <header class="site-header">
+    <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
+    <nav>
+      <a href="index.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+      <span class="user-info">Signed in as <strong id="userName"></strong></span>
+      <a href="#" onclick="signOut()" style="color:#E54B4B">Sign Out</a>
+    </nav>
+  </header>
+
+  <div class="dash-wrap">
+    <div class="dash-header">
+      <h1 id="dashTitle">Dashboard</h1>
+      <div>
+        <button class="btn btn-primary btn-sm" id="addBlogBtn" onclick="toggleAddForm()">+ Add Blog</button>
+      </div>
+    </div>
+
+    <!-- ADMIN TABS -->
+    <div class="dash-tabs" id="adminTabs">
+      <div class="dash-tab active" onclick="showDashTab('overview')">Overview</div>
+      <div class="dash-tab" onclick="showDashTab('blogs')">Blog Pipeline</div>
+      <div class="dash-tab" onclick="showDashTab('clients')">Clients</div>
+      <div class="dash-tab" onclick="showDashTab('requests')">Requests</div>
+    </div>
+
+    <!-- CLIENT TABS -->
+    <div class="dash-tabs hidden" id="clientTabs">
+      <div class="dash-tab active" onclick="showDashTab('overview')">My Blogs</div>
+      <div class="dash-tab" onclick="showDashTab('requests')">Support</div>
+    </div>
+
+    <!-- ADD BLOG FORM -->
+    <div class="add-form hidden" id="addForm">
+      <h3>Add New Blog</h3>
+      <div class="row">
+        <div>
+          <label>Client</label>
+          <select id="newBlogClient"><option>Select client...</option></select>
+        </div>
+        <div>
+          <label>Status</label>
+          <select id="newBlogStatus">
+            <option value="draft">Draft</option>
+            <option value="review">In Review</option>
+            <option value="seo">SEO Optimization</option>
+            <option value="approved">Approved</option>
+            <option value="live">Published</option>
+          </select>
+        </div>
+      </div>
+      <label>Blog Title</label>
+      <input type="text" id="newBlogTitle" placeholder="Blog post title">
+      <div class="row">
+        <div>
+          <label>Google Doc Link</label>
+          <input type="text" id="newBlogDoc" placeholder="https://docs.google.com/...">
+        </div>
+        <div>
+          <label>Live URL (if published)</label>
+          <input type="text" id="newBlogUrl" placeholder="https://...">
+        </div>
+      </div>
+      <label>Assigned To</label>
+      <input type="text" id="newBlogAssigned" placeholder="e.g. Reandra, Trevor">
+      <button class="btn btn-primary" onclick="saveBlog()">Save Blog</button>
+      <button class="btn btn-outline" onclick="toggleAddForm()" style="margin-left:8px">Cancel</button>
+    </div>
+
+    <!-- OVERVIEW TAB -->
+    <div id="tab-overview">
+      <div class="stats-row">
+        <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Total Blogs</div></div>
+        <div class="stat-card"><div class="num" id="statDraft">0</div><div class="lbl">In Progress</div></div>
+        <div class="stat-card"><div class="num" id="statLive">0</div><div class="lbl">Published</div></div>
+        <div class="stat-card"><div class="num" id="statClients">0</div><div class="lbl">Clients</div></div>
+      </div>
+
+      <!-- Pipeline view -->
+      <div class="pipeline" id="pipelineView">
+        <div class="pipe-col"><h3><span class="status-dot dot-draft"></span>Draft</h3><div id="pipe-draft"></div></div>
+        <div class="pipe-col"><h3><span class="status-dot dot-review"></span>In Review</h3><div id="pipe-review"></div></div>
+        <div class="pipe-col"><h3><span class="status-dot dot-seo"></span>SEO</h3><div id="pipe-seo"></div></div>
+        <div class="pipe-col"><h3><span class="status-dot dot-approved"></span>Approved</h3><div id="pipe-approved"></div></div>
+        <div class="pipe-col"><h3><span class="status-dot dot-live"></span>Published</h3><div id="pipe-live"></div></div>
+      </div>
+    </div>
+
+    <!-- BLOGS TAB (same as pipeline, full view) -->
+    <div id="tab-blogs" class="hidden"></div>
+
+    <!-- CLIENTS TAB (admin only) -->
+    <div id="tab-clients" class="hidden">
+      <div class="client-list" id="clientList">
+        <div class="client-row header">
+          <div>Client</div><div>Email</div><div>Plan</div><div>Blogs</div><div>Joined</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REQUESTS TAB -->
+    <div id="tab-requests" class="hidden">
+      <div class="request-list" id="requestList">
+        <div class="request-row header">
+          <div>Request</div><div>Client</div><div>Status</div><div>Date</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <img src="ac-logo-dark.png" alt="Anderson Collaborative" style="height:40px;margin-bottom:14px;opacity:.7">
+    <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+<script>
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyBWEA8VBcn9A9wLeTrKizo17QJ1G_tQl28",
+  authDomain: "ac-client-portal-6884c.firebaseapp.com",
+  projectId: "ac-client-portal-6884c",
+  storageBucket: "ac-client-portal-6884c.firebasestorage.app",
+  messagingSenderId: "744456773387",
+  appId: "1:744456773387:web:9ddcdac444fa13524b0c0e"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let currentUser = null;
+let userRole = 'client';
+let userCompany = '';
+
+// AUTH
+function toggleAuth() {
+  document.getElementById('loginForm').classList.toggle('hidden');
+  document.getElementById('signupForm').classList.toggle('hidden');
+  const isSignup = !document.getElementById('signupForm').classList.contains('hidden');
+  document.getElementById('authTitle').textContent = isSignup ? 'Create Account' : 'Sign In';
+  document.getElementById('authSubtitle').textContent = isSignup ? 'Set up your client portal' : 'Access your client portal';
+  document.getElementById('authError').style.display = 'none';
+}
+
+function showError(msg) {
+  const el = document.getElementById('authError');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+async function emailLogin() {
+  const email = document.getElementById('authEmail').value;
+  const pass = document.getElementById('authPass').value;
+  if (!email || !pass) { showError('Please enter email and password'); return; }
+  try {
+    await auth.signInWithEmailAndPassword(email, pass);
+  } catch(e) { showError(e.message); }
+}
+
+async function emailSignup() {
+  const name = document.getElementById('signupName').value;
+  const company = document.getElementById('signupCompany').value;
+  const email = document.getElementById('signupEmail').value;
+  const pass = document.getElementById('signupPass').value;
+  const role = document.getElementById('signupRole').value;
+  if (!name || !email || !pass) { showError('Please fill in all fields'); return; }
+  try {
+    const cred = await auth.createUserWithEmailAndPassword(email, pass);
+    await cred.user.updateProfile({ displayName: name });
+    await db.collection('users').doc(cred.user.uid).set({
+      name, company, email, role,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  } catch(e) { showError(e.message); }
+}
+
+async function googleLogin() {
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const result = await auth.signInWithPopup(provider);
+    const userDoc = await db.collection('users').doc(result.user.uid).get();
+    if (!userDoc.exists) {
+      await db.collection('users').doc(result.user.uid).set({
+        name: result.user.displayName,
+        email: result.user.email,
+        company: '',
+        role: 'client',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    }
+  } catch(e) { showError(e.message); }
+}
+
+function signOut() {
+  auth.signOut();
+}
+
+// AUTH STATE
+auth.onAuthStateChanged(async (user) => {
+  if (user) {
+    currentUser = user;
+    const userDoc = await db.collection('users').doc(user.uid).get();
+    const data = userDoc.data() || {};
+    userRole = data.role || 'client';
+    userCompany = data.company || '';
+
+    document.getElementById('authScreen').classList.add('hidden');
+    document.getElementById('dashScreen').classList.remove('hidden');
+    document.getElementById('userName').textContent = user.displayName || user.email;
+
+    if (userRole === 'admin') {
+      document.getElementById('adminTabs').classList.remove('hidden');
+      document.getElementById('clientTabs').classList.add('hidden');
+      document.getElementById('addBlogBtn').classList.remove('hidden');
+      document.getElementById('dashTitle').textContent = 'Admin Dashboard';
+      loadAdminData();
+    } else {
+      document.getElementById('adminTabs').classList.add('hidden');
+      document.getElementById('clientTabs').classList.remove('hidden');
+      document.getElementById('addBlogBtn').classList.add('hidden');
+      document.getElementById('dashTitle').textContent = 'My Dashboard';
+      loadClientData();
+    }
+  } else {
+    currentUser = null;
+    document.getElementById('authScreen').classList.remove('hidden');
+    document.getElementById('dashScreen').classList.add('hidden');
+  }
+});
+
+// DASHBOARD TABS
+function showDashTab(name) {
+  ['overview','blogs','clients','requests'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.classList.toggle('hidden', t !== name);
+  });
+  document.querySelectorAll('.dash-tab').forEach(t => {
+    t.classList.toggle('active', t.textContent.toLowerCase().includes(name.substring(0,4)));
+  });
+}
+
+// LOAD ADMIN DATA
+async function loadAdminData() {
+  // Load all blogs
+  const blogsSnap = await db.collection('blogs').orderBy('createdAt','desc').get();
+  const blogs = [];
+  blogsSnap.forEach(doc => blogs.push({id: doc.id, ...doc.data()}));
+
+  // Load all users
+  const usersSnap = await db.collection('users').get();
+  const users = [];
+  usersSnap.forEach(doc => users.push({id: doc.id, ...doc.data()}));
+  const clients = users.filter(u => u.role === 'client');
+
+  // Populate client dropdown
+  const select = document.getElementById('newBlogClient');
+  select.innerHTML = '<option>Select client...</option>';
+  clients.forEach(c => {
+    select.innerHTML += `<option value="${c.id}">${c.company || c.name} (${c.email})</option>`;
+  });
+
+  // Stats
+  document.getElementById('statTotal').textContent = blogs.length;
+  document.getElementById('statDraft').textContent = blogs.filter(b => ['draft','review','seo'].includes(b.status)).length;
+  document.getElementById('statLive').textContent = blogs.filter(b => b.status === 'live').length;
+  document.getElementById('statClients').textContent = clients.length;
+
+  // Pipeline
+  renderPipeline(blogs);
+
+  // Client list
+  const listEl = document.getElementById('clientList');
+  listEl.innerHTML = '<div class="client-row header"><div>Client</div><div>Email</div><div>Plan</div><div>Blogs</div><div>Joined</div></div>';
+  clients.forEach(c => {
+    const clientBlogs = blogs.filter(b => b.clientId === c.id).length;
+    const joined = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
+    listEl.innerHTML += `<div class="client-row"><div class="name">${c.company || c.name}</div><div class="email">${c.email}</div><div><span class="plan-badge">${c.plan || 'Starter'}</span></div><div>${clientBlogs}</div><div class="date">${joined}</div></div>`;
+  });
+
+  // Requests
+  loadRequests();
+}
+
+// LOAD CLIENT DATA
+async function loadClientData() {
+  const blogsSnap = await db.collection('blogs').where('clientId','==',currentUser.uid).orderBy('createdAt','desc').get();
+  const blogs = [];
+  blogsSnap.forEach(doc => blogs.push({id: doc.id, ...doc.data()}));
+
+  document.getElementById('statTotal').textContent = blogs.length;
+  document.getElementById('statDraft').textContent = blogs.filter(b => ['draft','review','seo'].includes(b.status)).length;
+  document.getElementById('statLive').textContent = blogs.filter(b => b.status === 'live').length;
+  document.getElementById('statClients').textContent = '—';
+
+  renderPipeline(blogs);
+  loadRequests();
+}
+
+function renderPipeline(blogs) {
+  const cols = {draft:'pipe-draft', review:'pipe-review', seo:'pipe-seo', approved:'pipe-approved', live:'pipe-live'};
+  Object.values(cols).forEach(id => document.getElementById(id).innerHTML = '');
+
+  blogs.forEach(b => {
+    const col = cols[b.status] || cols.draft;
+    const liveLink = b.liveUrl ? `<br><a href="${b.liveUrl}" target="_blank" style="color:#36D1C2;font-size:10px">View live</a>` : '';
+    const docLink = b.docUrl ? `<br><a href="${b.docUrl}" target="_blank" style="color:#617792;font-size:10px">Google Doc</a>` : '';
+    document.getElementById(col).innerHTML += `
+      <div class="pipe-item">
+        <div class="title">${b.title || 'Untitled'}</div>
+        <div class="meta">${b.clientName || ''} &bull; ${b.assignedTo || 'Unassigned'}${docLink}${liveLink}</div>
+      </div>`;
+  });
+}
+
+async function loadRequests() {
+  const query = userRole === 'admin'
+    ? db.collection('requests').orderBy('createdAt','desc')
+    : db.collection('requests').where('userId','==',currentUser.uid).orderBy('createdAt','desc');
+
+  const snap = await query.get();
+  const listEl = document.getElementById('requestList');
+  listEl.innerHTML = '<div class="request-row header"><div>Request</div><div>Client</div><div>Status</div><div>Date</div></div>';
+
+  snap.forEach(doc => {
+    const r = doc.data();
+    const date = r.createdAt ? new Date(r.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
+    const statusClass = r.status === 'new' ? 'status-new' : r.status === 'in_progress' ? 'status-progress' : 'status-done';
+    listEl.innerHTML += `<div class="request-row"><div>${r.title || 'Request'}</div><div>${r.clientName || ''}</div><div><span class="status-badge ${statusClass}">${r.status || 'new'}</span></div><div>${date}</div></div>`;
+  });
+}
+
+// ADD BLOG
+function toggleAddForm() {
+  document.getElementById('addForm').classList.toggle('hidden');
+}
+
+async function saveBlog() {
+  const clientId = document.getElementById('newBlogClient').value;
+  const clientOption = document.getElementById('newBlogClient').selectedOptions[0];
+  const title = document.getElementById('newBlogTitle').value;
+  const status = document.getElementById('newBlogStatus').value;
+  const docUrl = document.getElementById('newBlogDoc').value;
+  const liveUrl = document.getElementById('newBlogUrl').value;
+  const assignedTo = document.getElementById('newBlogAssigned').value;
+
+  if (!title) { alert('Please enter a blog title'); return; }
+
+  await db.collection('blogs').add({
+    clientId,
+    clientName: clientOption.textContent,
+    title, status, docUrl, liveUrl, assignedTo,
+    createdBy: currentUser.uid,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  });
+
+  toggleAddForm();
+  document.getElementById('newBlogTitle').value = '';
+  document.getElementById('newBlogDoc').value = '';
+  document.getElementById('newBlogUrl').value = '';
+  document.getElementById('newBlogAssigned').value = '';
+  loadAdminData();
+}
+</script>
+
+</body>
+</html>
