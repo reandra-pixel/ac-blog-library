@@ -209,40 +209,51 @@ textarea{min-height:80px}
   <div id="step3" class="section hidden">
     <h2>Step 3: Your Generated Blog <span class="badge">AI-WRITTEN</span></h2>
 
-    <div style="background:#f0f8f7;border:1px solid #d4f0ed;border-radius:8px;padding:20px;margin-bottom:24px">
-      <p style="font-size:13px;color:#333;margin-bottom:4px"><strong>How it works:</strong></p>
-      <p style="font-size:13px;color:#617792;line-height:1.6">1. Copy the prompt below<br>2. Paste it into <a href="https://claude.ai" target="_blank" style="color:#36D1C2">Claude</a> or <a href="https://chat.openai.com" target="_blank" style="color:#36D1C2">ChatGPT</a><br>3. Copy the full response<br>4. Paste it back here — we'll extract everything automatically</p>
-    </div>
+    <!-- STEP 3A: Copy prompt -->
+    <div id="step3a">
+      <div style="background:#f0f8f7;border:1px solid #d4f0ed;border-radius:8px;padding:20px;margin-bottom:24px">
+        <p style="font-size:14px;color:#001631;margin-bottom:8px"><strong>Step 1 of 2:</strong> Copy this prompt and paste it into Claude or ChatGPT</p>
+        <p style="font-size:13px;color:#617792;line-height:1.6">We've built a custom prompt based on your answers. Copy it, paste it into <a href="https://claude.ai" target="_blank" style="color:#36D1C2">Claude</a> or <a href="https://chat.openai.com" target="_blank" style="color:#36D1C2">ChatGPT</a>, and let it write the blog for you.</p>
+      </div>
 
-    <div>
-      <label>Your Generated Prompt</label>
-      <textarea id="aiPrompt" rows="10" readonly style="background:#f8f9fa;font-size:12px;color:#617792"></textarea>
-      <div class="btn-group" style="margin-top:8px">
-        <button class="btn" onclick="copyPrompt()">Copy Prompt</button>
+      <textarea id="aiPrompt" rows="8" readonly style="background:#f8f9fa;font-size:12px;color:#617792;cursor:text"></textarea>
+
+      <div class="btn-group" style="margin-top:12px">
+        <button class="btn" onclick="copyPrompt()">Copy Prompt to Clipboard</button>
+        <button class="btn btn-outline" onclick="showStep3b()">I've got the blog — paste it here</button>
       </div>
     </div>
 
-    <div style="margin-top:24px">
-      <label>Paste the AI response here</label>
-      <textarea id="generatedContent" rows="20" placeholder="Paste everything the AI generated here — blog content, SEO fields, all of it. We'll sort it out automatically." oninput="autoExtractSEO()"></textarea>
-    </div>
-
-    <div id="step3Preview" class="hidden" style="margin-top:16px">
-      <label>Blog Preview</label>
-      <div class="preview-frame">
-        <iframe id="step3Frame" style="width:100%;height:500px;border:1px solid #e0e0e0;border-radius:8px"></iframe>
+    <!-- STEP 3B: Paste response -->
+    <div id="step3b" class="hidden">
+      <div style="background:#f0f8f7;border:1px solid #d4f0ed;border-radius:8px;padding:20px;margin-bottom:24px">
+        <p style="font-size:14px;color:#001631;margin-bottom:8px"><strong>Step 2 of 2:</strong> Paste the AI-generated blog below</p>
+        <p style="font-size:13px;color:#617792">Paste the entire response from Claude/ChatGPT. We'll automatically extract the blog content, SEO title, meta description, and slug.</p>
       </div>
-    </div>
 
-    <div id="extractedSEO" class="hidden" style="margin-top:16px;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:16px">
-      <p style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:#617792;margin-bottom:8px">Auto-extracted SEO Fields</p>
-      <p style="font-size:13px;color:#333" id="extractedFields"></p>
-    </div>
+      <textarea id="generatedContent" rows="20" placeholder="Paste the full AI response here...
 
-    <div class="btn-group" style="margin-top:16px">
-      <button class="btn btn-outline" onclick="goToStep(2)">Back</button>
-      <button class="btn btn-outline" onclick="previewStep3()">Preview Blog</button>
-      <button class="btn" onclick="goToStep(4)">Next: SEO & Export</button>
+The blog content, headings, everything.
+
+If it included a ---SEO--- section at the end, paste that too — we'll extract it automatically." oninput="autoExtractSEO()" style="font-size:14px"></textarea>
+
+      <div id="extractedSEO" class="hidden" style="margin-top:16px;background:#e6f9f6;border:1px solid #b8ede6;border-radius:8px;padding:16px">
+        <p style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:#0a7c42;margin-bottom:8px">SEO Fields Extracted</p>
+        <p style="font-size:13px;color:#333;line-height:1.8" id="extractedFields"></p>
+      </div>
+
+      <div id="step3Preview" class="hidden" style="margin-top:16px">
+        <label>Blog Preview</label>
+        <div class="preview-frame">
+          <iframe id="step3Frame" style="width:100%;height:500px;border:1px solid #e0e0e0;border-radius:8px"></iframe>
+        </div>
+      </div>
+
+      <div class="btn-group" style="margin-top:16px">
+        <button class="btn btn-outline" onclick="hideStep3b()">Back to Prompt</button>
+        <button class="btn btn-outline" onclick="previewStep3()">Preview Blog</button>
+        <button class="btn" onclick="goToStep(4)">Next: SEO & Export</button>
+      </div>
     </div>
   </div>
 
@@ -466,6 +477,16 @@ function previewStep3() {
 
 function buildBlogHTML(title, author, date, image, content) {
   return '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Rubik",sans-serif;color:#001631;background:#fff}.site-header{background:#001631;padding:16px 40px;display:flex;align-items:center}.hero{position:relative;height:350px;background-size:cover;background-position:center;display:flex;align-items:flex-end}.hero-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,22,49,0.85))}.hero-content{position:relative;z-index:1;padding:32px 48px;max-width:800px}.hero-content h1{color:#fff;font-size:32px;font-weight:600;line-height:1.2;margin-bottom:8px}.hero-meta{color:rgba(255,255,255,0.6);font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:300}.hero-meta span{color:#36D1C2}.cw{max-width:750px;margin:0 auto;padding:40px 20px 60px}.cw p{font-size:15px;line-height:1.8;margin-bottom:18px;color:#333;font-weight:300}.cw h2{font-size:24px;font-weight:500;margin:36px 0 14px;color:#001631}.cw h3{font-size:18px;font-weight:500;margin:28px 0 10px;color:#001631}.cw img{max-width:100%;border-radius:6px;margin:20px 0}.cw a{color:#36D1C2;text-decoration:none}.cw ul,.cw ol{margin:0 0 18px 20px}.cw li{font-size:15px;line-height:1.8;margin-bottom:6px;color:#333;font-weight:300}.cw strong{font-weight:500}.cw blockquote{border-left:3px solid #36D1C2;padding:12px 20px;margin:20px 0;background:#f8f9fa;font-style:italic}.sf{background:#001631;padding:30px;text-align:center}.sf p{color:rgba(255,255,255,0.4);font-size:11px;font-weight:300}</style></head><body><header class="site-header"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" style="height:24px"></header><div class="hero" style="background-image:url(\'' + image + '\')"><div class="hero-overlay"></div><div class="hero-content"><h1>' + title + '</h1><div class="hero-meta"><span>' + author + '</span> | ' + date + '</div></div></div><div class="cw">' + content + '</div><footer class="sf"><p>&copy; 2026 Anderson Collaborative</p></footer></body></html>';
+}
+
+function showStep3b() {
+  document.getElementById('step3a').classList.add('hidden');
+  document.getElementById('step3b').classList.remove('hidden');
+}
+
+function hideStep3b() {
+  document.getElementById('step3b').classList.add('hidden');
+  document.getElementById('step3a').classList.remove('hidden');
 }
 
 function copyPrompt() {
