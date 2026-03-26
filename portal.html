@@ -4,122 +4,312 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Client Portal | Anderson Collaborative</title>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
+body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height:100vh}
 
-.site-header{background:#fff;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid #B3BEC9}
+/* ── HEADER ── */
+.site-header{background:#fff;padding:16px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;border-bottom:1px solid #B3BEC9}
 .site-header nav{display:flex;align-items:center;gap:28px}
-.site-header nav a{color:#617792;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.8px;font-family:'Rubik',sans-serif;font-weight:400;transition:color .3s}
+.site-header nav a{color:#617792;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:.8px;font-family:'Rubik',sans-serif;font-weight:400;transition:color .2s}
 .site-header nav a:hover{color:#36D1C2}
-.user-info{font-size:12px;color:#617792;font-weight:300}
-.user-info strong{color:#00161F;font-weight:500}
+.user-chip{display:flex;align-items:center;gap:10px;font-size:12px;color:#617792}
+.user-chip strong{color:#00161F;font-weight:500}
+.user-chip .role-badge{font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.5px}
+.role-admin{background:rgba(54,209,194,.12);color:#2BBDAF}
+.role-client{background:rgba(97,119,146,.12);color:#617792}
+.btn-signout{background:none;border:none;cursor:pointer;font-size:11px;color:#B3BEC9;font-family:'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.5px;transition:color .2s;padding:6px 0}
+.btn-signout:hover{color:#E54B4B}
 
-/* Auth screen */
-.auth-wrap{max-width:400px;margin:80px auto;padding:0 20px}
-.auth-card{background:#fff;border:1px solid rgba(179,190,201,.3);border-radius:7px;padding:32px;text-align:center}
-.auth-card h1{font-family:'Rubik',sans-serif;font-size:24px;font-weight:400;margin-bottom:6px}
-.auth-card p{font-size:13px;color:#617792;font-weight:300;margin-bottom:24px}
-.auth-card label{display:block;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px;text-align:left}
-.auth-card input{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:3px;font-family:'Roboto',sans-serif;font-size:14px;font-weight:300;outline:none;margin-bottom:14px;color:#00161F;transition:border .3s}
-.auth-card input:focus{border-color:#36D1C2}
-.auth-card input::placeholder{color:#B3BEC9}
-.auth-btn{width:100%;padding:12px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .3s;border:none;margin-top:4px}
+/* ── AUTH ── */
+.auth-screen{min-height:100vh;background:#FEF9F6;display:flex;flex-direction:column}
+.auth-body{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+.auth-wrap{width:100%;max-width:420px}
+.auth-card{background:#fff;border:1px solid rgba(179,190,201,.3);border-radius:7px;padding:36px;text-align:center}
+.auth-logo{height:44px;margin-bottom:20px}
+.auth-card h1{font-family:'Rubik',sans-serif;font-size:22px;font-weight:400;margin-bottom:6px;color:#00161F}
+.auth-card p.sub{font-size:13px;color:#617792;font-weight:300;margin-bottom:24px}
+.form-group{margin-bottom:14px;text-align:left}
+.form-group label{display:block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
+.form-group input,.form-group select{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;outline:none;color:#00161F;transition:border .2s;background:#fff}
+.form-group input:focus,.form-group select:focus{border-color:#36D1C2}
+.form-group input::placeholder{color:#B3BEC9}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.auth-btn{width:100%;padding:12px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .2s;border:none;margin-top:4px}
 .auth-btn-primary{background:#36D1C2;color:#fff}
 .auth-btn-primary:hover{background:#2BBDAF}
 .auth-btn-google{background:#fff;border:1px solid #B3BEC9;color:#617792;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px}
 .auth-btn-google:hover{border-color:#36D1C2;color:#36D1C2}
-.auth-divider{display:flex;align-items:center;gap:12px;margin:16px 0;color:#B3BEC9;font-size:11px;font-weight:300}
+.auth-divider{display:flex;align-items:center;gap:10px;margin:18px 0;color:#B3BEC9;font-size:11px;font-weight:300}
 .auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:rgba(179,190,201,.3)}
-.auth-toggle{font-size:12px;color:#617792;margin-top:16px;font-weight:300}
-.auth-toggle a{color:#36D1C2;cursor:pointer;text-decoration:none}
-.auth-error{background:rgba(229,75,75,.08);color:#E54B4B;font-size:12px;padding:8px 12px;border-radius:3px;margin-bottom:14px;display:none}
+.auth-toggle{font-size:12px;color:#617792;margin-top:18px;font-weight:300}
+.auth-toggle a{color:#36D1C2;cursor:pointer;text-decoration:none;font-weight:400}
+.auth-error{background:rgba(229,75,75,.08);color:#E54B4B;font-size:12px;padding:8px 12px;border-radius:5px;margin-bottom:14px;display:none;text-align:left}
 
-/* Dashboard */
-.dash-wrap{max-width:1060px;margin:0 auto;padding:28px 20px 60px}
-.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.dash-header h1{font-family:'Rubik',sans-serif;font-size:28px;font-weight:400}
-.dash-tabs{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid rgba(179,190,201,.3)}
-.dash-tab{padding:10px 20px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;cursor:pointer;border-bottom:2px solid transparent;transition:all .3s}
+/* ── DASHBOARD LAYOUT ── */
+.dash-screen{display:none;flex-direction:column;min-height:100vh}
+.dash-screen.active{display:flex}
+.dash-content{flex:1;max-width:1100px;margin:0 auto;width:100%;padding:28px 24px 60px}
+
+/* ── TABS ── */
+.dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.dash-header h1{font-family:'Rubik',sans-serif;font-size:26px;font-weight:300;color:#00161F}
+.dash-header h1 span{font-weight:500}
+.dash-tabs{display:flex;gap:0;margin-bottom:28px;border-bottom:1px solid rgba(179,190,201,.35);overflow-x:auto}
+.dash-tab{padding:10px 18px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .dash-tab:hover{color:#36D1C2}
 .dash-tab.active{color:#36D1C2;border-color:#36D1C2}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
 
-/* Stats */
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
-.stat-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:18px;text-align:center}
-.stat-card .num{font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2}
-.stat-card .lbl{font-size:11px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif;font-weight:400}
+/* ── STAT CARDS ── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.stat-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:20px;text-align:center}
+.stat-card .num{font-family:'Rubik',sans-serif;font-size:30px;font-weight:300;color:#36D1C2;line-height:1}
+.stat-card .lbl{font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:6px;font-family:'Rubik',sans-serif}
+.stat-card .trend{font-size:11px;margin-top:4px;font-weight:400}
+.trend-up{color:#0a7c42}
+.trend-down{color:#E54B4B}
 
-/* Pipeline */
-.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
-.pipe-col{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;min-height:200px}
-.pipe-col h3{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid rgba(179,190,201,.15)}
-.pipe-item{background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:3px;padding:10px;margin-bottom:8px;cursor:pointer;transition:all .2s}
-.pipe-item:hover{border-color:#36D1C2;transform:translateY(-1px)}
-.pipe-item .title{font-size:12px;font-weight:400;color:#00161F;margin-bottom:4px}
-.pipe-item .meta{font-size:10px;color:#B3BEC9;font-weight:300}
-.pipe-item .status-dot{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:4px}
-.dot-draft{background:#B3BEC9}
-.dot-review{background:#f4a261}
-.dot-seo{background:#36D1C2}
-.dot-approved{background:#2BBDAF}
-.dot-live{background:#0a7c42}
+/* ── QUICK ACTIONS ── */
+.quick-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
 
-/* Client list (admin) */
-.client-list{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
-.client-row{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.15);font-size:13px;align-items:center;transition:background .2s}
-.client-row:hover{background:rgba(54,209,194,.03)}
-.client-row.header{background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px}
-.client-row .name{font-weight:400;color:#00161F}
-.client-row .email{color:#617792;font-weight:300}
-.client-row .plan-badge{display:inline-block;background:rgba(54,209,194,.1);color:#2BBDAF;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
-.client-row .date{color:#B3BEC9;font-weight:300;font-size:12px}
-
-/* Request list */
-.request-list{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
-.request-row{display:grid;grid-template-columns:3fr 1fr 1fr 1fr;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.15);font-size:13px;align-items:center}
-.request-row.header{background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px}
-.status-badge{display:inline-block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
-.status-new{background:rgba(54,209,194,.1);color:#2BBDAF}
-.status-progress{background:rgba(244,162,97,.1);color:#f4a261}
-.status-done{background:rgba(10,124,66,.1);color:#0a7c42}
-
-/* Add blog form */
-.add-form{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px}
-.add-form h3{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:14px}
-.add-form label{display:block;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
-.add-form input,.add-form select,.add-form textarea{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:3px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;outline:none;margin-bottom:12px;color:#00161F}
-.add-form input:focus,.add-form select:focus{border-color:#36D1C2}
-.add-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.btn{padding:10px 24px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .3s;border:none}
+/* ── BUTTONS ── */
+.btn{padding:10px 22px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.7px;cursor:pointer;transition:all .2s;border:none;display:inline-flex;align-items:center;gap:6px}
 .btn-primary{background:#36D1C2;color:#fff}
 .btn-primary:hover{background:#2BBDAF}
+.btn-secondary{background:#00161F;color:#fff}
+.btn-secondary:hover{background:#061f2b}
 .btn-outline{background:transparent;border:1px solid #B3BEC9;color:#617792}
 .btn-outline:hover{border-color:#36D1C2;color:#36D1C2}
+.btn-danger{background:#E54B4B;color:#fff}
+.btn-danger:hover{background:#d03d3d}
 .btn-sm{padding:6px 14px;font-size:10px}
+.btn-next{background:#00161F;color:#36D1C2}
+.btn-next:hover{background:#061f2b}
 
-.site-footer{background:#00161F;padding:40px;text-align:center}
-.site-footer p{color:rgba(179,190,201,.4);font-size:11px;font-weight:300}
+/* ── ACTIVITY FEED ── */
+.section-title{font-family:'Rubik',sans-serif;font-size:13px;font-weight:500;color:#00161F;margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.activity-feed{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden}
+.activity-item{padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.1);display:flex;align-items:center;gap:12px;font-size:13px}
+.activity-item:last-child{border-bottom:none}
+.activity-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.activity-text{flex:1;color:#00161F;font-weight:300}
+.activity-text strong{font-weight:500}
+.activity-time{font-size:11px;color:#B3BEC9;font-weight:300;white-space:nowrap}
 
-.hidden{display:none}
+/* ── CLIENT TABLE ── */
+.table-wrap{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden;margin-bottom:24px}
+.table-head{display:grid;padding:10px 18px;background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;gap:0}
+.table-row{display:grid;padding:12px 18px;border-bottom:1px solid rgba(179,190,201,.1);align-items:center;font-size:13px;transition:background .15s;cursor:pointer}
+.table-row:last-child{border-bottom:none}
+.table-row:hover{background:rgba(54,209,194,.03)}
+.clients-grid{grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr}
+.blogs-grid{grid-template-columns:3fr 2fr 1fr 1fr 1fr}
+.youtube-grid{grid-template-columns:3fr 1.5fr 1fr 1fr 1fr 1fr}
+.requests-grid{grid-template-columns:3fr 1fr 1fr 1fr}
+.cell-name{font-weight:400;color:#00161F}
+.cell-email,.cell-sub{color:#617792;font-weight:300;font-size:12px}
+.cell-date{color:#B3BEC9;font-weight:300;font-size:11px}
+.plan-badge{display:inline-block;background:rgba(54,209,194,.1);color:#2BBDAF;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.plan-starter{background:rgba(97,119,146,.1);color:#617792}
+.plan-growth{background:rgba(54,209,194,.1);color:#2BBDAF}
+.plan-pro{background:rgba(10,124,66,.1);color:#0a7c42}
+.plan-scale{background:rgba(0,22,31,.08);color:#00161F}
 
-@media(max-width:768px){
-  .stats-row{grid-template-columns:1fr 1fr}
-  .pipeline{grid-template-columns:1fr}
-  .client-row,.request-row{grid-template-columns:1fr;gap:4px}
-  .client-row.header,.request-row.header{display:none}
-  .site-header{padding:14px 20px}
+/* ── STATUS BADGES ── */
+.status-badge{display:inline-block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:3px 9px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.s-draft{background:rgba(179,190,201,.2);color:#617792}
+.s-review{background:rgba(244,162,97,.12);color:#e08748}
+.s-seo{background:rgba(54,209,194,.12);color:#36D1C2}
+.s-approved{background:rgba(10,124,66,.12);color:#0a7c42}
+.s-live{background:rgba(10,124,66,.15);color:#0a7c42}
+.s-new{background:rgba(54,209,194,.1);color:#2BBDAF}
+.s-progress{background:rgba(244,162,97,.12);color:#e08748}
+.s-done{background:rgba(10,124,66,.12);color:#0a7c42}
+.s-production{background:rgba(244,162,97,.12);color:#e08748}
+.s-published{background:rgba(10,124,66,.12);color:#0a7c42}
+.track-manual{background:rgba(179,190,201,.2);color:#617792}
+.track-pending{background:rgba(244,162,97,.12);color:#e08748}
+.track-connected{background:rgba(10,124,66,.12);color:#0a7c42}
+
+/* ── PIPELINE ── */
+.pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+.pipe-col{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:12px;min-height:220px}
+.pipe-col-title{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid rgba(179,190,201,.15);display:flex;align-items:center;justify-content:space-between}
+.pipe-count{background:rgba(179,190,201,.15);color:#617792;font-size:10px;padding:1px 6px;border-radius:9999px}
+.pipe-item{background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:5px;padding:10px;margin-bottom:8px;cursor:pointer;transition:all .15s}
+.pipe-item:hover{border-color:#36D1C2;transform:translateY(-1px);box-shadow:0 2px 8px rgba(54,209,194,.1)}
+.pipe-item-title{font-size:12px;font-weight:400;color:#00161F;margin-bottom:4px;line-height:1.4}
+.pipe-item-meta{font-size:10px;color:#B3BEC9;font-weight:300}
+.pipe-item-links{display:flex;gap:6px;margin-top:6px}
+.pipe-item-links a{font-size:10px;color:#36D1C2;text-decoration:none;font-family:'Rubik',sans-serif;font-weight:500}
+.pipe-item-links a:hover{color:#2BBDAF}
+
+/* ── FORMS ── */
+.form-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px}
+.form-card h3{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:.8px}
+.field input,.field select,.field textarea{width:100%;padding:10px 14px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;outline:none;color:#00161F;transition:border .2s;background:#fff}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#36D1C2}
+.field input::placeholder,.field textarea::placeholder{color:#B3BEC9}
+.field textarea{resize:vertical;min-height:80px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+
+/* ── REPORTS FORM ── */
+.report-form-wrap{background:#fff;border:1px solid rgba(179,190,194,.2);border-radius:7px;padding:28px;margin-bottom:24px}
+.report-form-wrap h3{font-family:'Rubik',sans-serif;font-size:15px;font-weight:500;color:#00161F;margin-bottom:4px}
+.report-form-wrap .report-sub{font-size:12px;color:#617792;font-weight:300;margin-bottom:20px}
+.report-progress-bar{background:rgba(179,190,201,.15);border-radius:9999px;height:4px;margin-bottom:20px}
+.report-progress-fill{background:#36D1C2;height:4px;border-radius:9999px;transition:width .3s}
+.report-blog-context{background:#FEF9F6;border:1px solid rgba(179,190,201,.15);border-radius:5px;padding:12px;margin-bottom:18px;display:none}
+.report-blog-context.show{display:block}
+.rbc-title{font-size:13px;font-weight:400;color:#00161F;margin-bottom:2px}
+.rbc-meta{font-size:11px;color:#617792;font-weight:300}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.report-existing{background:rgba(54,209,194,.05);border:1px solid rgba(54,209,194,.2);border-radius:5px;padding:12px;margin-bottom:14px;display:none}
+.report-existing.show{display:block}
+.re-title{font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#2BBDAF;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.re-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.re-item{text-align:center}
+.re-item .re-val{font-family:'Rubik',sans-serif;font-size:16px;font-weight:300;color:#36D1C2}
+.re-item .re-lbl{font-size:10px;color:#B3BEC9;font-weight:300;margin-top:2px}
+
+/* ── CLIENT DETAIL PANEL ── */
+.detail-panel{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px;margin-bottom:24px;display:none}
+.detail-panel.open{display:block}
+.detail-panel-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.detail-panel-header h3{font-family:'Rubik',sans-serif;font-size:16px;font-weight:400;color:#00161F}
+.detail-meta{font-size:12px;color:#617792;font-weight:300;margin-top:2px}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:16px}
+.detail-item{border:1px solid rgba(179,190,201,.15);border-radius:5px;padding:12px}
+.detail-item .di-lbl{font-size:10px;color:#B3BEC9;font-family:'Rubik',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.detail-item .di-val{font-size:14px;color:#00161F;font-weight:400}
+
+/* ── CLIENT BLOG PROGRESS ── */
+.progress-bar{background:rgba(179,190,201,.15);border-radius:9999px;height:6px;margin-top:6px}
+.progress-fill{background:#36D1C2;height:6px;border-radius:9999px;transition:width .3s}
+.progress-label{font-size:11px;color:#617792;font-weight:300;margin-top:4px}
+
+/* ── CLIENT PORTAL ── */
+.blog-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:18px;margin-bottom:12px;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;transition:box-shadow .15s}
+.blog-card:hover{box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.blog-card-info{flex:1}
+.blog-card-title{font-size:14px;font-weight:400;color:#00161F;margin-bottom:6px}
+.blog-card-meta{font-size:11px;color:#617792;font-weight:300;margin-bottom:8px}
+.blog-card-links{display:flex;gap:12px}
+.blog-card-links a{font-size:11px;color:#36D1C2;text-decoration:none;font-family:'Rubik',sans-serif;font-weight:500}
+.blog-card-links a:hover{color:#2BBDAF}
+.blog-card-status{flex-shrink:0}
+
+/* ── REPORTS VIEW ── */
+.report-month-nav{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.report-month-nav select{padding:8px 14px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;color:#00161F;outline:none;background:#fff;cursor:pointer}
+.report-month-nav select:focus{border-color:#36D1C2}
+.report-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+.r-stat{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:18px;text-align:center}
+.r-stat .r-num{font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;line-height:1}
+.r-stat .r-lbl{font-size:10px;color:#B3BEC9;font-family:'Rubik',sans-serif;text-transform:uppercase;letter-spacing:.5px;margin-top:5px}
+.r-stat .r-trend{font-size:11px;margin-top:4px}
+
+/* ── BLOG PERF TABLE (CLIENT) ── */
+.blog-perf-table{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;overflow:hidden;margin-bottom:24px}
+.bpt-head{display:grid;grid-template-columns:3fr 1fr 1fr 1fr 1fr;padding:10px 16px;background:#00161F;color:#fff;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.7px}
+.bpt-row{display:grid;grid-template-columns:3fr 1fr 1fr 1fr 1fr;padding:12px 16px;border-bottom:1px solid rgba(179,190,201,.1);font-size:13px;align-items:center;transition:background .15s}
+.bpt-row:last-child{border-bottom:none}
+.bpt-row:hover{background:rgba(54,209,194,.03)}
+.insight-box{background:rgba(54,209,194,.05);border:1px solid rgba(54,209,194,.15);border-radius:5px;padding:10px 14px;margin-top:6px;font-size:12px;color:#617792;font-weight:300;font-style:italic}
+
+/* ── YOUTUBE CARDS ── */
+.yt-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:16px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;transition:box-shadow .15s}
+.yt-card:hover{box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.yt-icon{width:40px;height:40px;background:#ff0000;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.yt-info{flex:1}
+.yt-title{font-size:13px;font-weight:400;color:#00161F;margin-bottom:4px}
+.yt-meta{font-size:11px;color:#617792;font-weight:300;margin-bottom:8px}
+.yt-stats{display:flex;gap:16px}
+.yt-stat-item{font-size:11px;color:#617792;font-weight:300}
+.yt-stat-item strong{color:#00161F;font-weight:500}
+
+/* ── SUPPORT ── */
+.support-ticket{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:16px;margin-bottom:12px}
+.ticket-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px}
+.ticket-title{font-size:13px;font-weight:400;color:#00161F}
+.ticket-meta{font-size:11px;color:#B3BEC9;font-weight:300;margin-top:2px}
+.ticket-body{font-size:12px;color:#617792;font-weight:300;margin-top:8px;line-height:1.6}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:48px 24px;color:#B3BEC9}
+.empty-state svg{margin-bottom:12px;opacity:.4}
+.empty-state p{font-size:13px;font-weight:300}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:#00161F;color:#fff;padding:12px 20px;border-radius:7px;font-size:13px;font-weight:300;font-family:'Roboto',sans-serif;z-index:9999;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;max-width:320px}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.success{border-left:3px solid #36D1C2}
+.toast.error{border-left:3px solid #E54B4B}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,22,31,.5);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:7px;padding:28px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
+.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.modal-header h3{font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;color:#00161F}
+.modal-close{background:none;border:none;cursor:pointer;color:#B3BEC9;font-size:20px;line-height:1;padding:2px 6px;transition:color .2s}
+.modal-close:hover{color:#E54B4B}
+
+/* ── FOOTER ── */
+.site-footer{background:#00161F;padding:32px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.site-footer p{color:rgba(179,190,201,.35);font-size:11px;font-weight:300}
+.site-footer img{height:28px;opacity:.6}
+
+/* ── MISC ── */
+.hidden{display:none!important}
+.divider{height:1px;background:rgba(179,190,201,.2);margin:20px 0}
+.section-wrap{margin-bottom:24px}
+.toggle-form-btn{font-size:12px;color:#36D1C2;cursor:pointer;font-family:'Rubik',sans-serif;font-weight:500;text-decoration:none;margin-left:auto;display:flex;align-items:center;gap:4px}
+.inline-link{color:#36D1C2;text-decoration:none;font-size:12px;font-family:'Rubik',sans-serif;font-weight:500}
+.inline-link:hover{color:#2BBDAF}
+.text-sm{font-size:12px;color:#617792;font-weight:300}
+.loading-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(54,209,194,.3);border-top-color:#36D1C2;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Roboto',sans-serif;font-size:12px;color:#00161F;outline:none;background:#fff}
+.filter-bar select:focus{border-color:#36D1C2}
+.filter-bar label{font-size:11px;color:#617792;font-weight:300}
+
+@media(max-width:900px){
+  .stats-row,.report-stats{grid-template-columns:1fr 1fr}
+  .pipeline{grid-template-columns:1fr 1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .field-row,.field-row-3{grid-template-columns:1fr}
+  .clients-grid,.blogs-grid,.youtube-grid,.requests-grid{grid-template-columns:1fr}
+  .table-head{display:none}
+  .detail-grid{grid-template-columns:1fr 1fr}
+  .bpt-head{display:none}
+  .bpt-row{grid-template-columns:1fr;gap:4px}
+  .re-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .site-header{padding:12px 16px}
   .site-header nav{gap:14px}
-  .add-form .row{grid-template-columns:1fr}
+  .dash-content{padding:18px 16px 48px}
+  .stats-row,.report-stats{grid-template-columns:1fr 1fr}
+  .pipeline{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .site-footer{padding:24px 20px}
+  .detail-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- AUTH SCREEN -->
-<div id="authScreen">
+<!-- ══════════════════════════ AUTH SCREEN ══════════════════════════ -->
+<div id="authScreen" class="auth-screen">
   <header class="site-header">
     <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
     <nav>
@@ -127,331 +317,564 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
       <a href="pricing.html">Pricing</a>
     </nav>
   </header>
-  <div class="auth-wrap">
-    <div class="auth-card">
-      <img src="ac-logo-dark.png" alt="AC" style="height:50px;margin-bottom:16px">
-      <h1 id="authTitle">Sign In</h1>
-      <p id="authSubtitle">Access your client portal</p>
-      <div class="auth-error" id="authError"></div>
+  <div class="auth-body">
+    <div class="auth-wrap">
+      <div class="auth-card">
+        <img src="ac-logo-dark.png" alt="Anderson Collaborative" class="auth-logo">
+        <h1 id="authTitle">Sign In</h1>
+        <p class="sub" id="authSubtitle">Access your client portal</p>
+        <div class="auth-error" id="authError"></div>
 
-      <div id="loginForm">
-        <label>Email</label>
-        <input type="email" id="authEmail" placeholder="you@business.com">
-        <label>Password</label>
-        <input type="password" id="authPass" placeholder="Your password">
-        <button class="auth-btn auth-btn-primary" onclick="emailLogin()">Sign In</button>
-        <div class="auth-divider">or</div>
-        <button class="auth-btn auth-btn-google" onclick="googleLogin()">
-          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Sign in with Google
-        </button>
-        <p class="auth-toggle">Don't have an account? <a onclick="toggleAuth()">Create one</a></p>
-      </div>
-
-      <div id="signupForm" class="hidden">
-        <label>Full Name</label>
-        <input type="text" id="signupName" placeholder="John Smith">
-        <label>Company</label>
-        <input type="text" id="signupCompany" placeholder="Your Business Inc.">
-        <label>Email</label>
-        <input type="email" id="signupEmail" placeholder="you@business.com">
-        <label>Password</label>
-        <input type="password" id="signupPass" placeholder="Create a password (min 6 chars)">
-        <label>Role</label>
-        <select id="signupRole">
-          <option value="client">Client</option>
-          <option value="admin">AC Team Member</option>
-        </select>
-        <button class="auth-btn auth-btn-primary" onclick="emailSignup()">Create Account</button>
-        <div class="auth-divider">or</div>
-        <button class="auth-btn auth-btn-google" onclick="googleLogin()">
-          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
-          Sign up with Google
-        </button>
-        <p class="auth-toggle">Already have an account? <a onclick="toggleAuth()">Sign in</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- DASHBOARD (hidden until login) -->
-<div id="dashScreen" class="hidden">
-  <header class="site-header">
-    <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
-    <nav>
-      <a href="index.html">Blog</a>
-      <a href="pricing.html">Pricing</a>
-      <span class="user-info">Signed in as <strong id="userName"></strong></span>
-      <a href="#" onclick="signOut()" style="color:#E54B4B">Sign Out</a>
-    </nav>
-  </header>
-
-  <div class="dash-wrap">
-    <div class="dash-header">
-      <h1 id="dashTitle">Dashboard</h1>
-      <div>
-        <button class="btn btn-primary btn-sm" id="addBlogBtn" onclick="toggleAddForm()">+ Add Blog</button> <button class="btn btn-outline btn-sm" id="updateReportBtn" onclick="toggleReportForm()">Update Reports</button>
-      </div>
-    </div>
-
-    <!-- ADMIN TABS -->
-    <div class="dash-tabs" id="adminTabs">
-      <div class="dash-tab active" onclick="showDashTab('overview')">Overview</div>
-      <div class="dash-tab" onclick="showDashTab('blogs')">Blog Pipeline</div>
-      <div class="dash-tab" onclick="showDashTab('clients')">Clients</div>
-      <div class="dash-tab" onclick="showDashTab('requests')">Requests</div>
-      <div class="dash-tab" onclick="showDashTab('reports')">Reports</div>
-    </div>
-
-    <!-- CLIENT TABS -->
-    <div class="dash-tabs hidden" id="clientTabs">
-      <div class="dash-tab active" onclick="showDashTab('overview')">My Blogs</div>
-      <div class="dash-tab" onclick="showDashTab('reports')">My Reports</div>
-      <div class="dash-tab" onclick="showDashTab('requests')">Support</div>
-      <div class="dash-tab" onclick="window.location.href='pricing.html'">Add Services</div>
-    </div>
-
-    <!-- ADD BLOG FORM -->
-    <!-- UPDATE REPORT FORM (admin) -->
-    <div class="add-form hidden" id="reportForm">
-      <h3>Update Blog Report</h3>
-      <p style="font-size:12px;color:#617792;font-weight:300;margin-bottom:14px">Paste numbers from Google Search Console + Analytics for each blog.</p>
-      
-      <label>Select Blog</label>
-      <select id="reportBlogId" onchange="loadBlogReport()">
-        <option value="">Select a blog...</option>
-      </select>
-
-      <div class="row">
-        <div>
-          <label>Month</label>
-          <input type="month" id="reportMonth" value="2026-03">
-        </div>
-        <div>
-          <label>Tracking Status</label>
-          <select id="reportTracking">
-            <option value="manual">Manual</option>
-            <option value="pending">Pending Access</option>
-            <option value="connected">Connected (Auto)</option>
-          </select>
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">From Google Search Console</p>
-      <div class="row">
-        <div>
-          <label>Clicks</label>
-          <input type="number" id="reportClicks" placeholder="0">
-        </div>
-        <div>
-          <label>Impressions</label>
-          <input type="number" id="reportImpressions" placeholder="0">
-        </div>
-      </div>
-      <div class="row">
-        <div>
-          <label>Avg Position</label>
-          <input type="number" id="reportPosition" placeholder="0" step="0.1">
-        </div>
-        <div>
-          <label>CTR (%)</label>
-          <input type="number" id="reportCTR" placeholder="0" step="0.1">
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">From Google Analytics</p>
-      <div class="row">
-        <div>
-          <label>Page Views</label>
-          <input type="number" id="reportViews" placeholder="0">
-        </div>
-        <div>
-          <label>Avg Time on Page (seconds)</label>
-          <input type="number" id="reportTime" placeholder="0">
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">Quick Insight (optional — client will see this)</p>
-      <input type="text" id="reportInsight" placeholder="e.g. Position improved from 28 to 18 — great early traction">
-
-      <button class="btn btn-primary" onclick="saveReport()">Save Report</button>
-      <button class="btn btn-outline" onclick="toggleReportForm()" style="margin-left:8px">Cancel</button>
-      <span id="reportSaved" style="display:none;margin-left:12px;color:#2BBDAF;font-size:12px">Saved!</span>
-    </div>
-
-    <div class="add-form hidden" id="addForm">
-      <h3>Add New Blog</h3>
-      <div class="row">
-        <div>
-          <label>Client</label>
-          <select id="newBlogClient"><option>Select client...</option></select>
-        </div>
-        <div>
-          <label>Status</label>
-          <select id="newBlogStatus">
-            <option value="draft">Draft</option>
-            <option value="review">In Review</option>
-            <option value="seo">SEO Optimization</option>
-            <option value="approved">Approved</option>
-            <option value="live">Published</option>
-          </select>
-        </div>
-      </div>
-      <label>Blog Title</label>
-      <input type="text" id="newBlogTitle" placeholder="Blog post title">
-      <div class="row">
-        <div>
-          <label>Google Doc Link</label>
-          <input type="text" id="newBlogDoc" placeholder="https://docs.google.com/...">
-        </div>
-        <div>
-          <label>Live URL (if published)</label>
-          <input type="text" id="newBlogUrl" placeholder="https://...">
-        </div>
-      </div>
-      <label>Assigned To</label>
-      <input type="text" id="newBlogAssigned" placeholder="e.g. Reandra, Trevor">
-      <button class="btn btn-primary" onclick="saveBlog()">Save Blog</button>
-      <button class="btn btn-outline" onclick="toggleAddForm()" style="margin-left:8px">Cancel</button>
-    </div>
-
-    <!-- OVERVIEW TAB -->
-    <div id="tab-overview">
-      <div class="stats-row">
-        <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Total Blogs</div></div>
-        <div class="stat-card"><div class="num" id="statDraft">0</div><div class="lbl">In Progress</div></div>
-        <div class="stat-card"><div class="num" id="statLive">0</div><div class="lbl">Published</div></div>
-        <div class="stat-card"><div class="num" id="statClients">0</div><div class="lbl">Clients</div></div>
-      </div>
-
-      <!-- Pipeline view -->
-      <div class="pipeline" id="pipelineView">
-        <div class="pipe-col"><h3><span class="status-dot dot-draft"></span>Draft</h3><div id="pipe-draft"></div></div>
-        <div class="pipe-col"><h3><span class="status-dot dot-review"></span>In Review</h3><div id="pipe-review"></div></div>
-        <div class="pipe-col"><h3><span class="status-dot dot-seo"></span>SEO</h3><div id="pipe-seo"></div></div>
-        <div class="pipe-col"><h3><span class="status-dot dot-approved"></span>Approved</h3><div id="pipe-approved"></div></div>
-        <div class="pipe-col"><h3><span class="status-dot dot-live"></span>Published</h3><div id="pipe-live"></div></div>
-      </div>
-    </div>
-
-    <!-- BLOGS TAB (same as pipeline, full view) -->
-    <div id="tab-blogs" class="hidden"></div>
-
-    <!-- CLIENTS TAB (admin only) -->
-    <div id="tab-clients" class="hidden">
-      <div class="client-list" id="clientList">
-        <div class="client-row header">
-          <div>Client</div><div>Email</div><div>Plan</div><div>Blogs</div><div>Joined</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- REPORTS TAB -->
-    <div id="tab-reports" class="hidden">
-      <div style="background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:28px;margin-bottom:20px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <h3 style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F">Monthly SEO & Blog Performance</h3>
-          <select id="reportMonthFilter" onchange="loadReportsTab()" style="padding:6px 12px;border:1px solid #B3BEC9;border-radius:3px;font-size:12px;font-family:'Rubik',sans-serif">
-            <option value="2026-03">March 2026</option>
-            <option value="2026-02">February 2026</option>
-            <option value="2026-01">January 2026</option>
-          </select>
-        </div>
-        
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px">
-          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
-            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">2,847</div>
-            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Organic Visits</div>
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="authEmail" placeholder="you@company.com">
           </div>
-          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
-            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">156</div>
-            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Keywords Ranking</div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="authPass" placeholder="Your password" onkeydown="if(event.key==='Enter')emailLogin()">
           </div>
-          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
-            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">12</div>
-            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Top 10 Rankings</div>
-          </div>
-          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
-            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#2BBDAF">+34%</div>
-            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Traffic Growth</div>
-          </div>
+          <button class="auth-btn auth-btn-primary" onclick="emailLogin()">Sign In</button>
+          <div class="auth-divider">or</div>
+          <button class="auth-btn auth-btn-google" onclick="googleLogin()">
+            <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+            Sign in with Google
+          </button>
+          <p class="auth-toggle">Don't have an account? <a onclick="showRegister()">Create one</a></p>
         </div>
 
-        <h3 style="font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;color:#B3BEC9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">Blog Performance</h3>
-        <div style="overflow-x:auto">
-          <table style="width:100%;border-collapse:collapse">
-            <tr style="background:#00161F;color:#fff">
-              <th style="padding:10px 14px;text-align:left;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Blog Title</th>
-              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Views</th>
-              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Avg Position</th>
-              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Clicks</th>
-              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Status</th>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
-              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">Top 10 Franchise Marketing Strategies for 2026</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">1,247</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">4.2</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">312</td>
-              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
-              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">How to Choose the Right Marketing Agency</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">892</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">7.8</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">156</td>
-              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
-              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">SEO Best Practices for Small Businesses</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">534</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">12.1</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">87</td>
-              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
-            </tr>
-            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
-              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">The Future of AI in Digital Marketing</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(244,162,97,.1);color:#f4a261;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">IN REVIEW</span></td>
-            </tr>
-            <tr>
-              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">5 Ways to Boost Your Google Business Profile</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
-              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(179,190,201,.1);color:#B3BEC9;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">DRAFT</span></td>
-            </tr>
-          </table>
-        </div>
-
-        <p style="font-size:11px;color:#B3BEC9;margin-top:16px;font-weight:300;text-align:center">Sample data shown. Reports update monthly once your blogs are live.</p>
-      </div>
-    </div>
-
-    <!-- REQUESTS TAB -->
-    <div id="tab-requests" class="hidden">
-      <div class="request-list" id="requestList">
-        <div class="request-row header">
-          <div>Request</div><div>Client</div><div>Status</div><div>Date</div>
+        <!-- REGISTER FORM -->
+        <div id="registerForm" class="hidden">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="regName" placeholder="Jane Smith">
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" id="regCompany" placeholder="Acme Inc.">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="regEmail" placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="regPass" placeholder="Min 6 characters">
+          </div>
+          <div class="form-group">
+            <label>Role</label>
+            <select id="regRole">
+              <option value="client">Client</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <button class="auth-btn auth-btn-primary" onclick="createAccount()">Create Account</button>
+          <p class="auth-toggle">Already have an account? <a onclick="showLogin()">Sign in</a></p>
         </div>
       </div>
     </div>
   </div>
-
   <footer class="site-footer">
-    <img src="ac-logo-dark.png" alt="Anderson Collaborative" style="height:40px;margin-bottom:14px;opacity:.7">
+    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
 
-<!-- Firebase SDK -->
+<!-- ══════════════════════════ ADMIN DASHBOARD ══════════════════════════ -->
+<div id="adminDash" class="dash-screen">
+  <header class="site-header">
+    <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
+    <nav>
+      <a href="index.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="user-chip">
+      <span><strong id="adminUserName">Admin</strong></span>
+      <span class="role-badge role-admin">Admin</span>
+      <button class="btn-signout" onclick="signOut()">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="dash-content">
+    <div class="dash-header">
+      <h1>Admin <span>Dashboard</span></h1>
+    </div>
+
+    <div class="dash-tabs" id="adminTabs">
+      <div class="dash-tab active" onclick="switchAdminTab('overview',this)">Overview</div>
+      <div class="dash-tab" onclick="switchAdminTab('clients',this)">Clients</div>
+      <div class="dash-tab" onclick="switchAdminTab('blogs',this)">Blogs</div>
+      <div class="dash-tab" onclick="switchAdminTab('reports',this)">Reports</div>
+      <div class="dash-tab" onclick="switchAdminTab('youtube',this)">YouTube</div>
+      <div class="dash-tab" onclick="switchAdminTab('requests',this)">Requests</div>
+    </div>
+
+    <!-- ── OVERVIEW TAB ── -->
+    <div id="admin-overview" class="tab-panel active">
+      <div class="stats-row">
+        <div class="stat-card"><div class="num" id="ovTotalClients">—</div><div class="lbl">Total Clients</div></div>
+        <div class="stat-card"><div class="num" id="ovTotalBlogs">—</div><div class="lbl">Total Blogs</div></div>
+        <div class="stat-card"><div class="num" id="ovPublished">—</div><div class="lbl">Published</div></div>
+        <div class="stat-card"><div class="num" id="ovInProgress">—</div><div class="lbl">In Progress</div></div>
+      </div>
+      <div class="quick-actions">
+        <button class="btn btn-primary" onclick="switchAdminTab('clients',null);document.getElementById('addClientForm').classList.remove('hidden')">+ Add Client</button>
+        <button class="btn btn-secondary" onclick="switchAdminTab('blogs',null);document.getElementById('addBlogForm').classList.remove('hidden')">+ Add Blog</button>
+        <button class="btn btn-outline" onclick="switchAdminTab('reports',null)">Update Reports</button>
+      </div>
+      <div class="section-title">Recent Activity</div>
+      <div class="activity-feed" id="activityFeed">
+        <div class="empty-state"><p>No activity yet.</p></div>
+      </div>
+    </div>
+
+    <!-- ── CLIENTS TAB ── -->
+    <div id="admin-clients" class="tab-panel hidden">
+      <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="section-title" style="margin:0">Clients</div>
+        <a class="toggle-form-btn" onclick="toggleForm('addClientForm')">+ Add Client</a>
+      </div>
+
+      <div id="addClientForm" class="form-card hidden">
+        <h3>Add New Client</h3>
+        <div class="field-row">
+          <div class="field"><label>Full Name</label><input id="newClientName" placeholder="Jane Smith"></div>
+          <div class="field"><label>Email</label><input id="newClientEmail" type="email" placeholder="jane@company.com"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Company</label><input id="newClientCompany" placeholder="Company Name"></div>
+          <div class="field"><label>Phone</label><input id="newClientPhone" placeholder="+1 555 000 0000"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Package</label>
+            <select id="newClientPackage">
+              <option value="starter">Starter</option>
+              <option value="growth">Growth</option>
+              <option value="pro">Pro</option>
+              <option value="scale">Scale</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Tracking Status</label>
+            <select id="newClientTracking">
+              <option value="manual">Manual</option>
+              <option value="pending">Pending</option>
+              <option value="connected">Connected</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addClient()">Save Client</button>
+          <button class="btn btn-outline" onclick="toggleForm('addClientForm')">Cancel</button>
+        </div>
+      </div>
+
+      <div id="clientDetailPanel" class="detail-panel">
+        <div class="detail-panel-header">
+          <div>
+            <h3 id="cdpName">Client Name</h3>
+            <div class="detail-meta" id="cdpMeta">email@company.com · Package</div>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="document.getElementById('clientDetailPanel').classList.remove('open')">Close</button>
+        </div>
+        <div class="detail-grid" id="cdpGrid"></div>
+        <div class="section-title" style="font-size:11px">Blogs</div>
+        <div id="cdpBlogs"></div>
+      </div>
+
+      <div class="filter-bar">
+        <select id="clientFilterPackage" onchange="renderClientsTable()">
+          <option value="">All Packages</option>
+          <option value="starter">Starter</option>
+          <option value="growth">Growth</option>
+          <option value="pro">Pro</option>
+          <option value="scale">Scale</option>
+        </select>
+        <select id="clientFilterTracking" onchange="renderClientsTable()">
+          <option value="">All Tracking</option>
+          <option value="manual">Manual</option>
+          <option value="pending">Pending</option>
+          <option value="connected">Connected</option>
+        </select>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-head clients-grid">
+          <span>Name</span><span>Email</span><span>Package</span><span>Blogs</span><span>Tracking</span><span>Joined</span>
+        </div>
+        <div id="clientsTableBody"><div class="empty-state"><p>No clients yet.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ── BLOGS TAB ── -->
+    <div id="admin-blogs" class="tab-panel hidden">
+      <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="section-title" style="margin:0">Blog Pipeline</div>
+        <a class="toggle-form-btn" onclick="toggleForm('addBlogForm')">+ Add Blog</a>
+      </div>
+
+      <div id="addBlogForm" class="form-card hidden">
+        <h3>Add New Blog</h3>
+        <div class="field-row">
+          <div class="field">
+            <label>Client</label>
+            <select id="newBlogClient" onchange="updateBlogClientName()"><option value="">Select client…</option></select>
+          </div>
+          <div class="field"><label>Title</label><input id="newBlogTitle" placeholder="Blog post title"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Status</label>
+            <select id="newBlogStatus">
+              <option value="draft">Draft</option>
+              <option value="review">In Review</option>
+              <option value="seo">SEO Optimization</option>
+              <option value="approved">Approved</option>
+              <option value="live">Published</option>
+            </select>
+          </div>
+          <div class="field"><label>Assigned To</label><input id="newBlogAssigned" placeholder="Team member name"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Google Doc URL</label><input id="newBlogDocUrl" placeholder="https://docs.google.com/…"></div>
+          <div class="field"><label>Live URL</label><input id="newBlogLiveUrl" placeholder="https://website.com/blog/…"></div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addBlog()">Save Blog</button>
+          <button class="btn btn-outline" onclick="toggleForm('addBlogForm')">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Package progress per client -->
+      <div id="packageProgressWrap" class="section-wrap"></div>
+
+      <div class="pipeline" id="blogPipeline">
+        <div class="pipe-col"><div class="pipe-col-title">Draft <span class="pipe-count" id="pcDraft">0</span></div><div id="pipeline-draft"></div></div>
+        <div class="pipe-col"><div class="pipe-col-title">In Review <span class="pipe-count" id="pcReview">0</span></div><div id="pipeline-review"></div></div>
+        <div class="pipe-col"><div class="pipe-col-title">SEO Opt. <span class="pipe-count" id="pcSeo">0</span></div><div id="pipeline-seo"></div></div>
+        <div class="pipe-col"><div class="pipe-col-title">Approved <span class="pipe-count" id="pcApproved">0</span></div><div id="pipeline-approved"></div></div>
+        <div class="pipe-col"><div class="pipe-col-title">Published <span class="pipe-count" id="pcLive">0</span></div><div id="pipeline-live"></div></div>
+      </div>
+    </div>
+
+    <!-- ── REPORTS TAB ── -->
+    <div id="admin-reports" class="tab-panel hidden">
+      <div class="report-form-wrap">
+        <h3>Enter Monthly Metrics</h3>
+        <div class="report-sub">Fast-entry mode: save and auto-advance to the next blog for the same client and month.</div>
+
+        <div class="field-row" style="margin-bottom:14px">
+          <div class="field">
+            <label>Client</label>
+            <select id="reportClient" onchange="onReportClientChange()"><option value="">Select client…</option></select>
+          </div>
+          <div class="field">
+            <label>Month</label>
+            <input type="month" id="reportMonth" onchange="onReportBlogChange()">
+          </div>
+        </div>
+
+        <div class="field" style="margin-bottom:14px">
+          <label>Blog <span id="reportBlogIndex" style="color:#36D1C2;font-weight:500"></span></label>
+          <select id="reportBlog" onchange="onReportBlogChange()"><option value="">Select blog…</option></select>
+        </div>
+
+        <div class="report-progress-bar"><div class="report-progress-fill" id="reportProgressFill" style="width:0%"></div></div>
+
+        <div class="report-blog-context" id="reportBlogContext">
+          <div class="rbc-title" id="rcTitle">Blog title</div>
+          <div class="rbc-meta" id="rcMeta">client · status</div>
+        </div>
+
+        <div class="report-existing" id="reportExisting">
+          <div class="re-title">Previously Saved Data</div>
+          <div class="re-grid" id="reportExistingGrid"></div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="field"><label>Clicks</label><input id="mClicks" type="number" placeholder="0"></div>
+          <div class="field"><label>Impressions</label><input id="mImpressions" type="number" placeholder="0"></div>
+          <div class="field"><label>Avg Position</label><input id="mPosition" type="number" step="0.1" placeholder="0.0"></div>
+          <div class="field"><label>Page Views</label><input id="mPageViews" type="number" placeholder="0"></div>
+        </div>
+        <div class="field"><label>Notes / Insight for Client</label><textarea id="mInsight" placeholder="Add a note or insight that the client will see…"></textarea></div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="saveReport(false)">Save Report</button>
+          <button class="btn btn-next" onclick="saveReport(true)">Save &amp; Next Blog</button>
+          <button class="btn btn-outline" onclick="clearReportForm()">Clear</button>
+        </div>
+      </div>
+
+      <!-- Saved reports listing -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div class="section-title" style="margin:0">Saved Reports</div>
+        <div class="filter-bar" style="margin:0">
+          <select id="reportFilterClient" onchange="renderSavedReports()">
+            <option value="">All Clients</option>
+          </select>
+          <select id="reportFilterMonth" onchange="renderSavedReports()">
+            <option value="">All Months</option>
+          </select>
+        </div>
+      </div>
+      <div id="savedReportsWrap">
+        <div class="empty-state"><p>No reports saved yet.</p></div>
+      </div>
+    </div>
+
+    <!-- ── YOUTUBE TAB ── -->
+    <div id="admin-youtube" class="tab-panel hidden">
+      <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="section-title" style="margin:0">YouTube Content</div>
+        <a class="toggle-form-btn" onclick="toggleForm('addYoutubeForm')">+ Add Video</a>
+      </div>
+
+      <div id="addYoutubeForm" class="form-card hidden">
+        <h3>Add YouTube Video</h3>
+        <div class="field-row">
+          <div class="field">
+            <label>Client</label>
+            <select id="ytClient"><option value="">Select client…</option></select>
+          </div>
+          <div class="field"><label>Video Title</label><input id="ytTitle" placeholder="Video title"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>YouTube URL</label><input id="ytUrl" placeholder="https://youtube.com/watch?v=…"></div>
+          <div class="field"><label>Publish Date</label><input id="ytDate" type="date"></div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Status</label>
+            <select id="ytStatus">
+              <option value="draft">Draft</option>
+              <option value="production">In Production</option>
+              <option value="published">Published</option>
+            </select>
+          </div>
+          <div class="field"><label>Views</label><input id="ytViews" type="number" placeholder="0"></div>
+        </div>
+        <div class="field"><label>Likes</label><input id="ytLikes" type="number" placeholder="0"></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addYoutube()">Save Video</button>
+          <button class="btn btn-outline" onclick="toggleForm('addYoutubeForm')">Cancel</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-head youtube-grid">
+          <span>Title</span><span>Client</span><span>Status</span><span>Views</span><span>Likes</span><span>Date</span>
+        </div>
+        <div id="youtubeTableBody"><div class="empty-state"><p>No videos yet.</p></div></div>
+      </div>
+    </div>
+
+    <!-- ── REQUESTS TAB ── -->
+    <div id="admin-requests" class="tab-panel hidden">
+      <div class="section-title">Incoming Requests</div>
+      <div class="table-wrap">
+        <div class="table-head requests-grid">
+          <span>Client / Title</span><span>Plan</span><span>Category</span><span>Status</span>
+        </div>
+        <div id="requestsTableBody"><div class="empty-state"><p>No requests yet.</p></div></div>
+      </div>
+    </div>
+
+  </div><!-- /dash-content -->
+
+  <footer class="site-footer">
+    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
+    <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- ══════════════════════════ CLIENT DASHBOARD ══════════════════════════ -->
+<div id="clientDash" class="dash-screen">
+  <header class="site-header">
+    <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
+    <nav>
+      <a href="index.html">Blog</a>
+      <a href="pricing.html">Pricing</a>
+    </nav>
+    <div class="user-chip">
+      <span><strong id="clientUserName">Client</strong></span>
+      <span class="role-badge role-client">Client</span>
+      <button class="btn-signout" onclick="signOut()">Sign Out</button>
+    </div>
+  </header>
+
+  <div class="dash-content">
+    <div class="dash-header">
+      <h1>Welcome, <span id="clientGreetName">there</span></h1>
+    </div>
+
+    <div class="dash-tabs" id="clientTabs">
+      <div class="dash-tab active" onclick="switchClientTab('myblogs',this)">My Blogs</div>
+      <div class="dash-tab" onclick="switchClientTab('myreports',this)">My Reports</div>
+      <div class="dash-tab" onclick="switchClientTab('myyoutube',this)">YouTube</div>
+      <div class="dash-tab" onclick="switchClientTab('support',this)">Support</div>
+      <div class="dash-tab" onclick="switchClientTab('addservices',this)">Add Services</div>
+    </div>
+
+    <!-- ── MY BLOGS TAB ── -->
+    <div id="client-myblogs" class="tab-panel active">
+      <div class="form-card" style="padding:18px;margin-bottom:18px" id="clientPackageCard">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="font-family:'Rubik',sans-serif;font-size:13px;font-weight:500;color:#00161F;margin-bottom:2px" id="cPkgName">— Package</div>
+            <div class="text-sm" id="cPkgDesc">Your current content plan</div>
+          </div>
+          <div id="cPkgProgress" style="text-align:right">
+            <div style="font-family:'Rubik',sans-serif;font-size:22px;font-weight:300;color:#36D1C2" id="cPkgCount">— / —</div>
+            <div class="text-sm">blogs this month</div>
+          </div>
+        </div>
+        <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="cPkgBar" style="width:0%"></div></div>
+      </div>
+
+      <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap">
+        <span class="status-badge s-draft" style="cursor:pointer" onclick="filterClientBlogs('')">All</span>
+        <span class="status-badge s-draft" style="cursor:pointer" onclick="filterClientBlogs('draft')">Draft</span>
+        <span class="status-badge s-review" style="cursor:pointer" onclick="filterClientBlogs('review')">In Review</span>
+        <span class="status-badge s-seo" style="cursor:pointer" onclick="filterClientBlogs('seo')">SEO</span>
+        <span class="status-badge s-approved" style="cursor:pointer" onclick="filterClientBlogs('approved')">Approved</span>
+        <span class="status-badge s-live" style="cursor:pointer" onclick="filterClientBlogs('live')">Published</span>
+      </div>
+
+      <div id="clientBlogsWrap">
+        <div class="empty-state"><p>No blogs found for your account.</p></div>
+      </div>
+    </div>
+
+    <!-- ── MY REPORTS TAB ── -->
+    <div id="client-myreports" class="tab-panel hidden">
+      <div class="report-month-nav">
+        <label>Month:</label>
+        <select id="clientReportMonth" onchange="renderClientReports()">
+          <option value="">All Months</option>
+        </select>
+      </div>
+
+      <div class="report-stats" id="clientReportStats">
+        <div class="r-stat"><div class="r-num" id="crOrganic">—</div><div class="r-lbl">Organic Visits</div><div class="r-trend" id="crOrgTrend"></div></div>
+        <div class="r-stat"><div class="r-num" id="crKeywords">—</div><div class="r-lbl">Keywords Ranking</div><div class="r-trend" id="crKwTrend"></div></div>
+        <div class="r-stat"><div class="r-num" id="crTop10">—</div><div class="r-lbl">Top 10 Rankings</div><div class="r-trend" id="crTop10Trend"></div></div>
+        <div class="r-stat"><div class="r-num" id="crGrowth">—</div><div class="r-lbl">Traffic Growth</div><div class="r-trend" id="crGrowthTrend"></div></div>
+      </div>
+
+      <div class="section-title">Blog Performance</div>
+      <div class="blog-perf-table">
+        <div class="bpt-head">
+          <span>Blog Title</span><span>Views</span><span>Avg Position</span><span>Clicks</span><span>Status</span>
+        </div>
+        <div id="clientBlogPerfBody">
+          <div class="empty-state"><p>No report data available for this period.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MY YOUTUBE TAB ── -->
+    <div id="client-myyoutube" class="tab-panel hidden">
+      <div class="section-title">YouTube Content</div>
+      <div id="clientYoutubeWrap">
+        <div class="empty-state"><p>No YouTube videos yet.</p></div>
+      </div>
+    </div>
+
+    <!-- ── SUPPORT TAB ── -->
+    <div id="client-support" class="tab-panel hidden">
+      <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div class="section-title" style="margin:0">Support Requests</div>
+        <a class="toggle-form-btn" onclick="toggleForm('addSupportForm')">+ New Request</a>
+      </div>
+
+      <div id="addSupportForm" class="form-card hidden">
+        <h3>New Support Request</h3>
+        <div class="field"><label>Subject</label><input id="supportSubject" placeholder="Brief description of your request"></div>
+        <div class="field-row">
+          <div class="field">
+            <label>Category</label>
+            <select id="supportCategory">
+              <option value="general">General</option>
+              <option value="billing">Billing</option>
+              <option value="content">Content</option>
+              <option value="reporting">Reporting</option>
+              <option value="technical">Technical</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Priority</label>
+            <select id="supportPriority">
+              <option value="low">Low</option>
+              <option value="normal">Normal</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label>Details</label><textarea id="supportDetails" placeholder="Describe your request in detail…"></textarea></div>
+        <div class="form-actions">
+          <button class="btn btn-primary" onclick="addSupportRequest()">Submit Request</button>
+          <button class="btn btn-outline" onclick="toggleForm('addSupportForm')">Cancel</button>
+        </div>
+      </div>
+
+      <div id="clientSupportWrap">
+        <div class="empty-state"><p>No support requests yet.</p></div>
+      </div>
+    </div>
+
+    <!-- ── ADD SERVICES TAB ── -->
+    <div id="client-addservices" class="tab-panel hidden">
+      <div class="section-title">Upgrade Your Plan</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px" id="servicesGrid">
+        <div class="form-card" style="text-align:center;padding:28px">
+          <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:500;color:#00161F;margin-bottom:6px">Starter</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;margin-bottom:12px">$997<span style="font-size:14px;color:#617792">/mo</span></div>
+          <div class="text-sm" style="margin-bottom:16px;line-height:1.7">2 blogs/month<br>Basic SEO<br>Monthly report</div>
+          <a href="pricing.html" class="btn btn-outline btn-sm" style="display:inline-flex">Learn More</a>
+        </div>
+        <div class="form-card" style="text-align:center;padding:28px;border-color:#36D1C2">
+          <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:500;color:#00161F;margin-bottom:6px">Growth</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;margin-bottom:12px">$1,997<span style="font-size:14px;color:#617792">/mo</span></div>
+          <div class="text-sm" style="margin-bottom:16px;line-height:1.7">4 blogs/month<br>Advanced SEO<br>Weekly reports</div>
+          <a href="pricing.html" class="btn btn-primary btn-sm" style="display:inline-flex">Upgrade</a>
+        </div>
+        <div class="form-card" style="text-align:center;padding:28px">
+          <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:500;color:#00161F;margin-bottom:6px">Pro</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;margin-bottom:12px">$3,497<span style="font-size:14px;color:#617792">/mo</span></div>
+          <div class="text-sm" style="margin-bottom:16px;line-height:1.7">8 blogs/month<br>Full SEO suite<br>Dedicated manager</div>
+          <a href="pricing.html" class="btn btn-outline btn-sm" style="display:inline-flex">Learn More</a>
+        </div>
+        <div class="form-card" style="text-align:center;padding:28px">
+          <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:500;color:#00161F;margin-bottom:6px">Scale</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:300;color:#36D1C2;margin-bottom:12px">Custom</div>
+          <div class="text-sm" style="margin-bottom:16px;line-height:1.7">Unlimited blogs<br>Full-service marketing<br>Priority support</div>
+          <a href="pricing.html" class="btn btn-outline btn-sm" style="display:inline-flex">Contact Us</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /dash-content -->
+
+  <footer class="site-footer">
+    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
+    <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
+  </footer>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════ FIREBASE + APP JS ══════════════════════════ -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-
 <script>
-// Firebase config
+// ── FIREBASE INIT ──
 const firebaseConfig = {
   apiKey: "AIzaSyBWEA8VBcn9A9wLeTrKizo17QJ1G_tQl28",
   authDomain: "ac-client-portal-6884c.firebaseapp.com",
@@ -460,315 +883,905 @@ const firebaseConfig = {
   messagingSenderId: "744456773387",
   appId: "1:744456773387:web:9ddcdac444fa13524b0c0e"
 };
-
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+// ── APP STATE ──
 let currentUser = null;
-let userRole = 'client';
-let userCompany = '';
+let currentUserData = null;
+let allClients = [];
+let allBlogs = [];
+let allYoutube = [];
+let allRequests = [];
+let allMetrics = {}; // blogId+month -> data
+let clientBlogFilter = '';
+let reportBlogQueue = []; // for Save & Next
 
-// AUTH
-function toggleAuth() {
-  document.getElementById('loginForm').classList.toggle('hidden');
-  document.getElementById('signupForm').classList.toggle('hidden');
-  const isSignup = !document.getElementById('signupForm').classList.contains('hidden');
-  document.getElementById('authTitle').textContent = isSignup ? 'Create Account' : 'Sign In';
-  document.getElementById('authSubtitle').textContent = isSignup ? 'Set up your client portal' : 'Access your client portal';
-  document.getElementById('authError').style.display = 'none';
+// Package blog counts
+const PACKAGE_BLOGS = { starter: 2, growth: 4, pro: 8, scale: 16 };
+
+// ── AUTH STATE ──
+auth.onAuthStateChanged(async user => {
+  if (user) {
+    currentUser = user;
+    const snap = await db.collection('users').doc(user.uid).get();
+    if (snap.exists) {
+      currentUserData = snap.data();
+    } else {
+      // Auto-create user doc if Google sign-in
+      currentUserData = {
+        name: user.displayName || user.email,
+        email: user.email,
+        company: '',
+        role: 'client',
+        package: 'starter',
+        trackingStatus: 'manual',
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+      await db.collection('users').doc(user.uid).set(currentUserData);
+    }
+    showDashboard();
+  } else {
+    currentUser = null;
+    currentUserData = null;
+    showAuth();
+  }
+});
+
+// ── SHOW/HIDE SCREENS ──
+function showAuth() {
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('adminDash').classList.remove('active');
+  document.getElementById('clientDash').classList.remove('active');
+}
+function showDashboard() {
+  document.getElementById('authScreen').style.display = 'none';
+  if (currentUserData && currentUserData.role === 'admin') {
+    document.getElementById('adminDash').classList.add('active');
+    document.getElementById('clientDash').classList.remove('active');
+    document.getElementById('adminUserName').textContent = currentUserData.name || currentUser.email;
+    loadAdminData();
+  } else {
+    document.getElementById('clientDash').classList.add('active');
+    document.getElementById('adminDash').classList.remove('active');
+    document.getElementById('clientUserName').textContent = currentUserData.name || currentUser.email;
+    document.getElementById('clientGreetName').textContent = (currentUserData.name || '').split(' ')[0] || 'there';
+    loadClientData();
+  }
 }
 
-function showError(msg) {
+// ── AUTH FUNCTIONS ──
+function showRegister() {
+  document.getElementById('loginForm').classList.add('hidden');
+  document.getElementById('registerForm').classList.remove('hidden');
+  document.getElementById('authTitle').textContent = 'Create Account';
+  document.getElementById('authSubtitle').textContent = 'Join the Anderson Collaborative portal';
+  clearAuthError();
+}
+function showLogin() {
+  document.getElementById('registerForm').classList.add('hidden');
+  document.getElementById('loginForm').classList.remove('hidden');
+  document.getElementById('authTitle').textContent = 'Sign In';
+  document.getElementById('authSubtitle').textContent = 'Access your client portal';
+  clearAuthError();
+}
+function clearAuthError() {
+  const el = document.getElementById('authError');
+  el.style.display = 'none';
+  el.textContent = '';
+}
+function showAuthError(msg) {
   const el = document.getElementById('authError');
   el.textContent = msg;
   el.style.display = 'block';
 }
-
 async function emailLogin() {
-  const email = document.getElementById('authEmail').value;
+  const email = document.getElementById('authEmail').value.trim();
   const pass = document.getElementById('authPass').value;
-  if (!email || !pass) { showError('Please enter email and password'); return; }
+  if (!email || !pass) { showAuthError('Please enter your email and password.'); return; }
   try {
     await auth.signInWithEmailAndPassword(email, pass);
-  } catch(e) { showError(e.message); }
+  } catch(e) {
+    showAuthError(friendlyAuthError(e.code));
+  }
 }
-
-async function emailSignup() {
-  const name = document.getElementById('signupName').value;
-  const company = document.getElementById('signupCompany').value;
-  const email = document.getElementById('signupEmail').value;
-  const pass = document.getElementById('signupPass').value;
-  const role = document.getElementById('signupRole').value;
-  if (!name || !email || !pass) { showError('Please fill in all fields'); return; }
+async function googleLogin() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  try {
+    await auth.signInWithPopup(provider);
+  } catch(e) {
+    showAuthError(friendlyAuthError(e.code));
+  }
+}
+async function createAccount() {
+  const name = document.getElementById('regName').value.trim();
+  const company = document.getElementById('regCompany').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const role = document.getElementById('regRole').value;
+  if (!name || !email || !pass) { showAuthError('Please fill in all required fields.'); return; }
   try {
     const cred = await auth.createUserWithEmailAndPassword(email, pass);
-    await cred.user.updateProfile({ displayName: name });
     await db.collection('users').doc(cred.user.uid).set({
       name, company, email, role,
+      package: 'starter',
+      trackingStatus: 'manual',
+      phone: '',
       createdAt: firebase.firestore.FieldValue.serverTimestamp()
     });
-  } catch(e) { showError(e.message); }
-}
-
-async function googleLogin() {
-  try {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const result = await auth.signInWithPopup(provider);
-    const userDoc = await db.collection('users').doc(result.user.uid).get();
-    if (!userDoc.exists) {
-      await db.collection('users').doc(result.user.uid).set({
-        name: result.user.displayName,
-        email: result.user.email,
-        company: '',
-        role: 'client',
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      });
-    }
-  } catch(e) { showError(e.message); }
-}
-
-function signOut() {
-  auth.signOut();
-}
-
-// AUTH STATE
-auth.onAuthStateChanged(async (user) => {
-  if (user) {
-    currentUser = user;
-    const userDoc = await db.collection('users').doc(user.uid).get();
-    const data = userDoc.data() || {};
-    userRole = data.role || 'client';
-    userCompany = data.company || '';
-
-    document.getElementById('authScreen').classList.add('hidden');
-    document.getElementById('dashScreen').classList.remove('hidden');
-    document.getElementById('userName').textContent = user.displayName || user.email;
-
-    if (userRole === 'admin') {
-      document.getElementById('adminTabs').classList.remove('hidden');
-      document.getElementById('clientTabs').classList.add('hidden');
-      document.getElementById('addBlogBtn').classList.remove('hidden');
-      document.getElementById('dashTitle').textContent = 'Admin Dashboard';
-      loadAdminData();
-    } else {
-      document.getElementById('adminTabs').classList.add('hidden');
-      document.getElementById('clientTabs').classList.remove('hidden');
-      document.getElementById('addBlogBtn').classList.add('hidden');
-      document.getElementById('dashTitle').textContent = 'My Dashboard';
-      loadClientData();
-    }
-  } else {
-    currentUser = null;
-    document.getElementById('authScreen').classList.remove('hidden');
-    document.getElementById('dashScreen').classList.add('hidden');
-  }
-});
-
-// DASHBOARD TABS
-function showDashTab(name) {
-  ['overview','blogs','clients','requests','reports'].forEach(t => {
-    const el = document.getElementById('tab-' + t);
-    if (el) el.classList.toggle('hidden', t !== name);
-  });
-  document.querySelectorAll('.dash-tab').forEach(t => {
-    t.classList.toggle('active', t.textContent.toLowerCase().includes(name.substring(0,4)));
-  });
-}
-
-// LOAD ADMIN DATA
-async function loadAdminData() {
-  // Load all blogs
-  const blogsSnap = await db.collection('blogs').orderBy('createdAt','desc').get();
-  const blogs = [];
-  blogsSnap.forEach(doc => blogs.push({id: doc.id, ...doc.data()}));
-
-  // Load all users
-  const usersSnap = await db.collection('users').get();
-  const users = [];
-  usersSnap.forEach(doc => users.push({id: doc.id, ...doc.data()}));
-  const clients = users.filter(u => u.role === 'client');
-
-  // Populate client dropdown
-  const select = document.getElementById('newBlogClient');
-  select.innerHTML = '<option>Select client...</option>';
-  clients.forEach(c => {
-    select.innerHTML += `<option value="${c.id}">${c.company || c.name} (${c.email})</option>`;
-  });
-
-  // Stats
-  document.getElementById('statTotal').textContent = blogs.length;
-  document.getElementById('statDraft').textContent = blogs.filter(b => ['draft','review','seo'].includes(b.status)).length;
-  document.getElementById('statLive').textContent = blogs.filter(b => b.status === 'live').length;
-  document.getElementById('statClients').textContent = clients.length;
-
-  // Pipeline
-  renderPipeline(blogs);
-
-  // Client list
-  const listEl = document.getElementById('clientList');
-  listEl.innerHTML = '<div class="client-row header"><div>Client</div><div>Email</div><div>Plan</div><div>Blogs</div><div>Joined</div></div>';
-  clients.forEach(c => {
-    const clientBlogs = blogs.filter(b => b.clientId === c.id).length;
-    const joined = c.createdAt ? new Date(c.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
-    listEl.innerHTML += `<div class="client-row"><div class="name">${c.company || c.name}</div><div class="email">${c.email}</div><div><span class="plan-badge">${c.plan || 'Starter'}</span></div><div>${clientBlogs}</div><div class="date">${joined}</div></div>`;
-  });
-
-  // Requests
-  loadRequests();
-}
-
-// LOAD CLIENT DATA
-async function loadClientData() {
-  const blogsSnap = await db.collection('blogs').where('clientId','==',currentUser.uid).orderBy('createdAt','desc').get();
-  const blogs = [];
-  blogsSnap.forEach(doc => blogs.push({id: doc.id, ...doc.data()}));
-
-  document.getElementById('statTotal').textContent = blogs.length;
-  document.getElementById('statDraft').textContent = blogs.filter(b => ['draft','review','seo'].includes(b.status)).length;
-  document.getElementById('statLive').textContent = blogs.filter(b => b.status === 'live').length;
-  document.getElementById('statClients').textContent = '—';
-
-  renderPipeline(blogs);
-  loadRequests();
-}
-
-function renderPipeline(blogs) {
-  const cols = {draft:'pipe-draft', review:'pipe-review', seo:'pipe-seo', approved:'pipe-approved', live:'pipe-live'};
-  Object.values(cols).forEach(id => document.getElementById(id).innerHTML = '');
-
-  blogs.forEach(b => {
-    const col = cols[b.status] || cols.draft;
-    const liveLink = b.liveUrl ? `<br><a href="${b.liveUrl}" target="_blank" style="color:#36D1C2;font-size:10px">View live</a>` : '';
-    const docLink = b.docUrl ? `<br><a href="${b.docUrl}" target="_blank" style="color:#617792;font-size:10px">Google Doc</a>` : '';
-    document.getElementById(col).innerHTML += `
-      <div class="pipe-item">
-        <div class="title">${b.title || 'Untitled'}</div>
-        <div class="meta">${b.clientName || ''} &bull; ${b.assignedTo || 'Unassigned'}${docLink}${liveLink}</div>
-      </div>`;
-  });
-}
-
-async function loadRequests() {
-  const query = userRole === 'admin'
-    ? db.collection('requests').orderBy('createdAt','desc')
-    : db.collection('requests').where('userId','==',currentUser.uid).orderBy('createdAt','desc');
-
-  const snap = await query.get();
-  const listEl = document.getElementById('requestList');
-  listEl.innerHTML = '<div class="request-row header"><div>Request</div><div>Client</div><div>Status</div><div>Date</div></div>';
-
-  snap.forEach(doc => {
-    const r = doc.data();
-    const date = r.createdAt ? new Date(r.createdAt.seconds * 1000).toLocaleDateString() : 'N/A';
-    const statusClass = r.status === 'new' ? 'status-new' : r.status === 'in_progress' ? 'status-progress' : 'status-done';
-    listEl.innerHTML += `<div class="request-row"><div>${r.title || 'Request'}</div><div>${r.clientName || ''}</div><div><span class="status-badge ${statusClass}">${r.status || 'new'}</span></div><div>${date}</div></div>`;
-  });
-}
-
-// ADD BLOG
-function toggleAddForm() {
-  document.getElementById('addForm').classList.toggle('hidden');
-}
-
-async function saveBlog() {
-  const clientId = document.getElementById('newBlogClient').value;
-  const clientOption = document.getElementById('newBlogClient').selectedOptions[0];
-  const title = document.getElementById('newBlogTitle').value;
-  const status = document.getElementById('newBlogStatus').value;
-  const docUrl = document.getElementById('newBlogDoc').value;
-  const liveUrl = document.getElementById('newBlogUrl').value;
-  const assignedTo = document.getElementById('newBlogAssigned').value;
-
-  if (!title) { alert('Please enter a blog title'); return; }
-
-  await db.collection('blogs').add({
-    clientId,
-    clientName: clientOption.textContent,
-    title, status, docUrl, liveUrl, assignedTo,
-    createdBy: currentUser.uid,
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  toggleAddForm();
-  document.getElementById('newBlogTitle').value = '';
-  document.getElementById('newBlogDoc').value = '';
-  document.getElementById('newBlogUrl').value = '';
-  document.getElementById('newBlogAssigned').value = '';
-  loadAdminData();
-}
-
-
-// REPORT FORM
-function toggleReportForm() {
-  document.getElementById('reportForm').classList.toggle('hidden');
-  if (!document.getElementById('reportForm').classList.contains('hidden')) {
-    loadBlogDropdown();
+  } catch(e) {
+    showAuthError(friendlyAuthError(e.code));
   }
 }
-
-async function loadBlogDropdown() {
-  const blogsSnap = await db.collection('blogs').orderBy('title').get();
-  const select = document.getElementById('reportBlogId');
-  select.innerHTML = '<option value="">Select a blog...</option>';
-  blogsSnap.forEach(doc => {
-    const b = doc.data();
-    select.innerHTML += '<option value="' + doc.id + '">' + (b.title || 'Untitled') + ' (' + (b.clientName || '') + ') — ' + (b.status || '') + '</option>';
-  });
+async function signOut() {
+  await auth.signOut();
 }
-
-async function loadBlogReport() {
-  const blogId = document.getElementById('reportBlogId').value;
-  const month = document.getElementById('reportMonth').value;
-  if (!blogId || !month) return;
-
-  const reportSnap = await db.collection('blogs').doc(blogId).collection('metrics').doc(month).get();
-  if (reportSnap.exists) {
-    const d = reportSnap.data();
-    document.getElementById('reportClicks').value = d.clicks || '';
-    document.getElementById('reportImpressions').value = d.impressions || '';
-    document.getElementById('reportPosition').value = d.avgPosition || '';
-    document.getElementById('reportCTR').value = d.ctr || '';
-    document.getElementById('reportViews').value = d.pageViews || '';
-    document.getElementById('reportTime').value = d.avgTime || '';
-    document.getElementById('reportInsight').value = d.insight || '';
-    document.getElementById('reportTracking').value = d.tracking || 'manual';
-  } else {
-    document.getElementById('reportClicks').value = '';
-    document.getElementById('reportImpressions').value = '';
-    document.getElementById('reportPosition').value = '';
-    document.getElementById('reportCTR').value = '';
-    document.getElementById('reportViews').value = '';
-    document.getElementById('reportTime').value = '';
-    document.getElementById('reportInsight').value = '';
-  }
-}
-
-async function saveReport() {
-  const blogId = document.getElementById('reportBlogId').value;
-  const month = document.getElementById('reportMonth').value;
-  if (!blogId || !month) { alert('Select a blog and month'); return; }
-
-  const data = {
-    clicks: parseInt(document.getElementById('reportClicks').value) || 0,
-    impressions: parseInt(document.getElementById('reportImpressions').value) || 0,
-    avgPosition: parseFloat(document.getElementById('reportPosition').value) || 0,
-    ctr: parseFloat(document.getElementById('reportCTR').value) || 0,
-    pageViews: parseInt(document.getElementById('reportViews').value) || 0,
-    avgTime: parseInt(document.getElementById('reportTime').value) || 0,
-    insight: document.getElementById('reportInsight').value,
-    tracking: document.getElementById('reportTracking').value,
-    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
-    updatedBy: currentUser.email
+function friendlyAuthError(code) {
+  const map = {
+    'auth/wrong-password': 'Incorrect password. Please try again.',
+    'auth/user-not-found': 'No account found with that email.',
+    'auth/email-already-in-use': 'An account with this email already exists.',
+    'auth/weak-password': 'Password must be at least 6 characters.',
+    'auth/invalid-email': 'Please enter a valid email address.',
+    'auth/too-many-requests': 'Too many attempts. Please try again later.',
+    'auth/popup-closed-by-user': 'Sign-in cancelled.',
   };
-
-  await db.collection('blogs').doc(blogId).collection('metrics').doc(month).set(data);
-  
-  document.getElementById('reportSaved').style.display = 'inline';
-  setTimeout(() => { document.getElementById('reportSaved').style.display = 'none'; }, 2000);
+  return map[code] || 'An error occurred. Please try again.';
 }
 
-</script>
+// ── TOAST ──
+let toastTimer;
+function showToast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { t.className = 'toast'; }, 3200);
+}
 
+// ── UTILITY ──
+function toggleForm(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('hidden');
+}
+function fmtDate(ts) {
+  if (!ts) return '—';
+  const d = ts.toDate ? ts.toDate() : new Date(ts);
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function fmtMonth(str) {
+  if (!str) return '—';
+  const [y,m] = str.split('-');
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return (months[parseInt(m)-1] || m) + ' ' + y;
+}
+function statusLabel(s) {
+  const map = { draft:'Draft', review:'In Review', seo:'SEO Opt.', approved:'Approved', live:'Published', new:'New', in_progress:'In Progress', done:'Done', production:'In Production', published:'Published' };
+  return map[s] || s;
+}
+function statusClass(s) {
+  const map = { draft:'s-draft', review:'s-review', seo:'s-seo', approved:'s-approved', live:'s-live', new:'s-new', in_progress:'s-progress', done:'s-done', production:'s-production', published:'s-published' };
+  return map[s] || 's-draft';
+}
+function trackClass(s) {
+  const map = { manual:'track-manual', pending:'track-pending', connected:'track-connected' };
+  return 'status-badge ' + (map[s] || 'track-manual');
+}
+function planClass(p) {
+  const map = { starter:'plan-starter', growth:'plan-growth', pro:'plan-pro', scale:'plan-scale' };
+  return 'plan-badge ' + (map[p] || 'plan-starter');
+}
+function capitalize(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+function numFmt(n) {
+  if (n === undefined || n === null || n === '') return '—';
+  n = Number(n);
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+function trendHtml(val, prevVal) {
+  if (prevVal === undefined || prevVal === null || prevVal === '' || Number(prevVal) === 0) return '';
+  const diff = Number(val) - Number(prevVal);
+  const pct = Math.round((diff / Number(prevVal)) * 100);
+  if (diff > 0) return `<span class="trend-up">+${pct}%</span>`;
+  if (diff < 0) return `<span class="trend-down">${pct}%</span>`;
+  return '<span style="color:#B3BEC9">0%</span>';
+}
+function currentMonth() {
+  const now = new Date();
+  return now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+}
+
+// ── TAB SWITCHING ──
+function switchAdminTab(name, el) {
+  document.querySelectorAll('#adminTabs .dash-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#adminDash .tab-panel').forEach(p => { p.classList.remove('active'); p.classList.add('hidden'); });
+  if (el) el.classList.add('active');
+  else {
+    document.querySelectorAll('#adminTabs .dash-tab').forEach(t => {
+      if (t.textContent.toLowerCase().replace(' ','').includes(name.replace('-',''))) t.classList.add('active');
+    });
+  }
+  const panel = document.getElementById('admin-' + name);
+  if (panel) { panel.classList.remove('hidden'); panel.classList.add('active'); }
+}
+function switchClientTab(name, el) {
+  document.querySelectorAll('#clientTabs .dash-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#clientDash .tab-panel').forEach(p => { p.classList.remove('active'); p.classList.add('hidden'); });
+  if (el) el.classList.add('active');
+  const panel = document.getElementById('client-' + name);
+  if (panel) { panel.classList.remove('hidden'); panel.classList.add('active'); }
+}
+
+// ══════════════════════════════
+// ADMIN DATA LOADING
+// ══════════════════════════════
+async function loadAdminData() {
+  await Promise.all([loadClients(), loadBlogs(), loadYoutube(), loadRequests()]);
+  renderAdminOverview();
+  renderClientsTable();
+  renderBlogPipeline();
+  populateClientDropdowns();
+  renderYoutubeTable();
+  renderRequestsTable();
+  // Set default report month
+  document.getElementById('reportMonth').value = currentMonth();
+}
+
+async function loadClients() {
+  const snap = await db.collection('users').where('role','==','client').orderBy('createdAt','desc').get();
+  allClients = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+async function loadBlogs() {
+  const snap = await db.collection('blogs').orderBy('createdAt','desc').get();
+  allBlogs = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  // Load all metrics
+  for (const blog of allBlogs) {
+    const mSnap = await db.collection('blogs').doc(blog.id).collection('metrics').get();
+    mSnap.docs.forEach(m => {
+      allMetrics[blog.id + '_' + m.id] = m.data();
+    });
+  }
+}
+async function loadYoutube() {
+  const snap = await db.collection('youtube').orderBy('createdAt','desc').get();
+  allYoutube = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+async function loadRequests() {
+  const snap = await db.collection('requests').orderBy('createdAt','desc').get();
+  allRequests = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+}
+
+// ── OVERVIEW ──
+function renderAdminOverview() {
+  document.getElementById('ovTotalClients').textContent = allClients.length;
+  document.getElementById('ovTotalBlogs').textContent = allBlogs.length;
+  document.getElementById('ovPublished').textContent = allBlogs.filter(b => b.status === 'live').length;
+  document.getElementById('ovInProgress').textContent = allBlogs.filter(b => b.status !== 'live' && b.status !== 'draft').length;
+
+  // Activity feed
+  const feed = document.getElementById('activityFeed');
+  const items = [];
+  allBlogs.slice(0,5).forEach(b => {
+    items.push({ text: `<strong>${b.title}</strong> moved to <strong>${statusLabel(b.status)}</strong>`, ts: b.createdAt, dot: statusClass(b.status).replace('s-','dot-') });
+  });
+  allClients.slice(0,3).forEach(c => {
+    items.push({ text: `New client <strong>${c.name}</strong> (${capitalize(c.package)}) added`, ts: c.createdAt, dot: 'dot-approved' });
+  });
+  if (!items.length) { feed.innerHTML = '<div class="empty-state"><p>No activity yet.</p></div>'; return; }
+  feed.innerHTML = items.map(i => `
+    <div class="activity-item">
+      <div class="activity-dot" style="background:${dotColor(i.dot)}"></div>
+      <div class="activity-text">${i.text}</div>
+      <div class="activity-time">${fmtDate(i.ts)}</div>
+    </div>`).join('');
+}
+function dotColor(cls) {
+  const map = { 'dot-draft':'#B3BEC9','dot-review':'#f4a261','dot-seo':'#36D1C2','dot-approved':'#2BBDAF','dot-live':'#0a7c42','dot-new':'#36D1C2' };
+  return map[cls] || '#B3BEC9';
+}
+
+// ── CLIENTS TABLE ──
+function renderClientsTable() {
+  const pkgF = document.getElementById('clientFilterPackage').value;
+  const trkF = document.getElementById('clientFilterTracking').value;
+  let filtered = allClients.filter(c =>
+    (!pkgF || c.package === pkgF) &&
+    (!trkF || c.trackingStatus === trkF)
+  );
+  const tbody = document.getElementById('clientsTableBody');
+  if (!filtered.length) { tbody.innerHTML = '<div class="empty-state"><p>No clients match the filter.</p></div>'; return; }
+  tbody.innerHTML = filtered.map(c => {
+    const blogCount = allBlogs.filter(b => b.clientId === c.id).length;
+    return `<div class="table-row clients-grid" onclick="showClientDetail('${c.id}')">
+      <span class="cell-name">${esc(c.name || '—')}</span>
+      <span class="cell-email">${esc(c.email || '—')}</span>
+      <span><span class="${planClass(c.package)}">${capitalize(c.package || 'starter')}</span></span>
+      <span>${blogCount}</span>
+      <span><span class="${trackClass(c.trackingStatus)}">${capitalize(c.trackingStatus || 'manual')}</span></span>
+      <span class="cell-date">${fmtDate(c.createdAt)}</span>
+    </div>`;
+  }).join('');
+}
+
+function showClientDetail(cid) {
+  const c = allClients.find(x => x.id === cid);
+  if (!c) return;
+  const panel = document.getElementById('clientDetailPanel');
+  panel.classList.add('open');
+  document.getElementById('cdpName').textContent = c.name || '—';
+  document.getElementById('cdpMeta').textContent = (c.email || '') + (c.company ? ' · ' + c.company : '') + ' · ' + capitalize(c.package || 'starter');
+  const blogs = allBlogs.filter(b => b.clientId === cid);
+  const pkgMax = PACKAGE_BLOGS[c.package] || 4;
+  const published = blogs.filter(b => b.status === 'live').length;
+  document.getElementById('cdpGrid').innerHTML = `
+    <div class="detail-item"><div class="di-lbl">Package</div><div class="di-val">${capitalize(c.package || 'starter')}</div></div>
+    <div class="detail-item"><div class="di-lbl">Tracking</div><div class="di-val">${capitalize(c.trackingStatus || 'manual')}</div></div>
+    <div class="detail-item"><div class="di-lbl">Total Blogs</div><div class="di-val">${blogs.length}</div></div>
+    <div class="detail-item"><div class="di-lbl">Published</div><div class="di-val" style="color:#0a7c42">${published} / ${pkgMax}</div></div>
+  `;
+  document.getElementById('cdpBlogs').innerHTML = blogs.length ? blogs.map(b => `
+    <div class="blog-card">
+      <div class="blog-card-info">
+        <div class="blog-card-title">${esc(b.title)}</div>
+        <div class="blog-card-meta">Assigned to ${esc(b.assignedTo || '—')} · ${fmtDate(b.createdAt)}</div>
+        <div class="blog-card-links">
+          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">Google Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">Live URL</a>` : ''}
+        </div>
+      </div>
+      <div class="blog-card-status"><span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span></div>
+    </div>`).join('') : '<div class="text-sm" style="padding:12px 0">No blogs yet.</div>';
+  panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function addClient() {
+  const name = document.getElementById('newClientName').value.trim();
+  const email = document.getElementById('newClientEmail').value.trim();
+  const company = document.getElementById('newClientCompany').value.trim();
+  const phone = document.getElementById('newClientPhone').value.trim();
+  const pkg = document.getElementById('newClientPackage').value;
+  const tracking = document.getElementById('newClientTracking').value;
+  if (!name || !email) { showToast('Name and email are required.', 'error'); return; }
+  try {
+    const ref = await db.collection('users').add({
+      name, email, company, phone, role: 'client',
+      package: pkg, trackingStatus: tracking,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdBy: currentUser.uid
+    });
+    allClients.unshift({ id: ref.id, name, email, company, phone, role: 'client', package: pkg, trackingStatus: tracking, createdAt: new Date() });
+    renderClientsTable();
+    renderAdminOverview();
+    populateClientDropdowns();
+    document.getElementById('newClientName').value = '';
+    document.getElementById('newClientEmail').value = '';
+    document.getElementById('newClientCompany').value = '';
+    document.getElementById('newClientPhone').value = '';
+    toggleForm('addClientForm');
+    showToast('Client added successfully.');
+  } catch(e) {
+    showToast('Error adding client: ' + e.message, 'error');
+  }
+}
+
+// ── BLOGS PIPELINE ──
+function renderBlogPipeline() {
+  const stages = ['draft','review','seo','approved','live'];
+  stages.forEach(s => {
+    const filtered = allBlogs.filter(b => b.status === s);
+    const container = document.getElementById('pipeline-' + s);
+    const counter = document.getElementById('pc' + capitalize(s));
+    if (counter) counter.textContent = filtered.length;
+    if (!container) return;
+    container.innerHTML = filtered.length ? filtered.map(b => `
+      <div class="pipe-item">
+        <div class="pipe-item-title">${esc(b.title)}</div>
+        <div class="pipe-item-meta">${esc(b.clientName || '—')} · ${esc(b.assignedTo || '—')}</div>
+        <div class="pipe-item-links">
+          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">Live</a>` : ''}
+        </div>
+      </div>`).join('') : '<div style="font-size:11px;color:#B3BEC9;text-align:center;padding:16px 0">Empty</div>';
+  });
+  renderPackageProgress();
+}
+
+function renderPackageProgress() {
+  const wrap = document.getElementById('packageProgressWrap');
+  if (!wrap) return;
+  const clientProgress = {};
+  allClients.forEach(c => {
+    const blogs = allBlogs.filter(b => b.clientId === c.id);
+    const published = blogs.filter(b => b.status === 'live').length;
+    const max = PACKAGE_BLOGS[c.package] || 4;
+    clientProgress[c.id] = { name: c.name, pkg: c.package, published, max };
+  });
+  const items = Object.values(clientProgress);
+  if (!items.length) { wrap.innerHTML = ''; return; }
+  wrap.innerHTML = `
+    <div class="section-title">Package Progress</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px">
+      ${items.slice(0,8).map(p => `
+        <div class="form-card" style="padding:14px">
+          <div style="font-size:12px;font-weight:400;color:#00161F;margin-bottom:4px">${esc(p.name)}</div>
+          <div style="font-size:11px;color:#617792;margin-bottom:8px">${capitalize(p.pkg)} Plan</div>
+          <div style="font-family:'Rubik',sans-serif;font-size:18px;font-weight:300;color:#36D1C2">${p.published} <span style="font-size:13px;color:#B3BEC9">/ ${p.max}</span></div>
+          <div class="progress-bar" style="margin-top:6px"><div class="progress-fill" style="width:${Math.min(100,Math.round(p.published/p.max*100))}%"></div></div>
+          <div class="progress-label">blogs published</div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function updateBlogClientName() {
+  // No-op, client name resolved on save
+}
+
+async function addBlog() {
+  const clientId = document.getElementById('newBlogClient').value;
+  const title = document.getElementById('newBlogTitle').value.trim();
+  const status = document.getElementById('newBlogStatus').value;
+  const assignedTo = document.getElementById('newBlogAssigned').value.trim();
+  const docUrl = document.getElementById('newBlogDocUrl').value.trim();
+  const liveUrl = document.getElementById('newBlogLiveUrl').value.trim();
+  if (!title) { showToast('Blog title is required.', 'error'); return; }
+  const client = allClients.find(c => c.id === clientId);
+  const clientName = client ? client.name : '';
+  try {
+    const ref = await db.collection('blogs').add({
+      clientId: clientId || '', clientName, title, status, assignedTo,
+      docUrl, liveUrl,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdBy: currentUser.uid
+    });
+    allBlogs.unshift({ id: ref.id, clientId: clientId || '', clientName, title, status, assignedTo, docUrl, liveUrl, createdAt: new Date() });
+    renderBlogPipeline();
+    renderAdminOverview();
+    document.getElementById('newBlogTitle').value = '';
+    document.getElementById('newBlogDocUrl').value = '';
+    document.getElementById('newBlogLiveUrl').value = '';
+    document.getElementById('newBlogAssigned').value = '';
+    toggleForm('addBlogForm');
+    showToast('Blog added to pipeline.');
+  } catch(e) {
+    showToast('Error adding blog: ' + e.message, 'error');
+  }
+}
+
+// ── POPULATE DROPDOWNS ──
+function populateClientDropdowns() {
+  const dropdowns = ['newBlogClient','reportClient','ytClient','reportFilterClient'];
+  dropdowns.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.value;
+    if (id === 'reportFilterClient') {
+      el.innerHTML = '<option value="">All Clients</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    } else {
+      el.innerHTML = '<option value="">Select client…</option>' + allClients.map(c => `<option value="${c.id}">${esc(c.name)}</option>`).join('');
+    }
+    if (val) el.value = val;
+  });
+}
+
+// ── REPORTS ──
+function onReportClientChange() {
+  const clientId = document.getElementById('reportClient').value;
+  const blogSel = document.getElementById('reportBlog');
+  const clientBlogs = allBlogs.filter(b => b.clientId === clientId);
+  blogSel.innerHTML = '<option value="">Select blog…</option>' + clientBlogs.map(b => `<option value="${b.id}">${esc(b.title)}</option>`).join('');
+  reportBlogQueue = clientBlogs.map(b => b.id);
+  document.getElementById('reportBlogIndex').textContent = '';
+  clearReportFields();
+  hideReportContext();
+  updateReportProgress();
+}
+
+function onReportBlogChange() {
+  const blogId = document.getElementById('reportBlog').value;
+  const month = document.getElementById('reportMonth').value;
+  clearReportFields();
+  if (!blogId) { hideReportContext(); return; }
+  const blog = allBlogs.find(b => b.id === blogId);
+  if (blog) {
+    const ctx = document.getElementById('reportBlogContext');
+    ctx.classList.add('show');
+    document.getElementById('rcTitle').textContent = blog.title;
+    document.getElementById('rcMeta').textContent = (blog.clientName || '—') + ' · ' + statusLabel(blog.status);
+  }
+  // Update queue index
+  const idx = reportBlogQueue.indexOf(blogId);
+  if (idx >= 0) {
+    document.getElementById('reportBlogIndex').textContent = `(${idx+1} / ${reportBlogQueue.length})`;
+  }
+  updateReportProgress();
+  if (month) loadExistingReport(blogId, month);
+}
+
+function hideReportContext() {
+  document.getElementById('reportBlogContext').classList.remove('show');
+  document.getElementById('reportExisting').classList.remove('show');
+}
+
+function updateReportProgress() {
+  const blogId = document.getElementById('reportBlog').value;
+  if (!reportBlogQueue.length) { document.getElementById('reportProgressFill').style.width = '0%'; return; }
+  const idx = Math.max(0, reportBlogQueue.indexOf(blogId));
+  const pct = idx >= 0 ? Math.round((idx / reportBlogQueue.length) * 100) : 0;
+  document.getElementById('reportProgressFill').style.width = pct + '%';
+}
+
+function loadExistingReport(blogId, month) {
+  const key = blogId + '_' + month;
+  const data = allMetrics[key];
+  const box = document.getElementById('reportExisting');
+  if (!data) { box.classList.remove('show'); return; }
+  box.classList.add('show');
+  document.getElementById('reportExistingGrid').innerHTML = `
+    <div class="re-item"><div class="re-val">${numFmt(data.clicks)}</div><div class="re-lbl">Clicks</div></div>
+    <div class="re-item"><div class="re-val">${numFmt(data.impressions)}</div><div class="re-lbl">Impressions</div></div>
+    <div class="re-item"><div class="re-val">${data.avgPosition || '—'}</div><div class="re-lbl">Avg Pos</div></div>
+    <div class="re-item"><div class="re-val">${numFmt(data.pageViews)}</div><div class="re-lbl">Page Views</div></div>
+  `;
+  // Pre-fill fields
+  document.getElementById('mClicks').value = data.clicks || '';
+  document.getElementById('mImpressions').value = data.impressions || '';
+  document.getElementById('mPosition').value = data.avgPosition || '';
+  document.getElementById('mPageViews').value = data.pageViews || '';
+  document.getElementById('mInsight').value = data.insight || '';
+}
+
+function clearReportFields() {
+  ['mClicks','mImpressions','mPosition','mPageViews','mInsight'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('reportExisting').classList.remove('show');
+}
+function clearReportForm() {
+  document.getElementById('reportClient').value = '';
+  document.getElementById('reportBlog').innerHTML = '<option value="">Select blog…</option>';
+  document.getElementById('reportMonth').value = currentMonth();
+  clearReportFields();
+  hideReportContext();
+  document.getElementById('reportBlogIndex').textContent = '';
+  document.getElementById('reportProgressFill').style.width = '0%';
+  reportBlogQueue = [];
+}
+
+async function saveReport(andNext) {
+  const blogId = document.getElementById('reportBlog').value;
+  const month = document.getElementById('reportMonth').value;
+  const clicks = document.getElementById('mClicks').value;
+  const impressions = document.getElementById('mImpressions').value;
+  const avgPosition = document.getElementById('mPosition').value;
+  const pageViews = document.getElementById('mPageViews').value;
+  const insight = document.getElementById('mInsight').value.trim();
+  if (!blogId || !month) { showToast('Please select a blog and month.', 'error'); return; }
+  const data = {
+    month, clicks: Number(clicks)||0, impressions: Number(impressions)||0,
+    avgPosition: Number(avgPosition)||0, pageViews: Number(pageViews)||0,
+    insight, updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedBy: currentUser.uid
+  };
+  try {
+    await db.collection('blogs').doc(blogId).collection('metrics').doc(month).set(data, { merge: true });
+    allMetrics[blogId + '_' + month] = { ...data, updatedAt: new Date() };
+    showToast('Report saved.');
+    renderSavedReports();
+    if (andNext) {
+      const idx = reportBlogQueue.indexOf(blogId);
+      if (idx >= 0 && idx < reportBlogQueue.length - 1) {
+        const nextId = reportBlogQueue[idx + 1];
+        document.getElementById('reportBlog').value = nextId;
+        onReportBlogChange();
+      } else {
+        showToast('All blogs in this batch have been updated!', 'success');
+        clearReportFields();
+        hideReportContext();
+        document.getElementById('reportProgressFill').style.width = '100%';
+      }
+    } else {
+      loadExistingReport(blogId, month);
+    }
+  } catch(e) {
+    showToast('Error saving report: ' + e.message, 'error');
+  }
+}
+
+function renderSavedReports() {
+  const clientF = document.getElementById('reportFilterClient').value;
+  const monthF = document.getElementById('reportFilterMonth').value;
+  const wrap = document.getElementById('savedReportsWrap');
+  const rows = [];
+  Object.entries(allMetrics).forEach(([key, data]) => {
+    const [blogId, month] = key.split('_').reduce((acc, part, i, arr) => {
+      if (i === 0) acc[0] = part;
+      else acc[1] = (acc[1] ? acc[1] + '_' : '') + part;
+      return acc;
+    }, ['','']);
+    const blog = allBlogs.find(b => b.id === blogId);
+    if (!blog) return;
+    if (clientF && blog.clientId !== clientF) return;
+    if (monthF && month !== monthF) return;
+    rows.push({ blog, month, data });
+  });
+  // Populate month filter
+  const months = [...new Set(Object.keys(allMetrics).map(k => k.split(/_(.+)/)[1]))].sort().reverse();
+  const mSel = document.getElementById('reportFilterMonth');
+  const mVal = mSel.value;
+  mSel.innerHTML = '<option value="">All Months</option>' + months.map(m => `<option value="${m}">${fmtMonth(m)}</option>`).join('');
+  mSel.value = mVal;
+
+  if (!rows.length) { wrap.innerHTML = '<div class="empty-state"><p>No reports match the filter.</p></div>'; return; }
+  wrap.innerHTML = `
+    <div class="table-wrap">
+      <div class="table-head" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr">
+        <span>Blog</span><span>Month</span><span>Clicks</span><span>Impressions</span><span>Avg Pos</span><span>Page Views</span>
+      </div>
+      ${rows.slice(0,50).map(r => `
+        <div class="table-row" style="grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr">
+          <span class="cell-name">${esc(r.blog.title)}<br><span class="cell-email">${esc(r.blog.clientName || '—')}</span></span>
+          <span>${fmtMonth(r.month)}</span>
+          <span>${numFmt(r.data.clicks)}</span>
+          <span>${numFmt(r.data.impressions)}</span>
+          <span>${r.data.avgPosition || '—'}</span>
+          <span>${numFmt(r.data.pageViews)}</span>
+        </div>`).join('')}
+    </div>`;
+}
+
+// ── YOUTUBE ──
+async function addYoutube() {
+  const clientId = document.getElementById('ytClient').value;
+  const title = document.getElementById('ytTitle').value.trim();
+  const url = document.getElementById('ytUrl').value.trim();
+  const date = document.getElementById('ytDate').value;
+  const status = document.getElementById('ytStatus').value;
+  const views = document.getElementById('ytViews').value;
+  const likes = document.getElementById('ytLikes').value;
+  if (!title) { showToast('Video title is required.', 'error'); return; }
+  const client = allClients.find(c => c.id === clientId);
+  const clientName = client ? client.name : '';
+  try {
+    const ref = await db.collection('youtube').add({
+      clientId: clientId || '', clientName, title,
+      youtubeUrl: url, publishDate: date, status,
+      views: Number(views)||0, likes: Number(likes)||0,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    allYoutube.unshift({ id: ref.id, clientId: clientId||'', clientName, title, youtubeUrl: url, publishDate: date, status, views: Number(views)||0, likes: Number(likes)||0, createdAt: new Date() });
+    renderYoutubeTable();
+    document.getElementById('ytTitle').value = '';
+    document.getElementById('ytUrl').value = '';
+    document.getElementById('ytViews').value = '';
+    document.getElementById('ytLikes').value = '';
+    toggleForm('addYoutubeForm');
+    showToast('Video added.');
+  } catch(e) {
+    showToast('Error: ' + e.message, 'error');
+  }
+}
+
+function renderYoutubeTable() {
+  const tbody = document.getElementById('youtubeTableBody');
+  if (!allYoutube.length) { tbody.innerHTML = '<div class="empty-state"><p>No videos yet.</p></div>'; return; }
+  tbody.innerHTML = allYoutube.map(v => `
+    <div class="table-row youtube-grid">
+      <span class="cell-name">${esc(v.title)}</span>
+      <span class="cell-email">${esc(v.clientName || '—')}</span>
+      <span><span class="status-badge ${statusClass(v.status)}">${statusLabel(v.status)}</span></span>
+      <span>${numFmt(v.views)}</span>
+      <span>${numFmt(v.likes)}</span>
+      <span class="cell-date">${v.publishDate || fmtDate(v.createdAt)}</span>
+    </div>`).join('');
+}
+
+// ── REQUESTS ──
+function renderRequestsTable() {
+  const tbody = document.getElementById('requestsTableBody');
+  if (!allRequests.length) { tbody.innerHTML = '<div class="empty-state"><p>No requests yet.</p></div>'; return; }
+  tbody.innerHTML = allRequests.map(r => `
+    <div class="table-row requests-grid">
+      <span class="cell-name">${esc(r.clientName || '—')}<br><span class="cell-email">${esc(r.title || '—')}</span></span>
+      <span>${esc(r.plan || '—')}</span>
+      <span>${esc(r.category || '—')}</span>
+      <span><span class="status-badge ${statusClass(r.status)}">${statusLabel(r.status)}</span></span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════
+// CLIENT DATA LOADING
+// ══════════════════════════════
+async function loadClientData() {
+  const uid = currentUser.uid;
+  // Load this client's blogs
+  const bSnap = await db.collection('blogs').where('clientId','==',uid).orderBy('createdAt','desc').get();
+  allBlogs = bSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  // Load metrics
+  allMetrics = {};
+  for (const blog of allBlogs) {
+    const mSnap = await db.collection('blogs').doc(blog.id).collection('metrics').get();
+    mSnap.docs.forEach(m => { allMetrics[blog.id + '_' + m.id] = { ...m.data(), blogId: blog.id, month: m.id }; });
+  }
+  // YouTube
+  const ySnap = await db.collection('youtube').where('clientId','==',uid).get();
+  allYoutube = ySnap.docs.map(d => ({ id: d.id, ...d.data() }));
+  // Requests (support)
+  const rSnap = await db.collection('requests').where('userId','==',uid).orderBy('createdAt','desc').get();
+  allRequests = rSnap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+  renderClientPackageCard();
+  renderClientBlogs();
+  populateClientReportMonths();
+  renderClientReports();
+  renderClientYoutube();
+  renderClientSupport();
+}
+
+function renderClientPackageCard() {
+  const pkg = currentUserData.package || 'starter';
+  const max = PACKAGE_BLOGS[pkg] || 4;
+  const published = allBlogs.filter(b => b.status === 'live').length;
+  document.getElementById('cPkgName').textContent = capitalize(pkg) + ' Package';
+  document.getElementById('cPkgCount').textContent = published + ' / ' + max;
+  const pct = Math.min(100, Math.round(published / max * 100));
+  document.getElementById('cPkgBar').style.width = pct + '%';
+}
+
+function renderClientBlogs(filter) {
+  if (filter !== undefined) clientBlogFilter = filter;
+  const wrap = document.getElementById('clientBlogsWrap');
+  let blogs = allBlogs;
+  if (clientBlogFilter) blogs = blogs.filter(b => b.status === clientBlogFilter);
+  if (!blogs.length) { wrap.innerHTML = '<div class="empty-state"><p>No blogs found.</p></div>'; return; }
+  wrap.innerHTML = blogs.map(b => `
+    <div class="blog-card">
+      <div class="blog-card-info">
+        <div class="blog-card-title">${esc(b.title)}</div>
+        <div class="blog-card-meta">Assigned to ${esc(b.assignedTo || '—')} · Added ${fmtDate(b.createdAt)}</div>
+        <div class="blog-card-links">
+          ${b.docUrl ? `<a href="${b.docUrl}" target="_blank">View Google Doc</a>` : ''}
+          ${b.liveUrl ? `<a href="${b.liveUrl}" target="_blank">View Live Post</a>` : ''}
+        </div>
+      </div>
+      <div class="blog-card-status"><span class="status-badge ${statusClass(b.status)}">${statusLabel(b.status)}</span></div>
+    </div>`).join('');
+}
+
+function filterClientBlogs(f) {
+  clientBlogFilter = f;
+  renderClientBlogs();
+}
+
+function populateClientReportMonths() {
+  const months = [...new Set(Object.values(allMetrics).map(m => m.month))].sort().reverse();
+  const sel = document.getElementById('clientReportMonth');
+  sel.innerHTML = '<option value="">All Months</option>' + months.map(m => `<option value="${m}">${fmtMonth(m)}</option>`).join('');
+  if (months.length) sel.value = months[0];
+}
+
+function renderClientReports() {
+  const month = document.getElementById('clientReportMonth').value;
+  // Gather metrics for the selected month
+  let entries = Object.values(allMetrics);
+  if (month) entries = entries.filter(m => m.month === month);
+
+  // Aggregate stats
+  const totalClicks = entries.reduce((s,m) => s + (Number(m.clicks)||0), 0);
+  const totalViews = entries.reduce((s,m) => s + (Number(m.pageViews)||0), 0);
+  const totalImpressions = entries.reduce((s,m) => s + (Number(m.impressions)||0), 0);
+  const positions = entries.filter(m => m.avgPosition > 0).map(m => Number(m.avgPosition));
+  const avgPos = positions.length ? (positions.reduce((a,b) => a+b,0)/positions.length).toFixed(1) : '—';
+  const top10 = positions.filter(p => p <= 10).length;
+
+  // Previous month comparison
+  let prevMonth = '';
+  if (month) {
+    const [y,m2] = month.split('-');
+    const d = new Date(y, parseInt(m2)-2, 1);
+    prevMonth = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+  }
+  const prevEntries = prevMonth ? Object.values(allMetrics).filter(m => m.month === prevMonth) : [];
+  const prevClicks = prevEntries.reduce((s,m) => s + (Number(m.clicks)||0), 0);
+  const prevViews = prevEntries.reduce((s,m) => s + (Number(m.pageViews)||0), 0);
+
+  document.getElementById('crOrganic').textContent = numFmt(totalViews);
+  document.getElementById('crKeywords').textContent = numFmt(totalImpressions);
+  document.getElementById('crTop10').textContent = top10;
+  document.getElementById('crGrowth').textContent = totalClicks > 0 && prevClicks > 0 ? (Math.round(((totalClicks-prevClicks)/prevClicks)*100)) + '%' : '—';
+  document.getElementById('crOrgTrend').innerHTML = trendHtml(totalViews, prevViews);
+  document.getElementById('crKwTrend').innerHTML = '';
+  document.getElementById('crTop10Trend').innerHTML = '';
+  document.getElementById('crGrowthTrend').innerHTML = trendHtml(totalClicks, prevClicks);
+
+  // Blog performance table
+  const tbody = document.getElementById('clientBlogPerfBody');
+  if (!entries.length) { tbody.innerHTML = '<div class="empty-state"><p>No data for this period.</p></div>'; return; }
+  tbody.innerHTML = entries.map(m => {
+    const blog = allBlogs.find(b => b.id === m.blogId);
+    if (!blog) return '';
+    return `<div>
+      <div class="bpt-row">
+        <span class="cell-name">${esc(blog.title)}</span>
+        <span>${numFmt(m.pageViews)}</span>
+        <span>${m.avgPosition || '—'}</span>
+        <span>${numFmt(m.clicks)}</span>
+        <span><span class="status-badge ${statusClass(blog.status)}">${statusLabel(blog.status)}</span></span>
+      </div>
+      ${m.insight ? `<div style="padding:0 16px 12px"><div class="insight-box">${esc(m.insight)}</div></div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderClientYoutube() {
+  const wrap = document.getElementById('clientYoutubeWrap');
+  if (!allYoutube.length) { wrap.innerHTML = '<div class="empty-state"><p>No YouTube videos yet.</p></div>'; return; }
+  wrap.innerHTML = allYoutube.map(v => `
+    <div class="yt-card">
+      <div class="yt-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      </div>
+      <div class="yt-info">
+        <div class="yt-title">${esc(v.title)}</div>
+        <div class="yt-meta">${v.publishDate || '—'}</div>
+        <div class="yt-stats">
+          <div class="yt-stat-item">Views: <strong>${numFmt(v.views)}</strong></div>
+          <div class="yt-stat-item">Likes: <strong>${numFmt(v.likes)}</strong></div>
+          ${v.youtubeUrl ? `<a href="${v.youtubeUrl}" target="_blank" class="inline-link">Watch</a>` : ''}
+        </div>
+      </div>
+      <div><span class="status-badge ${statusClass(v.status)}">${statusLabel(v.status)}</span></div>
+    </div>`).join('');
+}
+
+function renderClientSupport() {
+  const wrap = document.getElementById('clientSupportWrap');
+  if (!allRequests.length) { wrap.innerHTML = '<div class="empty-state"><p>No support requests yet.</p></div>'; return; }
+  wrap.innerHTML = allRequests.map(r => `
+    <div class="support-ticket">
+      <div class="ticket-header">
+        <div>
+          <div class="ticket-title">${esc(r.title || 'Support Request')}</div>
+          <div class="ticket-meta">${r.category || 'General'} · ${fmtDate(r.createdAt)}</div>
+        </div>
+        <span class="status-badge ${statusClass(r.status)}">${statusLabel(r.status)}</span>
+      </div>
+      ${r.details ? `<div class="ticket-body">${esc(r.details)}</div>` : ''}
+    </div>`).join('');
+}
+
+async function addSupportRequest() {
+  const subject = document.getElementById('supportSubject').value.trim();
+  const category = document.getElementById('supportCategory').value;
+  const priority = document.getElementById('supportPriority').value;
+  const details = document.getElementById('supportDetails').value.trim();
+  if (!subject) { showToast('Please enter a subject.', 'error'); return; }
+  try {
+    const ref = await db.collection('requests').add({
+      userId: currentUser.uid,
+      clientName: currentUserData.name || currentUser.email,
+      title: subject, category, priority, details,
+      status: 'new', plan: currentUserData.package || 'starter',
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    allRequests.unshift({ id: ref.id, userId: currentUser.uid, clientName: currentUserData.name, title: subject, category, priority, details, status: 'new', createdAt: new Date() });
+    renderClientSupport();
+    document.getElementById('supportSubject').value = '';
+    document.getElementById('supportDetails').value = '';
+    toggleForm('addSupportForm');
+    showToast('Support request submitted.');
+  } catch(e) {
+    showToast('Error: ' + e.message, 'error');
+  }
+}
+
+// ── XSS ESCAPE ──
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+</script>
 </body>
 </html>
