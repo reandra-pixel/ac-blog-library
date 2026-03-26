@@ -190,7 +190,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
     <div class="dash-header">
       <h1 id="dashTitle">Dashboard</h1>
       <div>
-        <button class="btn btn-primary btn-sm" id="addBlogBtn" onclick="toggleAddForm()">+ Add Blog</button>
+        <button class="btn btn-primary btn-sm" id="addBlogBtn" onclick="toggleAddForm()">+ Add Blog</button> <button class="btn btn-outline btn-sm" id="updateReportBtn" onclick="toggleReportForm()">Update Reports</button>
       </div>
     </div>
 
@@ -212,6 +212,73 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
     </div>
 
     <!-- ADD BLOG FORM -->
+    <!-- UPDATE REPORT FORM (admin) -->
+    <div class="add-form hidden" id="reportForm">
+      <h3>Update Blog Report</h3>
+      <p style="font-size:12px;color:#617792;font-weight:300;margin-bottom:14px">Paste numbers from Google Search Console + Analytics for each blog.</p>
+      
+      <label>Select Blog</label>
+      <select id="reportBlogId" onchange="loadBlogReport()">
+        <option value="">Select a blog...</option>
+      </select>
+
+      <div class="row">
+        <div>
+          <label>Month</label>
+          <input type="month" id="reportMonth" value="2026-03">
+        </div>
+        <div>
+          <label>Tracking Status</label>
+          <select id="reportTracking">
+            <option value="manual">Manual</option>
+            <option value="pending">Pending Access</option>
+            <option value="connected">Connected (Auto)</option>
+          </select>
+        </div>
+      </div>
+
+      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">From Google Search Console</p>
+      <div class="row">
+        <div>
+          <label>Clicks</label>
+          <input type="number" id="reportClicks" placeholder="0">
+        </div>
+        <div>
+          <label>Impressions</label>
+          <input type="number" id="reportImpressions" placeholder="0">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Avg Position</label>
+          <input type="number" id="reportPosition" placeholder="0" step="0.1">
+        </div>
+        <div>
+          <label>CTR (%)</label>
+          <input type="number" id="reportCTR" placeholder="0" step="0.1">
+        </div>
+      </div>
+
+      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">From Google Analytics</p>
+      <div class="row">
+        <div>
+          <label>Page Views</label>
+          <input type="number" id="reportViews" placeholder="0">
+        </div>
+        <div>
+          <label>Avg Time on Page (seconds)</label>
+          <input type="number" id="reportTime" placeholder="0">
+        </div>
+      </div>
+
+      <p style="font-size:11px;color:#B3BEC9;margin:8px 0 12px;font-weight:300;text-transform:uppercase;letter-spacing:.5px">Quick Insight (optional — client will see this)</p>
+      <input type="text" id="reportInsight" placeholder="e.g. Position improved from 28 to 18 — great early traction">
+
+      <button class="btn btn-primary" onclick="saveReport()">Save Report</button>
+      <button class="btn btn-outline" onclick="toggleReportForm()" style="margin-left:8px">Cancel</button>
+      <span id="reportSaved" style="display:none;margin-left:12px;color:#2BBDAF;font-size:12px">Saved!</span>
+    </div>
+
     <div class="add-form hidden" id="addForm">
       <h3>Add New Blog</h3>
       <div class="row">
@@ -282,7 +349,14 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
     <!-- REPORTS TAB -->
     <div id="tab-reports" class="hidden">
       <div style="background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:28px;margin-bottom:20px">
-        <h3 style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:16px">Monthly SEO & Blog Performance</h3>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <h3 style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F">Monthly SEO & Blog Performance</h3>
+          <select id="reportMonthFilter" onchange="loadReportsTab()" style="padding:6px 12px;border:1px solid #B3BEC9;border-radius:3px;font-size:12px;font-family:'Rubik',sans-serif">
+            <option value="2026-03">March 2026</option>
+            <option value="2026-02">February 2026</option>
+            <option value="2026-01">January 2026</option>
+          </select>
+        </div>
         
         <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px">
           <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
@@ -623,6 +697,77 @@ async function saveBlog() {
   document.getElementById('newBlogAssigned').value = '';
   loadAdminData();
 }
+
+
+// REPORT FORM
+function toggleReportForm() {
+  document.getElementById('reportForm').classList.toggle('hidden');
+  if (!document.getElementById('reportForm').classList.contains('hidden')) {
+    loadBlogDropdown();
+  }
+}
+
+async function loadBlogDropdown() {
+  const blogsSnap = await db.collection('blogs').orderBy('title').get();
+  const select = document.getElementById('reportBlogId');
+  select.innerHTML = '<option value="">Select a blog...</option>';
+  blogsSnap.forEach(doc => {
+    const b = doc.data();
+    select.innerHTML += '<option value="' + doc.id + '">' + (b.title || 'Untitled') + ' (' + (b.clientName || '') + ') — ' + (b.status || '') + '</option>';
+  });
+}
+
+async function loadBlogReport() {
+  const blogId = document.getElementById('reportBlogId').value;
+  const month = document.getElementById('reportMonth').value;
+  if (!blogId || !month) return;
+
+  const reportSnap = await db.collection('blogs').doc(blogId).collection('metrics').doc(month).get();
+  if (reportSnap.exists) {
+    const d = reportSnap.data();
+    document.getElementById('reportClicks').value = d.clicks || '';
+    document.getElementById('reportImpressions').value = d.impressions || '';
+    document.getElementById('reportPosition').value = d.avgPosition || '';
+    document.getElementById('reportCTR').value = d.ctr || '';
+    document.getElementById('reportViews').value = d.pageViews || '';
+    document.getElementById('reportTime').value = d.avgTime || '';
+    document.getElementById('reportInsight').value = d.insight || '';
+    document.getElementById('reportTracking').value = d.tracking || 'manual';
+  } else {
+    document.getElementById('reportClicks').value = '';
+    document.getElementById('reportImpressions').value = '';
+    document.getElementById('reportPosition').value = '';
+    document.getElementById('reportCTR').value = '';
+    document.getElementById('reportViews').value = '';
+    document.getElementById('reportTime').value = '';
+    document.getElementById('reportInsight').value = '';
+  }
+}
+
+async function saveReport() {
+  const blogId = document.getElementById('reportBlogId').value;
+  const month = document.getElementById('reportMonth').value;
+  if (!blogId || !month) { alert('Select a blog and month'); return; }
+
+  const data = {
+    clicks: parseInt(document.getElementById('reportClicks').value) || 0,
+    impressions: parseInt(document.getElementById('reportImpressions').value) || 0,
+    avgPosition: parseFloat(document.getElementById('reportPosition').value) || 0,
+    ctr: parseFloat(document.getElementById('reportCTR').value) || 0,
+    pageViews: parseInt(document.getElementById('reportViews').value) || 0,
+    avgTime: parseInt(document.getElementById('reportTime').value) || 0,
+    insight: document.getElementById('reportInsight').value,
+    tracking: document.getElementById('reportTracking').value,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    updatedBy: currentUser.email
+  };
+
+  await db.collection('blogs').doc(blogId).collection('metrics').doc(month).set(data);
+  
+  document.getElementById('reportSaved').style.display = 'inline';
+  setTimeout(() => { document.getElementById('reportSaved').style.display = 'none'; }, 2000);
+}
+
 </script>
 
 </body>
