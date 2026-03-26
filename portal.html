@@ -200,12 +200,15 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
       <div class="dash-tab" onclick="showDashTab('blogs')">Blog Pipeline</div>
       <div class="dash-tab" onclick="showDashTab('clients')">Clients</div>
       <div class="dash-tab" onclick="showDashTab('requests')">Requests</div>
+      <div class="dash-tab" onclick="showDashTab('reports')">Reports</div>
     </div>
 
     <!-- CLIENT TABS -->
     <div class="dash-tabs hidden" id="clientTabs">
       <div class="dash-tab active" onclick="showDashTab('overview')">My Blogs</div>
+      <div class="dash-tab" onclick="showDashTab('reports')">My Reports</div>
       <div class="dash-tab" onclick="showDashTab('requests')">Support</div>
+      <div class="dash-tab" onclick="window.location.href='pricing.html'">Add Services</div>
     </div>
 
     <!-- ADD BLOG FORM -->
@@ -273,6 +276,82 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
         <div class="client-row header">
           <div>Client</div><div>Email</div><div>Plan</div><div>Blogs</div><div>Joined</div>
         </div>
+      </div>
+    </div>
+
+    <!-- REPORTS TAB -->
+    <div id="tab-reports" class="hidden">
+      <div style="background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:28px;margin-bottom:20px">
+        <h3 style="font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:16px">Monthly SEO & Blog Performance</h3>
+        
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px">
+          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
+            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">2,847</div>
+            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Organic Visits</div>
+          </div>
+          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
+            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">156</div>
+            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Keywords Ranking</div>
+          </div>
+          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
+            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#36D1C2">12</div>
+            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Top 10 Rankings</div>
+          </div>
+          <div style="background:#FEF9F6;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:14px;text-align:center">
+            <div style="font-family:'Rubik',sans-serif;font-size:24px;font-weight:300;color:#2BBDAF">+34%</div>
+            <div style="font-size:10px;color:#B3BEC9;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;font-family:'Rubik',sans-serif">Traffic Growth</div>
+          </div>
+        </div>
+
+        <h3 style="font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;color:#B3BEC9;text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">Blog Performance</h3>
+        <div style="overflow-x:auto">
+          <table style="width:100%;border-collapse:collapse">
+            <tr style="background:#00161F;color:#fff">
+              <th style="padding:10px 14px;text-align:left;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Blog Title</th>
+              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Views</th>
+              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Avg Position</th>
+              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Clicks</th>
+              <th style="padding:10px 14px;text-align:center;font-family:'Rubik',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:.5px;font-weight:500">Status</th>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
+              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">Top 10 Franchise Marketing Strategies for 2026</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">1,247</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">4.2</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">312</td>
+              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
+              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">How to Choose the Right Marketing Agency</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">892</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">7.8</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">156</td>
+              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
+              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">SEO Best Practices for Small Businesses</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">534</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">12.1</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">87</td>
+              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(10,124,66,.1);color:#0a7c42;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">LIVE</span></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(179,190,201,.15)">
+              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">The Future of AI in Digital Marketing</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(244,162,97,.1);color:#f4a261;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">IN REVIEW</span></td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;font-size:13px;font-weight:300;color:#00161F">5 Ways to Boost Your Google Business Profile</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center;font-size:13px;color:#617792">—</td>
+              <td style="padding:10px 14px;text-align:center"><span style="background:rgba(179,190,201,.1);color:#B3BEC9;font-size:10px;padding:2px 8px;border-radius:9999px;font-family:'Rubik',sans-serif;font-weight:500">DRAFT</span></td>
+            </tr>
+          </table>
+        </div>
+
+        <p style="font-size:11px;color:#B3BEC9;margin-top:16px;font-weight:300;text-align:center">Sample data shown. Reports update monthly once your blogs are live.</p>
       </div>
     </div>
 
@@ -414,7 +493,7 @@ auth.onAuthStateChanged(async (user) => {
 
 // DASHBOARD TABS
 function showDashTab(name) {
-  ['overview','blogs','clients','requests'].forEach(t => {
+  ['overview','blogs','clients','requests','reports'].forEach(t => {
     const el = document.getElementById('tab-' + t);
     if (el) el.classList.toggle('hidden', t !== name);
   });
