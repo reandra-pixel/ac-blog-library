@@ -285,6 +285,56 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
   .library-grid{grid-template-columns:1fr}
   .type-choice{flex-direction:column}
 }
+
+/* ── YOUTUBE SUBMIT MODAL ── */
+.yt-modal-steps{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:24px}
+.yt-step-dot{width:10px;height:10px;border-radius:50%;background:rgba(179,190,201,.35);transition:all .25s;cursor:default}
+.yt-step-dot.active{background:#36D1C2;transform:scale(1.2)}
+.yt-step-dot.done{background:#2BBDAF}
+.yt-step-panel{display:none}
+.yt-step-panel.active{display:block;animation:ytFadeIn .2s ease}
+@keyframes ytFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.yt-step-title{font-family:'Rubik',sans-serif;font-size:15px;font-weight:500;color:#00161F;margin-bottom:6px}
+.yt-step-sub{font-size:13px;color:#617792;font-weight:300;margin-bottom:18px}
+.yt-choice-row{display:flex;gap:12px;margin-bottom:16px}
+.yt-choice-btn{flex:1;padding:16px;border:2px solid rgba(179,190,201,.3);border-radius:7px;cursor:pointer;text-align:center;background:#fff;transition:all .2s;font-family:'Rubik',sans-serif}
+.yt-choice-btn:hover{border-color:#36D1C2}
+.yt-choice-btn.selected{border-color:#36D1C2;background:rgba(54,209,194,.05)}
+.yt-choice-btn .yc-icon{font-size:22px;margin-bottom:6px}
+.yt-choice-btn .yc-label{font-size:13px;font-weight:500;color:#00161F}
+.yt-choice-btn .yc-desc{font-size:11px;color:#617792;font-weight:300;margin-top:2px}
+.yt-drop-zone{border:2px dashed rgba(179,190,201,.5);border-radius:7px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;margin-bottom:14px;background:#fff}
+.yt-drop-zone:hover,.yt-drop-zone.drag-over{border-color:#36D1C2;background:rgba(54,209,194,.04)}
+.yt-drop-zone p{font-size:13px;color:#617792;font-weight:300;margin-bottom:6px}
+.yt-drop-zone span{font-size:11px;color:#B3BEC9}
+.yt-drop-zone input[type=file]{display:none}
+.yt-file-preview{display:flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(54,209,194,.05);border:1px solid rgba(54,209,194,.2);border-radius:5px;margin-bottom:14px;font-size:13px;color:#00161F}
+.yt-file-preview .yt-fp-name{flex:1;font-weight:400;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.yt-file-preview .yt-fp-remove{color:#B3BEC9;cursor:pointer;font-size:16px;line-height:1;padding:2px 4px;transition:color .2s}
+.yt-file-preview .yt-fp-remove:hover{color:#E54B4B}
+.yt-img-preview{width:100%;max-height:200px;object-fit:cover;border-radius:5px;display:block;margin-bottom:14px}
+.yt-review-section{background:#FEF9F6;border:1px solid rgba(179,190,201,.15);border-radius:5px;padding:14px;margin-bottom:10px}
+.yt-review-section-title{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;color:#B3BEC9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.yt-review-item{display:flex;gap:8px;font-size:13px;margin-bottom:4px}
+.yt-review-label{color:#617792;font-weight:300;min-width:120px;flex-shrink:0}
+.yt-review-value{color:#00161F;font-weight:400;flex:1;word-break:break-word}
+.yt-modal-footer{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:16px;border-top:1px solid rgba(179,190,201,.2)}
+.badge-short{background:rgba(97,119,146,.1);color:#617792;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.badge-long{background:rgba(54,209,194,.1);color:#2BBDAF;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.badge-thumb-ok{background:rgba(10,124,66,.1);color:#0a7c42;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.badge-thumb-design{background:rgba(244,162,97,.12);color:#e08748;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.badge-thumb-na{background:rgba(179,190,201,.2);color:#617792;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;padding:2px 8px;border-radius:9999px;text-transform:uppercase;letter-spacing:.5px}
+.yt-admin-detail{display:none;padding:14px 18px 16px;border-top:1px solid rgba(179,190,201,.08);background:#FAFCFC}
+.yt-admin-detail.open{display:block}
+.yt-admin-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.yt-admin-detail-item .yad-label{font-size:10px;color:#B3BEC9;font-family:'Rubik',sans-serif;font-weight:500;text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.yt-admin-detail-item .yad-value{font-size:13px;color:#00161F;font-weight:300}
+.yt-admin-row{cursor:pointer}
+.youtube-sub-grid{grid-template-columns:3fr 1fr 1fr 1fr 1fr 1fr}
+@media(max-width:600px){
+  .yt-choice-row{flex-direction:column}
+  .yt-admin-detail-grid{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
@@ -601,7 +651,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
     <div id="admin-youtube" class="tab-panel hidden">
       <div class="section-wrap" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
         <div class="section-title" style="margin:0">YouTube Content</div>
-        <a class="toggle-form-btn" onclick="toggleForm('addYoutubeForm')">+ Add Video</a>
+        <a class="toggle-form-btn" onclick="toggleForm('addYoutubeForm')">+ Add Video (Admin)</a>
       </div>
       <div id="addYoutubeForm" class="form-card hidden">
         <h3>Add YouTube Video</h3>
@@ -616,7 +666,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         <div class="field-row">
           <div class="field"><label>Status</label>
             <select id="ytStatus">
-              <option value="draft">Draft</option>
+              <option value="submitted">Submitted</option>
               <option value="production">In Production</option>
               <option value="published">Published</option>
             </select>
@@ -630,8 +680,8 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         </div>
       </div>
       <div class="table-wrap">
-        <div class="table-head youtube-grid">
-          <span>Title</span><span>Client</span><span>Status</span><span>Views</span><span>Likes</span><span>Date</span>
+        <div class="table-head youtube-sub-grid">
+          <span>Title</span><span>Client</span><span>Type</span><span>Thumbnail</span><span>Status</span><span>Date</span>
         </div>
         <div id="youtubeTableBody"><div class="empty-state"><p>No videos yet.</p></div></div>
       </div>
@@ -725,7 +775,10 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 
     <!-- MY YOUTUBE -->
     <div id="client-myyoutube" class="tab-panel hidden">
-      <div class="section-title">YouTube Content</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:12px">
+        <div class="section-title" style="margin:0">YouTube Content</div>
+        <button class="btn btn-primary" onclick="openYTSubmitModal()">+ Submit New Video</button>
+      </div>
       <div id="clientYoutubeWrap"><div class="empty-state"><p>No YouTube videos yet.</p></div></div>
     </div>
 
@@ -872,6 +925,189 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
         <button class="btn btn-outline" onclick="closeAddBlogModal()">Cancel</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- YOUTUBE SUBMIT MODAL -->
+<div class="modal-overlay" id="ytSubmitModal">
+  <div class="modal" style="max-width:560px">
+    <div class="modal-header">
+      <h3 id="ytModalTitle">Submit a Video</h3>
+      <button class="modal-close" onclick="closeYTSubmitModal()">&times;</button>
+    </div>
+    <!-- Step dots -->
+    <div class="yt-modal-steps">
+      <div class="yt-step-dot active" id="ytDot1"></div>
+      <div class="yt-step-dot" id="ytDot2"></div>
+      <div class="yt-step-dot" id="ytDot3"></div>
+      <div class="yt-step-dot" id="ytDot4"></div>
+      <div class="yt-step-dot" id="ytDot5"></div>
+    </div>
+
+    <!-- STEP 1: VIDEO INPUT -->
+    <div class="yt-step-panel active" id="ytStep1">
+      <div class="yt-step-title">Upload or link your video</div>
+      <div class="yt-step-sub">How would you like to provide your video?</div>
+      <div class="yt-choice-row">
+        <div class="yt-choice-btn" id="ytSrcUploadBtn" onclick="selectYTSource('upload')">
+          <div class="yc-icon">&#128190;</div>
+          <div class="yc-label">Upload Video File</div>
+          <div class="yc-desc">Upload directly from your device</div>
+        </div>
+        <div class="yt-choice-btn" id="ytSrcLinkBtn" onclick="selectYTSource('link')">
+          <div class="yc-icon">&#128279;</div>
+          <div class="yc-label">Paste a Link</div>
+          <div class="yc-desc">Google Drive, Dropbox, or other</div>
+        </div>
+      </div>
+      <!-- Upload zone -->
+      <div id="ytUploadZone" class="yt-drop-zone hidden" onclick="document.getElementById('ytVideoFileInput').click()" ondragover="ytDragOver(event)" ondragleave="ytDragLeave(event)" ondrop="ytDropFile(event,'video')">
+        <input type="file" id="ytVideoFileInput" accept="video/*" onchange="ytHandleVideoFile(this.files[0])">
+        <p>Drag &amp; drop your video here or <strong style="color:#36D1C2">click to browse</strong></p>
+        <span>MP4, MOV, AVI supported</span>
+      </div>
+      <div id="ytVideoPreview" class="yt-file-preview hidden">
+        <span style="color:#36D1C2;font-size:16px">&#127909;</span>
+        <span class="yt-fp-name" id="ytVideoFileName">filename.mp4</span>
+        <span class="yt-fp-remove" onclick="clearYTVideo()" title="Remove">&#215;</span>
+      </div>
+      <!-- Link input -->
+      <div id="ytLinkZone" class="hidden">
+        <div class="field" style="margin-bottom:8px">
+          <label>Video URL</label>
+          <input type="url" id="ytVideoLinkInput" placeholder="https://drive.google.com/…" oninput="ytHandleVideoLink(this.value)">
+        </div>
+        <div id="ytLinkPreview" class="yt-file-preview hidden">
+          <span style="color:#36D1C2;font-size:14px">&#128279;</span>
+          <span class="yt-fp-name" id="ytLinkPreviewText">https://…</span>
+          <span class="yt-fp-remove" onclick="clearYTLink()" title="Remove">&#215;</span>
+        </div>
+      </div>
+      <div class="yt-modal-footer">
+        <span></span>
+        <button class="btn btn-primary" onclick="ytNextStep(1)" id="ytStep1Next" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: VIDEO TYPE -->
+    <div class="yt-step-panel" id="ytStep2">
+      <div class="yt-step-title">What type of video is this?</div>
+      <div class="yt-step-sub">This helps us format and optimise your content correctly.</div>
+      <div class="yt-choice-row">
+        <div class="yt-choice-btn" id="ytTypeShortBtn" onclick="selectYTType('short')">
+          <div class="yc-icon">&#9889;</div>
+          <div class="yc-label">Short-form</div>
+          <div class="yc-desc">Reels / YouTube Shorts<br>Under 60 seconds</div>
+        </div>
+        <div class="yt-choice-btn" id="ytTypeLongBtn" onclick="selectYTType('long')">
+          <div class="yc-icon">&#127916;</div>
+          <div class="yc-label">Long-form</div>
+          <div class="yc-desc">YouTube video<br>Over 60 seconds</div>
+        </div>
+      </div>
+      <div class="yt-modal-footer">
+        <button class="btn btn-outline" onclick="ytGoToStep(1)">Back</button>
+        <button class="btn btn-primary" onclick="ytNextStep(2)" id="ytStep2Next" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: THUMBNAIL (long-form only) -->
+    <div class="yt-step-panel" id="ytStep3">
+      <div class="yt-step-title">Do you have a thumbnail?</div>
+      <div class="yt-step-sub">A great thumbnail drives more clicks on YouTube.</div>
+      <div class="yt-choice-row">
+        <div class="yt-choice-btn" id="ytThumbUploadBtn" onclick="selectYTThumb('upload')">
+          <div class="yc-icon">&#128444;&#65039;</div>
+          <div class="yc-label">Upload Thumbnail</div>
+          <div class="yc-desc">Use your own image</div>
+        </div>
+        <div class="yt-choice-btn" id="ytThumbCreateBtn" onclick="selectYTThumb('create')">
+          <div class="yc-icon">&#10024;</div>
+          <div class="yc-label">Create One For Me</div>
+          <div class="yc-desc">Our team will design it</div>
+        </div>
+      </div>
+      <!-- Thumbnail upload zone -->
+      <div id="ytThumbUploadZone" class="hidden">
+        <div class="yt-drop-zone" onclick="document.getElementById('ytThumbFileInput').click()" ondragover="ytDragOver(event)" ondragleave="ytDragLeave(event)" ondrop="ytDropFile(event,'thumb')">
+          <input type="file" id="ytThumbFileInput" accept="image/*" onchange="ytHandleThumbFile(this.files[0])">
+          <p>Drag &amp; drop your thumbnail or <strong style="color:#36D1C2">click to browse</strong></p>
+          <span>JPG, PNG, WebP recommended · 1280×720</span>
+        </div>
+        <img id="ytThumbImgPreview" class="yt-img-preview hidden" src="" alt="Thumbnail preview">
+      </div>
+      <!-- Thumbnail create options -->
+      <div id="ytThumbCreateZone" class="hidden">
+        <div class="field">
+          <label>Style Preference</label>
+          <select id="ytThumbStyle">
+            <option value="">Select a style…</option>
+            <option value="clean">Clean</option>
+            <option value="bold">Bold</option>
+            <option value="minimal">Minimal</option>
+            <option value="unsure">Unsure — Surprise me</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Text for thumbnail <span style="color:#B3BEC9;font-size:10px;text-transform:none;letter-spacing:0">(optional)</span></label>
+          <input id="ytThumbText" placeholder="e.g. 5 Tips for Better Sleep">
+        </div>
+      </div>
+      <div class="yt-modal-footer">
+        <button class="btn btn-outline" onclick="ytGoToStep(2)">Back</button>
+        <button class="btn btn-primary" onclick="ytNextStep(3)" id="ytStep3Next" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 4: VIDEO DETAILS -->
+    <div class="yt-step-panel" id="ytStep4">
+      <div class="yt-step-title">Tell us about your video</div>
+      <div class="yt-step-sub">These details help our team produce and publish your content.</div>
+      <div class="field">
+        <label>Video Title <span style="color:#E54B4B">*</span></label>
+        <input id="ytSubTitle" placeholder="What should this video be titled?">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea id="ytSubDesc" placeholder="Briefly describe what this video covers…" style="min-height:70px"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Goal <span style="color:#E54B4B">*</span></label>
+          <select id="ytSubGoal">
+            <option value="">Select a goal…</option>
+            <option value="promotion">Promotion</option>
+            <option value="awareness">Awareness</option>
+            <option value="education">Education</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label>Key Notes / CTA</label>
+        <textarea id="ytSubNotes" placeholder="Any calls to action, events, or offers to highlight?" style="min-height:60px"></textarea>
+      </div>
+      <div class="field">
+        <label>Anything to avoid? <span style="color:#B3BEC9;font-size:10px;text-transform:none;letter-spacing:0">(optional)</span></label>
+        <input id="ytSubAvoid" placeholder="Topics, wording, or visuals to steer clear of…">
+      </div>
+      <div class="yt-modal-footer">
+        <button class="btn btn-outline" id="ytStep4Back" onclick="ytStep4GoBack()">Back</button>
+        <button class="btn btn-primary" onclick="ytNextStep(4)" id="ytStep4Next">Next</button>
+      </div>
+    </div>
+
+    <!-- STEP 5: REVIEW & SUBMIT -->
+    <div class="yt-step-panel" id="ytStep5">
+      <div class="yt-step-title">Review &amp; Submit</div>
+      <div class="yt-step-sub">Check everything looks good before submitting to our team.</div>
+      <div id="ytReviewContent"></div>
+      <div class="yt-modal-footer">
+        <button class="btn btn-outline" onclick="ytGoToStep(4)">Back</button>
+        <button class="btn btn-primary" onclick="submitYTVideo()" id="ytSubmitBtn">Submit Video</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1067,11 +1303,11 @@ function fmtMonth(str) {
   return (months[parseInt(m)-1] || m) + ' ' + y;
 }
 function statusLabel(s) {
-  const map = { draft:'Draft', review:'In Review', seo:'SEO Opt.', approved:'Approved', live:'Published', new:'New', in_progress:'In Progress', done:'Done', production:'In Production', published:'Published' };
+  const map = { draft:'Draft', review:'In Review', seo:'SEO Opt.', approved:'Approved', live:'Published', new:'New', in_progress:'In Progress', done:'Done', production:'In Production', published:'Published', submitted:'Submitted' };
   return map[s] || s;
 }
 function statusClass(s) {
-  const map = { draft:'s-draft', review:'s-review', seo:'s-seo', approved:'s-approved', live:'s-live', new:'s-new', in_progress:'s-progress', done:'s-done', production:'s-production', published:'s-published' };
+  const map = { draft:'s-draft', review:'s-review', seo:'s-seo', approved:'s-approved', live:'s-live', new:'s-new', in_progress:'s-progress', done:'s-done', production:'s-production', published:'s-published', submitted:'s-new' };
   return map[s] || 's-draft';
 }
 function trackClass(s) {
@@ -1760,15 +1996,70 @@ async function addYoutube() {
 function renderYoutubeTable() {
   const tbody = document.getElementById('youtubeTableBody');
   if (!allYoutube.length) { tbody.innerHTML = '<div class="empty-state"><p>No videos yet.</p></div>'; return; }
-  tbody.innerHTML = allYoutube.map(v => `
-    <div class="table-row youtube-grid">
-      <span class="cell-name">${esc(v.title)}</span>
-      <span class="cell-email">${esc(v.clientName || '—')}</span>
-      <span><span class="status-badge ${statusClass(v.status)}">${statusLabel(v.status)}</span></span>
-      <span>${numFmt(v.views)}</span>
-      <span>${numFmt(v.likes)}</span>
-      <span class="cell-date">${v.publishDate || fmtDate(v.createdAt)}</span>
-    </div>`).join('');
+  tbody.innerHTML = allYoutube.map((v, i) => {
+    const typeBadge = v.videoType === 'short'
+      ? `<span class="badge-short">Short</span>`
+      : v.videoType === 'long'
+        ? `<span class="badge-long">Long</span>`
+        : `<span class="badge-thumb-na">—</span>`;
+    let thumbBadge = '';
+    if (v.thumbnailStatus === 'uploaded') thumbBadge = `<span class="badge-thumb-ok">Uploaded &#10003;</span>`;
+    else if (v.thumbnailStatus === 'needs_design') thumbBadge = `<span class="badge-thumb-design">Needs Design &#9888;</span>`;
+    else if (v.thumbnailStatus === 'na') thumbBadge = `<span class="badge-thumb-na">N/A</span>`;
+    else thumbBadge = `<span class="badge-thumb-na">—</span>`;
+    const detailId = 'ytAdminDetail_' + i;
+    const detailHtml = buildYTAdminDetail(v, detailId);
+    return `<div>
+      <div class="table-row youtube-sub-grid yt-admin-row" onclick="toggleYTAdminDetail('${detailId}')">
+        <span class="cell-name">${esc(v.title || '—')}</span>
+        <span class="cell-email">${esc(v.clientName || '—')}</span>
+        <span>${typeBadge}</span>
+        <span>${thumbBadge}</span>
+        <span>
+          <select class="yt-status-sel" style="padding:4px 8px;border:1px solid #B3BEC9;border-radius:5px;font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;color:#00161F;background:#fff;cursor:pointer;outline:none" onchange="updateYTStatus('${v.id}',this.value)" onclick="event.stopPropagation()">
+            <option value="submitted" ${v.status==='submitted'?'selected':''}>Submitted</option>
+            <option value="production" ${v.status==='production'?'selected':''}>In Production</option>
+            <option value="published" ${v.status==='published'?'selected':''}>Published</option>
+          </select>
+        </span>
+        <span class="cell-date">${fmtDate(v.createdAt)}</span>
+      </div>
+      ${detailHtml}
+    </div>`;
+  }).join('');
+}
+
+function buildYTAdminDetail(v, detailId) {
+  const sourceLabel = v.sourceType === 'upload' ? 'File Upload' : 'Link';
+  const sourceVal = v.sourceUrl || '—';
+  return `<div class="yt-admin-detail" id="${detailId}">
+    <div class="yt-admin-detail-grid">
+      <div class="yt-admin-detail-item"><div class="yad-label">Source</div><div class="yad-value">${esc(sourceLabel)}</div></div>
+      <div class="yt-admin-detail-item"><div class="yad-label">File / URL</div><div class="yad-value" style="word-break:break-all">${esc(sourceVal)}</div></div>
+      <div class="yt-admin-detail-item"><div class="yad-label">Video Type</div><div class="yad-value">${v.videoType === 'short' ? 'Short-form (Reels/Shorts)' : v.videoType === 'long' ? 'Long-form (YouTube)' : '—'}</div></div>
+      <div class="yt-admin-detail-item"><div class="yad-label">Goal</div><div class="yad-value">${esc(v.goal ? capitalize(v.goal) : '—')}</div></div>
+      ${v.thumbnailStatus === 'needs_design' ? `
+      <div class="yt-admin-detail-item"><div class="yad-label">Thumbnail Style</div><div class="yad-value">${esc(v.thumbnailStyle ? capitalize(v.thumbnailStyle) : '—')}</div></div>
+      <div class="yt-admin-detail-item"><div class="yad-label">Thumbnail Text</div><div class="yad-value">${esc(v.thumbnailText || '—')}</div></div>` : ''}
+    </div>
+    ${v.description ? `<div class="yt-admin-detail-item" style="margin-bottom:8px"><div class="yad-label">Description</div><div class="yad-value" style="font-size:12px;line-height:1.5">${esc(v.description)}</div></div>` : ''}
+    ${v.keyNotes ? `<div class="yt-admin-detail-item" style="margin-bottom:8px"><div class="yad-label">Key Notes / CTA</div><div class="yad-value" style="font-size:12px;line-height:1.5">${esc(v.keyNotes)}</div></div>` : ''}
+    ${v.avoidNotes ? `<div class="yt-admin-detail-item"><div class="yad-label">Avoid</div><div class="yad-value" style="font-size:12px">${esc(v.avoidNotes)}</div></div>` : ''}
+  </div>`;
+}
+
+function toggleYTAdminDetail(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.toggle('open');
+}
+
+async function updateYTStatus(videoId, newStatus) {
+  try {
+    await db.collection('youtube').doc(videoId).update({ status: newStatus });
+    const v = allYoutube.find(x => x.id === videoId);
+    if (v) v.status = newStatus;
+    showToast('Status updated to ' + statusLabel(newStatus) + '.');
+  } catch(e) { showToast('Error updating status: ' + e.message, 'error'); }
 }
 
 // ── REQUESTS ──
@@ -1982,6 +2273,305 @@ async function addSupportRequest() {
 document.getElementById('addBlogModal').addEventListener('click', function(e) {
   if (e.target === this) closeAddBlogModal();
 });
+document.getElementById('ytSubmitModal').addEventListener('click', function(e) {
+  if (e.target === this) closeYTSubmitModal();
+});
+</script>
+
+<script>
+// ══════════════════════════════
+// YOUTUBE SUBMIT MODAL
+// ══════════════════════════════
+let ytState = {};
+
+function resetYTState() {
+  ytState = {
+    currentStep: 1,
+    sourceType: '',      // 'upload' | 'link'
+    sourceUrl: '',       // filename or URL
+    videoType: '',       // 'short' | 'long'
+    thumbnailStatus: 'na', // 'uploaded' | 'needs_design' | 'na'
+    thumbnailStyle: '',
+    thumbnailText: '',
+    title: '',
+    description: '',
+    goal: '',
+    keyNotes: '',
+    avoidNotes: ''
+  };
+}
+
+function openYTSubmitModal() {
+  resetYTState();
+  // Reset all UI
+  ['ytSrcUploadBtn','ytSrcLinkBtn','ytTypeShortBtn','ytTypeLongBtn','ytThumbUploadBtn','ytThumbCreateBtn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('selected');
+  });
+  document.getElementById('ytUploadZone').classList.add('hidden');
+  document.getElementById('ytLinkZone').classList.add('hidden');
+  document.getElementById('ytVideoPreview').classList.add('hidden');
+  document.getElementById('ytLinkPreview').classList.add('hidden');
+  document.getElementById('ytVideoFileInput').value = '';
+  document.getElementById('ytVideoLinkInput').value = '';
+  document.getElementById('ytThumbUploadZone').classList.add('hidden');
+  document.getElementById('ytThumbCreateZone').classList.add('hidden');
+  document.getElementById('ytThumbImgPreview').classList.add('hidden');
+  document.getElementById('ytThumbFileInput').value = '';
+  document.getElementById('ytThumbStyle').value = '';
+  document.getElementById('ytThumbText').value = '';
+  document.getElementById('ytSubTitle').value = '';
+  document.getElementById('ytSubDesc').value = '';
+  document.getElementById('ytSubGoal').value = '';
+  document.getElementById('ytSubNotes').value = '';
+  document.getElementById('ytSubAvoid').value = '';
+  document.getElementById('ytStep1Next').disabled = true;
+  document.getElementById('ytStep2Next').disabled = true;
+  document.getElementById('ytStep3Next').disabled = true;
+  ytGoToStep(1);
+  document.getElementById('ytSubmitModal').classList.add('open');
+}
+
+function closeYTSubmitModal() {
+  document.getElementById('ytSubmitModal').classList.remove('open');
+  resetYTState();
+}
+
+function ytGoToStep(n) {
+  for (let i = 1; i <= 5; i++) {
+    const panel = document.getElementById('ytStep' + i);
+    const dot = document.getElementById('ytDot' + i);
+    if (panel) { panel.classList.remove('active'); }
+    if (dot) {
+      dot.classList.remove('active','done');
+      if (i < n) dot.classList.add('done');
+      else if (i === n) dot.classList.add('active');
+    }
+  }
+  const target = document.getElementById('ytStep' + n);
+  if (target) target.classList.add('active');
+  ytState.currentStep = n;
+  document.getElementById('ytModalTitle').textContent = [
+    '','Upload or Link Video','Video Type','Thumbnail','Video Details','Review & Submit'
+  ][n] || 'Submit a Video';
+}
+
+function ytNextStep(fromStep) {
+  if (fromStep === 1) {
+    if (!ytState.sourceType || !ytState.sourceUrl) return;
+    ytGoToStep(2);
+  } else if (fromStep === 2) {
+    if (!ytState.videoType) return;
+    if (ytState.videoType === 'long') {
+      ytGoToStep(3);
+    } else {
+      // Short-form: skip thumbnail, go to step 4
+      ytState.thumbnailStatus = 'na';
+      ytGoToStep(4);
+    }
+  } else if (fromStep === 3) {
+    if (ytState.thumbnailStatus === '') return;
+    if (ytState.thumbnailStatus === 'uploaded') {
+      const thumbFile = document.getElementById('ytThumbFileInput').files[0];
+      if (!thumbFile) { showToast('Please upload a thumbnail image.', 'error'); return; }
+    }
+    ytGoToStep(4);
+  } else if (fromStep === 4) {
+    const title = document.getElementById('ytSubTitle').value.trim();
+    const goal = document.getElementById('ytSubGoal').value;
+    if (!title) { showToast('Please enter a video title.', 'error'); return; }
+    if (!goal) { showToast('Please select a goal.', 'error'); return; }
+    ytState.title = title;
+    ytState.description = document.getElementById('ytSubDesc').value.trim();
+    ytState.goal = goal;
+    ytState.keyNotes = document.getElementById('ytSubNotes').value.trim();
+    ytState.avoidNotes = document.getElementById('ytSubAvoid').value.trim();
+    buildYTReview();
+    ytGoToStep(5);
+  }
+}
+
+function ytStep4GoBack() {
+  if (ytState.videoType === 'short') {
+    ytGoToStep(2);
+  } else {
+    ytGoToStep(3);
+  }
+}
+
+// Step 1: source selection
+function selectYTSource(type) {
+  ytState.sourceType = type;
+  ytState.sourceUrl = '';
+  document.getElementById('ytSrcUploadBtn').classList.toggle('selected', type === 'upload');
+  document.getElementById('ytSrcLinkBtn').classList.toggle('selected', type === 'link');
+  document.getElementById('ytUploadZone').classList.toggle('hidden', type !== 'upload');
+  document.getElementById('ytLinkZone').classList.toggle('hidden', type !== 'link');
+  document.getElementById('ytVideoPreview').classList.add('hidden');
+  document.getElementById('ytLinkPreview').classList.add('hidden');
+  document.getElementById('ytStep1Next').disabled = true;
+}
+
+function ytHandleVideoFile(file) {
+  if (!file) return;
+  ytState.sourceType = 'upload';
+  ytState.sourceUrl = file.name;
+  document.getElementById('ytVideoFileName').textContent = file.name;
+  document.getElementById('ytVideoPreview').classList.remove('hidden');
+  document.getElementById('ytStep1Next').disabled = false;
+}
+
+function clearYTVideo() {
+  document.getElementById('ytVideoFileInput').value = '';
+  document.getElementById('ytVideoPreview').classList.add('hidden');
+  ytState.sourceUrl = '';
+  document.getElementById('ytStep1Next').disabled = true;
+}
+
+function ytHandleVideoLink(val) {
+  val = val.trim();
+  if (val.length > 8) {
+    ytState.sourceType = 'link';
+    ytState.sourceUrl = val;
+    document.getElementById('ytLinkPreviewText').textContent = val;
+    document.getElementById('ytLinkPreview').classList.remove('hidden');
+    document.getElementById('ytStep1Next').disabled = false;
+  } else {
+    ytState.sourceUrl = '';
+    document.getElementById('ytLinkPreview').classList.add('hidden');
+    document.getElementById('ytStep1Next').disabled = true;
+  }
+}
+
+function clearYTLink() {
+  document.getElementById('ytVideoLinkInput').value = '';
+  document.getElementById('ytLinkPreview').classList.add('hidden');
+  ytState.sourceUrl = '';
+  document.getElementById('ytStep1Next').disabled = true;
+}
+
+// Drag-drop helpers
+function ytDragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function ytDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
+function ytDropFile(e, zone) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  const file = e.dataTransfer.files[0];
+  if (!file) return;
+  if (zone === 'video') ytHandleVideoFile(file);
+  else if (zone === 'thumb') ytHandleThumbFile(file);
+}
+
+// Step 2: video type
+function selectYTType(type) {
+  ytState.videoType = type;
+  document.getElementById('ytTypeShortBtn').classList.toggle('selected', type === 'short');
+  document.getElementById('ytTypeLongBtn').classList.toggle('selected', type === 'long');
+  document.getElementById('ytStep2Next').disabled = false;
+}
+
+// Step 3: thumbnail
+function selectYTThumb(choice) {
+  document.getElementById('ytThumbUploadBtn').classList.toggle('selected', choice === 'upload');
+  document.getElementById('ytThumbCreateBtn').classList.toggle('selected', choice === 'create');
+  document.getElementById('ytThumbUploadZone').classList.toggle('hidden', choice !== 'upload');
+  document.getElementById('ytThumbCreateZone').classList.toggle('hidden', choice !== 'create');
+  if (choice === 'upload') {
+    ytState.thumbnailStatus = 'uploaded';
+    // Only enable next when file is chosen
+    const hasFile = document.getElementById('ytThumbFileInput').files.length > 0;
+    document.getElementById('ytStep3Next').disabled = !hasFile;
+  } else if (choice === 'create') {
+    ytState.thumbnailStatus = 'needs_design';
+    document.getElementById('ytStep3Next').disabled = false;
+  }
+}
+
+function ytHandleThumbFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const img = document.getElementById('ytThumbImgPreview');
+    img.src = e.target.result;
+    img.classList.remove('hidden');
+  };
+  reader.readAsDataURL(file);
+  document.getElementById('ytStep3Next').disabled = false;
+}
+
+// Step 5: review
+function buildYTReview() {
+  const thumbLabel = {
+    uploaded: 'Uploaded',
+    needs_design: 'Needs Design (team will create)',
+    na: 'N/A (short-form)'
+  }[ytState.thumbnailStatus] || '—';
+
+  let html = `
+    <div class="yt-review-section">
+      <div class="yt-review-section-title">Video Source</div>
+      <div class="yt-review-item"><span class="yt-review-label">Method:</span><span class="yt-review-value">${ytState.sourceType === 'upload' ? 'File Upload' : 'Link'}</span></div>
+      <div class="yt-review-item"><span class="yt-review-label">File / URL:</span><span class="yt-review-value">${esc(ytState.sourceUrl)}</span></div>
+    </div>
+    <div class="yt-review-section">
+      <div class="yt-review-section-title">Video Type</div>
+      <div class="yt-review-item"><span class="yt-review-label">Type:</span><span class="yt-review-value">${ytState.videoType === 'short' ? 'Short-form (Reels / Shorts)' : 'Long-form (YouTube)'}</span></div>
+      <div class="yt-review-item"><span class="yt-review-label">Thumbnail:</span><span class="yt-review-value">${thumbLabel}</span></div>
+      ${ytState.thumbnailStatus === 'needs_design' && ytState.thumbnailStyle ? `<div class="yt-review-item"><span class="yt-review-label">Thumb Style:</span><span class="yt-review-value">${esc(capitalize(ytState.thumbnailStyle))}</span></div>` : ''}
+      ${ytState.thumbnailStatus === 'needs_design' && ytState.thumbnailText ? `<div class="yt-review-item"><span class="yt-review-label">Thumb Text:</span><span class="yt-review-value">${esc(ytState.thumbnailText)}</span></div>` : ''}
+    </div>
+    <div class="yt-review-section">
+      <div class="yt-review-section-title">Video Details</div>
+      <div class="yt-review-item"><span class="yt-review-label">Title:</span><span class="yt-review-value">${esc(ytState.title)}</span></div>
+      ${ytState.description ? `<div class="yt-review-item"><span class="yt-review-label">Description:</span><span class="yt-review-value">${esc(ytState.description)}</span></div>` : ''}
+      <div class="yt-review-item"><span class="yt-review-label">Goal:</span><span class="yt-review-value">${esc(capitalize(ytState.goal))}</span></div>
+      ${ytState.keyNotes ? `<div class="yt-review-item"><span class="yt-review-label">Key Notes / CTA:</span><span class="yt-review-value">${esc(ytState.keyNotes)}</span></div>` : ''}
+      ${ytState.avoidNotes ? `<div class="yt-review-item"><span class="yt-review-label">Avoid:</span><span class="yt-review-value">${esc(ytState.avoidNotes)}</span></div>` : ''}
+    </div>`;
+  document.getElementById('ytReviewContent').innerHTML = html;
+}
+
+async function submitYTVideo() {
+  const btn = document.getElementById('ytSubmitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>Submitting…';
+
+  // Collect thumbnail fields
+  const thumbStyle = ytState.thumbnailStatus === 'needs_design'
+    ? document.getElementById('ytThumbStyle').value : '';
+  const thumbText = ytState.thumbnailStatus === 'needs_design'
+    ? document.getElementById('ytThumbText').value.trim() : '';
+
+  const payload = {
+    clientId: currentUser.uid,
+    clientName: currentUserData.name || currentUser.email,
+    videoType: ytState.videoType,
+    sourceType: ytState.sourceType,
+    sourceUrl: ytState.sourceUrl,
+    thumbnailStatus: ytState.thumbnailStatus,
+    thumbnailStyle: thumbStyle,
+    thumbnailText: thumbText,
+    title: ytState.title,
+    description: ytState.description,
+    goal: ytState.goal,
+    keyNotes: ytState.keyNotes,
+    avoidNotes: ytState.avoidNotes,
+    status: 'submitted',
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  try {
+    const ref = await db.collection('youtube').add(payload);
+    allYoutube.unshift({ id: ref.id, ...payload, createdAt: new Date() });
+    renderClientYoutube();
+    closeYTSubmitModal();
+    showToast('Video submitted successfully!', 'success');
+  } catch(e) {
+    btn.disabled = false;
+    btn.textContent = 'Submit Video';
+    showToast('Error submitting video: ' + e.message, 'error');
+  }
+}
 </script>
 </body>
 </html>
