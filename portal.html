@@ -335,6 +335,29 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
   .yt-choice-row{flex-direction:column}
   .yt-admin-detail-grid{grid-template-columns:1fr}
 }
+
+/* ── TOOLS TAB ── */
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.tool-card{background:#fff;border:1px solid rgba(179,190,201,.2);border-radius:7px;padding:24px 20px;text-align:center;cursor:pointer;transition:all .18s}
+.tool-card:hover{border-color:#36D1C2;box-shadow:0 4px 16px rgba(54,209,194,.12);transform:translateY(-2px)}
+.tool-card-icon{font-size:32px;margin-bottom:12px;display:block}
+.tool-card-title{font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;color:#00161F;margin-bottom:6px}
+.tool-card-desc{font-size:12px;color:#617792;font-weight:300;line-height:1.5;margin-bottom:16px}
+.tool-modal-overlay{position:fixed;inset:0;background:rgba(0,22,31,.5);z-index:600;display:none;align-items:center;justify-content:center;padding:20px}
+.tool-modal-overlay.open{display:flex}
+.tool-modal{background:#fff;border-radius:7px;padding:28px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto}
+.tool-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.tool-modal-header h3{font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;color:#00161F;display:flex;align-items:center;gap:10px}
+.tool-result{background:#FEF9F6;border:1px solid rgba(179,190,201,.25);border-radius:5px;padding:14px;margin-top:16px;display:none}
+.tool-result.show{display:block}
+.tool-result-label{font-family:'Rubik',sans-serif;font-size:10px;font-weight:500;color:#B3BEC9;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.tool-prompt-box{background:#fff;border:1px solid rgba(179,190,201,.3);border-radius:5px;padding:12px;font-family:'Courier New',monospace;font-size:12px;color:#00161F;line-height:1.6;white-space:pre-wrap;word-break:break-word;max-height:200px;overflow-y:auto;margin-bottom:10px}
+.tool-cta{background:linear-gradient(135deg,rgba(54,209,194,.08) 0%,rgba(0,22,31,.04) 100%);border:1px solid rgba(54,209,194,.2);border-radius:5px;padding:14px 16px;margin-top:12px;display:none;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.tool-cta.show{display:flex}
+.tool-cta-text{font-size:12px;color:#617792;font-weight:300}
+.tool-cta-text strong{color:#00161F;font-weight:500;display:block;margin-bottom:2px}
+@media(max-width:900px){.tools-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.tools-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -407,6 +430,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       <div class="dash-tab" onclick="switchAdminTab('reports',this)">Reports</div>
       <div class="dash-tab" onclick="switchAdminTab('youtube',this)">YouTube</div>
       <div class="dash-tab" onclick="switchAdminTab('requests',this)">Requests</div>
+      <div class="dash-tab" onclick="switchAdminTab('tools',this)">Tools</div>
     </div>
 
     <!-- OVERVIEW TAB -->
@@ -698,6 +722,46 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       </div>
     </div>
 
+    <!-- ADMIN TOOLS TAB -->
+    <div id="admin-tools" class="tab-panel hidden">
+      <div style="margin-bottom:16px">
+        <div class="section-title" style="margin-bottom:4px">Client Tools Preview</div>
+        <div class="text-sm">These are the same tools your clients see in their dashboard. Use them to preview the experience or generate prompts for your own research.</div>
+      </div>
+      <div class="tools-grid" id="adminToolsGrid">
+        <div class="tool-card" onclick="openTool('ai-visibility')">
+          <span class="tool-card-icon">&#127760;</span>
+          <div class="tool-card-title">AI Search Visibility</div>
+          <div class="tool-card-desc">See how visible your brand is in AI search results</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('content-ideas')">
+          <span class="tool-card-icon">&#128161;</span>
+          <div class="tool-card-title">Content Ideas</div>
+          <div class="tool-card-desc">Get blog topic suggestions based on your website</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('local-seo')">
+          <span class="tool-card-icon">&#128205;</span>
+          <div class="tool-card-title">Local SEO Check</div>
+          <div class="tool-card-desc">Check your local search presence</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('website-health')">
+          <span class="tool-card-icon">&#9889;</span>
+          <div class="tool-card-title">Website Health Score</div>
+          <div class="tool-card-desc">Get a quick health score for your website</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('video-planner')">
+          <span class="tool-card-icon">&#127909;</span>
+          <div class="tool-card-title">Video Content Planner</div>
+          <div class="tool-card-desc">Get video ideas for your industry</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+      </div>
+    </div>
+
   </div>
   <footer class="site-footer">
     <img src="ac-logo-dark.png" alt="Anderson Collaborative">
@@ -723,6 +787,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       <div class="dash-tab" onclick="switchClientTab('myreports',this)">My Reports</div>
       <div class="dash-tab" onclick="switchClientTab('myyoutube',this)">YouTube</div>
       <div class="dash-tab" onclick="switchClientTab('support',this)">Support</div>
+      <div class="dash-tab" onclick="switchClientTab('tools',this)">Tools</div>
       <div class="dash-tab" onclick="switchClientTab('addservices',this)">Add Services</div>
     </div>
 
@@ -820,6 +885,46 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
       <div id="clientSupportWrap"><div class="empty-state"><p>No support requests yet.</p></div></div>
     </div>
 
+    <!-- TOOLS -->
+    <div id="client-tools" class="tab-panel hidden">
+      <div style="margin-bottom:20px">
+        <div class="section-title" style="margin-bottom:4px">Free Marketing Tools</div>
+        <div class="text-sm">Generate powerful AI prompts to research and improve your marketing. Copy any prompt and paste it into Claude or ChatGPT for instant insights.</div>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card" onclick="openTool('ai-visibility')">
+          <span class="tool-card-icon">&#127760;</span>
+          <div class="tool-card-title">AI Search Visibility</div>
+          <div class="tool-card-desc">See how visible your brand is in AI search results</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('content-ideas')">
+          <span class="tool-card-icon">&#128161;</span>
+          <div class="tool-card-title">Content Ideas</div>
+          <div class="tool-card-desc">Get blog topic suggestions based on your website</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('local-seo')">
+          <span class="tool-card-icon">&#128205;</span>
+          <div class="tool-card-title">Local SEO Check</div>
+          <div class="tool-card-desc">Check your local search presence</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('website-health')">
+          <span class="tool-card-icon">&#9889;</span>
+          <div class="tool-card-title">Website Health Score</div>
+          <div class="tool-card-desc">Get a quick health score for your website</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+        <div class="tool-card" onclick="openTool('video-planner')">
+          <span class="tool-card-icon">&#127909;</span>
+          <div class="tool-card-title">Video Content Planner</div>
+          <div class="tool-card-desc">Get video ideas for your industry</div>
+          <button class="btn btn-primary btn-sm" style="margin:0 auto">Try It</button>
+        </div>
+      </div>
+    </div>
+
     <!-- ADD SERVICES -->
     <div id="client-addservices" class="tab-panel hidden">
       <div class="section-title">Upgrade Your Plan</div>
@@ -856,6 +961,141 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
     <img src="ac-logo-dark.png" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
+</div>
+
+<!-- TOOLS MODAL -->
+<div class="tool-modal-overlay" id="toolModalOverlay" onclick="if(event.target===this)closeTool()">
+  <div class="tool-modal" id="toolModal">
+
+    <!-- AI SEARCH VISIBILITY -->
+    <div id="tool-ai-visibility" class="tool-inner hidden">
+      <div class="tool-modal-header">
+        <h3><span>&#127760;</span> AI Search Visibility</h3>
+        <button class="modal-close" onclick="closeTool()">&times;</button>
+      </div>
+      <p class="text-sm" style="margin-bottom:18px">Enter your details below to generate a prompt you can paste into Claude or ChatGPT to analyse your AI search visibility.</p>
+      <div class="field"><label>Website URL</label><input id="tool-aiv-url" placeholder="https://yourwebsite.com"></div>
+      <div class="field"><label>Brand Name</label><input id="tool-aiv-brand" placeholder="Your Brand Name"></div>
+      <div class="form-actions" style="margin-top:4px">
+        <button class="btn btn-primary" onclick="runTool('ai-visibility')">Analyze</button>
+        <button class="btn btn-outline" onclick="closeTool()">Cancel</button>
+      </div>
+      <div class="tool-result" id="tool-aiv-result">
+        <div class="tool-result-label">Your AI Prompt — Copy &amp; Paste into Claude or ChatGPT</div>
+        <div class="tool-prompt-box" id="tool-aiv-prompt"></div>
+        <button class="btn btn-teal-outline btn-sm" onclick="copyPrompt('tool-aiv-prompt')">Copy Prompt</button>
+      </div>
+      <div class="tool-cta" id="tool-aiv-cta">
+        <div class="tool-cta-text"><strong>Want us to improve your AI visibility?</strong>Our team can optimise your content for AI search engines.</div>
+        <button class="btn btn-primary btn-sm" onclick="closeTool();switchClientTab('addservices',null)">Add Services</button>
+      </div>
+    </div>
+
+    <!-- CONTENT IDEAS -->
+    <div id="tool-content-ideas" class="tool-inner hidden">
+      <div class="tool-modal-header">
+        <h3><span>&#128161;</span> Content Ideas</h3>
+        <button class="modal-close" onclick="closeTool()">&times;</button>
+      </div>
+      <p class="text-sm" style="margin-bottom:18px">Generate a prompt to get tailored blog topic suggestions for your website and industry.</p>
+      <div class="field"><label>Website URL</label><input id="tool-ci-url" placeholder="https://yourwebsite.com"></div>
+      <div class="field"><label>Industry</label><input id="tool-ci-industry" placeholder="e.g. Home Services, Dental, Real Estate"></div>
+      <div class="form-actions" style="margin-top:4px">
+        <button class="btn btn-primary" onclick="runTool('content-ideas')">Generate Ideas</button>
+        <button class="btn btn-outline" onclick="closeTool()">Cancel</button>
+      </div>
+      <div class="tool-result" id="tool-ci-result">
+        <div class="tool-result-label">Your AI Prompt — Copy &amp; Paste into Claude or ChatGPT</div>
+        <div class="tool-prompt-box" id="tool-ci-prompt"></div>
+        <button class="btn btn-teal-outline btn-sm" onclick="copyPrompt('tool-ci-prompt')">Copy Prompt</button>
+      </div>
+      <div class="tool-cta" id="tool-ci-cta">
+        <div class="tool-cta-text"><strong>Turn these into published blogs</strong>Our team writes, optimises, and publishes for you.</div>
+        <a href="pricing.html" class="btn btn-primary btn-sm">See Pricing</a>
+      </div>
+    </div>
+
+    <!-- LOCAL SEO CHECK -->
+    <div id="tool-local-seo" class="tool-inner hidden">
+      <div class="tool-modal-header">
+        <h3><span>&#128205;</span> Local SEO Check</h3>
+        <button class="modal-close" onclick="closeTool()">&times;</button>
+      </div>
+      <p class="text-sm" style="margin-bottom:18px">Generate a prompt to audit your local search presence and identify gaps.</p>
+      <div class="field"><label>Business Name</label><input id="tool-ls-name" placeholder="Your Business Name"></div>
+      <div class="field"><label>City / Location</label><input id="tool-ls-city" placeholder="e.g. Miami, FL"></div>
+      <div class="form-actions" style="margin-top:4px">
+        <button class="btn btn-primary" onclick="runTool('local-seo')">Check</button>
+        <button class="btn btn-outline" onclick="closeTool()">Cancel</button>
+      </div>
+      <div class="tool-result" id="tool-ls-result">
+        <div class="tool-result-label">Your AI Prompt — Copy &amp; Paste into Claude or ChatGPT</div>
+        <div class="tool-prompt-box" id="tool-ls-prompt"></div>
+        <button class="btn btn-teal-outline btn-sm" onclick="copyPrompt('tool-ls-prompt')">Copy Prompt</button>
+      </div>
+      <div class="tool-cta" id="tool-ls-cta">
+        <div class="tool-cta-text"><strong>Get our Google &amp; Directory Management</strong>We handle your local listings so you rank where it counts.</div>
+        <a href="pricing.html" class="btn btn-primary btn-sm">See Pricing</a>
+      </div>
+    </div>
+
+    <!-- WEBSITE HEALTH SCORE -->
+    <div id="tool-website-health" class="tool-inner hidden">
+      <div class="tool-modal-header">
+        <h3><span>&#9889;</span> Website Health Score</h3>
+        <button class="modal-close" onclick="closeTool()">&times;</button>
+      </div>
+      <p class="text-sm" style="margin-bottom:18px">Generate a prompt to get a comprehensive health score and audit for your website.</p>
+      <div class="field"><label>Website URL</label><input id="tool-wh-url" placeholder="https://yourwebsite.com"></div>
+      <div class="form-actions" style="margin-top:4px">
+        <button class="btn btn-primary" onclick="runTool('website-health')">Score My Site</button>
+        <button class="btn btn-outline" onclick="closeTool()">Cancel</button>
+      </div>
+      <div class="tool-result" id="tool-wh-result">
+        <div class="tool-result-label">Your AI Prompt — Copy &amp; Paste into Claude or ChatGPT</div>
+        <div class="tool-prompt-box" id="tool-wh-prompt"></div>
+        <button class="btn btn-teal-outline btn-sm" onclick="copyPrompt('tool-wh-prompt')">Copy Prompt</button>
+      </div>
+      <div class="tool-cta" id="tool-wh-cta">
+        <div class="tool-cta-text"><strong>Get professional website management</strong>Speed, SEO, and conversion optimisation handled for you.</div>
+        <a href="pricing.html" class="btn btn-primary btn-sm">See Pricing</a>
+      </div>
+    </div>
+
+    <!-- VIDEO CONTENT PLANNER -->
+    <div id="tool-video-planner" class="tool-inner hidden">
+      <div class="tool-modal-header">
+        <h3><span>&#127909;</span> Video Content Planner</h3>
+        <button class="modal-close" onclick="closeTool()">&times;</button>
+      </div>
+      <p class="text-sm" style="margin-bottom:18px">Generate a prompt to get video content ideas tailored to your industry and goals.</p>
+      <div class="field"><label>Industry</label><input id="tool-vp-industry" placeholder="e.g. Home Services, Dental, Real Estate"></div>
+      <div class="field">
+        <label>Goal</label>
+        <select id="tool-vp-goal">
+          <option value="">Select a goal…</option>
+          <option value="Brand Awareness">Brand Awareness</option>
+          <option value="Education">Education</option>
+          <option value="Sales">Sales</option>
+          <option value="Entertainment">Entertainment</option>
+        </select>
+      </div>
+      <div class="form-actions" style="margin-top:4px">
+        <button class="btn btn-primary" onclick="runTool('video-planner')">Get Ideas</button>
+        <button class="btn btn-outline" onclick="closeTool()">Cancel</button>
+      </div>
+      <div class="tool-result" id="tool-vp-result">
+        <div class="tool-result-label">Your AI Prompt — Copy &amp; Paste into Claude or ChatGPT</div>
+        <div class="tool-prompt-box" id="tool-vp-prompt"></div>
+        <button class="btn btn-teal-outline btn-sm" onclick="copyPrompt('tool-vp-prompt')">Copy Prompt</button>
+      </div>
+      <div class="tool-cta" id="tool-vp-cta">
+        <div class="tool-cta-text"><strong>Ready to produce your video?</strong>Submit your video idea to our team right now.</div>
+        <button class="btn btn-primary btn-sm" onclick="closeTool();openYTSubmitModal()">Submit a Video</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- ADD BLOG MODAL -->
@@ -2276,6 +2516,234 @@ document.getElementById('addBlogModal').addEventListener('click', function(e) {
 document.getElementById('ytSubmitModal').addEventListener('click', function(e) {
   if (e.target === this) closeYTSubmitModal();
 });
+
+// ══════════════════════════════
+// TOOLS
+// ══════════════════════════════
+const TOOL_IDS = ['ai-visibility','content-ideas','local-seo','website-health','video-planner'];
+
+function openTool(toolName) {
+  // Hide all tool panels
+  TOOL_IDS.forEach(id => {
+    const el = document.getElementById('tool-' + id);
+    if (el) el.classList.add('hidden');
+    // Reset result + cta
+    const res = document.getElementById('tool-' + id.replace(/-/g,function(m,i,s){
+      // build result id from tool id
+      return '-';
+    }) + '-result');
+  });
+  // Reset all results and ctas
+  document.querySelectorAll('.tool-result').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('.tool-cta').forEach(el => el.classList.remove('show'));
+  // Show selected tool
+  const panel = document.getElementById('tool-' + toolName);
+  if (panel) panel.classList.remove('hidden');
+  document.getElementById('toolModalOverlay').classList.add('open');
+}
+
+function closeTool() {
+  document.getElementById('toolModalOverlay').classList.remove('open');
+  // Reset results
+  document.querySelectorAll('.tool-result').forEach(el => el.classList.remove('show'));
+  document.querySelectorAll('.tool-cta').forEach(el => el.classList.remove('show'));
+}
+
+function copyPrompt(elId) {
+  const el = document.getElementById(elId);
+  if (!el) return;
+  const text = el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Prompt copied to clipboard!', 'success');
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Prompt copied to clipboard!', 'success');
+  });
+}
+
+function runTool(toolName) {
+  if (toolName === 'ai-visibility') {
+    const url = document.getElementById('tool-aiv-url').value.trim();
+    const brand = document.getElementById('tool-aiv-brand').value.trim();
+    if (!url || !brand) { showToast('Please enter both a website URL and brand name.', 'error'); return; }
+    const prompt = generatePromptAIVisibility(url, brand);
+    document.getElementById('tool-aiv-prompt').textContent = prompt;
+    document.getElementById('tool-aiv-result').classList.add('show');
+    document.getElementById('tool-aiv-cta').classList.add('show');
+  } else if (toolName === 'content-ideas') {
+    const url = document.getElementById('tool-ci-url').value.trim();
+    const industry = document.getElementById('tool-ci-industry').value.trim();
+    if (!url || !industry) { showToast('Please enter both a website URL and industry.', 'error'); return; }
+    const prompt = generatePromptContentIdeas(url, industry);
+    document.getElementById('tool-ci-prompt').textContent = prompt;
+    document.getElementById('tool-ci-result').classList.add('show');
+    document.getElementById('tool-ci-cta').classList.add('show');
+  } else if (toolName === 'local-seo') {
+    const name = document.getElementById('tool-ls-name').value.trim();
+    const city = document.getElementById('tool-ls-city').value.trim();
+    if (!name || !city) { showToast('Please enter a business name and location.', 'error'); return; }
+    const prompt = generatePromptLocalSEO(name, city);
+    document.getElementById('tool-ls-prompt').textContent = prompt;
+    document.getElementById('tool-ls-result').classList.add('show');
+    document.getElementById('tool-ls-cta').classList.add('show');
+  } else if (toolName === 'website-health') {
+    const url = document.getElementById('tool-wh-url').value.trim();
+    if (!url) { showToast('Please enter a website URL.', 'error'); return; }
+    const prompt = generatePromptWebsiteHealth(url);
+    document.getElementById('tool-wh-prompt').textContent = prompt;
+    document.getElementById('tool-wh-result').classList.add('show');
+    document.getElementById('tool-wh-cta').classList.add('show');
+  } else if (toolName === 'video-planner') {
+    const industry = document.getElementById('tool-vp-industry').value.trim();
+    const goal = document.getElementById('tool-vp-goal').value;
+    if (!industry || !goal) { showToast('Please enter your industry and select a goal.', 'error'); return; }
+    const prompt = generatePromptVideoPlanner(industry, goal);
+    document.getElementById('tool-vp-prompt').textContent = prompt;
+    document.getElementById('tool-vp-result').classList.add('show');
+    document.getElementById('tool-vp-cta').classList.add('show');
+  }
+}
+
+// ── PROMPT GENERATORS ──
+
+function generatePromptAIVisibility(url, brand) {
+  return `I want to understand how visible my brand is when people ask AI assistants like ChatGPT, Claude, Gemini, and Perplexity questions related to my industry.
+
+My website: ${url}
+My brand name: ${brand}
+
+Please help me with the following:
+
+1. BRAND MENTION AUDIT: What kinds of questions should I be asking AI assistants to test whether my brand comes up in responses? List 10 specific test prompts I can copy and paste into ChatGPT and Claude to check my AI visibility.
+
+2. COMPETITOR LANDSCAPE: Based on my website and industry, who are my likely competitors and how might they be appearing in AI search results?
+
+3. CONTENT GAPS: What topics, questions, and information should my website cover to increase the chances of being cited or mentioned by AI assistants?
+
+4. OPTIMISATION STRATEGY: Give me 5 specific, actionable steps I can take right now to improve how often my brand appears in AI-generated answers.
+
+5. QUICK WINS: Identify 3 things I could implement this week to start improving my AI search visibility.
+
+Please be specific and actionable. Format your response with clear headings and bullet points.`;
+}
+
+function generatePromptContentIdeas(url, industry) {
+  return `I need high-quality blog content ideas for a business in the ${industry} industry. My website is: ${url}
+
+Please generate a comprehensive blog content strategy for me:
+
+1. TOP 10 BLOG TOPICS: List 10 specific, SEO-optimised blog post titles I should write. For each topic include:
+   - The exact blog title
+   - Target keyword(s)
+   - Search intent (informational / transactional / local)
+   - Estimated search volume (low/medium/high)
+   - Brief description of what the post should cover
+
+2. CONTENT CALENDAR: Organise the 10 topics into a 3-month publishing schedule (roughly 3-4 posts per month) with a suggested publish date for each.
+
+3. TOPIC CLUSTERS: Group the topics into 2-3 content clusters/pillars that will help build topical authority for my website.
+
+4. QUICK-WIN TOPICS: Identify the 3 topics with the best chance of ranking quickly (low competition, high relevance).
+
+5. LONG-TERM OPPORTUNITY: Identify the 2 topics that might take longer to rank but have the highest long-term traffic potential.
+
+Please format clearly with headers, numbered lists, and specific keyword recommendations. Focus on topics that will attract buyers, not just browsers.`;
+}
+
+function generatePromptLocalSEO(businessName, city) {
+  return `I need a comprehensive local SEO audit for my business. Please help me understand and improve my local search presence.
+
+Business Name: ${businessName}
+Location: ${city}
+
+Please provide:
+
+1. LOCAL SEO CHECKLIST: Give me a complete audit checklist for local SEO. For each item, explain what it is, why it matters, and how I can check and fix it. Cover:
+   - Google Business Profile optimisation
+   - NAP (Name, Address, Phone) consistency
+   - Local citations and directories
+   - Local keyword strategy
+   - Reviews and reputation management
+   - Local link building
+   - On-page local SEO signals
+
+2. PRIORITY DIRECTORIES: List the top 15 directories and citation sources where ${businessName} in ${city} should be listed, in order of priority.
+
+3. LOCAL KEYWORD RESEARCH: Generate 20 local keyword phrases I should be targeting, including "[service] in ${city}" and "[service] near me" variations relevant to my business type.
+
+4. GOOGLE BUSINESS PROFILE AUDIT: What are the most important fields and features of a Google Business Profile I should optimise? What do most businesses get wrong?
+
+5. 30-DAY ACTION PLAN: Give me a specific week-by-week action plan for the next 30 days to improve my local SEO rankings.
+
+Please be specific to a business in ${city} and format with clear sections and actionable bullet points.`;
+}
+
+function generatePromptWebsiteHealth(url) {
+  return `I need a comprehensive website health assessment for: ${url}
+
+Please act as a senior SEO and web performance specialist and provide a detailed audit covering:
+
+1. TECHNICAL SEO SCORE (out of 100): Evaluate and score the following areas:
+   - Page speed and Core Web Vitals (LCP, FID, CLS)
+   - Mobile-friendliness
+   - HTTPS and security
+   - Crawlability and indexability
+   - XML sitemap and robots.txt
+   - Structured data / schema markup
+   - Canonical tags and duplicate content
+
+2. ON-PAGE SEO HEALTH:
+   - Title tag and meta description quality
+   - Heading structure (H1-H6)
+   - Image optimisation and alt text
+   - Internal linking structure
+   - Content quality signals
+
+3. CRITICAL ISSUES: List the top 5 issues most likely to be hurting this website's performance in search right now, ranked by impact.
+
+4. QUICK FIXES (this week): Give me 5 things I can fix in the next 7 days that will have an immediate positive impact.
+
+5. LONG-TERM RECOMMENDATIONS: Give me 5 longer-term improvements that will compound over time.
+
+6. COMPETITOR BENCHMARK: What should a well-optimised website in this industry look like? What metrics should I be aiming for?
+
+Please structure your response with a clear score, then detailed recommendations. Be specific and actionable.`;
+}
+
+function generatePromptVideoPlanner(industry, goal) {
+  return `I need a video content strategy for a business in the ${industry} industry. My primary goal is: ${goal}.
+
+Please create a complete video content plan:
+
+1. TOP 10 VIDEO IDEAS: Generate 10 specific video concepts tailored to ${industry} businesses focused on ${goal}. For each video include:
+   - Video title
+   - Format (short-form Reel/Short vs long-form YouTube)
+   - Ideal length
+   - Hook (the first 3 seconds — what grabs attention?)
+   - Core content outline (3-5 bullet points)
+   - Call to action
+   - Best platform(s) to post
+
+2. CONTENT SERIES IDEAS: Suggest 2-3 recurring video series formats that would work well for ${goal} in the ${industry} space (e.g. "Behind the scenes Fridays", "Client spotlight series").
+
+3. SHORT-FORM PRIORITY LIST: From your 10 ideas, which 3 are best suited for Instagram Reels / TikTok / YouTube Shorts? Why?
+
+4. LONG-FORM PRIORITY LIST: Which 2-3 ideas work best as full YouTube videos (5-15 minutes)?
+
+5. PRODUCTION TIPS: Give 5 practical tips for producing these videos with a small budget (smartphone-level production).
+
+6. POSTING SCHEDULE: Suggest an optimal posting frequency and schedule for a business starting from scratch with video content.
+
+Format with clear sections, numbered lists, and be specific to the ${industry} industry and ${goal} goal.`;
+}
 </script>
 
 <script>
