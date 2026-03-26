@@ -61,6 +61,22 @@
 
 <div class="cta-section"><h2>Already a client?</h2><p>Log in to manage your subscription, view your blogs, and track progress.</p><a href="portal.html" class="cta-btn">Log in to Client Portal</a></div>
 <footer class="site-footer"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:18px;margin-bottom:14px;opacity:.4"><p>&copy; 2026 Anderson Collaborative. All rights reserved.</p></footer>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+// Init Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey: "AIzaSyBWEA8VBcn9A9wLeTrKizo17QJ1G_tQl28",
+    authDomain: "ac-client-portal-6884c.firebaseapp.com",
+    projectId: "ac-client-portal-6884c",
+    storageBucket: "ac-client-portal-6884c.firebasestorage.app",
+    messagingSenderId: "744456773387",
+    appId: "1:744456773387:web:9ddcdac444fa13524b0c0e"
+  });
+}
+</script>
 <script>function showSection(n){['blogs','web','gmb','bundles'].forEach(s=>{document.getElementById('section-'+s).classList.toggle('hidden',s!==n)});document.querySelectorAll('.tab').forEach((b,i)=>{const m={0:'blogs',1:'web',2:'gmb',3:'bundles'};b.classList.toggle('active',m[i]===n)})}</script>
 
 <!-- SIGNUP MODAL -->
@@ -75,7 +91,7 @@
     </div>
 
     <div class="modal-body">
-      <div class="step-dots"><div class="step-dot active" id="sd1"></div><div class="step-dot" id="sd2"></div><div class="step-dot" id="sd3"></div><div class="step-dot" id="sd4"></div></div>
+      <div class="step-dots"><div class="step-dot active" id="sd1"></div><div class="step-dot" id="sd2"></div><div class="step-dot" id="sd3"></div><div class="step-dot" id="sd4"></div><div class="step-dot" id="sd5"></div><div class="step-dot" id="sd6"></div></div>
 
       <!-- STEP 1: Existing client? -->
       <div class="modal-step active" id="ms1">
@@ -118,11 +134,22 @@
         <button class="modal-btn modal-btn-outline" onclick="goModalStep(2)">Back</button>
       </div>
 
-      <!-- STEP 4: Onboarding -->
+      <!-- STEP 4: Google Sign-in -->
       <div class="modal-step" id="ms4">
         <div class="success-icon">&#10003;</div>
-        <h2 style="text-align:center;font-size:18px;font-weight:400;margin-bottom:6px">Welcome aboard!</h2>
-        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">Just a few more details so we can get started on your account.</p>
+        <h2 style="text-align:center;font-size:18px;font-weight:400;margin-bottom:6px">Payment successful!</h2>
+        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">Sign in with your Google account to set up your client portal. This will be your login for managing your blogs, tracking progress, and communicating with our team.</p>
+        <button class="modal-btn" id="googleSignBtn" onclick="googleSignupFromModal()" style="background:#fff;border:1px solid #B3BEC9;color:#617792;display:flex;align-items:center;justify-content:center;gap:8px;width:100%">
+          <svg width="16" height="16" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+          Sign in with Google
+        </button>
+        <button class="modal-btn modal-btn-outline hidden" id="continueToOnboard" onclick="continueToOnboarding()" style="margin-top:12px">Continue to Setup</button>
+      </div>
+
+      <!-- STEP 5: Onboarding -->
+      <div class="modal-step" id="ms5">
+        <h2 style="text-align:center;font-size:18px;font-weight:400;margin-bottom:6px">Almost there!</h2>
+        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">Just a few details so we can get started on your account.</p>
 
         <!-- Blog onboarding fields -->
         <div id="onboard-blogs">
@@ -234,14 +261,17 @@
         </div>
 
         <button class="modal-btn modal-btn-primary" onclick="submitOnboarding()">Submit & Complete Setup</button>
+        <button class="modal-btn modal-btn-outline" onclick="goModalStep(4)">Back</button>
       </div>
 
-      <!-- STEP 5: Done -->
-      <div class="modal-step" id="ms5">
+      <!-- STEP 6: Done -->
+      <div class="modal-step" id="ms6">
         <div class="success-icon" style="background:rgba(54,209,194,0.15)">&#127881;</div>
         <h2 style="text-align:center;font-size:18px;font-weight:400;margin-bottom:6px">You're all set!</h2>
-        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">Thank you for choosing Anderson Collaborative. Our team will review your details and reach out within 24 hours to get started.</p>
-        <button class="modal-btn modal-btn-primary" onclick="closeModal()">Close</button>
+        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">Thank you for choosing Anderson Collaborative. Our team will review your details and reach out within 24 hours.</p>
+        <p style="text-align:center;font-size:13px;color:#617792;font-weight:300;margin-bottom:20px">You can now access your client portal to track your blogs and manage your subscription.</p>
+        <button class="modal-btn modal-btn-primary" onclick="window.location.href='portal.html'">Go to Client Portal</button>
+        <button class="modal-btn modal-btn-outline" onclick="closeModal()">Close</button>
       </div>
     </div>
   </div>
@@ -292,7 +322,7 @@ function closeModal() {
 }
 
 function goModalStep(n) {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 6; i++) {
     document.getElementById('ms' + i).classList.toggle('active', i === n);
     const dot = document.getElementById('sd' + i);
     if (dot) dot.classList.toggle('active', i === n);
@@ -322,7 +352,6 @@ function selectExisting(existing) {
 }
 
 function processPayment() {
-  // Stripe placeholder - simulate success
   document.getElementById('payBtn').textContent = 'Processing...';
   document.getElementById('payBtn').disabled = true;
   setTimeout(() => {
@@ -332,8 +361,80 @@ function processPayment() {
   }, 1500);
 }
 
-function submitOnboarding() {
+async function googleSignupFromModal() {
+  try {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const result = await firebase.auth().signInWithPopup(provider);
+    
+    // Save user to Firestore with their contact info from step 2
+    const name = document.getElementById('signup_name').value || result.user.displayName;
+    const company = document.getElementById('signup_company').value;
+    const email = result.user.email;
+    const phone = document.getElementById('signup_phone').value;
+    
+    await firebase.firestore().collection('users').doc(result.user.uid).set({
+      name: name,
+      company: company,
+      email: email,
+      phone: phone,
+      role: 'client',
+      plan: selectedPlan,
+      planCategory: selectedCategory,
+      planPrice: selectedPrice,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    
+    document.getElementById('googleSignBtn').textContent = 'Connected as ' + email;
+    document.getElementById('googleSignBtn').disabled = true;
+    document.getElementById('googleSignBtn').style.background = 'rgba(54,209,194,0.1)';
+    document.getElementById('googleSignBtn').style.color = '#2BBDAF';
+    document.getElementById('googleSignBtn').style.borderColor = '#36D1C2';
+    document.getElementById('continueToOnboard').classList.remove('hidden');
+  } catch(e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+function continueToOnboarding() {
   goModalStep(5);
+}
+
+async function submitOnboarding() {
+  // Save onboarding data to Firestore
+  if (firebase.auth().currentUser) {
+    const uid = firebase.auth().currentUser.uid;
+    const onboardData = {};
+    
+    // Collect all visible form fields in the active onboarding section
+    const activeSection = document.querySelector('#ms5 div[style*="display: block"], #ms5 div:not([style*="display: none"]):not(.hidden)');
+    if (activeSection) {
+      activeSection.querySelectorAll('input, select, textarea').forEach(el => {
+        if (el.value) {
+          const label = el.previousElementSibling;
+          const key = label ? label.textContent.trim().toLowerCase().replace(/[^a-z0-9]/g, '_') : el.id;
+          onboardData[key] = el.value;
+        }
+      });
+    }
+    
+    await firebase.firestore().collection('users').doc(uid).update({
+      onboarding: onboardData,
+      onboardedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    // Also create a request for the AC team
+    await firebase.firestore().collection('requests').add({
+      userId: uid,
+      clientName: firebase.auth().currentUser.displayName || document.getElementById('signup_name').value,
+      title: 'New ' + selectedCategory + ' signup: ' + selectedPlan,
+      status: 'new',
+      plan: selectedPlan,
+      category: selectedCategory,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+  }
+  
+  goModalStep(6);
 }
 
 // Close modal on overlay click
