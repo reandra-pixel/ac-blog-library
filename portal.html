@@ -1301,35 +1301,69 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 
     <!-- STEP 4: VIDEO DETAILS -->
     <div class="yt-step-panel" id="ytStep4">
-      <div class="yt-step-title">Tell us about your video</div>
-      <div class="yt-step-sub">These details help our team produce and publish your content.</div>
+      <div class="yt-step-title">Tell us the story behind your video</div>
+      <div class="yt-step-sub">The more context you give us, the better we can craft the perfect caption and story for your audience.</div>
       <div class="field">
         <label>Video Title <span style="color:#E54B4B">*</span></label>
         <input id="ytSubTitle" placeholder="What should this video be titled?">
       </div>
       <div class="field">
-        <label>Description</label>
-        <textarea id="ytSubDesc" placeholder="Briefly describe what this video covers…" style="min-height:70px"></textarea>
+        <label>What is this video about? <span style="color:#E54B4B">*</span></label>
+        <textarea id="ytSubDesc" placeholder="Tell us in your own words — what's happening in this video? What's the main message or story?" style="min-height:80px"></textarea>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Where was this filmed?</label>
+          <input id="ytSubLocation" placeholder="e.g. Our Miami office, at a client event, at home">
+        </div>
+        <div class="field">
+          <label>When was this filmed?</label>
+          <input id="ytSubWhen" placeholder="e.g. Last Friday, during our launch event, this morning">
+        </div>
+      </div>
+      <div class="field">
+        <label>Why does this matter to your audience?</label>
+        <textarea id="ytSubWhy" placeholder="Why should someone watch this? What will they learn, feel, or take away?" style="min-height:60px"></textarea>
+      </div>
+      <div class="field">
+        <label>Who is in the video?</label>
+        <input id="ytSubWho" placeholder="e.g. Our founder, a customer testimonial, the team, just product shots">
       </div>
       <div class="field-row">
         <div class="field">
           <label>Goal <span style="color:#E54B4B">*</span></label>
           <select id="ytSubGoal">
             <option value="">Select a goal…</option>
-            <option value="promotion">Promotion</option>
-            <option value="awareness">Awareness</option>
-            <option value="education">Education</option>
+            <option value="promotion">Promotion / Sales</option>
+            <option value="awareness">Brand Awareness</option>
+            <option value="education">Education / How-to</option>
+            <option value="behindscenes">Behind the Scenes</option>
+            <option value="testimonial">Customer Testimonial</option>
+            <option value="event">Event Coverage</option>
+            <option value="announcement">Announcement / Launch</option>
             <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tone / Vibe</label>
+          <select id="ytSubTone">
+            <option value="">Select tone…</option>
+            <option value="professional">Professional & polished</option>
+            <option value="casual">Casual & friendly</option>
+            <option value="fun">Fun & energetic</option>
+            <option value="emotional">Emotional & inspiring</option>
+            <option value="educational">Educational & informative</option>
+            <option value="raw">Raw & authentic</option>
           </select>
         </div>
       </div>
       <div class="field">
-        <label>Key Notes / CTA</label>
-        <textarea id="ytSubNotes" placeholder="Any calls to action, events, or offers to highlight?" style="min-height:60px"></textarea>
+        <label>Key Notes / Call to Action</label>
+        <textarea id="ytSubNotes" placeholder="Any specific calls to action, links, offers, event dates, or hashtags to include?" style="min-height:60px"></textarea>
       </div>
       <div class="field">
         <label>Anything to avoid? <span style="color:#B3BEC9;font-size:10px;text-transform:none;letter-spacing:0">(optional)</span></label>
-        <input id="ytSubAvoid" placeholder="Topics, wording, or visuals to steer clear of…">
+        <input id="ytSubAvoid" placeholder="Topics, wording, competitors, or visuals to steer clear of…">
       </div>
       <div class="yt-modal-footer">
         <button class="btn btn-outline" id="ytStep4Back" onclick="ytStep4GoBack()">Back</button>
@@ -2763,7 +2797,12 @@ function resetYTState() {
     thumbnailText: '',
     title: '',
     description: '',
+    location: '',
+    when: '',
+    why: '',
+    who: '',
     goal: '',
+    tone: '',
     keyNotes: '',
     avoidNotes: ''
   };
@@ -2851,7 +2890,12 @@ function ytNextStep(fromStep) {
     if (!goal) { showToast('Please select a goal.', 'error'); return; }
     ytState.title = title;
     ytState.description = document.getElementById('ytSubDesc').value.trim();
+    ytState.location = document.getElementById('ytSubLocation').value.trim();
+    ytState.when = document.getElementById('ytSubWhen').value.trim();
+    ytState.why = document.getElementById('ytSubWhy').value.trim();
+    ytState.who = document.getElementById('ytSubWho').value.trim();
     ytState.goal = goal;
+    ytState.tone = document.getElementById('ytSubTone').value;
     ytState.keyNotes = document.getElementById('ytSubNotes').value.trim();
     ytState.avoidNotes = document.getElementById('ytSubAvoid').value.trim();
     buildYTReview();
@@ -2989,10 +3033,15 @@ function buildYTReview() {
       ${ytState.thumbnailStatus === 'needs_design' && ytState.thumbnailText ? `<div class="yt-review-item"><span class="yt-review-label">Thumb Text:</span><span class="yt-review-value">${esc(ytState.thumbnailText)}</span></div>` : ''}
     </div>
     <div class="yt-review-section">
-      <div class="yt-review-section-title">Video Details</div>
+      <div class="yt-review-section-title">Video Story & Details</div>
       <div class="yt-review-item"><span class="yt-review-label">Title:</span><span class="yt-review-value">${esc(ytState.title)}</span></div>
-      ${ytState.description ? `<div class="yt-review-item"><span class="yt-review-label">Description:</span><span class="yt-review-value">${esc(ytState.description)}</span></div>` : ''}
+      ${ytState.description ? `<div class="yt-review-item"><span class="yt-review-label">What it's about:</span><span class="yt-review-value">${esc(ytState.description)}</span></div>` : ''}
+      ${ytState.location ? `<div class="yt-review-item"><span class="yt-review-label">Where:</span><span class="yt-review-value">${esc(ytState.location)}</span></div>` : ''}
+      ${ytState.when ? `<div class="yt-review-item"><span class="yt-review-label">When:</span><span class="yt-review-value">${esc(ytState.when)}</span></div>` : ''}
+      ${ytState.why ? `<div class="yt-review-item"><span class="yt-review-label">Why it matters:</span><span class="yt-review-value">${esc(ytState.why)}</span></div>` : ''}
+      ${ytState.who ? `<div class="yt-review-item"><span class="yt-review-label">Who's in it:</span><span class="yt-review-value">${esc(ytState.who)}</span></div>` : ''}
       <div class="yt-review-item"><span class="yt-review-label">Goal:</span><span class="yt-review-value">${esc(capitalize(ytState.goal))}</span></div>
+      ${ytState.tone ? `<div class="yt-review-item"><span class="yt-review-label">Tone:</span><span class="yt-review-value">${esc(capitalize(ytState.tone))}</span></div>` : ''}
       ${ytState.keyNotes ? `<div class="yt-review-item"><span class="yt-review-label">Key Notes / CTA:</span><span class="yt-review-value">${esc(ytState.keyNotes)}</span></div>` : ''}
       ${ytState.avoidNotes ? `<div class="yt-review-item"><span class="yt-review-label">Avoid:</span><span class="yt-review-value">${esc(ytState.avoidNotes)}</span></div>` : ''}
     </div>`;
@@ -3021,7 +3070,12 @@ async function submitYTVideo() {
     thumbnailText: thumbText,
     title: ytState.title,
     description: ytState.description,
+    location: ytState.location || '',
+    when: ytState.when || '',
+    why: ytState.why || '',
+    who: ytState.who || '',
     goal: ytState.goal,
+    tone: ytState.tone || '',
     keyNotes: ytState.keyNotes,
     avoidNotes: ytState.avoidNotes,
     status: 'submitted',
