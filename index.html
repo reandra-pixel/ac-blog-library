@@ -738,6 +738,933 @@ textarea{min-height:80px;resize:vertical}
 <!-- CREATE BLOG TAB -->
 <div id="tab-create" class="hidden">
   <div class="creator-wrap">
+    <h1 style="font-family:'Rubik',sans-serif;font-size:28px;font-weight:400;margin-bottom:6px">Create New Blog Post</h1>
+    <p style="font-size:13px;color:#617792;font-weight:300;margin-bottom:28px">Fill in the details below to create and publish a blog post.</p>
+
+    <!-- BLOG DETAILS -->
+    <div class="section">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:14px">Blog Details</h2>
+      
+      <label>Blog Type</label>
+      <div style="display:flex;gap:10px;margin-bottom:14px">
+        <button class="type-btn active" id="typeBtnAC" onclick="selectBlogType('ac')" style="flex:1;padding:10px;border:1px solid #36D1C2;border-radius:3px;background:rgba(54,209,194,0.05);color:#36D1C2;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;cursor:pointer;text-transform:uppercase;letter-spacing:.5px">AC Blog</button>
+        <button class="type-btn" id="typeBtnClient" onclick="selectBlogType('client')" style="flex:1;padding:10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;cursor:pointer;text-transform:uppercase;letter-spacing:.5px">Client Blog</button>
+      </div>
+
+      <div id="clientField" style="display:none">
+        <label>Client Website URL</label>
+        <input type="text" id="newClientUrl" placeholder="https://clientwebsite.com">
+        <label>Client Name</label>
+        <input type="text" id="newClientName" placeholder="Client business name">
+      </div>
+
+      <label>Blog Title</label>
+      <input type="text" id="newBlogTitle" placeholder="e.g. Top 10 Franchise Marketing Strategies for 2026">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <label>Author</label>
+          <select id="newBlogAuthor">
+            <option value="trevor">Trevor Anderson</option>
+            <option value="reandra" selected>Reandra Maree</option>
+            <option value="cole">Cole Feigl</option>
+            <option value="gregorio">Gregorio Palacio</option>
+            <option value="jack">Jack Nelson</option>
+            <option value="nazareno">Nazareno Castro Bay</option>
+            <option value="samantha">Samantha Sanchezborja</option>
+            <option value="daria">Daria</option>
+            <option value="daymit">Daymit</option>
+            <option value="mariia">Mariia</option>
+            <option value="stavros">Stavros</option>
+            <option value="rizki">Rizki</option>
+            <option value="rupert">Rupert</option>
+            <option value="eden">Eden Jones</option>
+          </select>
+        </div>
+        <div>
+          <label>Status</label>
+          <select id="newBlogStatus">
+            <option value="draft">Draft</option>
+            <option value="review">In Review</option>
+            <option value="seo">SEO Optimization</option>
+            <option value="approved">Approved</option>
+            <option value="live">Published</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+        <div>
+          <label>Publish Date</label>
+          <input type="date" id="newBlogDate" value="2026-03-27">
+        </div>
+        <div>
+          <label>Featured Image URL</label>
+          <input type="text" id="newBlogImage" placeholder="Paste image URL (optional)">
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO SETTINGS -->
+    <div class="section">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:14px">SEO Settings</h2>
+
+      <label>Focus Keyphrase</label>
+      <input type="text" id="newBlogKeyphrase" placeholder="e.g. franchise marketing strategies" oninput="updateNewBlogSEO()">
+
+      <label>SEO Title <span id="newSeoTitleCount" style="float:right;font-size:10px;color:#B3BEC9">0/60</span></label>
+      <input type="text" id="newBlogSeoTitle" maxlength="60" placeholder="Auto-generated or type your own" oninput="updateNewBlogSEO()">
+
+      <label>Meta Description <span id="newMetaDescCount" style="float:right;font-size:10px;color:#B3BEC9">0/155</span></label>
+      <textarea id="newBlogMetaDesc" maxlength="155" rows="2" placeholder="Write a compelling 155-character summary..." oninput="updateNewBlogSEO()" style="min-height:50px"></textarea>
+
+      <label>URL Slug</label>
+      <input type="text" id="newBlogSlug" placeholder="auto-generated-from-title">
+
+      <!-- SEO Checklist -->
+      <div id="newBlogSeoChecklist" style="margin-top:10px"></div>
+    </div>
+
+    <!-- BLOG CONTENT -->
+    <div class="section">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:6px">Blog Content</h2>
+      <p style="font-size:12px;color:#B3BEC9;font-weight:300;margin-bottom:14px">Write or paste your blog content. Use ## for H2 headings, ### for H3, **bold**, and - for bullet points.</p>
+
+      <div style="display:flex;gap:8px;margin-bottom:10px">
+        <button onclick="insertFormat('## ')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif">H2</button>
+        <button onclick="insertFormat('### ')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif">H3</button>
+        <button onclick="insertFormat('**','**')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif"><strong>B</strong></button>
+        <button onclick="insertFormat('*','*')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif"><em>I</em></button>
+        <button onclick="insertFormat('- ')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif">List</button>
+        <button onclick="insertFormat('[link text](url)')" style="padding:4px 10px;border:1px solid #B3BEC9;border-radius:3px;background:transparent;color:#617792;font-size:11px;cursor:pointer;font-family:'Rubik',sans-serif">Link</button>
+      </div>
+
+      <textarea id="newBlogContent" rows="25" placeholder="Write your blog content here...
+
+## Introduction
+
+Start with a compelling hook...
+
+## Main Point 1
+
+Your content here...
+
+## Conclusion
+
+Wrap up with a call to action." style="font-size:14px;line-height:1.7;min-height:400px" oninput="updateNewBlogSEO()"></textarea>
+    </div>
+
+    <!-- AI ASSIST -->
+    <div class="section">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:6px">AI Writing Assistant</h2>
+      <p style="font-size:12px;color:#B3BEC9;font-weight:300;margin-bottom:14px">Need help writing? Generate a prompt for Claude or ChatGPT based on your blog details.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <label>Target Audience</label>
+          <input type="text" id="newBlogAudience" placeholder="e.g. Franchise owners, small business owners">
+        </div>
+        <div>
+          <label>Industry</label>
+          <input type="text" id="newBlogIndustry" placeholder="e.g. Marketing, real estate, e-commerce">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <label>Tone</label>
+          <select id="newBlogTone">
+            <option value="professional">Professional & authoritative</option>
+            <option value="conversational">Conversational & approachable</option>
+            <option value="bold">Bold & opinionated</option>
+            <option value="educational">Educational & detailed</option>
+          </select>
+        </div>
+        <div>
+          <label>Word Count</label>
+          <select id="newBlogLength">
+            <option value="800">Short (~800 words)</option>
+            <option value="1500" selected>Medium (~1,500 words)</option>
+            <option value="2500">Long (~2,500 words)</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="generateAIPrompt()" style="padding:10px 24px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;background:#36D1C2;color:#fff;border:none;margin-top:10px">Generate AI Prompt</button>
+      <button onclick="copyAIPrompt()" id="copyPromptBtn" style="padding:10px 24px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;background:transparent;border:1px solid #B3BEC9;color:#617792;margin-top:10px;display:none">Copy Prompt</button>
+
+      <div id="aiPromptOutput" style="display:none;margin-top:14px">
+        <textarea id="aiPromptText" rows="10" readonly style="background:#fff;font-size:12px;color:#617792;border:1px solid #B3BEC9"></textarea>
+      </div>
+    </div>
+
+    <!-- GOOGLE DOC & LIVE URL -->
+    <div class="section">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:14px">Links</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div>
+          <label>Google Doc Link</label>
+          <input type="text" id="newBlogDocUrl" placeholder="https://docs.google.com/...">
+        </div>
+        <div>
+          <label>Live URL (if published)</label>
+          <input type="text" id="newBlogLiveUrl" placeholder="https://website.com/blog/...">
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div style="display:flex;gap:12px;margin-top:8px;margin-bottom:40px">
+      <button onclick="previewNewBlog()" style="padding:12px 28px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;background:transparent;border:1px solid #B3BEC9;color:#617792">Preview</button>
+      <button onclick="saveNewBlog()" style="padding:12px 28px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;background:#36D1C2;color:#fff;border:none">Save Blog</button>
+      <button onclick="downloadNewBlog()" style="padding:12px 28px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;background:#00161F;color:#fff;border:none">Download HTML</button>
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="newBlogPreview" style="display:none;margin-bottom:40px">
+      <h2 style="font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:#B3BEC9;margin-bottom:10px">Preview</h2>
+      <iframe id="newBlogFrame" style="width:100%;height:600px;border:1px solid #B3BEC9;border-radius:7px"></iframe>
+    </div>
+
+  </div>
+</div>TYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Anderson Collaborative</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6}
+
+/* Header - dark background to match brand */
+.site-header{background:#00161F;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(179,190,201,0.2)}
+.site-header nav{display:flex;align-items:center;gap:28px}
+.site-header nav a{color:#fff;text-decoration:none;font-size:12px;text-transform:uppercase;letter-spacing:0.8px;font-family:'Rubik',sans-serif;font-weight:400;transition:color 0.3s}
+.site-header nav a:hover{color:#36D1C2}
+
+/* Buttons - pill shaped */
+.btn{padding:11px 26px;border-radius:9999px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;cursor:pointer;transition:all 0.3s;border:none;text-decoration:none;display:inline-block}
+.btn-primary{background:#36D1C2;color:#fff}
+.btn-primary:hover{background:#2BBDAF}
+.btn-outline{background:transparent;border:1px solid #36D1C2;color:#36D1C2}
+.btn-outline:hover{background:#36D1C2;color:#fff}
+.btn-dark{background:#00161F;color:#fff}
+.btn-dark:hover{background:#001017}
+.btn-ghost{background:transparent;border:1px solid #B3BEC9;color:#617792}
+.btn-ghost:hover{border-color:#36D1C2;color:#36D1C2}
+.btn-group{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Typography - Rubik headings, Roboto body */
+h1{font-family:'Rubik',sans-serif;font-size:42px;font-weight:300;color:#00161F;letter-spacing:-0.5px}
+h2{font-family:'Rubik',sans-serif;font-size:28px;font-weight:400;color:#00161F}
+h3{font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;color:#617792}
+p{font-size:15px;line-height:1.7;color:#617792;font-weight:300}
+a{color:#36D1C2;text-decoration:none;transition:color 0.3s}
+a:hover{color:#2BBDAF}
+strong{font-weight:500;color:#00161F}
+
+/* Forms */
+label{display:block;font-family:'Rubik',sans-serif;font-size:11px;font-weight:500;color:#B3BEC9;margin-bottom:5px;text-transform:uppercase;letter-spacing:0.8px}
+input,textarea,select{width:100%;padding:11px 14px;border:1px solid #B3BEC9;border-radius:3px;font-family:'Roboto',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border 0.3s;margin-bottom:14px;color:#00161F;background:#fff}
+input:focus,textarea:focus,select:focus{border-color:#36D1C2}
+input::placeholder,textarea::placeholder{color:#B3BEC9;font-weight:300}
+textarea{min-height:80px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+
+/* Cards */
+.card{background:#fff;border-radius:3px;overflow:hidden;text-decoration:none;color:#00161F;transition:all 0.4s;border:1px solid rgba(179,190,201,0.3)}
+.card:hover{transform:translateY(-4px);box-shadow:4px 5px 30px rgba(0,22,31,0.08)}
+.card-img{height:180px;background-size:cover;background-position:center;position:relative}
+.card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(0,22,31,0.2))}
+.card-body{padding:18px}
+.card-date{font-family:'Rubik',sans-serif;font-size:10px;color:#B3BEC9;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.8px;font-weight:400}
+.card-body h4,.card-body h3:not(.card-date){font-family:'Rubik',sans-serif;font-size:14px;font-weight:400;line-height:1.5;color:#00161F}
+
+/* Sections */
+.section{background:#fff;border-radius:7px;padding:28px;margin-bottom:20px;border:1px solid rgba(179,190,201,0.2)}
+
+/* Badge */
+.badge{display:inline-block;background:#36D1C2;color:#00161F;font-size:9px;font-weight:600;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:0.5px}
+
+/* Footer - dark with secondary logo */
+.site-footer{background:#00161F;padding:50px 40px;text-align:center}
+.site-footer p{color:rgba(179,190,201,0.5);font-size:11px;font-weight:300;font-family:'Roboto',sans-serif}
+.site-footer a{color:#36D1C2;text-decoration:none}
+
+.hidden{display:none}
+
+@media(max-width:768px){
+  h1{font-size:28px}
+  h2{font-size:22px}
+  .row{grid-template-columns:1fr}
+  .site-header{padding:14px 20px}
+  .site-header nav{gap:14px}
+  .site-header nav a{font-size:10px}
+  .btn-group{flex-direction:column}
+}
+
+
+/* Hero */
+.hero{background:#00161F;padding:80px 40px 60px;text-align:center}
+.hero h1{color:#fff;font-weight:300;letter-spacing:0.05em;text-transform:uppercase}
+.hero h1 span{color:#36D1C2;font-weight:500}
+.hero p{color:rgba(179,190,201,0.5);font-size:14px;font-weight:300;max-width:460px;margin:14px auto 28px}
+.hero-actions{display:flex;justify-content:center;gap:12px}
+
+/* Tabs */
+.tab-bar{max-width:1060px;margin:0 auto;padding:28px 20px 0;display:flex;gap:0;border-bottom:1px solid rgba(179,190,201,0.3)}
+.tab{padding:12px 24px;font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;color:#B3BEC9;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.3s;margin-bottom:-1px}
+.tab:hover{color:#36D1C2}
+.tab.active{color:#36D1C2;border-bottom-color:#36D1C2}
+
+/* Blog grid */
+.toolbar{max-width:1060px;margin:0 auto;padding:20px 20px 0;display:flex;gap:12px;align-items:center}
+.grid{max-width:1060px;margin:0 auto;padding:20px 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:22px}
+.stats{max-width:1060px;margin:0 auto;padding:0 20px 14px;display:flex;gap:24px}
+.stat{font-size:11px;color:#B3BEC9;font-weight:300;font-family:'Roboto',sans-serif}
+.stat strong{color:#36D1C2;font-weight:500}
+
+/* Creator section */
+.creator-wrap{max-width:700px;margin:0 auto;padding:32px 20px 60px}
+.creator-wrap .section{background:#fff;border-radius:7px;padding:28px;margin-bottom:20px;border:1px solid rgba(179,190,201,0.2)}
+.creator-wrap h2{font-size:15px;font-weight:500;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:6px}
+.creator-wrap p.helper,.creator-wrap p.subtitle{font-size:13px;color:#B3BEC9;font-weight:300;margin-bottom:16px;line-height:1.6}
+
+/* Steps indicator */
+.steps{display:flex;gap:0;margin-bottom:24px}
+.step{flex:1;text-align:center;padding:10px 8px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;color:#B3BEC9;border-bottom:2px solid rgba(179,190,201,0.3);cursor:pointer;transition:all 0.3s;margin-bottom:-1px;font-family:'Rubik',sans-serif}
+.step.active{color:#36D1C2;border-color:#36D1C2}
+.step.done{color:#00161F;border-color:#00161F}
+.step-num{display:inline-block;width:22px;height:22px;line-height:22px;border-radius:50%;background:rgba(179,190,201,0.2);color:#B3BEC9;font-size:10px;margin-bottom:4px}
+.step.active .step-num{background:#36D1C2;color:#00161F}
+.step.done .step-num{background:#00161F;color:#fff}
+
+/* Loading spinner */
+.spinner{display:inline-block;width:18px;height:18px;border:2px solid rgba(179,190,201,0.3);border-top-color:#36D1C2;border-radius:50%;animation:spin 0.8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Preview frame */
+.preview-frame{background:#fff;border:1px solid #B3BEC9;border-radius:3px;overflow:hidden;margin-top:14px}
+.preview-frame iframe{width:100%;height:500px;border:none}
+
+/* SEO checklist */
+.seo-score{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:9999px;font-size:11px;font-weight:500;font-family:'Rubik',sans-serif}
+.seo-good{background:rgba(54,209,194,0.1);color:#2BBDAF}
+.seo-ok{background:#fff3e0;color:#e65100}
+.seo-bad{background:rgba(229,75,75,0.1);color:#E54B4B}
+.checklist{list-style:none;margin-top:10px}
+.checklist li{padding:7px 0;border-bottom:1px solid rgba(179,190,201,0.15);font-size:12px;display:flex;align-items:center;gap:8px;color:#617792;font-weight:300}
+.checklist li:last-child{border:none}
+.check{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.check-pass{background:rgba(54,209,194,0.1);color:#2BBDAF}
+.check-fail{background:rgba(229,75,75,0.1);color:#E54B4B}
+
+.output-box{background:#fff;border:1px solid #B3BEC9;border-radius:3px;padding:14px;font-family:monospace;font-size:11px;white-space:pre-wrap;word-break:break-all;max-height:250px;overflow-y:auto;margin-top:10px}
+
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr}
+  .hero{padding:50px 20px 40px}
+  .toolbar{flex-direction:column}
+  .hero-actions{flex-direction:column;align-items:center}
+  .stats{flex-wrap:wrap}
+  .tab-bar{overflow-x:auto}
+  .tab{font-size:10px;padding:10px 16px}
+  .steps{flex-wrap:wrap}
+  .creator-wrap{padding:20px 16px 40px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" style="height:30px"></a>
+  <nav>
+    <a href="client-tool.html">Client Tool</a>
+    
+    <a href="https://www.andersoncollaborative.com/">AC Website</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Our <span>Blog</span></h1>
+  <p>Browse 77 published articles or create something new.</p>
+</div>
+
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab('library')">Blog Library</div>
+  <div class="tab" onclick="showTab('create')">Create New Blog</div>
+</div>
+
+<!-- BLOG LIBRARY TAB -->
+<div id="tab-library">
+  <div class="toolbar">
+    <input type="text" id="search" placeholder="Search articles..." oninput="filterBlogs()">
+    <select id="authorFilter" onchange="filterBlogs()">
+      <option value="">All Authors</option>
+      <option value="Trevor Anderson">Trevor Anderson</option>
+      <option value="Reandra Maree">Reandra Maree</option>
+      <option value="gregorio">Gregorio</option>
+      <option value="daria">Daria</option>
+      <option value="daymit">Daymit</option>
+      <option value="mariia">Mariia</option>
+      <option value="Eden Jones">Eden Jones</option>
+      <option value="Stavros">Stavros</option>
+      <option value="rizki">Rizki</option>
+      <option value="Rupert">Rupert</option>
+    </select>
+  </div>
+  <div class="stats">
+    <div class="stat"><strong>77</strong> articles</div>
+    <div class="stat"><strong>10</strong> authors</div>
+    <div class="stat"><strong>2019 – 2026</strong></div>
+  </div>
+  <div class="grid" id="blogGrid">
+<a href="2026-02-23_The-Modern-B2B-Buying-Process-Explained.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2026/02/city-scaled.jpeg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-02-23 &bull; Reandra Maree</div>
+        <h3>The Modern B2B Buying Process Explained</h3>
+      </div>
+    </a>
+<a href="2026-02-09_The-Best-AI-Visibility-Monitoring-Platforms-in-2026.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2026/02/SEO-blog-2026.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-02-09 &bull; Reandra Maree</div>
+        <h3>The Best AI Visibility & Monitoring Platforms in 2026</h3>
+      </div>
+    </a>
+<a href="2026-01-26_Best-AI-SEO-Tools-In-2026-Reviewed-Ranked-for-AEO-LLM-SEO.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-01-26 &bull; Trevor Anderson</div>
+        <h3>Best AI SEO Tools In 2026 (Reviewed & Ranked for AEO + LLM SEO)</h3>
+      </div>
+    </a>
+<a href="2026-01-02_The-Top-25-Marketing-Agencies-In-Miami-2026-Rankings.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/03/miami-night-view-from-air-2023-12-23-01-45-17-utc1-scaled-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2026-01-02 &bull; Reandra Maree</div>
+        <h3>The Top 25 Marketing Agencies In Miami | 2026 Rankings</h3>
+      </div>
+    </a>
+<a href="2025-09-09_Top-15-Franchise-Marketing-Agencies-in-the-US-You-Need-to-Know-2026.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/08/post-img-30.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-09-09 &bull; Reandra Maree</div>
+        <h3>Top 15 Franchise Marketing Agencies in the U.S. You Need to Know 2026</h3>
+      </div>
+    </a>
+<a href="2025-09-01_Top-LLM-Monitoring-Tools-to-Track-Brand-Visibility-in-AI-Results.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/08/d4162b95-49de-4a52-a289-f876f78cadf8.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-09-01 &bull; Reandra Maree</div>
+        <h3>Top LLM Monitoring Tools to Track Brand Visibility in AI Results</h3>
+      </div>
+    </a>
+<a href="2025-07-31_How-to-Improve-Your-Brands-Visibility-in-AI-Search-Results-ChatGPT-Google-Perple.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/07/How-To-Improve-Your-Brands-Visibility-In-AI-Search-Results.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-07-31 &bull; Trevor Anderson</div>
+        <h3>How to Improve Your Brand’s Visibility in AI Search Results (ChatGPT, Google, Perplexity & More)</h3>
+      </div>
+    </a>
+<a href="2025-06-20_How-We-Automate-80-of-Our-Marketing-Workflow-Using-These-Tools.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/post-bg-5.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>How We Automate 80% of Our Marketing Workflow Using These Tools</h3>
+      </div>
+    </a>
+<a href="2025-06-20_25-Essential-Tools-Every-Modern-Marketing-Agency-Should-Be-Using-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/bg-post3.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>25 Essential Tools Every Modern Marketing Agency Should Be Using in 2025</h3>
+      </div>
+    </a>
+<a href="2025-06-20_Understanding-Links-and-Destinations-for-Effective-Digital-Strategy-Anderson-Co.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/Group-39680-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-20 &bull; Reandra Maree</div>
+        <h3>Understanding Links and Destinations for Effective Digital Strategy | Anderson Collaborative Guide</h3>
+      </div>
+    </a>
+<a href="2025-06-19_Landing-Page-Experience.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/06/feature-img.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-06-19 &bull; Reandra Maree</div>
+        <h3>Landing Page Experience</h3>
+      </div>
+    </a>
+<a href="2025-05-27_Ethical-AI-Marketing-How-to-Use-Smart-Tools-Without-Losing-Customer-Trust.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39668-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-27 &bull; Reandra Maree</div>
+        <h3>Ethical AI Marketing: How to Use Smart Tools Without Losing Customer Trust</h3>
+      </div>
+    </a>
+<a href="2025-05-27_Top-AI-Tools-Every-Marketer-Should-Be-Using-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39667-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-27 &bull; Reandra Maree</div>
+        <h3>Top AI Tools Every Marketer Should Be Using in 2025</h3>
+      </div>
+    </a>
+<a href="2025-05-20_Smarter-Ads-with-Less-Spend-AI-Powered-Paid-Media-Strategies-That-Work.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/smarter-ads.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-20 &bull; Reandra Maree</div>
+        <h3>Smarter Ads with Less Spend: AI-Powered Paid Media Strategies That Work</h3>
+      </div>
+    </a>
+<a href="2025-05-19_Voice-Search-AI-and-the-New-Rules-of-SEO-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/ChatGPT-Image-19-may-2025-10_26_11-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-19 &bull; Reandra Maree</div>
+        <h3>Voice Search, AI, and the New Rules of SEO in 2025</h3>
+      </div>
+    </a>
+<a href="2025-05-16_From-Data-to-Dollars-How-AI-Helps-You-Monetize-Customer-Insights-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/ChatGPT-Image-14-may-2025-12_37_10-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-16 &bull; Reandra Maree</div>
+        <h3>From Data to Dollars: How AI Helps You Monetize Customer Insights in 2025</h3>
+      </div>
+    </a>
+<a href="2025-05-14_The-Rise-of-Hyper-Personalization-Using-AI-to-Speak-to-One-in-a-Million.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39638-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-14 &bull; Reandra Maree</div>
+        <h3>The Rise of Hyper-Personalization: Using AI to Speak to One in a Million</h3>
+      </div>
+    </a>
+<a href="2025-05-09_How-AI-is-Revolutionizing-Social-Media-Marketing-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39635.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-09 &bull; Reandra Maree</div>
+        <h3>How AI is Revolutionizing Social Media Marketing in 2025</h3>
+      </div>
+    </a>
+<a href="2025-05-07_AI-vs-Human-Creativity-Finding-the-Right-Balance-in-Your-2025-Campaigns.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/image-35.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-07 &bull; Reandra Maree</div>
+        <h3>AI vs Human Creativity: Finding the Right Balance in Your 2025 Campaigns</h3>
+      </div>
+    </a>
+<a href="2025-05-05_The-Future-of-AI-in-Marketing-What-to-Expect-in-2025-and-Beyond.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/Group-39325-2.png')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-05 &bull; Reandra Maree</div>
+        <h3>The Future of AI in Marketing: What to Expect in 2025 and Beyond</h3>
+      </div>
+    </a>
+<a href="2025-05-01_10-Powerful-Ways-to-Integrate-AI-into-Your-Marketing-Strategy-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2025/05/MS-WEB-0124-Blog-Image-AI.webp')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-05-01 &bull; Reandra Maree</div>
+        <h3>10 Powerful Ways to Integrate AI into Your Marketing Strategy in 2025</h3>
+      </div>
+    </a>
+<a href="2025-02-28_Top-Social-Media-Agencies-in-the-United-States-Building-Brands-through-Strategic.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/seattle-night-with-moon-2023-11-27-05-17-48-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-28 &bull; Eden Jones</div>
+        <h3>Top Social Media Agencies in the United States: Building Brands through Strategic Storytelling</h3>
+      </div>
+    </a>
+<a href="2025-02-22_Top-Digital-Agencies-In-Fort-Lauderdale-2025-Rankings.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-beach-florida-usa-2023-11-27-05-10-15-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-22 &bull; Eden Jones</div>
+        <h3>Top Digital Agencies In Fort Lauderdale: 2025 Rankings</h3>
+      </div>
+    </a>
+<a href="2025-02-21_Top-Advertising-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-florida-usa-2downtown-cityscape-2023-11-27-05-10-54-utc_11zon1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-21 &bull; Eden Jones</div>
+        <h3>Top Advertising Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-20_Marketing-Agencies-in-the-United-States-Navigating-the-Landscape-of-Modern-Marke.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/miami-florida-usa-downtown-city-skyline-2023-11-27-05-13-55-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-20 &bull; Eden Jones</div>
+        <h3>Marketing Agencies in the United States: Navigating the Landscape of Modern Marketing Services</h3>
+      </div>
+    </a>
+<a href="2025-02-17_The-Ultimate-Guide-to-the-Best-Social-Media-Agencies-in-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-2023-11-27-05-17-39-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-17 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Best Social Media Agencies in Miami in 2025</h3>
+      </div>
+    </a>
+<a href="2025-02-16_Top-Design-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ftlauderdale3fin-copy-2023-11-27-04-56-17-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-16 &bull; Eden Jones</div>
+        <h3>Top Design Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-15_Top-eCommerce-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/landscape-of-a-backyard-with-pool-and-cafe-lights-2023-11-27-05-19-24-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-15 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-14_Top-eCommerce-Agencies-in-Florida-Best-eCommerce-Development-Shopify-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/orlando-florida-usa-2023-11-27-05-18-54-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-14 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Florida | Best eCommerce Development & Shopify Experts</h3>
+      </div>
+    </a>
+<a href="2025-02-13_Top-Web-Agencies-in-Florida-Best-Web-Design-Development-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/jupiter-florida-inlet-2023-11-27-05-06-35-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-13 &bull; Eden Jones</div>
+        <h3>Top Web Agencies in Florida | Best Web Design & Development Experts</h3>
+      </div>
+    </a>
+<a href="2025-02-13_Top-Design-Agencies-in-Florida-Elevate-Your-Brand-with-Leading-Digital-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/south-beach-miami-florida-usa-2023-11-27-05-33-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-13 &bull; Eden Jones</div>
+        <h3>Top Design Agencies in Florida | Elevate Your Brand with Leading Digital Experts</h3>
+      </div>
+    </a>
+<a href="2025-02-12_Top-Design-Agencies-in-Miami-A-Comprehensive-Guide-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/choosing-photos-for-magazine-page-2023-11-27-05-20-18-utc1-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-12 &bull; Eden Jones</div>
+        <h3>Top Design Agencies in Miami: A Comprehensive Guide for 2025</h3>
+      </div>
+    </a>
+<a href="2025-02-10_Top-Branding-Agencies-In-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/ft-lauderdale-florida-usa-2023-11-27-05-30-08-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-10 &bull; Eden Jones</div>
+        <h3>Top Branding Agencies In Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-09_Top-Web-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/west-palm-beach-florida-usa-downtown-skyline-on-2023-11-27-05-06-29-utc_11zon.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-09 &bull; Eden Jones</div>
+        <h3>Top Web Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-08_The-Ultimate-Guide-to-the-Top-25-Advertising-Agencies-in-Miami-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/the-best-in-the-business-cropped-shot-of-business-2023-11-27-05-14-24-utc1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-08 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top 25 Advertising Agencies in Miami for 2025</h3>
+      </div>
+    </a>
+<a href="2025-02-04_The-Ultimate-Guide-to-the-Top-Digital-Agencies-in-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-skyline-on-bisayne-bay-2023-11-27-04-51-15-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-04 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Digital Agencies in Miami in 2025</h3>
+      </div>
+    </a>
+<a href="2025-02-03_Digital-Marketing-Agencies-in-the-United-States-Driving-Growth-with-Data-Driven.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/atlanta-georgia-usa-over-piedmont-park-2023-11-27-05-20-58-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-03 &bull; Eden Jones</div>
+        <h3>Digital Marketing Agencies in the United States: Driving Growth with Data-Driven Campaigns</h3>
+      </div>
+    </a>
+<a href="2025-02-02_Best-Social-Media-Agencies-in-Fort-Lauderdale.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/a-couple-in-love-runs-through-a-square-in-san-seba-2023-11-27-05-20-03-utc_11zon-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-02 &bull; Eden Jones</div>
+        <h3>Best Social Media Agencies in Fort Lauderdale</h3>
+      </div>
+    </a>
+<a href="2025-02-01_Top-eCommerce-Agencies-in-Miami-Your-Guide-to-the-Best-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/businessman-explaining-marketing-strategy-to-woman-2023-11-27-05-01-23-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-02-01 &bull; Eden Jones</div>
+        <h3>Top eCommerce Agencies in Miami: Your Guide to the Best in 2025</h3>
+      </div>
+    </a>
+<a href="2025-01-28_Best-Advertising-Agencies-in-the-United-States-Crafting-Campaigns-that-Captivate.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/jacksonville-florida-usa-2023-11-27-05-04-45-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-28 &bull; Eden Jones</div>
+        <h3>Best Advertising Agencies in the United States: Crafting Campaigns that Captivate and Convert</h3>
+      </div>
+    </a>
+<a href="2025-01-26_Top-Florida-Digital-Marketing-Agencies-Leading-SEO-PPC-and-Online-Marketing-Exp.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/landscape-view-of-lake-eola-and-the-amphitheatre-a-2023-11-27-05-24-44-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-26 &bull; Eden Jones</div>
+        <h3>Top Florida Digital Marketing Agencies | Leading SEO, PPC, and Online Marketing Experts</h3>
+      </div>
+    </a>
+<a href="2025-01-25_The-Ultimate-Guide-to-the-Top-Web-Agencies-In-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/miami-florida-usa-downtown-skyline-on-the-bay-2023-11-27-05-13-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-25 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Web Agencies In Miami in 2025</h3>
+      </div>
+    </a>
+<a href="2025-01-23_Best-Growth-Marketing-Agencies-in-the-United-States-Accelerating-Brand-Expansion.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/west-palm-beach-florida-2023-11-27-04-54-42-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-23 &bull; Eden Jones</div>
+        <h3>Best Growth Marketing Agencies in the United States: Accelerating Brand Expansion through Innovative Strategies</h3>
+      </div>
+    </a>
+<a href="2025-01-22_Top-Branding-Agencies-in-Florida-Best-Florida-Creative-Agencies-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/tampa-florida-usa-aerial-downtown-skyline-2023-11-27-05-11-09-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-22 &bull; Eden Jones</div>
+        <h3>Top Branding Agencies in Florida | Best Florida Creative Agencies 2025</h3>
+      </div>
+    </a>
+<a href="2025-01-20_Top-Franchise-Marketing-Agencies-in-the-United-States-Empowering-Franchise-Growt.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/skyline-of-downtown-miami-with-trees-above-the-pho-2023-11-27-04-55-48-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-20 &bull; Eden Jones</div>
+        <h3>Top Franchise Marketing Agencies in the United States: Empowering Franchise Growth with Targeted Solutions</h3>
+      </div>
+    </a>
+<a href="2025-01-19_8-Strategies-for-Optimizing-Your-Ecommerce-Websites-Conversion-Rate.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/8-Strategies-for-Optimizing-Your-Ecommerce-Websites-Conversion-Rate.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>8 Strategies for Optimizing Your Ecommerce Website’s Conversion Rate</h3>
+      </div>
+    </a>
+<a href="2025-01-19_The-Top-Social-Media-Trends-to-Look-Out-for-in-2023.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/top_social_media_trends_anderson_collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>The Top Social Media Trends to Look Out for in 2023</h3>
+      </div>
+    </a>
+<a href="2025-01-19_Top-Advertising-Agencies-in-Florida-Strengthen-Your-Brand-with-Leading-Experts.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/st-petersburg-florida-usa-downtown-city-skyline-2023-11-27-05-12-47-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-19 &bull; Eden Jones</div>
+        <h3>Top Advertising Agencies in Florida | Strengthen Your Brand with Leading Experts</h3>
+      </div>
+    </a>
+<a href="2025-01-18_SEO-Best-Practices-How-to-Rank-Higher-on-Search-Engines.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/seo.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-18 &bull; Eden Jones</div>
+        <h3>SEO Best Practices: How to Rank Higher on Search Engines</h3>
+      </div>
+    </a>
+<a href="2025-01-18_Search-Engine-Marketing-Agencies-in-the-United-States-Maximizing-Visibility-with.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/10/miami-florida-usa-skyline-2023-11-27-05-11-03-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-18 &bull; Eden Jones</div>
+        <h3>Search Engine Marketing Agencies in the United States: Maximizing Visibility with Paid and Organic Search</h3>
+      </div>
+    </a>
+<a href="2025-01-17_The-Power-of-Video-Marketing-Tips-and-Tricks-for-Creating-Engaging-Videos.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/video-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-17 &bull; Eden Jones</div>
+        <h3>The Power of Video Marketing: Tips and Tricks for Creating Engaging Videos</h3>
+      </div>
+    </a>
+<a href="2025-01-17_Best-Social-Media-Agencies-in-Florida-Top-Choices-for-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/09/miami-florida-usa-skyline-on-biscayne-bay-2023-11-27-05-10-53-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-17 &bull; Eden Jones</div>
+        <h3>Best Social Media Agencies in Florida | Top Choices for 2025</h3>
+      </div>
+    </a>
+<a href="2025-01-16_The-Ultimate-Guide-to-the-Top-Branding-Agencies-In-Miami-in-2025.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/05/dont-you-think-this-looks-good-2024-05-20-21-47-50-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-16 &bull; Eden Jones</div>
+        <h3>The Ultimate Guide to the Top Branding Agencies In Miami in 2025</h3>
+      </div>
+    </a>
+<a href="2025-01-14_Social-Media-Trends-in-2023-What-Brands-Need-to-Know.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/social-media.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-14 &bull; Eden Jones</div>
+        <h3>Social Media Trends in 2023: What Brands Need to Know</h3>
+      </div>
+    </a>
+<a href="2025-01-13_Why-Understanding-Customer-Lifetime-Value-is-Crucial-for-Successful-Growth-Marke.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/customer_lifetime_value.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-13 &bull; Eden Jones</div>
+        <h3>Why Understanding Customer Lifetime Value is Crucial for Successful Growth Marketing Strategy</h3>
+      </div>
+    </a>
+<a href="2025-01-12_Inbound-Marketing-101-The-Ultimate-Guide-for-Beginners.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/inbound-marketing-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-12 &bull; Eden Jones</div>
+        <h3>Inbound Marketing 101: The Ultimate Guide for Beginners</h3>
+      </div>
+    </a>
+<a href="2025-01-11_Content-Marketing-Strategies-How-to-Create-Content-that-Resonates-with-Your-Audi.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/content-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-11 &bull; Eden Jones</div>
+        <h3>Content Marketing Strategies: How to Create Content that Resonates with Your Audience</h3>
+      </div>
+    </a>
+<a href="2025-01-11_CPM-Calculator-Calculate-The-Cost-Per-Thousand-of-Your-Marketing-or-Advertising.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2024/08/up-business-woman-using-calculator-and-lapto-2023-11-27-05-34-51-utc.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-11 &bull; Eden Jones</div>
+        <h3>CPM Calculator: Calculate The Cost Per Thousand of Your Marketing or Advertising Campaign</h3>
+      </div>
+    </a>
+<a href="2025-01-10_The-Future-of-Digital-Marketing-How-AI-and-Machine-Learning-are-Shaping-the-Indu.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/future-of-digital-marketing-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-10 &bull; Eden Jones</div>
+        <h3>The Future of Digital Marketing: How AI and Machine Learning are Shaping the Industry</h3>
+      </div>
+    </a>
+<a href="2025-01-09_Email-Marketing-Campaigns-Designing-Effective-Newsletters-for-Better-Engagement.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/08/email-marketing.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-09 &bull; Eden Jones</div>
+        <h3>Email Marketing Campaigns: Designing Effective Newsletters for Better Engagement</h3>
+      </div>
+    </a>
+<a href="2025-01-08_Should-You-Advertise-During-A-Recession.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/should_you_advertise_during_a_recession-scaled.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-08 &bull; Trevor Anderson</div>
+        <h3>Should You Advertise During A Recession?</h3>
+      </div>
+    </a>
+<a href="2025-01-04_Anderson-Collaborative-Named-as-a-Leading-Advertising-Agency-in-Miami-Florida-by.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Miami_Anderson_Collaborative_Florida-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-04 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Named as a Leading Advertising Agency in Miami, Florida by Clutch</h3>
+      </div>
+    </a>
+<a href="2025-01-03_Anderson-Collaborative-Announced-as-a-2021-Local-Excellence-Award-Winner-by-UpCi.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Announced-as-a-2021-Local-Excellence-Award-Winner-by-UpCity-1.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-03 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Announced as a 2021 Local Excellence Award Winner by UpCity!</h3>
+      </div>
+    </a>
+<a href="2025-01-02_The-State-of-E-Commerce-During-COVID-19.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/beautiful-young-women-with-phone-walking-in-park-or-forest-in-black-mask_t20_gLz7zk.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-02 &bull; Trevor Anderson</div>
+        <h3>The State of E-Commerce During COVID-19</h3>
+      </div>
+    </a>
+<a href="2025-01-01_Anderson-Collaborative-Rated-Among-The-Best-In-E-Commerce-Marketing-Web-Design-a.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collab-Miami.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2025-01-01 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Rated Among The Best In E-Commerce, Marketing, Web Design, and Branding In Q2 2020</h3>
+      </div>
+    </a>
+<a href="2020-05-15_Anderson-Collaborative-Is-All-Set-to-Expand-Its-Business-in-the-USAs-Burgeoning.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Good-Firms-Background.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-05-15 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Is All Set to Expand Its Business in the USA’s Burgeoning Digital Segment | Good Firms</h3>
+      </div>
+    </a>
+<a href="2020-03-03_How-To-Calculate-ROI-From-An-Email-Marketing-Campaign.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Email-ROI-Calculator.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-03-03 &bull; Trevor Anderson</div>
+        <h3>How To Calculate ROI From An Email Marketing Campaign</h3>
+      </div>
+    </a>
+<a href="2020-01-30_Top-Marketing-Companies-Awards-Features-Anderson-Collaborative-For-Multiple-Cat.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Brickell-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-30 &bull; Trevor Anderson</div>
+        <h3>Top Marketing Companies Awards & Features Anderson Collaborative For Multiple Categories In 2020</h3>
+      </div>
+    </a>
+<a href="2020-01-14_Anderson-Collaborative-Awarded-Featured-On-Clutchco-2019-2020.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Cafe-Working.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-14 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On Clutch.co 2019 & 2020</h3>
+      </div>
+    </a>
+<a href="2020-01-14_Anderson-Collaborative-Awarded-Featured-On-Design-Rush-In-2020.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Miami-Area-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-14 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On Design Rush In 2020</h3>
+      </div>
+    </a>
+<a href="2020-01-13_Finding-The-Right-Marketing-Agency-For-Your-Project-Event-Cause-Or-Business.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Anderson-Collaborative-Find-A-Marketing-Agency.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-13 &bull; Trevor Anderson</div>
+        <h3>Finding The Right Marketing Agency For Your Project, Event, Cause, Or Business</h3>
+      </div>
+    </a>
+<a href="2020-01-10_Anderson-Collaborative-Awarded-Featured-On-UpCity-In-2019.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Team.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2020-01-10 &bull; Trevor Anderson</div>
+        <h3>Anderson Collaborative Awarded & Featured On UpCity In 2019</h3>
+      </div>
+    </a>
+<a href="2019-12-12_First-Two-Partners-Established-For-2020-Community-Project.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Dallas-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-12-12 &bull; Trevor Anderson</div>
+        <h3>First Two Partners Established For 2020 Community Project</h3>
+      </div>
+    </a>
+<a href="2019-11-19_Does-Digital-Advertising-Actually-Work.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/anderson_collaborative_does_advertising_work.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-19 &bull; Trevor Anderson</div>
+        <h3>Does Digital Advertising Actually Work?</h3>
+      </div>
+    </a>
+<a href="2019-11-11_Introducing-Our-Community-Partner-Program-Quick-Word-From-Trevor-Anderson.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/2020-Community-Projects-Banner.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-11 &bull; Trevor Anderson</div>
+        <h3>Introducing Our Community Partner Program | Quick Word From Trevor Anderson</h3>
+      </div>
+    </a>
+<a href="2019-11-10_How-To-Apply-The-SOSTAC-Strategic-Planning-Model-To-Your-Own-Business.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/2020-Community-Projects-Banner.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-10 &bull; Trevor Anderson</div>
+        <h3>How To Apply The SOSTAC Strategic Planning Model To Your Own Business</h3>
+      </div>
+    </a>
+<a href="2019-11-03_How-To-Calculate-Your-Advertising-Budget-Estimated-Return-On-Investment.html" class="card">
+      <div class="card-img" style="background-image:url('https://www.andersoncollaborative.com/wp-content/uploads/2023/01/Calculating-Ad-Budget-Anderson-Collaborative.jpg')"></div>
+      <div class="card-body">
+        <div class="card-date">2019-11-03 &bull; Trevor Anderson</div>
+        <h3>How To Calculate Your Advertising Budget & Estimated Return On Investment</h3>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- CREATE BLOG TAB -->
+<div id="tab-create" class="hidden">
+  <div class="creator-wrap">
 
   <h1>Create New Blog Post</h1>
   <p class="subtitle">Answer a few questions and we'll generate an SEO-optimized blog article for you</p>
@@ -941,7 +1868,14 @@ If it included a ---SEO--- section at the end, paste that too — we'll extract 
 </div>
 
 <script>
-let currentStep = 1;
+const AUTHORS = {
+  trevor:'Trevor Anderson', reandra:'Reandra Maree', cole:'Cole Feigl',
+  gregorio:'Gregorio Palacio', jack:'Jack Nelson', nazareno:'Nazareno Castro Bay',
+  samantha:'Samantha Sanchezborja', daria:'Daria', daymit:'Daymit',
+  mariia:'Mariia', stavros:'Stavros', rizki:'Rizki', rupert:'Rupert', eden:'Eden Jones'
+};
+
+let newBlogType = 'ac';
 
 function showTab(name) {
   document.getElementById('tab-library').classList.toggle('hidden', name !== 'library');
@@ -961,201 +1895,74 @@ function filterBlogs() {
   });
 }
 
+function selectBlogType(type) {
+  newBlogType = type;
+  document.getElementById('typeBtnAC').style.borderColor = type === 'ac' ? '#36D1C2' : '#B3BEC9';
+  document.getElementById('typeBtnAC').style.background = type === 'ac' ? 'rgba(54,209,194,0.05)' : 'transparent';
+  document.getElementById('typeBtnAC').style.color = type === 'ac' ? '#36D1C2' : '#617792';
+  document.getElementById('typeBtnClient').style.borderColor = type === 'client' ? '#36D1C2' : '#B3BEC9';
+  document.getElementById('typeBtnClient').style.background = type === 'client' ? 'rgba(54,209,194,0.05)' : 'transparent';
+  document.getElementById('typeBtnClient').style.color = type === 'client' ? '#36D1C2' : '#617792';
+  document.getElementById('clientField').style.display = type === 'client' ? 'block' : 'none';
+}
 
-let currentStep = 1;
-
-function goToStep(n) {
-  // If going to step 4, auto-fill SEO fields
-  if (n === 4) {
-    const topic = document.getElementById('q_topic').value;
-    const keyphrase = document.getElementById('q_keyphrase').value;
-    if (!document.getElementById('finalTitle').value) {
-      document.getElementById('finalTitle').value = topic;
-    }
-    if (!document.getElementById('finalKeyphrase').value) {
-      document.getElementById('finalKeyphrase').value = keyphrase;
-    }
-    if (!document.getElementById('seoTitle').value) {
-      document.getElementById('seoTitle').value = (topic + ' | Anderson Collaborative').substring(0, 60);
-    }
-    if (!document.getElementById('seoSlug').value) {
-      document.getElementById('seoSlug').value = topic.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').substring(0,60);
-    }
-    updateFinalSEO();
+function insertFormat(before, after) {
+  const ta = document.getElementById('newBlogContent');
+  const start = ta.selectionStart;
+  const end = ta.selectionEnd;
+  const text = ta.value;
+  const selected = text.substring(start, end);
+  if (after) {
+    ta.value = text.substring(0, start) + before + selected + after + text.substring(end);
+    ta.selectionStart = start + before.length;
+    ta.selectionEnd = start + before.length + selected.length;
+  } else {
+    ta.value = text.substring(0, start) + before + text.substring(start);
+    ta.selectionStart = ta.selectionEnd = start + before.length;
   }
-
-  for (let i = 1; i <= 4; i++) {
-    document.getElementById('step' + i).classList.toggle('hidden', i !== n);
-    const tab = document.getElementById('step' + i + 'tab');
-    tab.classList.remove('active', 'done');
-    if (i < n) tab.classList.add('done');
-    if (i === n) tab.classList.add('active');
-  }
-  currentStep = n;
-  window.scrollTo(0, 0);
+  ta.focus();
 }
 
-function generateBlog() {
-  const website = document.getElementById('q_website').value || '';
-  const topic = document.getElementById('q_topic').value || 'marketing strategies';
-  const audience = document.getElementById('q_audience').value || 'business owners';
-  const goal = document.getElementById('q_goal').value;
-  const industry = document.getElementById('q_industry').value || 'marketing';
-  const points = document.getElementById('q_points').value;
-  const examples = document.getElementById('q_examples').value;
-  const tone = document.getElementById('q_tone').value;
-  const length = document.getElementById('q_length').value;
-  const keyphrase = document.getElementById('q_keyphrase').value;
-  const cta = document.getElementById('q_cta').value;
-  const extra = document.getElementById('q_extra').value;
+function updateNewBlogSEO() {
+  const title = document.getElementById('newBlogTitle').value;
+  const keyphrase = document.getElementById('newBlogKeyphrase').value.toLowerCase();
+  const seoTitle = document.getElementById('newBlogSeoTitle');
+  const metaDesc = document.getElementById('newBlogMetaDesc');
+  const slug = document.getElementById('newBlogSlug');
+  const content = document.getElementById('newBlogContent').value.toLowerCase();
+  const intro = content.substring(0, 500);
 
-  const goalMap = {
-    educate: 'Educate the reader and provide actionable value',
-    rank: 'Rank on Google for the focus keyphrase',
-    convert: 'Drive leads and conversions',
-    authority: 'Build brand authority and thought leadership',
-    compare: 'Compare products, services, or approaches'
-  };
+  // Auto-fill if empty
+  if (!seoTitle.value && title) seoTitle.value = (title + ' | Anderson Collaborative').substring(0, 60);
+  if (!slug.value && title) slug.value = title.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').substring(0,60);
 
-  const toneMap = {
-    professional: 'Professional, authoritative, and data-driven',
-    conversational: 'Conversational, approachable, and relatable',
-    bold: 'Bold, opinionated, and direct',
-    educational: 'Educational, detailed, and thorough',
-    storytelling: 'Narrative-driven with storytelling elements'
-  };
+  document.getElementById('newSeoTitleCount').textContent = seoTitle.value.length + '/60';
+  document.getElementById('newMetaDescCount').textContent = metaDesc.value.length + '/155';
 
-  const prompt = `You are an expert SEO content writer for Anderson Collaborative, a leading marketing agency based in Miami.
+  const checks = [
+    { label: 'Focus keyphrase set', pass: keyphrase.length > 0 },
+    { label: 'Keyphrase in SEO title', pass: keyphrase && seoTitle.value.toLowerCase().includes(keyphrase) },
+    { label: 'Keyphrase in meta description', pass: keyphrase && metaDesc.value.toLowerCase().includes(keyphrase) },
+    { label: 'Keyphrase in slug', pass: keyphrase && slug.value.includes(keyphrase.replace(/\s+/g,'-')) },
+    { label: 'Keyphrase in introduction', pass: keyphrase && intro.includes(keyphrase) },
+    { label: 'SEO title (< 60 chars)', pass: seoTitle.value.length > 0 && seoTitle.value.length <= 60 },
+    { label: 'Meta description (< 155 chars)', pass: metaDesc.value.length > 0 && metaDesc.value.length <= 155 },
+    { label: 'Content (300+ words)', pass: content.split(/\s+/).length >= 300 },
+    { label: 'Has H2 headings', pass: content.includes('##') },
+  ];
 
-Write a blog post with the following specifications:
+  const passed = checks.filter(c => c.pass).length;
+  const cls = passed >= 7 ? 'rgba(54,209,194,0.1);color:#2BBDAF' : passed >= 4 ? '#fff3e0;color:#e65100' : 'rgba(229,75,75,0.1);color:#E54B4B';
 
-${website ? `WEBSITE: ${website} — scan this site to understand the brand, tone, existing content, and write in a style that matches` : ''}
-TOPIC: ${topic}
-TARGET AUDIENCE: ${audience}
-INDUSTRY/NICHE: ${industry}
-PRIMARY GOAL: ${goalMap[goal]}
-TONE & STYLE: ${toneMap[tone]}
-WORD COUNT: Approximately ${length} words
-${keyphrase ? `FOCUS KEYPHRASE: "${keyphrase}" — include naturally in the title, introduction (first 100 words), at least 2 H2 headings, and throughout the content` : ''}
-${points ? `KEY POINTS TO COVER:\n${points}` : ''}
-${examples ? `COMPANIES/TOOLS/EXAMPLES TO MENTION:\n${examples}` : ''}
-${cta ? `CTA / LINKS TO INCLUDE: ${cta}` : `CTA: Include a call-to-action linking to Anderson Collaborative's contact page`}
-${extra ? `ADDITIONAL NOTES: ${extra}` : ''}
-
-FORMATTING REQUIREMENTS:
-- Use ## for H2 headings and ### for H3 subheadings
-- Use **bold** for emphasis
-- Use - for bullet points where appropriate
-- Write a compelling introduction that hooks the reader in the first 2 sentences
-- Include a clear conclusion with a call to action
-- Make it scannable with short paragraphs (2-3 sentences max)
-- Include relevant statistics or data points where possible
-- Write for humans first, SEO second — no keyword stuffing
-
-ALSO PROVIDE at the very end, separated by "---SEO---":
-- SEO Title (max 60 characters)
-- Meta Description (max 155 characters, include the keyphrase)
-- Suggested URL slug
-- Focus Keyphrase
-
-Write the complete blog post now. Make sure the ---SEO--- section is clearly separated at the very end.`;
-
-  document.getElementById('aiPrompt').value = prompt;
-  goToStep(3);
-}
-
-function autoExtractSEO() {
-  const raw = document.getElementById('generatedContent').value;
-  if (raw.length < 100) return;
-
-  // Try to extract SEO section
-  let blogContent = raw;
-  let seoTitle = '';
-  let metaDesc = '';
-  let slug = '';
-  let keyphrase = document.getElementById('q_keyphrase').value || '';
-
-  if (raw.includes('---SEO---')) {
-    const parts = raw.split('---SEO---');
-    blogContent = parts[0].trim();
-    const seoBlock = parts[1] || '';
-
-    const titleMatch = seoBlock.match(/SEO Title[:\s]*(.+)/i);
-    const descMatch = seoBlock.match(/Meta Description[:\s]*(.+)/i);
-    const slugMatch = seoBlock.match(/(?:URL )?Slug[:\s]*(.+)/i);
-    const kwMatch = seoBlock.match(/(?:Focus )?Keyphrase[:\s]*(.+)/i);
-
-    if (titleMatch) seoTitle = titleMatch[1].replace(/^["*]+|["*]+$/g, '').trim();
-    if (descMatch) metaDesc = descMatch[1].replace(/^["*]+|["*]+$/g, '').trim();
-    if (slugMatch) slug = slugMatch[1].replace(/^["*]+|["*]+$/g, '').trim();
-    if (kwMatch) keyphrase = kwMatch[1].replace(/^["*]+|["*]+$/g, '').trim();
-  }
-
-  // Also try extracting from ## title at the top
-  if (!seoTitle) {
-    const h1Match = blogContent.match(/^#\s+(.+)$/m);
-    if (h1Match) seoTitle = h1Match[1].replace(/\*\*/g, '').trim();
-  }
-  if (!seoTitle) {
-    seoTitle = document.getElementById('q_topic').value;
-  }
-
-  // Auto-fill Step 4 fields
-  if (seoTitle) document.getElementById('finalTitle').value = seoTitle;
-  if (seoTitle) document.getElementById('seoTitle').value = (seoTitle + ' | Anderson Collaborative').substring(0, 60);
-  if (metaDesc) document.getElementById('metaDesc').value = metaDesc.substring(0, 155);
-  if (slug) document.getElementById('seoSlug').value = slug;
-  else if (seoTitle) document.getElementById('seoSlug').value = seoTitle.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').substring(0, 60);
-  if (keyphrase) document.getElementById('finalKeyphrase').value = keyphrase;
-
-  // Show extracted info
-  if (seoTitle || metaDesc || slug) {
-    const fields = [];
-    if (seoTitle) fields.push('<strong>Title:</strong> ' + seoTitle);
-    if (metaDesc) fields.push('<strong>Meta:</strong> ' + metaDesc);
-    if (slug) fields.push('<strong>Slug:</strong> ' + slug);
-    if (keyphrase) fields.push('<strong>Keyphrase:</strong> ' + keyphrase);
-    document.getElementById('extractedFields').innerHTML = fields.join('<br>');
-    document.getElementById('extractedSEO').classList.remove('hidden');
-  }
-}
-
-function previewStep3() {
-  const raw = document.getElementById('generatedContent').value;
-  if (!raw) { alert('Paste the AI-generated content first'); return; }
-
-  let blogContent = raw;
-  if (raw.includes('---SEO---')) blogContent = raw.split('---SEO---')[0].trim();
-
-  const html = markdownToHTML(blogContent);
-  const title = document.getElementById('q_topic').value || 'Blog Preview';
-  const author = document.getElementById('q_author').value || 'Anderson Collaborative';
-  const image = document.getElementById('q_image').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
-
-  const fullHtml = buildBlogHTML(title, author, new Date().toISOString().split('T')[0], image, html);
-  document.getElementById('step3Frame').srcdoc = fullHtml;
-  document.getElementById('step3Preview').classList.remove('hidden');
-}
-
-function buildBlogHTML(title, author, date, image, content) {
-  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:"Rubik",sans-serif;color:#00161F;background:#fff}.site-header{background:#00161F;padding:16px 40px;display:flex;align-items:center}.hero{position:relative;height:350px;background-size:cover;background-position:center;display:flex;align-items:flex-end}.hero-overlay{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,22,49,0.85))}.hero-content{position:relative;z-index:1;padding:32px 48px;max-width:800px}.hero-content h1{color:#fff;font-size:32px;font-weight:600;line-height:1.2;margin-bottom:8px}.hero-meta{color:rgba(255,255,255,0.6);font-size:12px;text-transform:uppercase;letter-spacing:1px;font-weight:300}.hero-meta span{color:#36D1C2}.cw{max-width:750px;margin:0 auto;padding:40px 20px 60px}.cw p{font-size:15px;line-height:1.8;margin-bottom:18px;color:#333;font-weight:300}.cw h2{font-size:24px;font-weight:500;margin:36px 0 14px;color:#00161F}.cw h3{font-size:18px;font-weight:500;margin:28px 0 10px;color:#00161F}.cw img{max-width:100%;border-radius:3px;margin:20px 0}.cw a{color:#36D1C2;text-decoration:none}.cw ul,.cw ol{margin:0 0 18px 20px}.cw li{font-size:15px;line-height:1.8;margin-bottom:6px;color:#333;font-weight:300}.cw strong{font-weight:500}.cw blockquote{border-left:3px solid #36D1C2;padding:12px 20px;margin:20px 0;background:#FEF9F6;font-style:italic}.sf{background:#00161F;padding:30px;text-align:center}.sf p{color:rgba(255,255,255,0.4);font-size:11px;font-weight:300}</style></head><body><header class="site-header"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" style="height:24px"></header><div class="hero" style="background-image:url(\'' + image + '\')"><div class="hero-overlay"></div><div class="hero-content"><h1>' + title + '</h1><div class="hero-meta"><span>' + author + '</span> | ' + date + '</div></div></div><div class="cw">' + content + '</div><footer class="sf"><p>&copy; 2026 Anderson Collaborative</p></footer></body></html>';
-}
-
-function showStep3b() {
-  document.getElementById('step3a').classList.add('hidden');
-  document.getElementById('step3b').classList.remove('hidden');
-}
-
-function hideStep3b() {
-  document.getElementById('step3b').classList.add('hidden');
-  document.getElementById('step3a').classList.remove('hidden');
-}
-
-function copyPrompt() {
-  const prompt = document.getElementById('aiPrompt').value;
-  navigator.clipboard.writeText(prompt).then(() => {
-    alert('Prompt copied! Paste it into Claude or ChatGPT, then paste the result back here.');
+  let html = '<div style="display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:9999px;font-size:11px;font-weight:500;font-family:\'Rubik\',sans-serif;background:' + cls + '">' + passed + '/' + checks.length + ' SEO checks</div>';
+  html += '<ul style="list-style:none;margin-top:8px">';
+  checks.forEach(c => {
+    const color = c.pass ? '#2BBDAF' : '#E54B4B';
+    const bg = c.pass ? 'rgba(54,209,194,0.1)' : 'rgba(229,75,75,0.1)';
+    html += '<li style="padding:5px 0;border-bottom:1px solid rgba(179,190,201,0.1);font-size:11px;display:flex;align-items:center;gap:8px;color:#617792;font-weight:300"><span style="width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;background:' + bg + ';color:' + color + '">' + (c.pass ? '✓' : '✗') + '</span>' + c.label + '</li>';
   });
+  html += '</ul>';
+  document.getElementById('newBlogSeoChecklist').innerHTML = html;
 }
 
 function markdownToHTML(md) {
@@ -1165,85 +1972,47 @@ function markdownToHTML(md) {
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
     .replace(/^- (.+)$/gm, '<li>$1</li>');
-
-  // Wrap consecutive <li> in <ul>
-  html = html.replace(/(<li>.*?<\/li>\n?)+/g, function(match) {
-    return '<ul>' + match + '</ul>';
-  });
-
-  // Paragraphs
-  html = html.split('\n\n').map(block => {
-    block = block.trim();
-    if (!block) return '';
-    if (block.startsWith('<h') || block.startsWith('<ul') || block.startsWith('<li')) return block;
-    return '<p>' + block.replace(/\n/g, '<br>') + '</p>';
+  html = html.replace(/(<li>.*?<\/li>\n?)+/g, function(match) { return '<ul>' + match + '</ul>'; });
+  html = html.split('\n\n').map(b => {
+    b = b.trim();
+    if (!b || b.startsWith('<h') || b.startsWith('<ul') || b.startsWith('<li')) return b;
+    return '<p>' + b.replace(/\n/g, '<br>') + '</p>';
   }).join('\n');
-
   return html;
 }
 
-function buildFinalHTML() {
-  const title = document.getElementById('finalTitle').value || document.getElementById('q_topic').value || 'Blog Post';
-  const author = document.getElementById('q_author').value || 'Anderson Collaborative';
-  const date = new Date().toISOString().split('T')[0];
-  const image = document.getElementById('q_image').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
-  const seoTitle = document.getElementById('seoTitle').value || title;
-  const metaDesc = document.getElementById('metaDesc').value || '';
-  const rawContent = document.getElementById('generatedContent').value;
-
-  let blogContent = rawContent;
-  if (rawContent.includes('---SEO---')) {
-    blogContent = rawContent.split('---SEO---')[0].trim();
-  }
-
-  const content = markdownToHTML(blogContent);
-  return buildBlogHTML(title, author, date, image, content);
+function buildBlogHTML(title, author, date, image, contentHtml, seoTitle, metaDesc) {
+  return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + (seoTitle || title) + '</title><meta name="description" content="' + (metaDesc || '') + '"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:\'Roboto\',sans-serif;color:#00161F;background:#FEF9F6}.sh{background:#fff;padding:18px 40px;display:flex;align-items:center;border-bottom:1px solid #B3BEC9}.hero{position:relative;height:350px;background-size:cover;background-position:center;display:flex;align-items:flex-end}.hero-o{position:absolute;inset:0;background:linear-gradient(transparent 30%,rgba(0,22,31,.85))}.hero-c{position:relative;z-index:1;padding:36px 50px;max-width:800px}.hero-c h1{font-family:\'Rubik\',sans-serif;color:#fff;font-size:32px;font-weight:500;line-height:1.3;margin-bottom:8px}.hero-m{color:rgba(179,190,201,.6);font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-family:\'Rubik\',sans-serif;font-weight:300}.hero-m span{color:#36D1C2}.cw{max-width:720px;margin:0 auto;padding:40px 20px 60px}.cw p{font-size:15px;line-height:1.8;margin-bottom:18px;color:#617792;font-weight:300}.cw h2{font-family:\'Rubik\',sans-serif;font-size:22px;font-weight:400;margin:32px 0 12px;color:#00161F}.cw h3{font-family:\'Rubik\',sans-serif;font-size:16px;font-weight:500;margin:24px 0 10px;color:#00161F}.cw img{max-width:100%;border-radius:3px;margin:20px 0}.cw a{color:#36D1C2}.cw ul,.cw ol{margin:0 0 18px 20px}.cw li{font-size:15px;line-height:1.8;margin-bottom:5px;color:#617792;font-weight:300}.cw strong{font-weight:500;color:#00161F}.sf{background:#00161F;padding:40px;text-align:center}.sf p{color:rgba(179,190,201,.4);font-size:11px;font-weight:300}</style></head><body><header class="sh"><img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" style="height:28px"></header><div class="hero" style="background-image:url(\'' + image + '\')"><div class="hero-o"></div><div class="hero-c"><h1>' + title + '</h1><div class="hero-m"><span>' + author + '</span> | ' + date + '</div></div></div><div class="cw">' + contentHtml + '</div><footer class="sf"><p>&copy; 2026 Anderson Collaborative</p></footer></body></html>';
 }
 
-function updateFinalSEO() {
-  const seoTitle = document.getElementById('seoTitle').value;
-  const metaDesc = document.getElementById('metaDesc').value;
-  const slug = document.getElementById('seoSlug').value;
-  const keyphrase = document.getElementById('finalKeyphrase').value.toLowerCase();
-  const content = (document.getElementById('generatedContent').value || '').toLowerCase();
-  const intro = content.substring(0, 500);
+function previewNewBlog() {
+  const title = document.getElementById('newBlogTitle').value || 'Untitled Blog';
+  const authorId = document.getElementById('newBlogAuthor').value;
+  const author = AUTHORS[authorId] || 'Anderson Collaborative';
+  const date = document.getElementById('newBlogDate').value;
+  const image = document.getElementById('newBlogImage').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
+  const seoTitle = document.getElementById('newBlogSeoTitle').value;
+  const metaDesc = document.getElementById('newBlogMetaDesc').value;
+  const contentHtml = markdownToHTML(document.getElementById('newBlogContent').value);
 
-  document.getElementById('seoTitleCount').textContent = seoTitle.length + '/60';
-  document.getElementById('metaDescCount').textContent = metaDesc.length + '/155';
-
-  const checks = [
-    { label: 'Focus keyphrase set', pass: keyphrase.length > 0 },
-    { label: 'Keyphrase in SEO title', pass: keyphrase && seoTitle.toLowerCase().includes(keyphrase) },
-    { label: 'Keyphrase in meta description', pass: keyphrase && metaDesc.toLowerCase().includes(keyphrase) },
-    { label: 'Keyphrase in slug', pass: keyphrase && slug.includes(keyphrase.replace(/\s+/g,'-')) },
-    { label: 'Keyphrase in introduction', pass: keyphrase && intro.includes(keyphrase) },
-    { label: 'SEO title length (< 60 chars)', pass: seoTitle.length > 0 && seoTitle.length <= 60 },
-    { label: 'Meta description (< 155 chars)', pass: metaDesc.length > 0 && metaDesc.length <= 155 },
-    { label: 'Content has been generated', pass: content.length > 200 },
-    { label: 'Has H2 headings', pass: content.includes('##') },
-  ];
-
-  const passed = checks.filter(c => c.pass).length;
-  const scoreClass = passed >= 7 ? 'seo-good' : passed >= 4 ? 'seo-ok' : 'seo-bad';
-
-  let html = `<div style="margin-top:16px"><span class="seo-score ${scoreClass}">${passed}/${checks.length} SEO checks passed</span></div>`;
-  html += '<ul class="checklist">';
-  checks.forEach(c => {
-    html += `<li><span class="check ${c.pass?'check-pass':'check-fail'}">${c.pass?'&#10003;':'&#10007;'}</span>${c.label}</li>`;
-  });
-  html += '</ul>';
-  document.getElementById('seoChecklist').innerHTML = html;
+  const html = buildBlogHTML(title, author, date, image, contentHtml, seoTitle, metaDesc);
+  document.getElementById('newBlogFrame').srcdoc = html;
+  document.getElementById('newBlogPreview').style.display = 'block';
+  document.getElementById('newBlogPreview').scrollIntoView({behavior:'smooth'});
 }
 
-function previewFinal() {
-  const html = buildFinalHTML();
-  document.getElementById('previewFrame').srcdoc = html;
-  document.getElementById('previewContainer').classList.remove('hidden');
-}
+function downloadNewBlog() {
+  const title = document.getElementById('newBlogTitle').value || 'Untitled Blog';
+  const authorId = document.getElementById('newBlogAuthor').value;
+  const author = AUTHORS[authorId] || 'Anderson Collaborative';
+  const date = document.getElementById('newBlogDate').value;
+  const image = document.getElementById('newBlogImage').value || 'https://www.andersoncollaborative.com/wp-content/uploads/2025/07/Best-AI-SEO-Tools-2025-Anderson-Collaborative.jpg';
+  const seoTitle = document.getElementById('newBlogSeoTitle').value;
+  const metaDesc = document.getElementById('newBlogMetaDesc').value;
+  const contentHtml = markdownToHTML(document.getElementById('newBlogContent').value);
 
-function downloadFinal() {
-  const html = buildFinalHTML();
-  const slug = document.getElementById('seoSlug').value || 'new-blog';
+  const html = buildBlogHTML(title, author, date, image, contentHtml, seoTitle, metaDesc);
+  const slug = document.getElementById('newBlogSlug').value || 'new-blog';
   const blob = new Blob([html], {type:'text/html'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -1251,17 +2020,38 @@ function downloadFinal() {
   a.click();
 }
 
-function copySEOFields() {
-  const output = `Focus Keyphrase: ${document.getElementById('finalKeyphrase').value}
-SEO Title: ${document.getElementById('seoTitle').value}
-Meta Description: ${document.getElementById('metaDesc').value}
-Slug: ${document.getElementById('seoSlug').value}`;
+function saveNewBlog() {
+  const title = document.getElementById('newBlogTitle').value;
+  if (!title) { alert('Please enter a blog title'); return; }
 
-  document.getElementById('seoOutputBox').textContent = output;
-  document.getElementById('seoOutput').classList.remove('hidden');
-  navigator.clipboard.writeText(output).then(() => alert('SEO fields copied!'));
+  const authorId = document.getElementById('newBlogAuthor').value;
+  const author = AUTHORS[authorId] || 'Anderson Collaborative';
+
+  alert('Blog saved: "' + title + '" by ' + author + '\n\nNote: To save to the cloud database, sign into the Portal and use the admin dashboard.');
 }
 
+function generateAIPrompt() {
+  const title = document.getElementById('newBlogTitle').value || 'marketing strategies';
+  const website = document.getElementById('newClientUrl').value || '';
+  const keyphrase = document.getElementById('newBlogKeyphrase').value || '';
+  const audience = document.getElementById('newBlogAudience').value || 'business owners';
+  const industry = document.getElementById('newBlogIndustry').value || 'marketing';
+  const tone = document.getElementById('newBlogTone').value;
+  const length = document.getElementById('newBlogLength').value;
+
+  const toneMap = {professional:'Professional, authoritative, and data-driven',conversational:'Conversational, approachable, and relatable',bold:'Bold, opinionated, and direct',educational:'Educational, detailed, and thorough'};
+
+  const prompt = 'You are an expert SEO content writer for Anderson Collaborative, a marketing agency in Miami.\n\nWrite a blog post:\n\nTOPIC: ' + title + '\n' + (website ? 'WEBSITE: ' + website + ' — match this site\'s tone and style\n' : '') + 'TARGET AUDIENCE: ' + audience + '\nINDUSTRY: ' + industry + '\nTONE: ' + toneMap[tone] + '\nWORD COUNT: ~' + length + ' words\n' + (keyphrase ? 'FOCUS KEYPHRASE: "' + keyphrase + '" — include in title, intro, at least 2 H2 headings\n' : '') + '\nFORMAT: Use ## for H2, ### for H3, **bold**, - for bullets\nWrite compelling intro, clear conclusion with CTA, short paragraphs.\n\nAt the end, provide:\n---SEO---\nSEO Title (max 60 chars)\nMeta Description (max 155 chars)\nSlug';
+
+  document.getElementById('aiPromptText').value = prompt;
+  document.getElementById('aiPromptOutput').style.display = 'block';
+  document.getElementById('copyPromptBtn').style.display = 'inline-block';
+}
+
+function copyAIPrompt() {
+  const text = document.getElementById('aiPromptText').value;
+  navigator.clipboard.writeText(text).then(() => { alert('Prompt copied! Paste into Claude or ChatGPT.'); });
+}
 </script>
 
 </body>
