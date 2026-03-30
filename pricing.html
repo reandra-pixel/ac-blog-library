@@ -231,6 +231,31 @@ if (!firebase.apps.length) {
           <input type="text" placeholder="e.g. Mon-Fri 9am-5pm ET">
         </div>
 
+        <!-- YouTube onboarding fields -->
+        <div id="onboard-youtube" style="display:none">
+          <label>YouTube Channel URL</label>
+          <input type="text" placeholder="https://youtube.com/@yourchannel">
+          <label>Website URL</label>
+          <input type="text" placeholder="https://yourbusiness.com">
+          <label>How will you deliver videos to our team?</label>
+          <select>
+            <option>Google Drive (share folder)</option>
+            <option>Dropbox</option>
+            <option>WeTransfer</option>
+            <option>Other / Not sure yet</option>
+          </select>
+          <label>What type of videos do you create?</label>
+          <textarea placeholder="e.g. educational how-to videos, product demos, behind the scenes, testimonials..."></textarea>
+          <label>Do you have a YouTube channel already?</label>
+          <select>
+            <option>Yes, active channel</option>
+            <option>Yes, but rarely used</option>
+            <option>No, starting fresh</option>
+          </select>
+          <label>Social media links</label>
+          <textarea placeholder="Paste your social media profile URLs here"></textarea>
+        </div>
+
         <!-- Bundle onboarding shows relevant combo -->
         <div id="onboard-bundle" style="display:none">
           <label>Website URL</label>
@@ -302,10 +327,11 @@ function openSignup(el) {
     if (!document.getElementById('section-blogs').classList.contains('hidden')) selectedCategory = 'blogs';
     else if (!document.getElementById('section-web').classList.contains('hidden')) selectedCategory = 'web';
     else if (!document.getElementById('section-gmb').classList.contains('hidden')) selectedCategory = 'gmb';
+    else if (!document.getElementById('section-youtube').classList.contains('hidden')) selectedCategory = 'youtube';
     else if (!document.getElementById('section-bundles').classList.contains('hidden')) selectedCategory = 'bundles';
   }
-  
-  const catNames = {blogs:'Blog Content Package', web:'Website Services', gmb:'Google & Directory Management', bundles:'Website + Blog Bundle'};
+
+  const catNames = {blogs:'Blog Content Package', web:'Website Services', gmb:'Google & Directory Management', youtube:'YouTube Content Management', bundles:'Website + Blog Bundle'};
   
   document.getElementById('modalPlanTag').textContent = selectedPlan;
   document.getElementById('modalTitle').textContent = 'Get Started';
@@ -331,11 +357,12 @@ function goModalStep(n) {
     if (dot) dot.classList.toggle('active', i === n);
   }
   
-  // Show correct onboarding fields in step 4
-  if (n === 4) {
+  // Show correct onboarding fields in step 5
+  if (n === 5) {
     document.getElementById('onboard-blogs').style.display = selectedCategory === 'blogs' ? 'block' : 'none';
     document.getElementById('onboard-web').style.display = selectedCategory === 'web' ? 'block' : 'none';
     document.getElementById('onboard-gmb').style.display = selectedCategory === 'gmb' ? 'block' : 'none';
+    document.getElementById('onboard-youtube').style.display = selectedCategory === 'youtube' ? 'block' : 'none';
     document.getElementById('onboard-bundle').style.display = selectedCategory === 'bundles' ? 'block' : 'none';
   }
 }

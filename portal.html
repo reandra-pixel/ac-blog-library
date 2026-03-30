@@ -371,7 +371,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
   <div class="auth-body">
     <div class="auth-wrap">
       <div class="auth-card">
-        <img src="ac-logo-dark.png" alt="Anderson Collaborative" class="auth-logo">
+        <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative" class="auth-logo">
         <h1 id="authTitle">Sign In</h1>
         <p class="sub" id="authSubtitle">Access your client portal</p>
         <div class="auth-error" id="authError"></div>
@@ -404,7 +404,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
     </div>
   </div>
   <footer class="site-footer">
-    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
+    <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
@@ -764,7 +764,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 
   </div>
   <footer class="site-footer">
-    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
+    <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
@@ -958,7 +958,7 @@ body{font-family:'Roboto',sans-serif;color:#00161F;background:#FEF9F6;min-height
 
   </div>
   <footer class="site-footer">
-    <img src="ac-logo-dark.png" alt="Anderson Collaborative">
+    <img src="https://www.andersoncollaborative.com/wp-content/uploads/2022/12/logo-horizontal-green-white.svg" alt="Anderson Collaborative">
     <p>&copy; 2026 Anderson Collaborative. All rights reserved.</p>
   </footer>
 </div>
@@ -1629,10 +1629,14 @@ function dotColor(cls) {
 function switchAdminTab(name, el) {
   document.querySelectorAll('#adminTabs .dash-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('#adminDash .tab-panel').forEach(p => { p.classList.remove('active'); p.classList.add('hidden'); });
-  if (el) el.classList.add('active');
-  else {
+  if (el) {
+    el.classList.add('active');
+  } else {
+    // Programmatic call: find and activate by onclick attribute
     document.querySelectorAll('#adminTabs .dash-tab').forEach(t => {
-      if (t.textContent.toLowerCase().replace(/\s/g,'').includes(name.replace('-',''))) t.classList.add('active');
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'")) {
+        t.classList.add('active');
+      }
     });
   }
   const panel = document.getElementById('admin-' + name);
@@ -1643,7 +1647,16 @@ function switchAdminTab(name, el) {
 function switchClientTab(name, el) {
   document.querySelectorAll('#clientTabs .dash-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('#clientDash .tab-panel').forEach(p => { p.classList.remove('active'); p.classList.add('hidden'); });
-  if (el) el.classList.add('active');
+  if (el) {
+    el.classList.add('active');
+  } else {
+    // Programmatic call: find and activate the matching tab
+    document.querySelectorAll('#clientTabs .dash-tab').forEach(t => {
+      if (t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'")) {
+        t.classList.add('active');
+      }
+    });
+  }
   const panel = document.getElementById('client-' + name);
   if (panel) { panel.classList.remove('hidden'); panel.classList.add('active'); }
 }
@@ -2262,7 +2275,8 @@ async function addYoutube() {
     });
     allYoutube.unshift({ id:ref.id, clientId:clientId||'', clientName, title, youtubeUrl:url, publishDate:date, status, views:Number(views)||0, likes:Number(likes)||0, createdAt:new Date() });
     renderYoutubeTable();
-    ['ytTitle','ytUrl','ytViews','ytLikes'].forEach(id => document.getElementById(id).value = '');
+    ['ytTitle','ytUrl','ytViews','ytLikes','ytDate'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('ytStatus').value = 'submitted';
     toggleForm('addYoutubeForm');
     showToast('Video added.');
   } catch(e) { showToast('Error: ' + e.message, 'error'); }
@@ -2557,17 +2571,11 @@ document.getElementById('ytSubmitModal').addEventListener('click', function(e) {
 const TOOL_IDS = ['ai-visibility','content-ideas','local-seo','website-health','video-planner'];
 
 function openTool(toolName) {
-  // Hide all tool panels
+  // Hide all tool panels and reset results/ctas
   TOOL_IDS.forEach(id => {
     const el = document.getElementById('tool-' + id);
     if (el) el.classList.add('hidden');
-    // Reset result + cta
-    const res = document.getElementById('tool-' + id.replace(/-/g,function(m,i,s){
-      // build result id from tool id
-      return '-';
-    }) + '-result');
   });
-  // Reset all results and ctas
   document.querySelectorAll('.tool-result').forEach(el => el.classList.remove('show'));
   document.querySelectorAll('.tool-cta').forEach(el => el.classList.remove('show'));
   // Show selected tool
